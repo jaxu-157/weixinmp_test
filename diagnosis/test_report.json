@@ -1,0 +1,40 @@
+{
+  "timestamp": "2026-04-20 22:02:23",
+  "elapsed_seconds": 3.2,
+  "total_passed": 76,
+  "total_failed": 0,
+  "total_tests": 76,
+  "pass_rate": 100.0,
+  "suites": {
+    "blur": {
+      "passed": 12,
+      "failed": 0,
+      "total": 12,
+      "failures": []
+    },
+    "screen": {
+      "passed": 12,
+      "failed": 0,
+      "total": 12,
+      "failures": []
+    },
+    "layout": {
+      "passed": 11,
+      "failed": 0,
+      "total": 11,
+      "failures": []
+    },
+    "triage": {
+      "passed": 24,
+      "failed": 0,
+      "total": 24,
+      "failures": []
+    },
+    "api": {
+      "passed": 17,
+      "failed": 0,
+      "total": 17,
+      "failures": []
+    }
+  }
+}
