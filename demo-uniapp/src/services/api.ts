@@ -1,6 +1,6 @@
 import { getFaultState } from './fault'
 
-const BASE_URL = 'http://localhost:8900'
+const BASE_URL = 'http://127.0.0.1:8900'
 
 interface ApiResponse<T = any> {
   code: number

@@ -1,0 +1,126 @@
+{
+  "project": "Vision-Triage",
+  "timestamp": "20260510_171756",
+  "total_tests": 3,
+  "passed_tests": 0,
+  "failed_tests": 3,
+  "total_duration": 35.513887882232666,
+  "results": [
+    {
+      "test_name": "模糊图片故障测试",
+      "profile": "blur_image",
+      "expected": "RenderBug",
+      "actual": null,
+      "success": false,
+      "message": "期望 RenderBug, 实际 Pass",
+      "screenshot": "./reports/screenshots\\模糊图片故障测试_blur_image_20260510_171717.png",
+      "duration": 29.069957494735718,
+      "timestamp": "2026-05-10T17:17:43.852720",
+      "diagnose_result": {
+        "code": 0,
+        "data": {
+          "visual": {
+            "pass": true,
+            "black_white": false,
+            "blur_score": 965.63,
+            "is_blur": false,
+            "ocr_text": "",
+            "mean_brightness": 168.25
+          },
+          "functional": {
+            "pass": true,
+            "reason": "no_state_provided"
+          },
+          "performance": {
+            "pass": true,
+            "reason": "",
+            "interaction_ms": 100,
+            "memory_warnings": 0
+          },
+          "verdict": "Pass",
+          "explanation": "所有断言通过"
+        },
+        "profile": "blur_image"
+      }
+    },
+    {
+      "test_name": "接口延迟故障测试",
+      "profile": "slow_api",
+      "expected": "PerformanceRisk",
+      "actual": null,
+      "success": false,
+      "message": "期望 PerformanceRisk, 实际 Pass",
+      "screenshot": "./reports/screenshots\\接口延迟故障测试_slow_api_20260510_171748.png",
+      "duration": 3.2250726222991943,
+      "timestamp": "2026-05-10T17:17:49.078587",
+      "diagnose_result": {
+        "code": 0,
+        "data": {
+          "visual": {
+            "pass": true,
+            "black_white": false,
+            "blur_score": 965.63,
+            "is_blur": false,
+            "ocr_text": "",
+            "mean_brightness": 168.25
+          },
+          "functional": {
+            "pass": true,
+            "reason": "no_state_provided"
+          },
+          "performance": {
+            "pass": true,
+            "reason": "",
+            "interaction_ms": 100,
+            "memory_warnings": 0
+          },
+          "verdict": "Pass",
+          "explanation": "所有断言通过"
+        },
+        "profile": "slow_api"
+      }
+    },
+    {
+      "test_name": "内存压力故障测试",
+      "profile": "memory_pressure",
+      "expected": "PerformanceRisk",
+      "actual": null,
+      "success": false,
+      "message": "期望 PerformanceRisk, 实际 Pass",
+      "screenshot": "./reports/screenshots\\内存压力故障测试_memory_pressure_20260510_171754.png",
+      "duration": 3.218857765197754,
+      "timestamp": "2026-05-10T17:17:54.298489",
+      "diagnose_result": {
+        "code": 0,
+        "data": {
+          "visual": {
+            "pass": true,
+            "black_white": false,
+            "blur_score": 965.63,
+            "is_blur": false,
+            "ocr_text": "",
+            "mean_brightness": 168.25
+          },
+          "functional": {
+            "pass": true,
+            "reason": "no_state_provided"
+          },
+          "performance": {
+            "pass": true,
+            "reason": "",
+            "interaction_ms": 100,
+            "memory_warnings": 0
+          },
+          "verdict": "Pass",
+          "explanation": "所有断言通过"
+        },
+        "profile": "memory_pressure"
+      }
+    }
+  ],
+  "summary": {
+    "connection": "成功",
+    "screenshots_taken": 3,
+    "diagnose_calls": 3
+  }
+}

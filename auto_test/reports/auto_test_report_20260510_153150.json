@@ -1,0 +1,87 @@
+{
+  "project": "Vision-Triage",
+  "timestamp": "20260510_153150",
+  "total_tests": 3,
+  "passed_tests": 0,
+  "failed_tests": 3,
+  "total_duration": 25.841158390045166,
+  "results": [
+    {
+      "test_name": "模糊图片故障测试",
+      "profile": "blur_image",
+      "expected": "RenderBug",
+      "actual": null,
+      "success": false,
+      "message": "接口返回错误",
+      "screenshot": "./reports/screenshots\\模糊图片故障测试_blur_image_20260510_153121.png",
+      "duration": 19.50038981437683,
+      "timestamp": "2026-05-10T15:31:38.114101",
+      "diagnose_result": {
+        "detail": [
+          {
+            "type": "missing",
+            "loc": [
+              "body",
+              "screenshot"
+            ],
+            "msg": "Field required",
+            "input": null
+          }
+        ]
+      }
+    },
+    {
+      "test_name": "接口延迟故障测试",
+      "profile": "slow_api",
+      "expected": "PerformanceRisk",
+      "actual": null,
+      "success": false,
+      "message": "接口返回错误",
+      "screenshot": "./reports/screenshots\\接口延迟故障测试_slow_api_20260510_153143.png",
+      "duration": 3.156201124191284,
+      "timestamp": "2026-05-10T15:31:43.271955",
+      "diagnose_result": {
+        "detail": [
+          {
+            "type": "missing",
+            "loc": [
+              "body",
+              "screenshot"
+            ],
+            "msg": "Field required",
+            "input": null
+          }
+        ]
+      }
+    },
+    {
+      "test_name": "内存压力故障测试",
+      "profile": "memory_pressure",
+      "expected": "PerformanceRisk",
+      "actual": null,
+      "success": false,
+      "message": "接口返回错误",
+      "screenshot": "./reports/screenshots\\内存压力故障测试_memory_pressure_20260510_153148.png",
+      "duration": 3.184567451477051,
+      "timestamp": "2026-05-10T15:31:48.457879",
+      "diagnose_result": {
+        "detail": [
+          {
+            "type": "missing",
+            "loc": [
+              "body",
+              "screenshot"
+            ],
+            "msg": "Field required",
+            "input": null
+          }
+        ]
+      }
+    }
+  ],
+  "summary": {
+    "connection": "成功",
+    "screenshots_taken": 3,
+    "diagnose_calls": 3
+  }
+}

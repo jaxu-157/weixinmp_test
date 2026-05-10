@@ -1,0 +1,5 @@
+[I 2026-05-10 15:09:58,895 minium minitest#432 _miniSetUp] =========Current case: test_blur_image_fault=========
+[I 2026-05-10 15:09:58,895 minium minitest#435 _miniSetUp] package info: C:.Users.17303.Desktop.2026spring.ruance_2026spring.work_dazuoye.filework.weixinmp_test.auto_test.test_cases.test_feed_page, case info: TestFeedPage.test_blur_image_fault
+[I 2026-05-10 15:09:58,895 minium basenative#59 wrapper] call BaseNative.check_connection
+[I 2026-05-10 15:09:58,895 minium basenative#63 wrapper] call BaseNative.check_connection end True
+[I 2026-05-10 15:09:58,895 minium basenative#59 wrapper] call BaseNative.back_to_miniprogram

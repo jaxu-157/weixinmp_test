@@ -1,0 +1,28 @@
+Vision-Triage 自动化测试报告
+生成时间: 2026-05-10 16:58:28
+==================================================
+总测试数: 3
+通过数: 0
+失败数: 3
+总用时: 23.27秒
+
+详细结果:
+--------------------------------------------------
+1. 模糊图片故障测试 - blur_image
+   状态: ❌ 失败 (16.79秒)
+   期望: RenderBug, 实际: None
+   截图: 模糊图片故障测试_blur_image_20260510_165802.png
+   信息: 期望 RenderBug, 实际 Pass
+
+2. 接口延迟故障测试 - slow_api
+   状态: ❌ 失败 (3.24秒)
+   期望: PerformanceRisk, 实际: None
+   截图: 接口延迟故障测试_slow_api_20260510_165821.png
+   信息: 期望 PerformanceRisk, 实际 Pass
+
+3. 内存压力故障测试 - memory_pressure
+   状态: ❌ 失败 (3.24秒)
+   期望: PerformanceRisk, 实际: None
+   截图: 内存压力故障测试_memory_pressure_20260510_165826.png
+   信息: 期望 PerformanceRisk, 实际 Pass
+

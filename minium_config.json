@@ -1,0 +1,16 @@
+{
+  "project_path": "C:/Users/17303/Desktop/2026spring/ruance_2026spring/work_dazuoye/filework/weixinmp_test/demo-uniapp/dist/dev/mp-weixin",
+  "dev_tool_path": "C:\\\\Users\\\\17303\\\\微信web开发者工具\\\\cli.bat",
+  "test_port": 63987,
+  "appid": "wx90551d59d41885eb",
+  "debug_mode": "info",
+  "enable_app_log": true,
+  "auto_relaunch": true,
+  "auto_quit_ide": false,
+  "device_desktop": {
+    "width": 375,
+    "height": 667
+  },
+  "request_timeout": 30,
+  "assert_capture": true
+}

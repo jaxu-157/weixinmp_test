@@ -1,0 +1,12 @@
+{
+  "project": "Vision-Triage",
+  "test_module": "test_cases.test_feed_page",
+  "timestamp": "20260510_133200",
+  "success": false,
+  "diagnose_service_available": true,
+  "next_steps": [
+    "查看 minitest 生成的详细 HTML 报告（在 reports/ 目录下）",
+    "查看截图文件（在 reports/screenshots/ 目录下）",
+    "检查后端日志以确认 /diagnose 接口调用情况"
+  ]
+}

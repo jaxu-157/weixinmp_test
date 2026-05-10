@@ -1,0 +1,128 @@
+[I 2026-05-10 13:35:25,464 minium loader#300 run_session] start session with fork mode 
+{'debug': False, 'base_dir': 'C:\\Users\\17303\\Desktop\\2026spring\\ruance_2026spring\\work_dazuoye\\filework\\weixinmp_test', 'platform': 'ide', 'app': 'wx', 'debug_mode': 'info', 'close_ide': False, 'auto_capture': 'auto', 'check_mp_foreground': True, 'auto_relaunch': True, 'device_desire': {}, 'account_info': {}, 'report_usage': True, 'remote_connect_timeout': 180, 'request_timeout': 30, 'use_push': True, 'full_reset': False, 'outputs': 'C:\\Users\\17303\\Desktop\\2026spring\\ruance_2026spring\\work_dazuoye\\filework\\weixinmp_test\\auto_test\\outputs', 'enable_app_log': True, 'enable_network_panel': False, 'project_path': 'C:/Users/17303/Desktop/2026spring/ruance_2026spring/work_dazuoye/filework/weixinmp_test/demo-uniapp', 'dev_tool_path': 'C:/Program Files (x86)/Tencent/微信web开发者工具/cli.bat', 'test_port': 14024, 'mock_native_modal': {}, 'mock_request': [], 'auto_authorize': False, 'audits': None, 'teardown_snapshot': False, 'mock_images_dir': '', 'mock_images': {}, 'need_perf': False, 'appid': 'wx90551d59d41885eb', 'enable_h5': True, 'autofix': False, 'auto_quit_ide': False, 'device_desktop': {'width': 375, 'height': 667}, 'assert_capture': True, 'framework_capture': True, 'error_capture': False, 'create_time': '20260510133525'}
+
+[I 2026-05-10 13:35:26,024 minium minitest#202 init_miniprogram] start init miniprogram
+[I 2026-05-10 13:35:26,024 minium basenative#59 wrapper] call IdeNative.start_wechat
+[I 2026-05-10 13:35:26,024 minium basenative#63 wrapper] call IdeNative.start_wechat end None
+[E 2026-05-10 13:35:26,024 minium assertbase#308 _get_error_info] self._outcome is None, maybe a class error
+[E 2026-05-10 13:35:26,034 minium assertbase#390 _get_stack_info] <bound method MiniTest._miniClassSetUp of <class 'test_cases.test_feed_page.TestFeedPage'>>
+Traceback (most recent call last):
+  File "C:\Users\17303\conda\envs\vision-triage\Lib\site-packages\minium\framework\libs\unittest\suite.py", line 64, in _handleClassSetUp
+    _miniClassSetUp()
+  File "C:\Users\17303\conda\envs\vision-triage\Lib\site-packages\minium\framework\minitest.py", line 334, in _miniClassSetUp
+    native, mini, miniprogram = init_miniprogram(cls.CONFIG)
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\17303\conda\envs\vision-triage\Lib\site-packages\minium\framework\minitest.py", line 204, in init_miniprogram
+    mini = get_minium(cfg)
+           ^^^^^^^^^^^^^^^
+  File "C:\Users\17303\conda\envs\vision-triage\Lib\site-packages\minium\framework\minitest.py", line 164, in get_minium
+    g_minium = minium.miniprogram.get_minium_driver(conf=cfg, native=g_native)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\17303\conda\envs\vision-triage\Lib\site-packages\minium\miniprogram\__init__.py", line 28, in get_minium_driver
+    return APP[application](conf, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\17303\conda\envs\vision-triage\Lib\site-packages\minium\miniprogram\wx_minium.py", line 160, in __init__
+    self.launch_weapp()
+  File "C:\Users\17303\conda\envs\vision-triage\Lib\site-packages\minium\miniprogram\base_driver\minium_log.py", line 148, in wrapper
+    result = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\17303\conda\envs\vision-triage\Lib\site-packages\minium\miniprogram\wx_minium.py", line 633, in launch_weapp
+    self.__setup_dev_tool()
+  File "C:\Users\17303\conda\envs\vision-triage\Lib\site-packages\minium\miniprogram\wx_minium.py", line 253, in __setup_dev_tool
+    raise MiniConfigError(
+minium.framework.exception.MiniConfigError: [dev_tool_path] is not correct, it should be a absolute path
+[I 2026-05-10 13:46:34,808 minium loader#300 run_session] start session with fork mode 
+{'debug': False, 'base_dir': 'C:\\Users\\17303\\Desktop\\2026spring\\ruance_2026spring\\work_dazuoye\\filework\\weixinmp_test', 'platform': 'ide', 'app': 'wx', 'debug_mode': 'info', 'close_ide': False, 'auto_capture': 'auto', 'check_mp_foreground': True, 'auto_relaunch': True, 'device_desire': {}, 'account_info': {}, 'report_usage': True, 'remote_connect_timeout': 180, 'request_timeout': 30, 'use_push': True, 'full_reset': False, 'outputs': 'C:\\Users\\17303\\Desktop\\2026spring\\ruance_2026spring\\work_dazuoye\\filework\\weixinmp_test\\auto_test\\outputs', 'enable_app_log': True, 'enable_network_panel': False, 'project_path': 'C:/Users/17303/Desktop/2026spring/ruance_2026spring/work_dazuoye/filework/weixinmp_test/demo-uniapp/dist/dev/mp-weixin', 'dev_tool_path': 'C:/Program Files (x86)/Tencent/微信web开发者工具/cli.bat', 'test_port': 44393, 'mock_native_modal': {}, 'mock_request': [], 'auto_authorize': False, 'audits': None, 'teardown_snapshot': False, 'mock_images_dir': '', 'mock_images': {}, 'need_perf': False, 'appid': 'wx90551d59d41885eb', 'enable_h5': True, 'autofix': False, 'auto_quit_ide': False, 'device_desktop': {'width': 375, 'height': 667}, 'assert_capture': True, 'framework_capture': True, 'error_capture': False, 'create_time': '20260510134634'}
+
+[I 2026-05-10 13:46:35,215 minium minitest#202 init_miniprogram] start init miniprogram
+[I 2026-05-10 13:46:35,220 minium basenative#59 wrapper] call IdeNative.start_wechat
+[I 2026-05-10 13:46:35,220 minium basenative#63 wrapper] call IdeNative.start_wechat end None
+[E 2026-05-10 13:46:35,222 minium assertbase#308 _get_error_info] self._outcome is None, maybe a class error
+[E 2026-05-10 13:46:35,233 minium assertbase#390 _get_stack_info] <bound method MiniTest._miniClassSetUp of <class 'test_cases.test_feed_page.TestFeedPage'>>
+Traceback (most recent call last):
+  File "C:\Users\17303\conda\envs\vision-triage\Lib\site-packages\minium\framework\libs\unittest\suite.py", line 64, in _handleClassSetUp
+    _miniClassSetUp()
+  File "C:\Users\17303\conda\envs\vision-triage\Lib\site-packages\minium\framework\minitest.py", line 334, in _miniClassSetUp
+    native, mini, miniprogram = init_miniprogram(cls.CONFIG)
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\17303\conda\envs\vision-triage\Lib\site-packages\minium\framework\minitest.py", line 204, in init_miniprogram
+    mini = get_minium(cfg)
+           ^^^^^^^^^^^^^^^
+  File "C:\Users\17303\conda\envs\vision-triage\Lib\site-packages\minium\framework\minitest.py", line 164, in get_minium
+    g_minium = minium.miniprogram.get_minium_driver(conf=cfg, native=g_native)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\17303\conda\envs\vision-triage\Lib\site-packages\minium\miniprogram\__init__.py", line 28, in get_minium_driver
+    return APP[application](conf, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\17303\conda\envs\vision-triage\Lib\site-packages\minium\miniprogram\wx_minium.py", line 160, in __init__
+    self.launch_weapp()
+  File "C:\Users\17303\conda\envs\vision-triage\Lib\site-packages\minium\miniprogram\base_driver\minium_log.py", line 148, in wrapper
+    result = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\17303\conda\envs\vision-triage\Lib\site-packages\minium\miniprogram\wx_minium.py", line 633, in launch_weapp
+    self.__setup_dev_tool()
+  File "C:\Users\17303\conda\envs\vision-triage\Lib\site-packages\minium\miniprogram\wx_minium.py", line 253, in __setup_dev_tool
+    raise MiniConfigError(
+minium.framework.exception.MiniConfigError: [dev_tool_path] is not correct, it should be a absolute path
+[I 2026-05-10 15:09:44,476 minium loader#300 run_session] start session with fork mode 
+{'debug': False, 'base_dir': 'C:\\Users\\17303\\Desktop\\2026spring\\ruance_2026spring\\work_dazuoye\\filework\\weixinmp_test', 'platform': 'ide', 'app': 'wx', 'debug_mode': 'info', 'close_ide': False, 'auto_capture': 'auto', 'check_mp_foreground': True, 'auto_relaunch': True, 'device_desire': {}, 'account_info': {}, 'report_usage': True, 'remote_connect_timeout': 180, 'request_timeout': 30, 'use_push': True, 'full_reset': False, 'outputs': 'C:\\Users\\17303\\Desktop\\2026spring\\ruance_2026spring\\work_dazuoye\\filework\\weixinmp_test\\auto_test\\outputs', 'enable_app_log': True, 'enable_network_panel': False, 'project_path': 'C:/Users/17303/Desktop/2026spring/ruance_2026spring/work_dazuoye/filework/weixinmp_test/demo-uniapp/dist/dev/mp-weixin', 'dev_tool_path': 'C:\\\\Users\\\\17303\\\\微信web开发者工具\\\\cli.bat', 'test_port': 17225, 'mock_native_modal': {}, 'mock_request': [], 'auto_authorize': False, 'audits': None, 'teardown_snapshot': False, 'mock_images_dir': '', 'mock_images': {}, 'need_perf': False, 'appid': 'wx90551d59d41885eb', 'enable_h5': True, 'autofix': False, 'auto_quit_ide': False, 'device_desktop': {'width': 375, 'height': 667}, 'assert_capture': True, 'framework_capture': True, 'error_capture': False, 'create_time': '20260510150944'}
+
+[I 2026-05-10 15:09:44,748 minium minitest#202 init_miniprogram] start init miniprogram
+[I 2026-05-10 15:09:44,748 minium basenative#59 wrapper] call IdeNative.start_wechat
+[I 2026-05-10 15:09:44,748 minium basenative#63 wrapper] call IdeNative.start_wechat end None
+[I 2026-05-10 15:09:44,748 minium wx_minium#738 launch_dev_tool] Starting dev tool and launch MiniProgram project ...
+[I 2026-05-10 15:09:44,748 minium minium_object#83 _do_shell] de shell: cli.bat auto --project "C:/Users/17303/Desktop/2026spring/ruance_2026spring/work_dazuoye/filework/weixinmp_test/demo-uniapp/dist/dev/mp-weixin" --auto-port 17225
+[I 2026-05-10 15:09:48,091 minium minium_object#101 _do_shell] err:
+- initialize
+
+√ IDE server has started, listening on http://127.0.0.1:17225
+- preparing
+- Fetching AppID () permissions
+√ Using AppID: wx90551d59d41885eb
+√ auto
+
+[I 2026-05-10 15:09:48,091 minium minium_object#102 _do_shell] out:
+
+[I 2026-05-10 15:09:58,094 minium wx_minium#835 connect_dev_tool] Trying to connect Dev tool ...
+[I 2026-05-10 15:09:58,224 minium.Conn6816 connection#352 _connect] connect to WebChatTools successfully
+[I 2026-05-10 15:09:58,268 minium wx_minium#893 _instantiate_app] new app instanst <minium.miniprogram.base_driver.app.App object at 0x000002074A4C84D0>, whether should relaunch: False
+[I 2026-05-10 15:09:58,268 minium basenative#59 wrapper] call IdeNative.send
+[W 2026-05-10 15:09:58,272 minium idenative#77 _send] handle clickCoverView error: clickCoverView failed
+[I 2026-05-10 15:09:58,272 minium basenative#63 wrapper] call IdeNative.send end False
+[I 2026-05-10 15:09:58,895 minium minitest#218 init_miniprogram] end init miniprogram
+[I 2026-05-10 15:09:58,895 minium minitest#432 _miniSetUp] =========Current case: test_blur_image_fault=========
+[I 2026-05-10 15:09:58,895 minium minitest#435 _miniSetUp] package info: C:.Users.17303.Desktop.2026spring.ruance_2026spring.work_dazuoye.filework.weixinmp_test.auto_test.test_cases.test_feed_page, case info: TestFeedPage.test_blur_image_fault
+[I 2026-05-10 15:09:58,895 minium basenative#59 wrapper] call BaseNative.check_connection
+[I 2026-05-10 15:09:58,895 minium basenative#63 wrapper] call BaseNative.check_connection end True
+[I 2026-05-10 15:09:58,895 minium basenative#59 wrapper] call BaseNative.back_to_miniprogram
+[I 2026-05-10 15:46:01,830 minium loader#300 run_session] start session with fork mode 
+{'debug': False, 'base_dir': 'C:\\Users\\17303\\Desktop\\2026spring\\ruance_2026spring\\work_dazuoye\\filework\\weixinmp_test', 'platform': 'ide', 'app': 'wx', 'debug_mode': 'info', 'close_ide': False, 'auto_capture': 'auto', 'check_mp_foreground': True, 'auto_relaunch': True, 'device_desire': {}, 'account_info': {}, 'report_usage': True, 'remote_connect_timeout': 180, 'request_timeout': 30, 'use_push': True, 'full_reset': False, 'outputs': 'C:\\Users\\17303\\Desktop\\2026spring\\ruance_2026spring\\work_dazuoye\\filework\\weixinmp_test\\auto_test\\outputs', 'enable_app_log': True, 'enable_network_panel': False, 'project_path': 'C:/Users/17303/Desktop/2026spring/ruance_2026spring/work_dazuoye/filework/weixinmp_test/demo-uniapp/dist/dev/mp-weixin', 'dev_tool_path': 'C:\\\\Users\\\\17303\\\\微信web开发者工具\\\\cli.bat', 'test_port': 17225, 'mock_native_modal': {}, 'mock_request': [], 'auto_authorize': False, 'audits': None, 'teardown_snapshot': False, 'mock_images_dir': '', 'mock_images': {}, 'need_perf': False, 'appid': 'wx90551d59d41885eb', 'enable_h5': True, 'autofix': False, 'auto_quit_ide': False, 'device_desktop': {'width': 375, 'height': 667}, 'assert_capture': True, 'framework_capture': True, 'error_capture': False, 'create_time': '20260510154601'}
+
+[I 2026-05-10 15:46:02,114 minium minitest#202 init_miniprogram] start init miniprogram
+[I 2026-05-10 15:46:02,117 minium basenative#59 wrapper] call IdeNative.start_wechat
+[I 2026-05-10 15:46:02,117 minium basenative#63 wrapper] call IdeNative.start_wechat end None
+[I 2026-05-10 15:46:02,117 minium wx_minium#738 launch_dev_tool] Starting dev tool and launch MiniProgram project ...
+[I 2026-05-10 15:46:02,118 minium minium_object#83 _do_shell] de shell: cli.bat auto --project "C:/Users/17303/Desktop/2026spring/ruance_2026spring/work_dazuoye/filework/weixinmp_test/demo-uniapp/dist/dev/mp-weixin" --auto-port 17225
+[I 2026-05-10 15:46:06,179 minium minium_object#101 _do_shell] err:
+- initialize
+
+√ IDE server has started, listening on http://127.0.0.1:17225
+- preparing
+- Fetching AppID () permissions
+√ Using AppID: wx90551d59d41885eb
+√ auto
+
+[I 2026-05-10 15:46:06,179 minium minium_object#102 _do_shell] out:
+
+[I 2026-05-10 15:46:16,180 minium wx_minium#835 connect_dev_tool] Trying to connect Dev tool ...
+[I 2026-05-10 15:46:16,253 minium.Conn8128 connection#352 _connect] connect to WebChatTools successfully
+[I 2026-05-10 15:46:16,302 minium wx_minium#893 _instantiate_app] new app instanst <minium.miniprogram.base_driver.app.App object at 0x0000024CB5D184D0>, whether should relaunch: False
+[I 2026-05-10 15:46:16,302 minium basenative#59 wrapper] call IdeNative.send
+[W 2026-05-10 15:46:16,302 minium idenative#77 _send] handle clickCoverView error: clickCoverView failed
+[I 2026-05-10 15:46:16,302 minium basenative#63 wrapper] call IdeNative.send end False
+[I 2026-05-10 15:46:16,983 minium minitest#218 init_miniprogram] end init miniprogram
+[I 2026-05-10 15:46:16,984 minium minitest#432 _miniSetUp] =========Current case: test_blur_image_fault=========
+[I 2026-05-10 15:46:16,984 minium minitest#435 _miniSetUp] package info: C:.Users.17303.Desktop.2026spring.ruance_2026spring.work_dazuoye.filework.weixinmp_test.auto_test.test_cases.test_feed_page, case info: TestFeedPage.test_blur_image_fault
+[I 2026-05-10 15:46:16,985 minium basenative#59 wrapper] call BaseNative.check_connection
+[I 2026-05-10 15:46:16,985 minium basenative#63 wrapper] call BaseNative.check_connection end True
+[I 2026-05-10 15:46:16,985 minium basenative#59 wrapper] call BaseNative.back_to_miniprogram
