@@ -4,9 +4,16 @@ import random
 from typing import Optional
 from fastapi import FastAPI, File, UploadFile, Header, Form
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
+import os
 
 app = FastAPI(title="Vision-Triage Diagnosis Server", version="1.0.0")
+
+# 静态文件服务（提供模糊图片等）
+STATIC_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "static")
+os.makedirs(STATIC_DIR, exist_ok=True)
+app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
 
 app.add_middleware(
     CORSMiddleware,
@@ -55,10 +62,14 @@ SAMPLE_IMAGES = [
 ]
 
 BLUR_IMAGES = [
-    "https://picsum.photos/400/300?blur=10&random=1",
-    "https://picsum.photos/400/300?blur=10&random=2",
-    "https://picsum.photos/400/300?blur=10&random=3",
-    "https://picsum.photos/400/300?blur=10&random=4",
+    "http://127.0.0.1:8900/static/blur_1.png",
+    "http://127.0.0.1:8900/static/blur_2.png",
+    "http://127.0.0.1:8900/static/blur_3.png",
+    "http://127.0.0.1:8900/static/blur_4.png",
+    "http://127.0.0.1:8900/static/blur_5.png",
+    "http://127.0.0.1:8900/static/blur_6.png",
+    "http://127.0.0.1:8900/static/blur_7.png",
+    "http://127.0.0.1:8900/static/blur_8.png",
 ]
 
 

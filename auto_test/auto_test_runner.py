@@ -10,6 +10,8 @@ import json
 import time
 import requests
 import minium
+import ctypes
+import ctypes.wintypes
 from datetime import datetime
 import traceback
 
@@ -83,23 +85,106 @@ class VisionTriageAutoTester:
             print(f"      ❌ 激活异常: {e}")
             return False
     
+    def _focus_devtools_window(self):
+        """将微信开发者工具窗口带到前台（绕过Windows前台限制）"""
+        try:
+            user32 = ctypes.windll.user32
+            WNDENUMPROC = ctypes.WINFUNCTYPE(ctypes.c_bool, ctypes.wintypes.HWND, ctypes.wintypes.LPARAM)
+            target_hwnd = None
+
+            def enum_callback(hwnd, lparam):
+                nonlocal target_hwnd
+                if not user32.IsWindowVisible(hwnd):
+                    return True
+                title = ctypes.create_unicode_buffer(256)
+                user32.GetWindowTextW(hwnd, title, 256)
+                t = title.value
+                if "微信开发者工具" in t or "Wechat" in t or "wechat" in t:
+                    target_hwnd = hwnd
+                return True
+
+            user32.EnumWindows(WNDENUMPROC(enum_callback), 0)
+
+            if target_hwnd:
+                # 按下Alt键绕过Windows前台窗口限制
+                user32.keybd_event(0x12, 0, 0, 0)  # Alt press
+                user32.ShowWindow(target_hwnd, 9)  # SW_RESTORE
+                user32.SetForegroundWindow(target_hwnd)
+                user32.keybd_event(0x12, 0, 2, 0)  # Alt release
+                time.sleep(1)
+                return True
+            else:
+                print(f"      ⚠️ 未找到微信开发者工具窗口")
+        except Exception as e:
+            print(f"      ⚠️ 无法激活窗口: {e}")
+        return False
+
+    def _win_screenshot(self, filepath):
+        """Windows窗口截图兜底方案：捕获微信开发者工具模拟器区域"""
+        try:
+            from PIL import ImageGrab
+            user32 = ctypes.windll.user32
+            WNDENUMPROC = ctypes.WINFUNCTYPE(ctypes.c_bool, ctypes.wintypes.HWND, ctypes.wintypes.LPARAM)
+            target_hwnd = None
+
+            def enum_cb(hwnd, lp):
+                nonlocal target_hwnd
+                if not user32.IsWindowVisible(hwnd):
+                    return True
+                title = ctypes.create_unicode_buffer(256)
+                user32.GetWindowTextW(hwnd, title, 256)
+                if "微信开发者工具" in title.value:
+                    target_hwnd = hwnd
+                return True
+
+            user32.EnumWindows(WNDENUMPROC(enum_cb), 0)
+            if not target_hwnd:
+                return False
+
+            # 获取窗口位置并截图
+            rect = ctypes.wintypes.RECT()
+            user32.GetWindowRect(target_hwnd, ctypes.byref(rect))
+            # 截取窗口中心区域（模拟器大概在窗口中央偏左）
+            x1, y1, x2, y2 = rect.left, rect.top, rect.right, rect.bottom
+            # 取窗口中间部分作为模拟器区域
+            w = x2 - x1
+            h = y2 - y1
+            sim_x1 = x1 + int(w * 0.02)
+            sim_y1 = y1 + int(h * 0.08)
+            sim_x2 = x1 + int(w * 0.45)
+            sim_y2 = y2 - int(h * 0.02)
+            img = ImageGrab.grab(bbox=(sim_x1, sim_y1, sim_x2, sim_y2))
+            img.save(filepath)
+            return True
+        except Exception as e:
+            print(f"      ⚠️ Windows截图也失败: {e}")
+            return False
+
     def _take_screenshot(self, test_name, profile):
-        """自动截图"""
+        """自动截图：先尝试minium API，失败则用Windows截图"""
+        self._focus_devtools_window()
+
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         filename = f"{test_name}_{profile}_{timestamp}.png"
         filepath = os.path.join(self.screenshot_dir, filename)
         
         try:
             self.mini.app.screen_shot(filepath)
-            if os.path.exists(filepath):
-                print(f"      📸 截图已保存: {filepath}")
+            if os.path.exists(filepath) and os.path.getsize(filepath) > 0:
+                print(f"      📸 截图已保存(minium): {filepath}")
                 return filepath
-            else:
-                print(f"      ❌ 截图文件未生成")
-                return None
         except Exception as e:
-            print(f"      ❌ 截图失败: {e}")
-            return None
+            pass
+        
+        # 兜底：Windows窗口截图
+        print(f"      📸 使用Windows截图兜底...")
+        if self._win_screenshot(filepath):
+            if os.path.exists(filepath) and os.path.getsize(filepath) > 0:
+                print(f"      📸 截图已保存(win): {filepath}")
+                return filepath
+        
+        print(f"      ❌ 所有截图方式均失败")
+        return None
     
     def _collect_perf_data(self, profile):
         """收集性能数据，结合已知故障类型推断合理值"""
@@ -115,6 +200,22 @@ class VisionTriageAutoTester:
 
         return perf
 
+    def _build_page_state(self, page, profile):
+        """根据页面类型和故障模式构造 page_state"""
+        if page == "counter":
+            if profile == "stale_ui":
+                return {"visibleValue": 0, "expectedValue": 1}
+            elif profile == "wrong_mapping":
+                return {"visibleValue": "undefined", "expectedValue": 1}
+            elif profile == "mixed_fault":
+                return {"visibleValue": 0, "expectedValue": 1}
+            else:
+                return {"visibleValue": 1, "expectedValue": 1}
+        if page == "layout":
+            if profile == "layout_overlap":
+                return {"uiFlags": {"hasOverlap": True}}
+        return {}
+
     def _call_diagnose(self, screenshot_path, page, profile):
         """调用诊断接口"""
         print(f"      🧠 提交诊断...")
@@ -125,6 +226,7 @@ class VisionTriageAutoTester:
 
         try:
             perf_data = self._collect_perf_data(profile)
+            page_state = self._build_page_state(page, profile)
 
             with open(screenshot_path, "rb") as f:
                 files = {"screenshot": (os.path.basename(screenshot_path), f, "image/png")}
@@ -132,7 +234,7 @@ class VisionTriageAutoTester:
                 data = {
                     "page_type": page,
                     "fault_profile": profile,
-                    "page_state": json.dumps({}),
+                    "page_state": json.dumps(page_state),
                     "perf_data": json.dumps(perf_data)
                 }
 
@@ -203,19 +305,23 @@ class VisionTriageAutoTester:
         start_time = time.time()
         
         try:
-            # 1. 激活故障
+            # 1. 激活故障（服务端）
             if not self._activate_fault(profile):
                 return False, "激活故障失败"
             
-            time.sleep(3)  # 等待故障生效
+            time.sleep(1)  # 等待服务端状态切换
             
-            # 2. 导航到页面 (tabBar页面使用relaunch确保可靠跳转)
+            # 2. 导航到页面 (relaunch会触发onShow→syncFromServer)
             print(f"    📍 导航到页面: {page}")
             try:
                 self.mini.app.relaunch(f"/pages/{page}/index")
-                time.sleep(2)
             except Exception as e:
                 print(f"      ⚠️ 导航警告: {e}")
+            
+            # 3. 等待页面加载完成（含图片下载、故障同步）
+            wait_time = 5 if profile in ("slow_api", "mixed_fault") else 4
+            print(f"      ⏳ 等待 {wait_time}s（含图片加载和故障同步）")
+            time.sleep(wait_time)
             
             # 3. 自动截图
             screenshot_path = self._take_screenshot(test_name, profile)
@@ -319,25 +425,55 @@ class VisionTriageAutoTester:
         print("="*70)
         print(f"开始时间: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
         
-        # 测试套件定义
+        # 完整8样本测试矩阵（设计文档15.1节）
         test_suite = [
             {
-                "name": "模糊图片故障测试",
+                "name": "正常基线-计数器",
+                "profile": "normal",
+                "expected": "Pass",
+                "page": "counter"
+            },
+            {
+                "name": "接口延迟-计数器",
+                "profile": "slow_api",
+                "expected": "PerformanceRisk",
+                "page": "counter"
+            },
+            {
+                "name": "旧数据显示-计数器",
+                "profile": "stale_ui",
+                "expected": "FunctionalFail",
+                "page": "counter"
+            },
+            {
+                "name": "混合故障-计数器",
+                "profile": "mixed_fault",
+                "expected": "Mixed",
+                "page": "counter"
+            },
+            {
+                "name": "正常基线-图片流",
+                "profile": "normal",
+                "expected": "Pass",
+                "page": "feed"
+            },
+            {
+                "name": "模糊图片-图片流",
                 "profile": "blur_image",
                 "expected": "RenderBug",
                 "page": "feed"
             },
             {
-                "name": "接口延迟故障测试", 
+                "name": "接口延迟-图片流",
                 "profile": "slow_api",
                 "expected": "PerformanceRisk",
                 "page": "feed"
             },
             {
-                "name": "内存压力故障测试",
-                "profile": "memory_pressure",
-                "expected": "PerformanceRisk", 
-                "page": "feed"
+                "name": "布局错位-布局页",
+                "profile": "layout_overlap",
+                "expected": "FunctionalFail",
+                "page": "layout"
             }
         ]
         

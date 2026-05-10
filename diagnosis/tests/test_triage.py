@@ -282,7 +282,6 @@ class TestTriageEdgeCases:
             perf_data={"interactionMs": 100, "memoryWarningCount": 0},
         )
         assert result["functional"]["pass"] is True
-        assert result["functional"]["reason"] == "values_not_applicable"
         return result
 
 

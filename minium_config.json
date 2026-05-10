@@ -1,8 +1,8 @@
 {
-  "project_path": "C:/Users/17303/Desktop/2026spring/ruance_2026spring/work_dazuoye/filework/weixinmp_test/demo-uniapp/dist/dev/mp-weixin",
-  "dev_tool_path": "C:\\\\Users\\\\17303\\\\微信web开发者工具\\\\cli.bat",
-  "test_port": 63987,
-  "appid": "wx90551d59d41885eb",
+  "project_path": "d:/weixinmp_test/demo-uniapp/dist/dev/mp-weixin",
+  "dev_tool_path": "D:\\wx_mp_tool2\\微信web开发者工具\\cli.bat",
+  "test_port": 9420,
+  "appid": "wx5a7ba069ebebaee5",
   "debug_mode": "info",
   "enable_app_log": true,
   "auto_relaunch": true,

@@ -7,8 +7,11 @@ from .ocr import extract_text
 
 
 # 阈值配置
-PERF_THRESHOLD_MS = 800  # 交互延迟阈值
-BLUR_THRESHOLD = 500.0   # 模糊分数阈值（自然图片比文档图片方差高）
+PERF_THRESHOLD_MS = 800        # 交互延迟阈值
+BLUR_THRESHOLD_FULL = 100.0    # 全屏模糊阈值
+BLUR_THRESHOLD_ROI = 300.0     # ROI区域模糊阈值
+BLUR_THRESHOLD_CARD = 200.0    # 卡片图片区域模糊阈值
+EDGE_DENSITY_LOW = 0.05        # 边缘密度低于此值判定为模糊/异常
 
 
 def run_triage(
@@ -64,39 +67,83 @@ def run_triage(
 
 
 def _run_visual_assertions(image: np.ndarray, page_type: str) -> dict:
-    """视觉断言：黑白屏 + 模糊 + OCR"""
+    """视觉断言：黑白屏 + 多级模糊检测 + 边缘密度 + OCR"""
     blank = detect_blank_screen(image)
-    blur = detect_blur(image)
-    ocr = extract_text(image)
+    h, w = image.shape[:2]
 
-    is_visual_fail = blank["is_black"] or blank["is_white"] or blur["is_blur"]
+    # 1. 全屏模糊
+    blur_full = detect_blur(image, threshold=BLUR_THRESHOLD_FULL)
+
+    # 2. ROI 模糊（跳过导航栏和tabbar）
+    roi = image[int(h * 0.15):int(h * 0.85), :]
+    blur_roi = detect_blur(roi, threshold=BLUR_THRESHOLD_ROI)
+
+    # 3. 卡片图片区域模糊（多个采样块投票）
+    card_blur_scores = []
+    card_regions = [
+        (0.06, 0.32, 0.02, 0.48),  # 左上卡片
+        (0.06, 0.32, 0.52, 0.98),  # 右上卡片
+        (0.40, 0.62, 0.02, 0.48),  # 左下卡片
+        (0.40, 0.62, 0.52, 0.98),  # 右下卡片
+    ]
+    for (y1r, y2r, x1r, x2r) in card_regions:
+        y1, y2 = int(h * y1r), int(h * y2r)
+        x1, x2 = int(w * x1r), int(w * x2r)
+        patch = image[y1:y2, x1:x2]
+        if patch.size > 0:
+            card_blur_scores.append(detect_blur(patch)["score"])
+    avg_card_score = sum(card_blur_scores) / max(len(card_blur_scores), 1)
+    card_is_blur = avg_card_score < BLUR_THRESHOLD_CARD
+
+    # 4. 边缘密度（Canny）
+    gray_roi = cv2.cvtColor(roi, cv2.COLOR_BGR2GRAY)
+    edges = cv2.Canny(gray_roi, 50, 150)
+    edge_density = float(np.sum(edges > 0) / edges.size)
+    edge_too_low = edge_density < EDGE_DENSITY_LOW
+
+    # 综合判定：全图模糊 或 卡片区域模糊 触发
+    # 边缘密度仅对图片密集页(feed)生效，counter/layout页面天然边缘少
+    is_blur = blur_full["is_blur"] or card_is_blur
+    if page_type == "feed" and edge_too_low:
+        is_blur = True
+
+    ocr = extract_text(image)
+    is_visual_fail = blank["is_black"] or blank["is_white"] or is_blur
 
     return {
         "pass": not is_visual_fail,
         "black_white": blank["is_black"] or blank["is_white"],
-        "blur_score": blur["score"],
-        "is_blur": blur["is_blur"],
+        "blur_score": round(avg_card_score, 2),
+        "blur_score_full": blur_full["score"],
+        "is_blur": is_blur,
+        "edge_density": round(edge_density, 4),
         "ocr_text": ocr["full_text"][:200],
         "mean_brightness": blank["mean_brightness"],
     }
 
 
 def _run_functional_assertions(page_state: dict, page_type: str) -> dict:
-    """功能断言：检查可见值与期望值是否一致"""
+    """功能断言：检查可见值一致性 + UI标记异常"""
     if not page_state:
         return {"pass": True, "reason": "no_state_provided"}
 
+    reasons = []
+
+    # 检查值一致性
     visible = page_state.get("visibleValue")
     expected = page_state.get("expectedValue")
+    if visible is not None and expected is not None and visible != expected:
+        reasons.append(f"visible={visible}, expected={expected}")
 
-    if visible is None or expected is None:
-        return {"pass": True, "reason": "values_not_applicable"}
+    # 检查UI标记（布局重叠、空白等）
+    ui_flags = page_state.get("uiFlags", {})
+    if ui_flags.get("hasOverlap"):
+        reasons.append("layout_overlap_detected")
+    if ui_flags.get("isBlank"):
+        reasons.append("page_is_blank")
 
-    if visible != expected:
-        return {
-            "pass": False,
-            "reason": f"visible={visible}, expected={expected}",
-        }
+    if reasons:
+        return {"pass": False, "reason": "; ".join(reasons)}
 
     return {"pass": True, "reason": ""}
 

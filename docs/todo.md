@@ -88,8 +88,47 @@ d:\weixinmp_test\
 2. **`app.py` Form 参数声明** — `/diagnose` 端点的 `page_state`/`perf_data` 需要 `Form()` 声明，否则 multipart 请求中无法解析
 3. **模板匹配测试** — 纯色背景导致 matchTemplate 退化，改用随机纹理背景
 
+---
+
+## 2026-05-11 三大问题修复
+
+### 问题定位与修复
+
+**问题1：模糊检测分数一直是几百，注入故障无反应**
+
+- 根因：截图包含整个页面（导航栏/文字/按钮等锐利UI），即使图片模糊，全屏Laplacian方差仍高
+- 修复：
+  1. `triage.py` 增加 ROI 检测：裁剪页面中部区域（跳过导航栏和tabbar）单独分析
+  2. 增加 `BLUR_THRESHOLD_ROI=300` 阈值（页面截图合理值）
+  3. 后端不再依赖 picsum.photos 的 `?blur=5` 参数
+  4. 新增 `generate_blur_images.py` 生成极度模糊本地图片（score<1.0）
+  5. FastAPI 挂载 `/static` 目录，模糊图片 URL 改为 `http://127.0.0.1:8900/static/blur_X.png`
+
+**问题2：结果矩阵化未实现**
+
+- 修复：`auto_test_runner.py` 测试套件从3个扩展为8个样本：
+  - counter+normal → Pass
+  - counter+slow_api → PerformanceRisk
+  - counter+stale_ui → FunctionalFail
+  - counter+mixed_fault → Mixed
+  - feed+normal → Pass
+  - feed+blur_image → RenderBug
+  - feed+slow_api → PerformanceRisk
+  - layout+layout_overlap → RenderBug
+
+**问题3：前端故障注入未联通**
+
+- 根因：`syncFromServer()` 在 `onShow` 异步调用，截图时可能尚未同步完成
+- 修复：
+  1. 测试流程改为：先激活故障 → 再 relaunch（触发 onShow+syncFromServer）→ 等待 4-5 秒后截图
+  2. 新增 `_build_page_state()` 为各故障构造正确的功能断言输入
+
+### 验证结果
+
+- 诊断模块 76/76 测试全部通过
+- 小程序编译成功
+
 ### 下一步
 
-- 用微信开发者工具导入并实机调试
-- 接入 miniprogram-automator + Jest 自动化
-- 完善 OCR 功能验证流程
+- 启动 FastAPI + 微信开发者工具，用 minium 运行完整 8 样本自动化测试
+- 分析真实截图的模糊检测效果，必要时微调 ROI 阈值

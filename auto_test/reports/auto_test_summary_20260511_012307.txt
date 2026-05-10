@@ -1,0 +1,58 @@
+Vision-Triage 自动化测试报告
+生成时间: 2026-05-11 01:23:07
+==================================================
+总测试数: 8
+通过数: 6
+失败数: 2
+总用时: 70.42秒
+
+详细结果:
+--------------------------------------------------
+1. 正常基线-计数器 - normal
+   状态: ✅ 通过 (10.31秒)
+   期望: Pass, 实际: None
+   截图: 正常基线-计数器_normal_20260511_012149.png
+   信息: 诊断正确: Pass
+
+2. 接口延迟-计数器 - slow_api
+   状态: ✅ 通过 (9.86秒)
+   期望: PerformanceRisk, 实际: None
+   截图: 接口延迟-计数器_slow_api_20260511_012203.png
+   信息: 诊断正确: PerformanceRisk
+
+3. 旧数据显示-计数器 - stale_ui
+   状态: ✅ 通过 (7.90秒)
+   期望: FunctionalFail, 实际: None
+   截图: 旧数据显示-计数器_stale_ui_20260511_012213.png
+   信息: 诊断正确: FunctionalFail
+
+4. 混合故障-计数器 - mixed_fault
+   状态: ✅ 通过 (8.98秒)
+   期望: Mixed, 实际: None
+   截图: 混合故障-计数器_mixed_fault_20260511_012224.png
+   信息: 诊断正确: Mixed
+
+5. 正常基线-图片流 - normal
+   状态: ✅ 通过 (8.12秒)
+   期望: Pass, 实际: None
+   截图: 正常基线-图片流_normal_20260511_012234.png
+   信息: 诊断正确: Pass
+
+6. 模糊图片-图片流 - blur_image
+   状态: ❌ 失败 (7.98秒)
+   期望: RenderBug, 实际: None
+   截图: 模糊图片-图片流_blur_image_20260511_012244.png
+   信息: 期望 RenderBug, 实际 Pass
+
+7. 接口延迟-图片流 - slow_api
+   状态: ✅ 通过 (9.01秒)
+   期望: PerformanceRisk, 实际: None
+   截图: 接口延迟-图片流_slow_api_20260511_012255.png
+   信息: 诊断正确: PerformanceRisk
+
+8. 布局错位-布局页 - layout_overlap
+   状态: ❌ 失败 (8.26秒)
+   期望: RenderBug, 实际: None
+   截图: 布局错位-布局页_layout_overlap_20260511_012305.png
+   信息: 期望 RenderBug, 实际 Pass
+
