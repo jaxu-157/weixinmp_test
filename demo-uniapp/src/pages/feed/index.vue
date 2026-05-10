@@ -15,6 +15,9 @@
       @refresherrefresh="onRefresh"
       :refresher-triggered="refreshing"
     >
+      <view class="memory-warning" v-if="faultState.memoryPressure">
+        <text class="warning-text">⚠ 内存压力模拟中</text>
+      </view>
       <view class="feed-list">
         <view
           class="feed-card"
@@ -69,16 +72,20 @@ const refreshing = ref(false)
 const currentPage = ref(1)
 const imageLoadedMap = ref<Record<number, boolean>>({})
 
-onMounted(() => {
+onMounted(async () => {
   resetMetrics()
   markPageLoadStart()
+  await syncFromServer()
   loadFeed()
+  if (faultState.memoryPressure) {
+    simulateMemoryPressure()
+  }
 })
 
 onShow(async () => {
-  // 从服务器同步故障状态
   await syncFromServer()
-  // 页面显示时如果有内存压力故障，模拟大量数据
+  currentPage.value = 1
+  loadFeed()
   if (faultState.memoryPressure) {
     simulateMemoryPressure()
   }
@@ -243,6 +250,18 @@ defineExpose({ getPageStateExport })
   background: #eef4fd;
   padding: 4rpx 12rpx;
   border-radius: 8rpx;
+}
+
+.memory-warning {
+  background: #e67e22;
+  padding: 16rpx 30rpx;
+  margin: 10rpx;
+  border-radius: 8rpx;
+}
+
+.warning-text {
+  color: #fff;
+  font-size: 26rpx;
 }
 
 .loading-tip,

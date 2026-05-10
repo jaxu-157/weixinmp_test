@@ -128,7 +128,38 @@ d:\weixinmp_test\
 - 诊断模块 76/76 测试全部通过
 - 小程序编译成功
 
-### 下一步
+---
 
-- 启动 FastAPI + 微信开发者工具，用 minium 运行完整 8 样本自动化测试
-- 分析真实截图的模糊检测效果，必要时微调 ROI 阈值
+## 2026-05-11 故障注入前端补全
+
+### 发现的问题
+
+审查全部8个 fault profile，发现4个前端实现不完整：
+
+1. **时序bug**：`onMounted`中数据加载先于`onShow`中的`syncFromServer`，故障状态没同步就渲染了
+2. **stale_ui**：只在手动点"刷新"时生效，首屏看不出差异
+3. **wrong_mapping**：同上，字段错误只在刷新时触发
+4. **layout_overlap**：CSS偏移量太小（30rpx+2deg），截图中肉眼不可见
+5. **memory_pressure**：纯后台内存分配，无任何UI反馈
+
+### 修复内容
+
+- 三个页面均改为 `await syncFromServer()` → 再加载数据（修复时序）
+- counter 页 `loadCounter()` 增加 wrong_mapping 检测（value为undefined时显示"字段映射错误"）
+- counter 页 stale_ui 首屏就保持旧值不更新
+- layout 页 overlap 效果增强：偏移 80rpx+5deg、红/橙边框、负 margin 真正重叠
+- layout 页新增 `card-collide` 类（id%3 反向偏移+透明度）
+- feed/layout 页 memory_pressure 增加橙色警告条
+
+### 修复后状态
+
+| Profile | 服务端 | 前端 | 可见效果 |
+|---------|--------|------|---------|
+| normal | ✅ | ✅ | ✅ 正常 |
+| slow_api | ✅ | ✅ | ✅ 加载延迟 |
+| blur_image | ✅ | ✅ | ✅ 模糊图片 |
+| stale_ui | ✅ | ✅ | ✅ 首屏显示旧值+"数据不一致" |
+| wrong_mapping | ✅ | ✅ | ✅ 首屏显示-1+"字段映射错误" |
+| layout_overlap | ✅ | ✅ | ✅ 明显错位+红色边框+重叠 |
+| memory_pressure | ✅ | ✅ | ✅ 橙色警告条+内存分配 |
+| mixed_fault | ✅ | ✅ | ✅ 综合效果 |

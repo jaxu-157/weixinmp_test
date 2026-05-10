@@ -8,6 +8,12 @@
     </view>
 
     <scroll-view scroll-y class="layout-scroll">
+      <view class="overlap-warning" v-if="faultState.overlapEnabled">
+        <text class="warning-text">⚠ 布局错位故障已激活</text>
+      </view>
+      <view class="memory-warning" v-if="faultState.memoryPressure">
+        <text class="warning-text">⚠ 内存压力模拟中</text>
+      </view>
       <view class="card-grid">
         <view
           class="layout-card"
@@ -15,6 +21,7 @@
           :key="card.id"
           :class="{
             'card-shifted': faultState.overlapEnabled && card.id % 2 === 0,
+            'card-collide': faultState.overlapEnabled && card.id % 3 === 0,
             'card-large': card.height > 200
           }"
           :style="getCardStyle(card)"
@@ -60,14 +67,16 @@ const faultState = getFaultState()
 const layoutCards = ref<LayoutCard[]>([])
 const loading = ref(false)
 
-onMounted(() => {
+onMounted(async () => {
   resetMetrics()
   markPageLoadStart()
+  await syncFromServer()
   loadCards()
 })
 
 onShow(async () => {
   await syncFromServer()
+  loadCards()
 })
 
 async function loadCards() {
@@ -159,8 +168,34 @@ defineExpose({ getPageStateExport })
 }
 
 .card-shifted {
-  transform: translateX(30rpx) rotate(2deg);
+  transform: translateX(80rpx) rotate(5deg);
   z-index: 2;
+  border: 4rpx solid #e74c3c;
+  margin-top: -60rpx;
+}
+
+.card-collide {
+  transform: translateY(-80rpx) translateX(-30rpx) rotate(-3deg);
+  z-index: 3;
+  border: 4rpx solid #e67e22;
+  opacity: 0.85;
+}
+
+.overlap-warning,
+.memory-warning {
+  background: #e74c3c;
+  padding: 16rpx 30rpx;
+  margin: 0 20rpx 10rpx;
+  border-radius: 8rpx;
+}
+
+.memory-warning {
+  background: #e67e22;
+}
+
+.warning-text {
+  color: #fff;
+  font-size: 26rpx;
 }
 
 .card-large {

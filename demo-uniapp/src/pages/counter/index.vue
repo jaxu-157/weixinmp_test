@@ -81,27 +81,45 @@ const statusClass = computed(() => {
   return ''
 })
 
-onMounted(() => {
+onMounted(async () => {
   resetMetrics()
   markPageLoadStart()
+  await syncFromServer()
   loadCounter()
 })
 
 onShow(async () => {
   await syncFromServer()
+  loadCounter()
 })
 
 async function loadCounter() {
   try {
     const res = await fetchCounterValue()
     if (res.code === 0) {
-      expectedValue.value = res.data.value
-      // stale_ui故障：不更新显示值
-      if (!faultState.staleEnabled) {
-        displayValue.value = res.data.value
+      const serverValue = res.data.value
+      const serverVersion = res.data.version
+      const serverTime = res.data.updatedAt
+
+      // wrong_mapping故障：服务端返回字段名不对，value可能是undefined
+      if (serverValue === undefined || serverValue === null) {
+        expectedValue.value = -1
+        displayValue.value = -1
+        statusText.value = '字段映射错误'
+        version.value = 'ERROR'
+        updatedAt.value = 0
+      } else {
+        expectedValue.value = serverValue
+        // stale_ui故障：不更新显示值（保持旧值）
+        if (faultState.staleEnabled) {
+          statusText.value = '数据不一致'
+        } else {
+          displayValue.value = serverValue
+          statusText.value = '成功'
+        }
+        version.value = serverVersion || 'v?'
+        updatedAt.value = serverTime || 0
       }
-      version.value = res.data.version
-      updatedAt.value = res.data.updatedAt
     }
     markPageLoadEnd()
   } catch (e) {
