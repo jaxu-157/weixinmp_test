@@ -165,7 +165,8 @@ class VisionTriageAutoTester:
         self._focus_devtools_window()
 
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        filename = f"{test_name}_{profile}_{timestamp}.png"
+        safe_name = test_name.replace("/", "_").replace("\\", "_")
+        filename = f"{safe_name}_{profile}_{timestamp}.png"
         filepath = os.path.join(self.screenshot_dir, filename)
         
         try:

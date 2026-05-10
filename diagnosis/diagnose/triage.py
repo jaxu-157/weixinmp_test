@@ -78,22 +78,25 @@ def _run_visual_assertions(image: np.ndarray, page_type: str) -> dict:
     roi = image[int(h * 0.15):int(h * 0.85), :]
     blur_roi = detect_blur(roi, threshold=BLUR_THRESHOLD_ROI)
 
-    # 3. 卡片图片区域模糊（多个采样块投票）
+    # 3. 卡片图片区域模糊采样（仅 feed 页双列布局有效）
     card_blur_scores = []
-    card_regions = [
-        (0.06, 0.32, 0.02, 0.48),  # 左上卡片
-        (0.06, 0.32, 0.52, 0.98),  # 右上卡片
-        (0.40, 0.62, 0.02, 0.48),  # 左下卡片
-        (0.40, 0.62, 0.52, 0.98),  # 右下卡片
-    ]
-    for (y1r, y2r, x1r, x2r) in card_regions:
-        y1, y2 = int(h * y1r), int(h * y2r)
-        x1, x2 = int(w * x1r), int(w * x2r)
-        patch = image[y1:y2, x1:x2]
-        if patch.size > 0:
-            card_blur_scores.append(detect_blur(patch)["score"])
-    avg_card_score = sum(card_blur_scores) / max(len(card_blur_scores), 1)
-    card_is_blur = avg_card_score < BLUR_THRESHOLD_CARD
+    card_is_blur = False
+    if page_type == "feed":
+        card_regions = [
+            (0.06, 0.32, 0.02, 0.48),  # 左上卡片
+            (0.06, 0.32, 0.52, 0.98),  # 右上卡片
+            (0.40, 0.62, 0.02, 0.48),  # 左下卡片
+            (0.40, 0.62, 0.52, 0.98),  # 右下卡片
+        ]
+        for (y1r, y2r, x1r, x2r) in card_regions:
+            y1, y2 = int(h * y1r), int(h * y2r)
+            x1, x2 = int(w * x1r), int(w * x2r)
+            patch = image[y1:y2, x1:x2]
+            if patch.size > 0:
+                card_blur_scores.append(detect_blur(patch)["score"])
+        avg_card_score = sum(card_blur_scores) / max(len(card_blur_scores), 1)
+        card_is_blur = avg_card_score < BLUR_THRESHOLD_CARD
+    avg_card_score = sum(card_blur_scores) / max(len(card_blur_scores), 1) if card_blur_scores else blur_roi["score"]
 
     # 4. 边缘密度（Canny）
     gray_roi = cv2.cvtColor(roi, cv2.COLOR_BGR2GRAY)

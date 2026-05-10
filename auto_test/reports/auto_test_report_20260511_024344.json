@@ -1,0 +1,648 @@
+{
+  "project": "Vision-Triage",
+  "timestamp": "20260511_024344",
+  "total_tests": 14,
+  "passed_tests": 12,
+  "failed_tests": 2,
+  "total_duration": 112.90598797798157,
+  "matrix": {
+    "feed": {
+      "normal": {
+        "expected": "Pass",
+        "actual": "Pass",
+        "match": true
+      },
+      "slow_api": {
+        "expected": "PerformanceRisk",
+        "actual": "PerformanceRisk",
+        "match": true
+      },
+      "blur_image": {
+        "expected": "RenderBug",
+        "actual": "RenderBug",
+        "match": true
+      },
+      "memory_pressure": {
+        "expected": "PerformanceRisk",
+        "actual": "PerformanceRisk",
+        "match": true
+      },
+      "mixed_fault": {
+        "expected": "Mixed",
+        "actual": "Mixed",
+        "match": true
+      }
+    },
+    "counter": {
+      "normal": {
+        "expected": "Pass",
+        "actual": "Pass",
+        "match": true
+      },
+      "slow_api": {
+        "expected": "PerformanceRisk",
+        "actual": "PerformanceRisk",
+        "match": true
+      },
+      "stale_ui": {
+        "expected": "FunctionalFail",
+        "actual": "FunctionalFail",
+        "match": true
+      },
+      "wrong_mapping": {
+        "expected": "FunctionalFail",
+        "actual": "FunctionalFail",
+        "match": true
+      },
+      "mixed_fault": {
+        "expected": "Mixed",
+        "actual": "Mixed",
+        "match": true
+      }
+    },
+    "layout": {
+      "normal": {
+        "expected": "Pass",
+        "actual": "Pass",
+        "match": true
+      },
+      "slow_api": {
+        "expected": "PerformanceRisk",
+        "actual": "Mixed",
+        "match": false
+      },
+      "layout_overlap": {
+        "expected": "FunctionalFail",
+        "actual": "Mixed",
+        "match": false
+      },
+      "memory_pressure": {
+        "expected": "PerformanceRisk",
+        "actual": "PerformanceRisk",
+        "match": true
+      }
+    }
+  },
+  "results": [
+    {
+      "test_name": "feed/normal",
+      "page": "feed",
+      "profile": "normal",
+      "expected": "Pass",
+      "actual": "Pass",
+      "success": true,
+      "message": "诊断正确: Pass",
+      "screenshot": "./reports/screenshots\\feed_normal_normal_20260511_024131.png",
+      "duration": 7.945164918899536,
+      "timestamp": "2026-05-11T02:41:31.955854",
+      "diagnose_result": {
+        "code": 0,
+        "data": {
+          "visual": {
+            "pass": true,
+            "black_white": false,
+            "blur_score": 534.14,
+            "blur_score_full": 771.96,
+            "is_blur": false,
+            "edge_density": 0.0949,
+            "ocr_text": "",
+            "mean_brightness": 177.05
+          },
+          "functional": {
+            "pass": true,
+            "reason": "no_state_provided"
+          },
+          "performance": {
+            "pass": true,
+            "reason": "",
+            "interaction_ms": 100,
+            "memory_warnings": 0
+          },
+          "verdict": "Pass",
+          "explanation": "所有断言通过"
+        },
+        "profile": "normal"
+      }
+    },
+    {
+      "test_name": "feed/slow_api",
+      "page": "feed",
+      "profile": "slow_api",
+      "expected": "PerformanceRisk",
+      "actual": "PerformanceRisk",
+      "success": true,
+      "message": "诊断正确: PerformanceRisk",
+      "screenshot": "./reports/screenshots\\feed_slow_api_slow_api_20260511_024142.png",
+      "duration": 8.713291645050049,
+      "timestamp": "2026-05-11T02:41:42.670550",
+      "diagnose_result": {
+        "code": 0,
+        "data": {
+          "visual": {
+            "pass": true,
+            "black_white": false,
+            "blur_score": 439.45,
+            "blur_score_full": 762.55,
+            "is_blur": false,
+            "edge_density": 0.1309,
+            "ocr_text": "",
+            "mean_brightness": 163.61
+          },
+          "functional": {
+            "pass": true,
+            "reason": "no_state_provided"
+          },
+          "performance": {
+            "pass": false,
+            "reason": "interaction_latency=900ms",
+            "interaction_ms": 900,
+            "memory_warnings": 0
+          },
+          "verdict": "PerformanceRisk",
+          "explanation": "功能正确但性能不达标: interaction_latency=900ms"
+        },
+        "profile": "slow_api"
+      }
+    },
+    {
+      "test_name": "feed/blur_image",
+      "page": "feed",
+      "profile": "blur_image",
+      "expected": "RenderBug",
+      "actual": "RenderBug",
+      "success": true,
+      "message": "诊断正确: RenderBug",
+      "screenshot": "./reports/screenshots\\feed_blur_image_blur_image_20260511_024152.png",
+      "duration": 7.7420573234558105,
+      "timestamp": "2026-05-11T02:41:52.414274",
+      "diagnose_result": {
+        "code": 0,
+        "data": {
+          "visual": {
+            "pass": false,
+            "black_white": false,
+            "blur_score": 120.03,
+            "blur_score_full": 516.27,
+            "is_blur": true,
+            "edge_density": 0.0313,
+            "ocr_text": "",
+            "mean_brightness": 171.89
+          },
+          "functional": {
+            "pass": true,
+            "reason": "no_state_provided"
+          },
+          "performance": {
+            "pass": true,
+            "reason": "",
+            "interaction_ms": 100,
+            "memory_warnings": 0
+          },
+          "verdict": "RenderBug",
+          "explanation": "视觉异常: 图像模糊(score=120.03)"
+        },
+        "profile": "blur_image"
+      }
+    },
+    {
+      "test_name": "feed/memory_pressure",
+      "page": "feed",
+      "profile": "memory_pressure",
+      "expected": "PerformanceRisk",
+      "actual": "PerformanceRisk",
+      "success": true,
+      "message": "诊断正确: PerformanceRisk",
+      "screenshot": "./reports/screenshots\\feed_memory_pressure_memory_pressure_20260511_024202.png",
+      "duration": 8.603719472885132,
+      "timestamp": "2026-05-11T02:42:03.018877",
+      "diagnose_result": {
+        "code": 0,
+        "data": {
+          "visual": {
+            "pass": true,
+            "black_white": false,
+            "blur_score": 545.11,
+            "blur_score_full": 821.26,
+            "is_blur": false,
+            "edge_density": 0.1097,
+            "ocr_text": "",
+            "mean_brightness": 153.29
+          },
+          "functional": {
+            "pass": true,
+            "reason": "no_state_provided"
+          },
+          "performance": {
+            "pass": false,
+            "reason": "memory_warnings=1",
+            "interaction_ms": 100,
+            "memory_warnings": 1
+          },
+          "verdict": "PerformanceRisk",
+          "explanation": "功能正确但性能不达标: memory_warnings=1"
+        },
+        "profile": "memory_pressure"
+      }
+    },
+    {
+      "test_name": "feed/mixed_fault",
+      "page": "feed",
+      "profile": "mixed_fault",
+      "expected": "Mixed",
+      "actual": "Mixed",
+      "success": true,
+      "message": "诊断正确: Mixed",
+      "screenshot": "./reports/screenshots\\feed_mixed_fault_mixed_fault_20260511_024213.png",
+      "duration": 8.732478618621826,
+      "timestamp": "2026-05-11T02:42:13.753063",
+      "diagnose_result": {
+        "code": 0,
+        "data": {
+          "visual": {
+            "pass": true,
+            "black_white": false,
+            "blur_score": 335.15,
+            "blur_score_full": 659.71,
+            "is_blur": false,
+            "edge_density": 0.0857,
+            "ocr_text": "",
+            "mean_brightness": 189.27
+          },
+          "functional": {
+            "pass": false,
+            "reason": "visible=0, expected=1"
+          },
+          "performance": {
+            "pass": false,
+            "reason": "interaction_latency=900ms; memory_warnings=1",
+            "interaction_ms": 900,
+            "memory_warnings": 1
+          },
+          "verdict": "Mixed",
+          "explanation": "混合故障: 功能: visible=0, expected=1; 性能: interaction_latency=900ms; memory_warnings=1"
+        },
+        "profile": "mixed_fault"
+      }
+    },
+    {
+      "test_name": "counter/normal",
+      "page": "counter",
+      "profile": "normal",
+      "expected": "Pass",
+      "actual": "Pass",
+      "success": true,
+      "message": "诊断正确: Pass",
+      "screenshot": "./reports/screenshots\\counter_normal_normal_20260511_024223.png",
+      "duration": 7.511667251586914,
+      "timestamp": "2026-05-11T02:42:23.266269",
+      "diagnose_result": {
+        "code": 0,
+        "data": {
+          "visual": {
+            "pass": true,
+            "black_white": false,
+            "blur_score": 445.04,
+            "blur_score_full": 428.02,
+            "is_blur": false,
+            "edge_density": 0.0231,
+            "ocr_text": "",
+            "mean_brightness": 217.37
+          },
+          "functional": {
+            "pass": true,
+            "reason": ""
+          },
+          "performance": {
+            "pass": true,
+            "reason": "",
+            "interaction_ms": 100,
+            "memory_warnings": 0
+          },
+          "verdict": "Pass",
+          "explanation": "所有断言通过"
+        },
+        "profile": "normal"
+      }
+    },
+    {
+      "test_name": "counter/slow_api",
+      "page": "counter",
+      "profile": "slow_api",
+      "expected": "PerformanceRisk",
+      "actual": "PerformanceRisk",
+      "success": true,
+      "message": "诊断正确: PerformanceRisk",
+      "screenshot": "./reports/screenshots\\counter_slow_api_slow_api_20260511_024233.png",
+      "duration": 8.498125314712524,
+      "timestamp": "2026-05-11T02:42:33.766166",
+      "diagnose_result": {
+        "code": 0,
+        "data": {
+          "visual": {
+            "pass": true,
+            "black_white": false,
+            "blur_score": 444.77,
+            "blur_score_full": 428.92,
+            "is_blur": false,
+            "edge_density": 0.0232,
+            "ocr_text": "",
+            "mean_brightness": 217.37
+          },
+          "functional": {
+            "pass": true,
+            "reason": ""
+          },
+          "performance": {
+            "pass": false,
+            "reason": "interaction_latency=900ms",
+            "interaction_ms": 900,
+            "memory_warnings": 0
+          },
+          "verdict": "PerformanceRisk",
+          "explanation": "功能正确但性能不达标: interaction_latency=900ms"
+        },
+        "profile": "slow_api"
+      }
+    },
+    {
+      "test_name": "counter/stale_ui",
+      "page": "counter",
+      "profile": "stale_ui",
+      "expected": "FunctionalFail",
+      "actual": "FunctionalFail",
+      "success": true,
+      "message": "诊断正确: FunctionalFail",
+      "screenshot": "./reports/screenshots\\counter_stale_ui_stale_ui_20260511_024243.png",
+      "duration": 7.47000789642334,
+      "timestamp": "2026-05-11T02:42:43.236596",
+      "diagnose_result": {
+        "code": 0,
+        "data": {
+          "visual": {
+            "pass": true,
+            "black_white": false,
+            "blur_score": 445.16,
+            "blur_score_full": 428.69,
+            "is_blur": false,
+            "edge_density": 0.0231,
+            "ocr_text": "",
+            "mean_brightness": 217.37
+          },
+          "functional": {
+            "pass": false,
+            "reason": "visible=0, expected=1"
+          },
+          "performance": {
+            "pass": true,
+            "reason": "",
+            "interaction_ms": 100,
+            "memory_warnings": 0
+          },
+          "verdict": "FunctionalFail",
+          "explanation": "功能断言失败: visible=0, expected=1"
+        },
+        "profile": "stale_ui"
+      }
+    },
+    {
+      "test_name": "counter/wrong_mapping",
+      "page": "counter",
+      "profile": "wrong_mapping",
+      "expected": "FunctionalFail",
+      "actual": "FunctionalFail",
+      "success": true,
+      "message": "诊断正确: FunctionalFail",
+      "screenshot": "./reports/screenshots\\counter_wrong_mapping_wrong_mapping_20260511_024252.png",
+      "duration": 7.60399603843689,
+      "timestamp": "2026-05-11T02:42:52.841653",
+      "diagnose_result": {
+        "code": 0,
+        "data": {
+          "visual": {
+            "pass": true,
+            "black_white": false,
+            "blur_score": 445.11,
+            "blur_score_full": 428.4,
+            "is_blur": false,
+            "edge_density": 0.0231,
+            "ocr_text": "",
+            "mean_brightness": 217.37
+          },
+          "functional": {
+            "pass": false,
+            "reason": "visible=undefined, expected=1"
+          },
+          "performance": {
+            "pass": true,
+            "reason": "",
+            "interaction_ms": 100,
+            "memory_warnings": 0
+          },
+          "verdict": "FunctionalFail",
+          "explanation": "功能断言失败: visible=undefined, expected=1"
+        },
+        "profile": "wrong_mapping"
+      }
+    },
+    {
+      "test_name": "counter/mixed_fault",
+      "page": "counter",
+      "profile": "mixed_fault",
+      "expected": "Mixed",
+      "actual": "Mixed",
+      "success": true,
+      "message": "诊断正确: Mixed",
+      "screenshot": "./reports/screenshots\\counter_mixed_fault_mixed_fault_20260511_024303.png",
+      "duration": 8.389946699142456,
+      "timestamp": "2026-05-11T02:43:03.232782",
+      "diagnose_result": {
+        "code": 0,
+        "data": {
+          "visual": {
+            "pass": true,
+            "black_white": false,
+            "blur_score": 444.82,
+            "blur_score_full": 429.06,
+            "is_blur": false,
+            "edge_density": 0.0232,
+            "ocr_text": "",
+            "mean_brightness": 217.37
+          },
+          "functional": {
+            "pass": false,
+            "reason": "visible=0, expected=1"
+          },
+          "performance": {
+            "pass": false,
+            "reason": "interaction_latency=900ms; memory_warnings=1",
+            "interaction_ms": 900,
+            "memory_warnings": 1
+          },
+          "verdict": "Mixed",
+          "explanation": "混合故障: 功能: visible=0, expected=1; 性能: interaction_latency=900ms; memory_warnings=1"
+        },
+        "profile": "mixed_fault"
+      }
+    },
+    {
+      "test_name": "layout/normal",
+      "page": "layout",
+      "profile": "normal",
+      "expected": "Pass",
+      "actual": "Pass",
+      "success": true,
+      "message": "诊断正确: Pass",
+      "screenshot": "./reports/screenshots\\layout_normal_normal_20260511_024312.png",
+      "duration": 7.738686800003052,
+      "timestamp": "2026-05-11T02:43:12.973267",
+      "diagnose_result": {
+        "code": 0,
+        "data": {
+          "visual": {
+            "pass": true,
+            "black_white": false,
+            "blur_score": 703.5,
+            "blur_score_full": 950.26,
+            "is_blur": false,
+            "edge_density": 0.107,
+            "ocr_text": "",
+            "mean_brightness": 183.85
+          },
+          "functional": {
+            "pass": true,
+            "reason": "no_state_provided"
+          },
+          "performance": {
+            "pass": true,
+            "reason": "",
+            "interaction_ms": 100,
+            "memory_warnings": 0
+          },
+          "verdict": "Pass",
+          "explanation": "所有断言通过"
+        },
+        "profile": "normal"
+      }
+    },
+    {
+      "test_name": "layout/slow_api",
+      "page": "layout",
+      "profile": "slow_api",
+      "expected": "PerformanceRisk",
+      "actual": "Mixed",
+      "success": false,
+      "message": "期望 PerformanceRisk, 实际 Mixed",
+      "screenshot": "./reports/screenshots\\layout_slow_api_slow_api_20260511_024323.png",
+      "duration": 8.662989377975464,
+      "timestamp": "2026-05-11T02:43:23.637485",
+      "diagnose_result": {
+        "code": 0,
+        "data": {
+          "visual": {
+            "pass": false,
+            "black_white": false,
+            "blur_score": 187.01,
+            "blur_score_full": 826.44,
+            "is_blur": true,
+            "edge_density": 0.0519,
+            "ocr_text": "",
+            "mean_brightness": 174.52
+          },
+          "functional": {
+            "pass": true,
+            "reason": "no_state_provided"
+          },
+          "performance": {
+            "pass": false,
+            "reason": "interaction_latency=900ms",
+            "interaction_ms": 900,
+            "memory_warnings": 0
+          },
+          "verdict": "Mixed",
+          "explanation": "混合故障: 性能: interaction_latency=900ms; 视觉异常"
+        },
+        "profile": "slow_api"
+      }
+    },
+    {
+      "test_name": "layout/layout_overlap",
+      "page": "layout",
+      "profile": "layout_overlap",
+      "expected": "FunctionalFail",
+      "actual": "Mixed",
+      "success": false,
+      "message": "期望 FunctionalFail, 实际 Mixed",
+      "screenshot": "./reports/screenshots\\layout_layout_overlap_layout_overlap_20260511_024333.png",
+      "duration": 7.6383376121521,
+      "timestamp": "2026-05-11T02:43:33.276703",
+      "diagnose_result": {
+        "code": 0,
+        "data": {
+          "visual": {
+            "pass": false,
+            "black_white": false,
+            "blur_score": 147.63,
+            "blur_score_full": 760.71,
+            "is_blur": true,
+            "edge_density": 0.0475,
+            "ocr_text": "",
+            "mean_brightness": 214.33
+          },
+          "functional": {
+            "pass": false,
+            "reason": "layout_overlap_detected"
+          },
+          "performance": {
+            "pass": true,
+            "reason": "",
+            "interaction_ms": 100,
+            "memory_warnings": 0
+          },
+          "verdict": "Mixed",
+          "explanation": "混合故障: 功能: layout_overlap_detected; 视觉异常"
+        },
+        "profile": "layout_overlap"
+      }
+    },
+    {
+      "test_name": "layout/memory_pressure",
+      "page": "layout",
+      "profile": "memory_pressure",
+      "expected": "PerformanceRisk",
+      "actual": "PerformanceRisk",
+      "success": true,
+      "message": "诊断正确: PerformanceRisk",
+      "screenshot": "./reports/screenshots\\layout_memory_pressure_memory_pressure_20260511_024342.png",
+      "duration": 7.655519008636475,
+      "timestamp": "2026-05-11T02:43:42.933344",
+      "diagnose_result": {
+        "code": 0,
+        "data": {
+          "visual": {
+            "pass": true,
+            "black_white": false,
+            "blur_score": 705.83,
+            "blur_score_full": 843.33,
+            "is_blur": false,
+            "edge_density": 0.0505,
+            "ocr_text": "",
+            "mean_brightness": 180.32
+          },
+          "functional": {
+            "pass": true,
+            "reason": "no_state_provided"
+          },
+          "performance": {
+            "pass": false,
+            "reason": "memory_warnings=1",
+            "interaction_ms": 100,
+            "memory_warnings": 1
+          },
+          "verdict": "PerformanceRisk",
+          "explanation": "功能正确但性能不达标: memory_warnings=1"
+        },
+        "profile": "memory_pressure"
+      }
+    }
+  ]
+}
