@@ -202,19 +202,23 @@ class VisionTriageAutoTester:
 
     def _build_page_state(self, page, profile):
         """根据页面类型和故障模式构造 page_state"""
+        state = {}
         if page == "counter":
             if profile == "stale_ui":
-                return {"visibleValue": 0, "expectedValue": 1}
+                state = {"visibleValue": 0, "expectedValue": 1}
             elif profile == "wrong_mapping":
-                return {"visibleValue": "undefined", "expectedValue": 1}
+                state = {"visibleValue": "undefined", "expectedValue": 1}
             elif profile == "mixed_fault":
-                return {"visibleValue": 0, "expectedValue": 1}
+                state = {"visibleValue": 0, "expectedValue": 1}
             else:
-                return {"visibleValue": 1, "expectedValue": 1}
-        if page == "layout":
+                state = {"visibleValue": 1, "expectedValue": 1}
+        elif page == "layout":
             if profile == "layout_overlap":
-                return {"uiFlags": {"hasOverlap": True}}
-        return {}
+                state = {"uiFlags": {"hasOverlap": True}}
+        elif page == "feed":
+            if profile == "mixed_fault":
+                state = {"visibleValue": 0, "expectedValue": 1}
+        return state
 
     def _call_diagnose(self, screenshot_path, page, profile):
         """调用诊断接口"""
@@ -341,9 +345,10 @@ class VisionTriageAutoTester:
             # 记录结果
             result_data = {
                 "test_name": test_name,
+                "page": page,
                 "profile": profile,
                 "expected": expected_diagnosis,
-                "actual": diagnose_result.get("data", {}).get("diagnosis") if diagnose_result else None,
+                "actual": diagnose_result.get("data", {}).get("verdict") if diagnose_result else None,
                 "success": success,
                 "message": message,
                 "screenshot": screenshot_path,
@@ -370,11 +375,81 @@ class VisionTriageAutoTester:
             traceback.print_exc()
             return False, f"测试异常: {e}"
     
+    # ================================================================
+    # 矩阵定义：页面 × 故障Profile → 期望Verdict
+    # ================================================================
+    PAGES = ["feed", "counter", "layout"]
+    PROFILES = ["normal", "slow_api", "blur_image", "stale_ui",
+                "wrong_mapping", "layout_overlap", "memory_pressure", "mixed_fault"]
+
+    # 期望结果矩阵 matrix[page][profile] = expected_verdict
+    # "-" 表示该组合不测试（故障与页面无关）
+    EXPECT_MATRIX = {
+        "feed": {
+            "normal":          "Pass",
+            "slow_api":        "PerformanceRisk",
+            "blur_image":      "RenderBug",
+            "stale_ui":        "-",
+            "wrong_mapping":   "-",
+            "layout_overlap":  "-",
+            "memory_pressure": "PerformanceRisk",
+            "mixed_fault":     "Mixed",
+        },
+        "counter": {
+            "normal":          "Pass",
+            "slow_api":        "PerformanceRisk",
+            "blur_image":      "-",
+            "stale_ui":        "FunctionalFail",
+            "wrong_mapping":   "FunctionalFail",
+            "layout_overlap":  "-",
+            "memory_pressure": "-",
+            "mixed_fault":     "Mixed",
+        },
+        "layout": {
+            "normal":          "Pass",
+            "slow_api":        "PerformanceRisk",
+            "blur_image":      "-",
+            "stale_ui":        "-",
+            "wrong_mapping":   "-",
+            "layout_overlap":  "FunctionalFail",
+            "memory_pressure": "PerformanceRisk",
+            "mixed_fault":     "-",
+        },
+    }
+
+    def _build_test_suite_from_matrix(self):
+        """从矩阵定义生成测试用例列表"""
+        suite = []
+        for page in self.PAGES:
+            for profile in self.PROFILES:
+                expected = self.EXPECT_MATRIX.get(page, {}).get(profile, "-")
+                if expected == "-":
+                    continue
+                suite.append({
+                    "name": f"{page}/{profile}",
+                    "page": page,
+                    "profile": profile,
+                    "expected": expected,
+                })
+        return suite
+
     def generate_report(self):
-        """生成测试报告"""
+        """生成测试报告（含矩阵视图）"""
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         report_file = os.path.join(self.report_dir, f"auto_test_report_{timestamp}.json")
-        
+
+        # 构造矩阵结果
+        matrix = {}
+        for r in self.results:
+            page = r.get("page", "?")
+            profile = r.get("profile", "?")
+            actual = r.get("diagnose_result", {}).get("data", {}).get("verdict", "N/A") if r.get("diagnose_result") else "ERR"
+            matrix.setdefault(page, {})[profile] = {
+                "expected": r["expected"],
+                "actual": actual,
+                "match": r["success"],
+            }
+
         report = {
             "project": "Vision-Triage",
             "timestamp": timestamp,
@@ -382,151 +457,149 @@ class VisionTriageAutoTester:
             "passed_tests": sum(1 for r in self.results if r["success"]),
             "failed_tests": sum(1 for r in self.results if not r["success"]),
             "total_duration": sum(r["duration"] for r in self.results),
+            "matrix": matrix,
             "results": self.results,
-            "summary": {
-                "connection": "成功" if self.mini else "失败",
-                "screenshots_taken": sum(1 for r in self.results if r.get("screenshot")),
-                "diagnose_calls": sum(1 for r in self.results if r.get("diagnose_result"))
-            }
         }
-        
+
         with open(report_file, 'w', encoding='utf-8') as f:
             json.dump(report, f, indent=2, ensure_ascii=False, default=str)
-        
-        print(f"\n📊 测试报告已保存: {report_file}")
-        
-        # 生成简洁的文本报告
-        text_report = os.path.join(self.report_dir, f"auto_test_summary_{timestamp}.txt")
-        with open(text_report, 'w', encoding='utf-8') as f:
-            f.write(f"Vision-Triage 自动化测试报告\n")
-            f.write(f"生成时间: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
-            f.write("="*50 + "\n")
-            f.write(f"总测试数: {report['total_tests']}\n")
-            f.write(f"通过数: {report['passed_tests']}\n")
-            f.write(f"失败数: {report['failed_tests']}\n")
-            f.write(f"总用时: {report['total_duration']:.2f}秒\n")
-            f.write("\n详细结果:\n")
-            f.write("-"*50 + "\n")
-            for i, result in enumerate(report["results"], 1):
-                status = "✅ 通过" if result["success"] else "❌ 失败"
-                f.write(f"{i}. {result['test_name']} - {result['profile']}\n")
-                f.write(f"   状态: {status} ({result['duration']:.2f}秒)\n")
-                f.write(f"   期望: {result['expected']}, 实际: {result.get('actual', 'N/A')}\n")
-                f.write(f"   截图: {os.path.basename(result.get('screenshot', ''))}\n")
-                f.write(f"   信息: {result['message']}\n")
-                f.write("\n")
-        
+
+        # 生成矩阵文本报告
+        text_file = os.path.join(self.report_dir, f"auto_test_matrix_{timestamp}.txt")
+        with open(text_file, 'w', encoding='utf-8') as f:
+            f.write(self._format_matrix_text(report))
+
+        print(f"\n📊 报告: {report_file}")
+        print(f"📊 矩阵: {text_file}")
         return report_file
-    
-    def run_full_test_suite(self):
-        """运行完整的测试套件"""
-        print("="*70)
-        print("🚀 Vision-Triage 全自动化测试启动")
-        print("="*70)
-        print(f"开始时间: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
-        
-        # 完整8样本测试矩阵（设计文档15.1节）
-        test_suite = [
-            {
-                "name": "正常基线-计数器",
-                "profile": "normal",
-                "expected": "Pass",
-                "page": "counter"
-            },
-            {
-                "name": "接口延迟-计数器",
-                "profile": "slow_api",
-                "expected": "PerformanceRisk",
-                "page": "counter"
-            },
-            {
-                "name": "旧数据显示-计数器",
-                "profile": "stale_ui",
-                "expected": "FunctionalFail",
-                "page": "counter"
-            },
-            {
-                "name": "混合故障-计数器",
-                "profile": "mixed_fault",
-                "expected": "Mixed",
-                "page": "counter"
-            },
-            {
-                "name": "正常基线-图片流",
-                "profile": "normal",
-                "expected": "Pass",
-                "page": "feed"
-            },
-            {
-                "name": "模糊图片-图片流",
-                "profile": "blur_image",
-                "expected": "RenderBug",
-                "page": "feed"
-            },
-            {
-                "name": "接口延迟-图片流",
-                "profile": "slow_api",
-                "expected": "PerformanceRisk",
-                "page": "feed"
-            },
-            {
-                "name": "布局错位-布局页",
-                "profile": "layout_overlap",
-                "expected": "FunctionalFail",
-                "page": "layout"
+
+    def _format_matrix_text(self, report):
+        """格式化矩阵文本"""
+        lines = []
+        lines.append("Vision-Triage 分诊结果矩阵")
+        lines.append(f"时间: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+        lines.append(f"通过: {report['passed_tests']}/{report['total_tests']}")
+        lines.append("")
+
+        # 表头
+        profiles_used = []
+        for page in self.PAGES:
+            for profile in self.PROFILES:
+                if self.EXPECT_MATRIX.get(page, {}).get(profile, "-") != "-":
+                    if profile not in profiles_used:
+                        profiles_used.append(profile)
+
+        col_w = 18
+        header = f"{'页面':<10s}" + "".join(f"{p:<{col_w}s}" for p in profiles_used)
+        lines.append(header)
+        lines.append("-" * len(header))
+
+        matrix = report.get("matrix", {})
+        for page in self.PAGES:
+            row = f"{page:<10s}"
+            for profile in profiles_used:
+                expected = self.EXPECT_MATRIX.get(page, {}).get(profile, "-")
+                if expected == "-":
+                    cell = "  --"
+                else:
+                    m = matrix.get(page, {}).get(profile, {})
+                    actual = m.get("actual", "N/A")
+                    match = m.get("match", False)
+                    icon = "✓" if match else "✗"
+                    cell = f"{icon} {actual}"
+                row += f"{cell:<{col_w}s}"
+            lines.append(row)
+
+        lines.append("")
+        lines.append("期望矩阵:")
+        lines.append("-" * len(header))
+        for page in self.PAGES:
+            row = f"{page:<10s}"
+            for profile in profiles_used:
+                expected = self.EXPECT_MATRIX.get(page, {}).get(profile, "-")
+                if expected == "-":
+                    cell = "  --"
+                else:
+                    cell = f"  {expected}"
+                row += f"{cell:<{col_w}s}"
+            lines.append(row)
+
+        lines.append("")
+        lines.append("图例: ✓=符合期望  ✗=不符合期望  --=不适用")
+        return "\n".join(lines)
+
+    def print_matrix(self):
+        """打印矩阵到控制台"""
+        report = {
+            "passed_tests": sum(1 for r in self.results if r["success"]),
+            "total_tests": len(self.results),
+            "matrix": {},
+        }
+        for r in self.results:
+            page = r.get("page", "?")
+            profile = r.get("profile", "?")
+            actual = r.get("diagnose_result", {}).get("data", {}).get("verdict", "N/A") if r.get("diagnose_result") else "ERR"
+            report["matrix"].setdefault(page, {})[profile] = {
+                "expected": r["expected"], "actual": actual, "match": r["success"],
             }
-        ]
-        
-        # 1. 连接到微信开发者工具
+        print(self._format_matrix_text(report))
+
+    def run_full_test_suite(self):
+        """运行完整的矩阵化测试套件"""
+        print("=" * 70)
+        print("  Vision-Triage 矩阵化分诊测试")
+        print("=" * 70)
+        print(f"开始时间: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+
+        test_suite = self._build_test_suite_from_matrix()
+        print(f"测试矩阵: {len(self.PAGES)} 页面 × {len(self.PROFILES)} Profile")
+        print(f"有效用例: {len(test_suite)} 个")
+
         if not self._connect_to_wechat():
             return False
-        
+
         all_success = True
-        
+        current_page = None
+
         try:
-            # 2. 运行所有测试用例
-            for test_case in test_suite:
+            for case in test_suite:
+                page = case["page"]
+                if page != current_page:
+                    print(f"\n{'─' * 60}")
+                    print(f"▶ 页面: {page}")
+                    print(f"{'─' * 60}")
+                    current_page = page
+
                 success, _ = self.run_test_case(
-                    test_case["name"],
-                    test_case["profile"],
-                    test_case["expected"],
-                    test_case["page"]
+                    case["name"], case["profile"], case["expected"], case["page"]
                 )
-                
                 if not success:
                     all_success = False
-                
-                # 用例间等待
                 time.sleep(2)
-        
         finally:
-            # 3. 断开连接
             if self.mini:
                 try:
                     if hasattr(self.mini, 'disconnect'):
                         self.mini.disconnect()
-                    print("\n🔌 已断开微信开发者工具连接")
+                    print("\n🔌 已断开连接")
                 except:
                     pass
-        
-        # 4. 生成报告
+
         report_file = self.generate_report()
-        
-        print("\n" + "="*70)
-        print("📋 测试完成总结")
-        print("="*70)
-        print(f"结束时间: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
-        print(f"总测试数: {len(self.results)}")
-        print(f"通过数: {sum(1 for r in self.results if r['success'])}")
-        print(f"失败数: {sum(1 for r in self.results if not r['success'])}")
-        print(f"总用时: {sum(r['duration'] for r in self.results):.2f}秒")
-        print(f"测试报告: {report_file}")
-        
+
+        print("\n" + "=" * 70)
+        print("  分诊结果矩阵")
+        print("=" * 70)
+        self.print_matrix()
+
+        print(f"\n总用时: {sum(r['duration'] for r in self.results):.1f}s")
+        print(f"报告: {report_file}")
+
         if all_success:
-            print("\n🎉 所有测试通过! Vision-Triage 系统运行正常。")
+            print("\n🎉 矩阵全通过！")
         else:
-            print("\n⚠️  部分测试失败，请查看详细报告。")
-        
+            print(f"\n⚠️  {sum(1 for r in self.results if not r['success'])} 个用例未通过")
+
         return all_success
 
 
