@@ -57,7 +57,7 @@
 import { ref, onMounted } from 'vue'
 import { onShow } from '@dcloudio/uni-app'
 import { fetchFeedList, type FeedItem } from '@/services/api'
-import { getFaultState } from '@/services/fault'
+import { getFaultState, syncFromServer } from '@/services/fault'
 import { markPageLoadStart, markPageLoadEnd, resetMetrics } from '@/services/perf'
 import { exportPageState } from '@/services/oracle'
 import FaultPanel from '@/components/FaultPanel.vue'
@@ -75,7 +75,9 @@ onMounted(() => {
   loadFeed()
 })
 
-onShow(() => {
+onShow(async () => {
+  // 从服务器同步故障状态
+  await syncFromServer()
   // 页面显示时如果有内存压力故障，模拟大量数据
   if (faultState.memoryPressure) {
     simulateMemoryPressure()
@@ -208,7 +210,7 @@ defineExpose({ getPageStateExport })
 }
 
 .image-blur {
-  filter: blur(5px);
+  filter: blur(10px);
 }
 
 .feed-info {

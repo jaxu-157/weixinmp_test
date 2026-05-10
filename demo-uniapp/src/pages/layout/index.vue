@@ -49,8 +49,9 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
+import { onShow } from '@dcloudio/uni-app'
 import { fetchLayoutCards, type LayoutCard } from '@/services/api'
-import { getFaultState } from '@/services/fault'
+import { getFaultState, syncFromServer } from '@/services/fault'
 import { markPageLoadStart, markPageLoadEnd, resetMetrics } from '@/services/perf'
 import { exportPageState } from '@/services/oracle'
 import FaultPanel from '@/components/FaultPanel.vue'
@@ -63,6 +64,10 @@ onMounted(() => {
   resetMetrics()
   markPageLoadStart()
   loadCards()
+})
+
+onShow(async () => {
+  await syncFromServer()
 })
 
 async function loadCards() {

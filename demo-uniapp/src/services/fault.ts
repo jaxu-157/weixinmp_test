@@ -46,7 +46,7 @@ export function activateFault(profile: FaultProfile): void {
       state.latencyMs = 1200
       break
     case 'blur_image':
-      state.blurLevel = 5
+      state.blurLevel = 10
       break
     case 'stale_ui':
       state.staleEnabled = true
@@ -69,4 +69,24 @@ export function activateFault(profile: FaultProfile): void {
 
 export function resetFault(): void {
   activateFault('normal')
+}
+
+export async function syncFromServer(): Promise<void> {
+  return new Promise((resolve) => {
+    uni.request({
+      url: 'http://127.0.0.1:8900/fault/status',
+      method: 'GET',
+      success: (res) => {
+        const data = res.data as any
+        const serverProfile = data?.data?.profile || data?.profile
+        if (serverProfile && serverProfile !== state.currentProfile) {
+          activateFault(serverProfile as FaultProfile)
+        }
+        resolve()
+      },
+      fail: () => {
+        resolve()
+      }
+    })
+  })
 }

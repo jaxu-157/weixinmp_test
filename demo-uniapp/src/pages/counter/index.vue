@@ -46,8 +46,9 @@
 
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
+import { onShow } from '@dcloudio/uni-app'
 import { refreshCounter, fetchCounterValue } from '@/services/api'
-import { getFaultState } from '@/services/fault'
+import { getFaultState, syncFromServer } from '@/services/fault'
 import {
   markInteractionStart,
   markInteractionEnd,
@@ -84,6 +85,10 @@ onMounted(() => {
   resetMetrics()
   markPageLoadStart()
   loadCounter()
+})
+
+onShow(async () => {
+  await syncFromServer()
 })
 
 async function loadCounter() {

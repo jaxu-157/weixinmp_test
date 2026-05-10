@@ -3,7 +3,7 @@ import cv2
 import numpy as np
 
 
-def detect_blur(image: np.ndarray, threshold: float = 100.0) -> dict:
+def detect_blur(image: np.ndarray, threshold: float = 500.0) -> dict:
     """
     检测图像是否模糊。
     

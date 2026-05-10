@@ -8,7 +8,7 @@ from .ocr import extract_text
 
 # 阈值配置
 PERF_THRESHOLD_MS = 800  # 交互延迟阈值
-BLUR_THRESHOLD = 100.0   # 模糊分数阈值
+BLUR_THRESHOLD = 500.0   # 模糊分数阈值（自然图片比文档图片方差高）
 
 
 def run_triage(

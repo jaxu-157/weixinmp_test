@@ -55,10 +55,10 @@ SAMPLE_IMAGES = [
 ]
 
 BLUR_IMAGES = [
-    "https://picsum.photos/400/300?blur=5&random=1",
-    "https://picsum.photos/400/300?blur=5&random=2",
-    "https://picsum.photos/400/300?blur=5&random=3",
-    "https://picsum.photos/400/300?blur=5&random=4",
+    "https://picsum.photos/400/300?blur=10&random=1",
+    "https://picsum.photos/400/300?blur=10&random=2",
+    "https://picsum.photos/400/300?blur=10&random=3",
+    "https://picsum.photos/400/300?blur=10&random=4",
 ]
 
 
@@ -68,7 +68,7 @@ async def get_feed(
     pageSize: int = 10,
     x_fault_profile: Optional[str] = Header(None, alias="X-Fault-Profile"),
 ):
-    profile = x_fault_profile or current_fault_profile
+    profile = current_fault_profile if current_fault_profile != "normal" else (x_fault_profile or "normal")
 
     # slow_api故障：延迟返回
     if profile in ("slow_api", "mixed_fault"):
@@ -99,7 +99,7 @@ async def get_feed(
 async def get_counter(
     x_fault_profile: Optional[str] = Header(None, alias="X-Fault-Profile"),
 ):
-    profile = x_fault_profile or current_fault_profile
+    profile = current_fault_profile if current_fault_profile != "normal" else (x_fault_profile or "normal")
 
     if profile in ("slow_api", "mixed_fault"):
         await _simulate_delay(800, 1500)
@@ -120,7 +120,7 @@ async def refresh_counter(
     x_fault_profile: Optional[str] = Header(None, alias="X-Fault-Profile"),
 ):
     global counter_value
-    profile = x_fault_profile or current_fault_profile
+    profile = current_fault_profile if current_fault_profile != "normal" else (x_fault_profile or "normal")
 
     if profile in ("slow_api", "mixed_fault"):
         await _simulate_delay(800, 1500)
@@ -150,7 +150,7 @@ async def refresh_counter(
 async def get_layout(
     x_fault_profile: Optional[str] = Header(None, alias="X-Fault-Profile"),
 ):
-    profile = x_fault_profile or current_fault_profile
+    profile = current_fault_profile if current_fault_profile != "normal" else (x_fault_profile or "normal")
 
     if profile in ("slow_api", "mixed_fault"):
         await _simulate_delay(800, 1500)
