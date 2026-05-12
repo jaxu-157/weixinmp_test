@@ -33,14 +33,16 @@ export function getFaultState(): FaultState {
 }
 
 export function activateFault(profile: FaultProfile): void {
+  // 切 profile 时先把所有 flag 复位，避免上一次的 flag 残留污染本次（例如 blur 漏到 slow_api）
+  state.latencyMs = 0
+  state.blurLevel = 0
+  state.staleEnabled = false
+  state.overlapEnabled = false
+  state.memoryPressure = false
   state.currentProfile = profile
+
   switch (profile) {
     case 'normal':
-      state.latencyMs = 0
-      state.blurLevel = 0
-      state.staleEnabled = false
-      state.overlapEnabled = false
-      state.memoryPressure = false
       break
     case 'slow_api':
       state.latencyMs = 1200
