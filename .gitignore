@@ -1,6 +1,13 @@
 # Python
 __pycache__/
 *.pyc
+*.pyo
+
+# 依赖与构建产物
+node_modules/
+dist/
+*.log
+.env
 
 # 第三方开源小程序克隆（零侵入 driver 的外部验证目标，体积大且可复现，不纳入版本管理）
 third-tdesign-retail/
