@@ -4,6 +4,7 @@ import numpy as np
 from .blur import detect_blur
 from .screen import detect_blank_screen
 from .ocr import extract_text
+from .layout import detect_overlap
 
 
 # 阈值配置
@@ -47,7 +48,7 @@ def run_triage(
     visual_result = _run_visual_assertions(image, page_type)
 
     # ======== 功能断言 ========
-    functional_result = _run_functional_assertions(page_state, page_type)
+    functional_result = _run_functional_assertions(page_state, page_type, visual_result.get("ocr_text", ""))
 
     # ======== 性能断言 ========
     performance_result = _run_performance_assertions(perf_data)
@@ -125,8 +126,8 @@ def _run_visual_assertions(image: np.ndarray, page_type: str) -> dict:
     }
 
 
-def _run_functional_assertions(page_state: dict, page_type: str) -> dict:
-    """功能断言：检查可见值一致性 + UI标记异常"""
+def _run_functional_assertions(page_state: dict, page_type: str, ocr_text: str = "") -> dict:
+    """功能断言：检查可见值一致性 + UI标记异常 + OCR文字验证"""
     if not page_state:
         return {"pass": True, "reason": "no_state_provided"}
 
@@ -144,6 +145,11 @@ def _run_functional_assertions(page_state: dict, page_type: str) -> dict:
         reasons.append("layout_overlap_detected")
     if ui_flags.get("isBlank"):
         reasons.append("page_is_blank")
+
+    # OCR文字验证
+    expected_text = page_state.get("expectedText", "")
+    if expected_text and ocr_text and expected_text not in ocr_text:
+        reasons.append(f"ocr: expected '{expected_text}' not found")
 
     if reasons:
         return {"pass": False, "reason": "; ".join(reasons)}

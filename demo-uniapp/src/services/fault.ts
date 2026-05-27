@@ -33,14 +33,16 @@ export function getFaultState(): FaultState {
 }
 
 export function activateFault(profile: FaultProfile): void {
+  // 先重置所有故障标记，再设置目标故障
   state.currentProfile = profile
+  state.latencyMs = 0
+  state.blurLevel = 0
+  state.staleEnabled = false
+  state.overlapEnabled = false
+  state.memoryPressure = false
+
   switch (profile) {
     case 'normal':
-      state.latencyMs = 0
-      state.blurLevel = 0
-      state.staleEnabled = false
-      state.overlapEnabled = false
-      state.memoryPressure = false
       break
     case 'slow_api':
       state.latencyMs = 1200

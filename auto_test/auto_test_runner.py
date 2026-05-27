@@ -27,8 +27,8 @@ class VisionTriageAutoTester:
         self.mini = None
         self.diagnose_url = "http://127.0.0.1:8900/diagnose"  # 修正1：添加完整的URL
         self.results = []
-        self.report_dir = "./reports"
-        self.screenshot_dir = "./reports/screenshots"
+        self.report_dir = os.path.join(os.path.dirname(__file__), "reports")
+        self.screenshot_dir = os.path.join(self.report_dir, "screenshots")
         
         # 创建目录
         os.makedirs(self.screenshot_dir, exist_ok=True)
@@ -578,11 +578,18 @@ class VisionTriageAutoTester:
                     all_success = False
                 time.sleep(2)
         finally:
+            # 无论测试成功与否，重置故障为 normal
+            try:
+                self._activate_fault("normal")
+                print("🔄 故障已重置为 normal")
+            except:
+                pass
+
             if self.mini:
                 try:
                     if hasattr(self.mini, 'disconnect'):
                         self.mini.disconnect()
-                    print("\n🔌 已断开连接")
+                    print("🔌 已断开连接")
                 except:
                     pass
 

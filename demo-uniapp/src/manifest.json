@@ -1,6 +1,6 @@
 {
     "name" : "Vision-Triage",
-    "appid" : "",
+    "appid" : "wx90551d59d41885eb",
     "description" : "基于功能断言+性能断言+视觉断言的微信小程序故障分诊原型",
     "versionName" : "1.0.0",
     "versionCode" : "100",
@@ -50,7 +50,7 @@
     "quickapp" : {},
     /* 小程序特有相关 */
     "mp-weixin" : {
-        "appid" : "",
+        "appid" : "wx90551d59d41885eb",
         "setting" : {
             "urlCheck" : false
         },
