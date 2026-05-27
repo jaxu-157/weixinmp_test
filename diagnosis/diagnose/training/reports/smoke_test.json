@@ -1,0 +1,147 @@
+{
+  "n": 14,
+  "rule_accuracy": 0.8571428571428571,
+  "learned_accuracy": 1.0,
+  "rows": [
+    {
+      "page": "counter",
+      "profile": "mixed_fault",
+      "expected": "Mixed",
+      "rule": "Mixed",
+      "learned": "Mixed",
+      "rule_ok": true,
+      "learned_ok": true,
+      "screenshot": "counter_mixed_fault_mixed_fault_20260511_024809.png"
+    },
+    {
+      "page": "counter",
+      "profile": "normal",
+      "expected": "Pass",
+      "rule": "Pass",
+      "learned": "Pass",
+      "rule_ok": true,
+      "learned_ok": true,
+      "screenshot": "counter_normal_normal_20260511_024729.png"
+    },
+    {
+      "page": "counter",
+      "profile": "slow_api",
+      "expected": "PerformanceRisk",
+      "rule": "PerformanceRisk",
+      "learned": "PerformanceRisk",
+      "rule_ok": true,
+      "learned_ok": true,
+      "screenshot": "counter_slow_api_slow_api_20260511_024739.png"
+    },
+    {
+      "page": "counter",
+      "profile": "stale_ui",
+      "expected": "FunctionalFail",
+      "rule": "FunctionalFail",
+      "learned": "FunctionalFail",
+      "rule_ok": true,
+      "learned_ok": true,
+      "screenshot": "counter_stale_ui_stale_ui_20260511_024749.png"
+    },
+    {
+      "page": "counter",
+      "profile": "wrong_mapping",
+      "expected": "FunctionalFail",
+      "rule": "FunctionalFail",
+      "learned": "FunctionalFail",
+      "rule_ok": true,
+      "learned_ok": true,
+      "screenshot": "counter_wrong_mapping_wrong_mapping_20260511_024758.png"
+    },
+    {
+      "page": "feed",
+      "profile": "blur_image",
+      "expected": "RenderBug",
+      "rule": "RenderBug",
+      "learned": "RenderBug",
+      "rule_ok": true,
+      "learned_ok": true,
+      "screenshot": "feed_blur_image_blur_image_20260511_024653.png"
+    },
+    {
+      "page": "feed",
+      "profile": "memory_pressure",
+      "expected": "PerformanceRisk",
+      "rule": "Mixed",
+      "learned": "PerformanceRisk",
+      "rule_ok": false,
+      "learned_ok": true,
+      "screenshot": "feed_memory_pressure_memory_pressure_20260511_024706.png"
+    },
+    {
+      "page": "feed",
+      "profile": "mixed_fault",
+      "expected": "Mixed",
+      "rule": "Mixed",
+      "learned": "Mixed",
+      "rule_ok": true,
+      "learned_ok": true,
+      "screenshot": "feed_mixed_fault_mixed_fault_20260511_024719.png"
+    },
+    {
+      "page": "feed",
+      "profile": "normal",
+      "expected": "Pass",
+      "rule": "Pass",
+      "learned": "Pass",
+      "rule_ok": true,
+      "learned_ok": true,
+      "screenshot": "feed_normal_normal_20260511_024531.png"
+    },
+    {
+      "page": "feed",
+      "profile": "slow_api",
+      "expected": "PerformanceRisk",
+      "rule": "Mixed",
+      "learned": "PerformanceRisk",
+      "rule_ok": false,
+      "learned_ok": true,
+      "screenshot": "feed_slow_api_slow_api_20260511_024543.png"
+    },
+    {
+      "page": "layout",
+      "profile": "layout_overlap",
+      "expected": "FunctionalFail",
+      "rule": "FunctionalFail",
+      "learned": "FunctionalFail",
+      "rule_ok": true,
+      "learned_ok": true,
+      "screenshot": "layout_layout_overlap_layout_overlap_20260511_024838.png"
+    },
+    {
+      "page": "layout",
+      "profile": "memory_pressure",
+      "expected": "PerformanceRisk",
+      "rule": "PerformanceRisk",
+      "learned": "PerformanceRisk",
+      "rule_ok": true,
+      "learned_ok": true,
+      "screenshot": "layout_memory_pressure_memory_pressure_20260511_024848.png"
+    },
+    {
+      "page": "layout",
+      "profile": "normal",
+      "expected": "Pass",
+      "rule": "Pass",
+      "learned": "Pass",
+      "rule_ok": true,
+      "learned_ok": true,
+      "screenshot": "layout_normal_normal_20260511_024818.png"
+    },
+    {
+      "page": "layout",
+      "profile": "slow_api",
+      "expected": "PerformanceRisk",
+      "rule": "PerformanceRisk",
+      "learned": "PerformanceRisk",
+      "rule_ok": true,
+      "learned_ok": true,
+      "screenshot": "layout_slow_api_slow_api_20260511_024829.png"
+    }
+  ]
+}

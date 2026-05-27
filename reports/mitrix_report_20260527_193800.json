@@ -1,0 +1,1429 @@
+{
+  "project": "Vision-Triage mitrix",
+  "timestamp": "20260527_193800",
+  "summary": {
+    "total_cases": 17,
+    "executed": 17,
+    "all_match": 15,
+    "match_rate": 0.882
+  },
+  "per_fault_metrics": {
+    "blur_image": {
+      "tp": 4,
+      "fp": 0,
+      "fn": 0,
+      "tn": 13,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    "slow_api": {
+      "tp": 9,
+      "fp": 0,
+      "fn": 0,
+      "tn": 8,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    "stale_ui": {
+      "tp": 2,
+      "fp": 0,
+      "fn": 2,
+      "tn": 13,
+      "precision": 1.0,
+      "recall": 0.5,
+      "f1": 0.667
+    },
+    "wrong_mapping": {
+      "tp": 4,
+      "fp": 0,
+      "fn": 0,
+      "tn": 13,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    "layout_overlap": {
+      "tp": 4,
+      "fp": 0,
+      "fn": 0,
+      "tn": 13,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    "memory_pressure": {
+      "tp": 6,
+      "fp": 0,
+      "fn": 0,
+      "tn": 11,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    }
+  },
+  "interaction": {
+    "pairs": [
+      {
+        "from": "wrong_mapping",
+        "to": "stale_ui",
+        "type": "masking",
+        "strength": 1.0,
+        "evidence": "P(stale_ui|stale_ui_inj, wrong_mapping_not) = 1.00 vs P(stale_ui|stale_ui_inj, wrong_mapping_inj) = 0.00 → stale_ui 检出率因 wrong_mapping 下降 1.00"
+      }
+    ],
+    "masking_pairs": [
+      {
+        "from": "wrong_mapping",
+        "to": "stale_ui",
+        "type": "masking",
+        "strength": 1.0,
+        "evidence": "P(stale_ui|stale_ui_inj, wrong_mapping_not) = 1.00 vs P(stale_ui|stale_ui_inj, wrong_mapping_inj) = 0.00 → stale_ui 检出率因 wrong_mapping 下降 1.00"
+      }
+    ],
+    "excitation_pairs": [],
+    "summary": "1 组掩盖"
+  },
+  "detection_matrix": [
+    {
+      "case_id": "single/blur_image@feed",
+      "page": "feed",
+      "faults_injected": [
+        "blur_image"
+      ],
+      "detected": {
+        "blur_image": 1,
+        "slow_api": 0,
+        "stale_ui": 0,
+        "wrong_mapping": 0,
+        "layout_overlap": 0,
+        "memory_pressure": 0
+      },
+      "oracle": {
+        "blur_image": true,
+        "slow_api": false,
+        "stale_ui": false,
+        "wrong_mapping": false,
+        "layout_overlap": false,
+        "memory_pressure": false
+      },
+      "match": {
+        "blur_image": true,
+        "slow_api": true,
+        "stale_ui": true,
+        "wrong_mapping": true,
+        "layout_overlap": true,
+        "memory_pressure": true
+      }
+    },
+    {
+      "case_id": "single/slow_api@feed",
+      "page": "feed",
+      "faults_injected": [
+        "slow_api"
+      ],
+      "detected": {
+        "blur_image": 0,
+        "slow_api": 1,
+        "stale_ui": 0,
+        "wrong_mapping": 0,
+        "layout_overlap": 0,
+        "memory_pressure": 0
+      },
+      "oracle": {
+        "blur_image": false,
+        "slow_api": true,
+        "stale_ui": false,
+        "wrong_mapping": false,
+        "layout_overlap": false,
+        "memory_pressure": false
+      },
+      "match": {
+        "blur_image": true,
+        "slow_api": true,
+        "stale_ui": true,
+        "wrong_mapping": true,
+        "layout_overlap": true,
+        "memory_pressure": true
+      }
+    },
+    {
+      "case_id": "single/stale_ui@counter",
+      "page": "counter",
+      "faults_injected": [
+        "stale_ui"
+      ],
+      "detected": {
+        "blur_image": 0,
+        "slow_api": 0,
+        "stale_ui": 1,
+        "wrong_mapping": 0,
+        "layout_overlap": 0,
+        "memory_pressure": 0
+      },
+      "oracle": {
+        "blur_image": false,
+        "slow_api": false,
+        "stale_ui": true,
+        "wrong_mapping": false,
+        "layout_overlap": false,
+        "memory_pressure": false
+      },
+      "match": {
+        "blur_image": true,
+        "slow_api": true,
+        "stale_ui": true,
+        "wrong_mapping": true,
+        "layout_overlap": true,
+        "memory_pressure": true
+      }
+    },
+    {
+      "case_id": "single/wrong_mapping@counter",
+      "page": "counter",
+      "faults_injected": [
+        "wrong_mapping"
+      ],
+      "detected": {
+        "blur_image": 0,
+        "slow_api": 0,
+        "stale_ui": 0,
+        "wrong_mapping": 1,
+        "layout_overlap": 0,
+        "memory_pressure": 0
+      },
+      "oracle": {
+        "blur_image": false,
+        "slow_api": false,
+        "stale_ui": false,
+        "wrong_mapping": true,
+        "layout_overlap": false,
+        "memory_pressure": false
+      },
+      "match": {
+        "blur_image": true,
+        "slow_api": true,
+        "stale_ui": true,
+        "wrong_mapping": true,
+        "layout_overlap": true,
+        "memory_pressure": true
+      }
+    },
+    {
+      "case_id": "single/layout_overlap@layout",
+      "page": "layout",
+      "faults_injected": [
+        "layout_overlap"
+      ],
+      "detected": {
+        "blur_image": 0,
+        "slow_api": 0,
+        "stale_ui": 0,
+        "wrong_mapping": 0,
+        "layout_overlap": 1,
+        "memory_pressure": 0
+      },
+      "oracle": {
+        "blur_image": false,
+        "slow_api": false,
+        "stale_ui": false,
+        "wrong_mapping": false,
+        "layout_overlap": true,
+        "memory_pressure": false
+      },
+      "match": {
+        "blur_image": true,
+        "slow_api": true,
+        "stale_ui": true,
+        "wrong_mapping": true,
+        "layout_overlap": true,
+        "memory_pressure": true
+      }
+    },
+    {
+      "case_id": "single/memory_pressure@feed",
+      "page": "feed",
+      "faults_injected": [
+        "memory_pressure"
+      ],
+      "detected": {
+        "blur_image": 0,
+        "slow_api": 0,
+        "stale_ui": 0,
+        "wrong_mapping": 0,
+        "layout_overlap": 0,
+        "memory_pressure": 1
+      },
+      "oracle": {
+        "blur_image": false,
+        "slow_api": false,
+        "stale_ui": false,
+        "wrong_mapping": false,
+        "layout_overlap": false,
+        "memory_pressure": true
+      },
+      "match": {
+        "blur_image": true,
+        "slow_api": true,
+        "stale_ui": true,
+        "wrong_mapping": true,
+        "layout_overlap": true,
+        "memory_pressure": true
+      }
+    },
+    {
+      "case_id": "pair/blur_image+slow_api@feed",
+      "page": "feed",
+      "faults_injected": [
+        "blur_image",
+        "slow_api"
+      ],
+      "detected": {
+        "blur_image": 1,
+        "slow_api": 1,
+        "stale_ui": 0,
+        "wrong_mapping": 0,
+        "layout_overlap": 0,
+        "memory_pressure": 0
+      },
+      "oracle": {
+        "blur_image": true,
+        "slow_api": true,
+        "stale_ui": false,
+        "wrong_mapping": false,
+        "layout_overlap": false,
+        "memory_pressure": false
+      },
+      "match": {
+        "blur_image": true,
+        "slow_api": true,
+        "stale_ui": true,
+        "wrong_mapping": true,
+        "layout_overlap": true,
+        "memory_pressure": true
+      }
+    },
+    {
+      "case_id": "pair/blur_image+memory_pressure@feed",
+      "page": "feed",
+      "faults_injected": [
+        "blur_image",
+        "memory_pressure"
+      ],
+      "detected": {
+        "blur_image": 1,
+        "slow_api": 0,
+        "stale_ui": 0,
+        "wrong_mapping": 0,
+        "layout_overlap": 0,
+        "memory_pressure": 1
+      },
+      "oracle": {
+        "blur_image": true,
+        "slow_api": false,
+        "stale_ui": false,
+        "wrong_mapping": false,
+        "layout_overlap": false,
+        "memory_pressure": true
+      },
+      "match": {
+        "blur_image": true,
+        "slow_api": true,
+        "stale_ui": true,
+        "wrong_mapping": true,
+        "layout_overlap": true,
+        "memory_pressure": true
+      }
+    },
+    {
+      "case_id": "pair/slow_api+stale_ui@counter",
+      "page": "counter",
+      "faults_injected": [
+        "slow_api",
+        "stale_ui"
+      ],
+      "detected": {
+        "blur_image": 0,
+        "slow_api": 1,
+        "stale_ui": 1,
+        "wrong_mapping": 0,
+        "layout_overlap": 0,
+        "memory_pressure": 0
+      },
+      "oracle": {
+        "blur_image": false,
+        "slow_api": true,
+        "stale_ui": true,
+        "wrong_mapping": false,
+        "layout_overlap": false,
+        "memory_pressure": false
+      },
+      "match": {
+        "blur_image": true,
+        "slow_api": true,
+        "stale_ui": true,
+        "wrong_mapping": true,
+        "layout_overlap": true,
+        "memory_pressure": true
+      }
+    },
+    {
+      "case_id": "pair/slow_api+wrong_mapping@counter",
+      "page": "counter",
+      "faults_injected": [
+        "slow_api",
+        "wrong_mapping"
+      ],
+      "detected": {
+        "blur_image": 0,
+        "slow_api": 1,
+        "stale_ui": 0,
+        "wrong_mapping": 1,
+        "layout_overlap": 0,
+        "memory_pressure": 0
+      },
+      "oracle": {
+        "blur_image": false,
+        "slow_api": true,
+        "stale_ui": false,
+        "wrong_mapping": true,
+        "layout_overlap": false,
+        "memory_pressure": false
+      },
+      "match": {
+        "blur_image": true,
+        "slow_api": true,
+        "stale_ui": true,
+        "wrong_mapping": true,
+        "layout_overlap": true,
+        "memory_pressure": true
+      }
+    },
+    {
+      "case_id": "pair/slow_api+layout_overlap@layout",
+      "page": "layout",
+      "faults_injected": [
+        "layout_overlap",
+        "slow_api"
+      ],
+      "detected": {
+        "blur_image": 0,
+        "slow_api": 1,
+        "stale_ui": 0,
+        "wrong_mapping": 0,
+        "layout_overlap": 1,
+        "memory_pressure": 0
+      },
+      "oracle": {
+        "blur_image": false,
+        "slow_api": true,
+        "stale_ui": false,
+        "wrong_mapping": false,
+        "layout_overlap": true,
+        "memory_pressure": false
+      },
+      "match": {
+        "blur_image": true,
+        "slow_api": true,
+        "stale_ui": true,
+        "wrong_mapping": true,
+        "layout_overlap": true,
+        "memory_pressure": true
+      }
+    },
+    {
+      "case_id": "pair/slow_api+memory_pressure@feed",
+      "page": "feed",
+      "faults_injected": [
+        "memory_pressure",
+        "slow_api"
+      ],
+      "detected": {
+        "blur_image": 0,
+        "slow_api": 1,
+        "stale_ui": 0,
+        "wrong_mapping": 0,
+        "layout_overlap": 0,
+        "memory_pressure": 1
+      },
+      "oracle": {
+        "blur_image": false,
+        "slow_api": true,
+        "stale_ui": false,
+        "wrong_mapping": false,
+        "layout_overlap": false,
+        "memory_pressure": true
+      },
+      "match": {
+        "blur_image": true,
+        "slow_api": true,
+        "stale_ui": true,
+        "wrong_mapping": true,
+        "layout_overlap": true,
+        "memory_pressure": true
+      }
+    },
+    {
+      "case_id": "pair/stale_ui+wrong_mapping@counter",
+      "page": "counter",
+      "faults_injected": [
+        "stale_ui",
+        "wrong_mapping"
+      ],
+      "detected": {
+        "blur_image": 0,
+        "slow_api": 0,
+        "stale_ui": 0,
+        "wrong_mapping": 1,
+        "layout_overlap": 0,
+        "memory_pressure": 0
+      },
+      "oracle": {
+        "blur_image": false,
+        "slow_api": false,
+        "stale_ui": true,
+        "wrong_mapping": true,
+        "layout_overlap": false,
+        "memory_pressure": false
+      },
+      "match": {
+        "blur_image": true,
+        "slow_api": true,
+        "stale_ui": false,
+        "wrong_mapping": true,
+        "layout_overlap": true,
+        "memory_pressure": true
+      }
+    },
+    {
+      "case_id": "pair/layout_overlap+memory_pressure@layout",
+      "page": "layout",
+      "faults_injected": [
+        "layout_overlap",
+        "memory_pressure"
+      ],
+      "detected": {
+        "blur_image": 0,
+        "slow_api": 0,
+        "stale_ui": 0,
+        "wrong_mapping": 0,
+        "layout_overlap": 1,
+        "memory_pressure": 1
+      },
+      "oracle": {
+        "blur_image": false,
+        "slow_api": false,
+        "stale_ui": false,
+        "wrong_mapping": false,
+        "layout_overlap": true,
+        "memory_pressure": true
+      },
+      "match": {
+        "blur_image": true,
+        "slow_api": true,
+        "stale_ui": true,
+        "wrong_mapping": true,
+        "layout_overlap": true,
+        "memory_pressure": true
+      }
+    },
+    {
+      "case_id": "triple/blur_image+slow_api+memory_pressure@feed",
+      "page": "feed",
+      "faults_injected": [
+        "blur_image",
+        "memory_pressure",
+        "slow_api"
+      ],
+      "detected": {
+        "blur_image": 1,
+        "slow_api": 1,
+        "stale_ui": 0,
+        "wrong_mapping": 0,
+        "layout_overlap": 0,
+        "memory_pressure": 1
+      },
+      "oracle": {
+        "blur_image": true,
+        "slow_api": true,
+        "stale_ui": false,
+        "wrong_mapping": false,
+        "layout_overlap": false,
+        "memory_pressure": true
+      },
+      "match": {
+        "blur_image": true,
+        "slow_api": true,
+        "stale_ui": true,
+        "wrong_mapping": true,
+        "layout_overlap": true,
+        "memory_pressure": true
+      }
+    },
+    {
+      "case_id": "triple/slow_api+stale_ui+wrong_mapping@counter",
+      "page": "counter",
+      "faults_injected": [
+        "slow_api",
+        "stale_ui",
+        "wrong_mapping"
+      ],
+      "detected": {
+        "blur_image": 0,
+        "slow_api": 1,
+        "stale_ui": 0,
+        "wrong_mapping": 1,
+        "layout_overlap": 0,
+        "memory_pressure": 0
+      },
+      "oracle": {
+        "blur_image": false,
+        "slow_api": true,
+        "stale_ui": true,
+        "wrong_mapping": true,
+        "layout_overlap": false,
+        "memory_pressure": false
+      },
+      "match": {
+        "blur_image": true,
+        "slow_api": true,
+        "stale_ui": false,
+        "wrong_mapping": true,
+        "layout_overlap": true,
+        "memory_pressure": true
+      }
+    },
+    {
+      "case_id": "triple/slow_api+layout_overlap+memory_pressure@layout",
+      "page": "layout",
+      "faults_injected": [
+        "layout_overlap",
+        "memory_pressure",
+        "slow_api"
+      ],
+      "detected": {
+        "blur_image": 0,
+        "slow_api": 1,
+        "stale_ui": 0,
+        "wrong_mapping": 0,
+        "layout_overlap": 1,
+        "memory_pressure": 1
+      },
+      "oracle": {
+        "blur_image": false,
+        "slow_api": true,
+        "stale_ui": false,
+        "wrong_mapping": false,
+        "layout_overlap": true,
+        "memory_pressure": true
+      },
+      "match": {
+        "blur_image": true,
+        "slow_api": true,
+        "stale_ui": true,
+        "wrong_mapping": true,
+        "layout_overlap": true,
+        "memory_pressure": true
+      }
+    }
+  ],
+  "results": [
+    {
+      "case_id": "single/blur_image@feed",
+      "page": "feed",
+      "faults": [
+        "blur_image"
+      ],
+      "oracle": {
+        "blur_image": true,
+        "slow_api": false,
+        "stale_ui": false,
+        "wrong_mapping": false,
+        "layout_overlap": false,
+        "memory_pressure": false
+      },
+      "detected": {
+        "blur_image": 1,
+        "slow_api": 0,
+        "stale_ui": 0,
+        "wrong_mapping": 0,
+        "layout_overlap": 0,
+        "memory_pressure": 0
+      },
+      "confidence": {
+        "blur_image": 0.9,
+        "slow_api": 0.05,
+        "stale_ui": 0.0,
+        "wrong_mapping": 0.0,
+        "layout_overlap": 0.0,
+        "memory_pressure": 0.05
+      },
+      "match_vec": {
+        "blur_image": true,
+        "slow_api": true,
+        "stale_ui": true,
+        "wrong_mapping": true,
+        "layout_overlap": true,
+        "memory_pressure": true
+      },
+      "all_match": true,
+      "match_count": 6,
+      "triage_verdict": "RenderBug",
+      "screenshot": "C:\\Users\\17303\\Desktop\\2026spring\\ruance_2026spring\\work_dazuoye\\git_mybranch\\weixinmp_test\\reports\\screenshots\\mitrix_single_blur_image@feed_20260527_193512.png",
+      "duration": 10.68,
+      "timestamp": "2026-05-27T19:35:15.703967",
+      "success": true
+    },
+    {
+      "case_id": "single/slow_api@feed",
+      "page": "feed",
+      "faults": [
+        "slow_api"
+      ],
+      "oracle": {
+        "blur_image": false,
+        "slow_api": true,
+        "stale_ui": false,
+        "wrong_mapping": false,
+        "layout_overlap": false,
+        "memory_pressure": false
+      },
+      "detected": {
+        "blur_image": 0,
+        "slow_api": 1,
+        "stale_ui": 0,
+        "wrong_mapping": 0,
+        "layout_overlap": 0,
+        "memory_pressure": 0
+      },
+      "confidence": {
+        "blur_image": 0.05,
+        "slow_api": 0.7,
+        "stale_ui": 0.0,
+        "wrong_mapping": 0.0,
+        "layout_overlap": 0.0,
+        "memory_pressure": 0.05
+      },
+      "match_vec": {
+        "blur_image": true,
+        "slow_api": true,
+        "stale_ui": true,
+        "wrong_mapping": true,
+        "layout_overlap": true,
+        "memory_pressure": true
+      },
+      "all_match": true,
+      "match_count": 6,
+      "triage_verdict": "PerformanceRisk",
+      "screenshot": "C:\\Users\\17303\\Desktop\\2026spring\\ruance_2026spring\\work_dazuoye\\git_mybranch\\weixinmp_test\\reports\\screenshots\\mitrix_single_slow_api@feed_20260527_193526.png",
+      "duration": 8.79,
+      "timestamp": "2026-05-27T19:35:26.496467",
+      "success": true
+    },
+    {
+      "case_id": "single/stale_ui@counter",
+      "page": "counter",
+      "faults": [
+        "stale_ui"
+      ],
+      "oracle": {
+        "blur_image": false,
+        "slow_api": false,
+        "stale_ui": true,
+        "wrong_mapping": false,
+        "layout_overlap": false,
+        "memory_pressure": false
+      },
+      "detected": {
+        "blur_image": 0,
+        "slow_api": 0,
+        "stale_ui": 1,
+        "wrong_mapping": 0,
+        "layout_overlap": 0,
+        "memory_pressure": 0
+      },
+      "confidence": {
+        "blur_image": 0.0,
+        "slow_api": 0.05,
+        "stale_ui": 0.85,
+        "wrong_mapping": 0.05,
+        "layout_overlap": 0.0,
+        "memory_pressure": 0.0
+      },
+      "match_vec": {
+        "blur_image": true,
+        "slow_api": true,
+        "stale_ui": true,
+        "wrong_mapping": true,
+        "layout_overlap": true,
+        "memory_pressure": true
+      },
+      "all_match": true,
+      "match_count": 6,
+      "triage_verdict": "FunctionalFail",
+      "screenshot": "C:\\Users\\17303\\Desktop\\2026spring\\ruance_2026spring\\work_dazuoye\\git_mybranch\\weixinmp_test\\reports\\screenshots\\mitrix_single_stale_ui@counter_20260527_193535.png",
+      "duration": 7.48,
+      "timestamp": "2026-05-27T19:35:35.984906",
+      "success": true
+    },
+    {
+      "case_id": "single/wrong_mapping@counter",
+      "page": "counter",
+      "faults": [
+        "wrong_mapping"
+      ],
+      "oracle": {
+        "blur_image": false,
+        "slow_api": false,
+        "stale_ui": false,
+        "wrong_mapping": true,
+        "layout_overlap": false,
+        "memory_pressure": false
+      },
+      "detected": {
+        "blur_image": 0,
+        "slow_api": 0,
+        "stale_ui": 0,
+        "wrong_mapping": 1,
+        "layout_overlap": 0,
+        "memory_pressure": 0
+      },
+      "confidence": {
+        "blur_image": 0.0,
+        "slow_api": 0.05,
+        "stale_ui": 0.05,
+        "wrong_mapping": 0.85,
+        "layout_overlap": 0.0,
+        "memory_pressure": 0.0
+      },
+      "match_vec": {
+        "blur_image": true,
+        "slow_api": true,
+        "stale_ui": true,
+        "wrong_mapping": true,
+        "layout_overlap": true,
+        "memory_pressure": true
+      },
+      "all_match": true,
+      "match_count": 6,
+      "triage_verdict": "FunctionalFail",
+      "screenshot": "C:\\Users\\17303\\Desktop\\2026spring\\ruance_2026spring\\work_dazuoye\\git_mybranch\\weixinmp_test\\reports\\screenshots\\mitrix_single_wrong_mapping@counter_20260527_193544.png",
+      "duration": 7.23,
+      "timestamp": "2026-05-27T19:35:45.217024",
+      "success": true
+    },
+    {
+      "case_id": "single/layout_overlap@layout",
+      "page": "layout",
+      "faults": [
+        "layout_overlap"
+      ],
+      "oracle": {
+        "blur_image": false,
+        "slow_api": false,
+        "stale_ui": false,
+        "wrong_mapping": false,
+        "layout_overlap": true,
+        "memory_pressure": false
+      },
+      "detected": {
+        "blur_image": 0,
+        "slow_api": 0,
+        "stale_ui": 0,
+        "wrong_mapping": 0,
+        "layout_overlap": 1,
+        "memory_pressure": 0
+      },
+      "confidence": {
+        "blur_image": 0.0,
+        "slow_api": 0.05,
+        "stale_ui": 0.0,
+        "wrong_mapping": 0.0,
+        "layout_overlap": 0.9,
+        "memory_pressure": 0.05
+      },
+      "match_vec": {
+        "blur_image": true,
+        "slow_api": true,
+        "stale_ui": true,
+        "wrong_mapping": true,
+        "layout_overlap": true,
+        "memory_pressure": true
+      },
+      "all_match": true,
+      "match_count": 6,
+      "triage_verdict": "FunctionalFail",
+      "screenshot": "C:\\Users\\17303\\Desktop\\2026spring\\ruance_2026spring\\work_dazuoye\\git_mybranch\\weixinmp_test\\reports\\screenshots\\mitrix_single_layout_overlap@layout_20260527_193554.png",
+      "duration": 7.62,
+      "timestamp": "2026-05-27T19:35:54.838566",
+      "success": true
+    },
+    {
+      "case_id": "single/memory_pressure@feed",
+      "page": "feed",
+      "faults": [
+        "memory_pressure"
+      ],
+      "oracle": {
+        "blur_image": false,
+        "slow_api": false,
+        "stale_ui": false,
+        "wrong_mapping": false,
+        "layout_overlap": false,
+        "memory_pressure": true
+      },
+      "detected": {
+        "blur_image": 0,
+        "slow_api": 0,
+        "stale_ui": 0,
+        "wrong_mapping": 0,
+        "layout_overlap": 0,
+        "memory_pressure": 1
+      },
+      "confidence": {
+        "blur_image": 0.05,
+        "slow_api": 0.05,
+        "stale_ui": 0.0,
+        "wrong_mapping": 0.0,
+        "layout_overlap": 0.0,
+        "memory_pressure": 0.75
+      },
+      "match_vec": {
+        "blur_image": true,
+        "slow_api": true,
+        "stale_ui": true,
+        "wrong_mapping": true,
+        "layout_overlap": true,
+        "memory_pressure": true
+      },
+      "all_match": true,
+      "match_count": 6,
+      "triage_verdict": "PerformanceRisk",
+      "screenshot": "C:\\Users\\17303\\Desktop\\2026spring\\ruance_2026spring\\work_dazuoye\\git_mybranch\\weixinmp_test\\reports\\screenshots\\mitrix_single_memory_pressure@feed_20260527_193604.png",
+      "duration": 7.72,
+      "timestamp": "2026-05-27T19:36:04.573814",
+      "success": true
+    },
+    {
+      "case_id": "pair/blur_image+slow_api@feed",
+      "page": "feed",
+      "faults": [
+        "blur_image",
+        "slow_api"
+      ],
+      "oracle": {
+        "blur_image": true,
+        "slow_api": true,
+        "stale_ui": false,
+        "wrong_mapping": false,
+        "layout_overlap": false,
+        "memory_pressure": false
+      },
+      "detected": {
+        "blur_image": 1,
+        "slow_api": 1,
+        "stale_ui": 0,
+        "wrong_mapping": 0,
+        "layout_overlap": 0,
+        "memory_pressure": 0
+      },
+      "confidence": {
+        "blur_image": 0.9,
+        "slow_api": 0.7,
+        "stale_ui": 0.0,
+        "wrong_mapping": 0.0,
+        "layout_overlap": 0.0,
+        "memory_pressure": 0.05
+      },
+      "match_vec": {
+        "blur_image": true,
+        "slow_api": true,
+        "stale_ui": true,
+        "wrong_mapping": true,
+        "layout_overlap": true,
+        "memory_pressure": true
+      },
+      "all_match": true,
+      "match_count": 6,
+      "triage_verdict": "Mixed",
+      "screenshot": "C:\\Users\\17303\\Desktop\\2026spring\\ruance_2026spring\\work_dazuoye\\git_mybranch\\weixinmp_test\\reports\\screenshots\\mitrix_pair_blur_image_slow_api@feed_20260527_193614.png",
+      "duration": 8.73,
+      "timestamp": "2026-05-27T19:36:15.303399",
+      "success": true
+    },
+    {
+      "case_id": "pair/blur_image+memory_pressure@feed",
+      "page": "feed",
+      "faults": [
+        "blur_image",
+        "memory_pressure"
+      ],
+      "oracle": {
+        "blur_image": true,
+        "slow_api": false,
+        "stale_ui": false,
+        "wrong_mapping": false,
+        "layout_overlap": false,
+        "memory_pressure": true
+      },
+      "detected": {
+        "blur_image": 1,
+        "slow_api": 0,
+        "stale_ui": 0,
+        "wrong_mapping": 0,
+        "layout_overlap": 0,
+        "memory_pressure": 1
+      },
+      "confidence": {
+        "blur_image": 0.6,
+        "slow_api": 0.05,
+        "stale_ui": 0.0,
+        "wrong_mapping": 0.0,
+        "layout_overlap": 0.0,
+        "memory_pressure": 0.75
+      },
+      "match_vec": {
+        "blur_image": true,
+        "slow_api": true,
+        "stale_ui": true,
+        "wrong_mapping": true,
+        "layout_overlap": true,
+        "memory_pressure": true
+      },
+      "all_match": true,
+      "match_count": 6,
+      "triage_verdict": "PerformanceRisk",
+      "screenshot": "C:\\Users\\17303\\Desktop\\2026spring\\ruance_2026spring\\work_dazuoye\\git_mybranch\\weixinmp_test\\reports\\screenshots\\mitrix_pair_blur_image_memory_pressure@feed_20260527_193624.png",
+      "duration": 7.62,
+      "timestamp": "2026-05-27T19:36:24.938975",
+      "success": true
+    },
+    {
+      "case_id": "pair/slow_api+stale_ui@counter",
+      "page": "counter",
+      "faults": [
+        "slow_api",
+        "stale_ui"
+      ],
+      "oracle": {
+        "blur_image": false,
+        "slow_api": true,
+        "stale_ui": true,
+        "wrong_mapping": false,
+        "layout_overlap": false,
+        "memory_pressure": false
+      },
+      "detected": {
+        "blur_image": 0,
+        "slow_api": 1,
+        "stale_ui": 1,
+        "wrong_mapping": 0,
+        "layout_overlap": 0,
+        "memory_pressure": 0
+      },
+      "confidence": {
+        "blur_image": 0.0,
+        "slow_api": 0.7,
+        "stale_ui": 0.85,
+        "wrong_mapping": 0.05,
+        "layout_overlap": 0.0,
+        "memory_pressure": 0.0
+      },
+      "match_vec": {
+        "blur_image": true,
+        "slow_api": true,
+        "stale_ui": true,
+        "wrong_mapping": true,
+        "layout_overlap": true,
+        "memory_pressure": true
+      },
+      "all_match": true,
+      "match_count": 6,
+      "triage_verdict": "Mixed",
+      "screenshot": "C:\\Users\\17303\\Desktop\\2026spring\\ruance_2026spring\\work_dazuoye\\git_mybranch\\weixinmp_test\\reports\\screenshots\\mitrix_pair_slow_api_stale_ui@counter_20260527_193635.png",
+      "duration": 8.49,
+      "timestamp": "2026-05-27T19:36:35.434374",
+      "success": true
+    },
+    {
+      "case_id": "pair/slow_api+wrong_mapping@counter",
+      "page": "counter",
+      "faults": [
+        "slow_api",
+        "wrong_mapping"
+      ],
+      "oracle": {
+        "blur_image": false,
+        "slow_api": true,
+        "stale_ui": false,
+        "wrong_mapping": true,
+        "layout_overlap": false,
+        "memory_pressure": false
+      },
+      "detected": {
+        "blur_image": 0,
+        "slow_api": 1,
+        "stale_ui": 0,
+        "wrong_mapping": 1,
+        "layout_overlap": 0,
+        "memory_pressure": 0
+      },
+      "confidence": {
+        "blur_image": 0.0,
+        "slow_api": 0.7,
+        "stale_ui": 0.05,
+        "wrong_mapping": 0.85,
+        "layout_overlap": 0.0,
+        "memory_pressure": 0.0
+      },
+      "match_vec": {
+        "blur_image": true,
+        "slow_api": true,
+        "stale_ui": true,
+        "wrong_mapping": true,
+        "layout_overlap": true,
+        "memory_pressure": true
+      },
+      "all_match": true,
+      "match_count": 6,
+      "triage_verdict": "Mixed",
+      "screenshot": "C:\\Users\\17303\\Desktop\\2026spring\\ruance_2026spring\\work_dazuoye\\git_mybranch\\weixinmp_test\\reports\\screenshots\\mitrix_pair_slow_api_wrong_mapping@counter_20260527_193645.png",
+      "duration": 8.57,
+      "timestamp": "2026-05-27T19:36:46.012945",
+      "success": true
+    },
+    {
+      "case_id": "pair/slow_api+layout_overlap@layout",
+      "page": "layout",
+      "faults": [
+        "layout_overlap",
+        "slow_api"
+      ],
+      "oracle": {
+        "blur_image": false,
+        "slow_api": true,
+        "stale_ui": false,
+        "wrong_mapping": false,
+        "layout_overlap": true,
+        "memory_pressure": false
+      },
+      "detected": {
+        "blur_image": 0,
+        "slow_api": 1,
+        "stale_ui": 0,
+        "wrong_mapping": 0,
+        "layout_overlap": 1,
+        "memory_pressure": 0
+      },
+      "confidence": {
+        "blur_image": 0.0,
+        "slow_api": 0.7,
+        "stale_ui": 0.0,
+        "wrong_mapping": 0.0,
+        "layout_overlap": 0.9,
+        "memory_pressure": 0.05
+      },
+      "match_vec": {
+        "blur_image": true,
+        "slow_api": true,
+        "stale_ui": true,
+        "wrong_mapping": true,
+        "layout_overlap": true,
+        "memory_pressure": true
+      },
+      "all_match": true,
+      "match_count": 6,
+      "triage_verdict": "Mixed",
+      "screenshot": "C:\\Users\\17303\\Desktop\\2026spring\\ruance_2026spring\\work_dazuoye\\git_mybranch\\weixinmp_test\\reports\\screenshots\\mitrix_pair_slow_api_layout_overlap@layout_20260527_193656.png",
+      "duration": 8.7,
+      "timestamp": "2026-05-27T19:36:56.718122",
+      "success": true
+    },
+    {
+      "case_id": "pair/slow_api+memory_pressure@feed",
+      "page": "feed",
+      "faults": [
+        "memory_pressure",
+        "slow_api"
+      ],
+      "oracle": {
+        "blur_image": false,
+        "slow_api": true,
+        "stale_ui": false,
+        "wrong_mapping": false,
+        "layout_overlap": false,
+        "memory_pressure": true
+      },
+      "detected": {
+        "blur_image": 0,
+        "slow_api": 1,
+        "stale_ui": 0,
+        "wrong_mapping": 0,
+        "layout_overlap": 0,
+        "memory_pressure": 1
+      },
+      "confidence": {
+        "blur_image": 0.05,
+        "slow_api": 0.7,
+        "stale_ui": 0.0,
+        "wrong_mapping": 0.0,
+        "layout_overlap": 0.0,
+        "memory_pressure": 0.75
+      },
+      "match_vec": {
+        "blur_image": true,
+        "slow_api": true,
+        "stale_ui": true,
+        "wrong_mapping": true,
+        "layout_overlap": true,
+        "memory_pressure": true
+      },
+      "all_match": true,
+      "match_count": 6,
+      "triage_verdict": "PerformanceRisk",
+      "screenshot": "C:\\Users\\17303\\Desktop\\2026spring\\ruance_2026spring\\work_dazuoye\\git_mybranch\\weixinmp_test\\reports\\screenshots\\mitrix_pair_slow_api_memory_pressure@feed_20260527_193706.png",
+      "duration": 8.62,
+      "timestamp": "2026-05-27T19:37:07.340005",
+      "success": true
+    },
+    {
+      "case_id": "pair/stale_ui+wrong_mapping@counter",
+      "page": "counter",
+      "faults": [
+        "stale_ui",
+        "wrong_mapping"
+      ],
+      "oracle": {
+        "blur_image": false,
+        "slow_api": false,
+        "stale_ui": true,
+        "wrong_mapping": true,
+        "layout_overlap": false,
+        "memory_pressure": false
+      },
+      "detected": {
+        "blur_image": 0,
+        "slow_api": 0,
+        "stale_ui": 0,
+        "wrong_mapping": 1,
+        "layout_overlap": 0,
+        "memory_pressure": 0
+      },
+      "confidence": {
+        "blur_image": 0.0,
+        "slow_api": 0.05,
+        "stale_ui": 0.05,
+        "wrong_mapping": 0.85,
+        "layout_overlap": 0.0,
+        "memory_pressure": 0.0
+      },
+      "match_vec": {
+        "blur_image": true,
+        "slow_api": true,
+        "stale_ui": false,
+        "wrong_mapping": true,
+        "layout_overlap": true,
+        "memory_pressure": true
+      },
+      "all_match": false,
+      "match_count": 5,
+      "triage_verdict": "FunctionalFail",
+      "screenshot": "C:\\Users\\17303\\Desktop\\2026spring\\ruance_2026spring\\work_dazuoye\\git_mybranch\\weixinmp_test\\reports\\screenshots\\mitrix_pair_stale_ui_wrong_mapping@counter_20260527_193716.png",
+      "duration": 7.52,
+      "timestamp": "2026-05-27T19:37:16.868455",
+      "success": true
+    },
+    {
+      "case_id": "pair/layout_overlap+memory_pressure@layout",
+      "page": "layout",
+      "faults": [
+        "layout_overlap",
+        "memory_pressure"
+      ],
+      "oracle": {
+        "blur_image": false,
+        "slow_api": false,
+        "stale_ui": false,
+        "wrong_mapping": false,
+        "layout_overlap": true,
+        "memory_pressure": true
+      },
+      "detected": {
+        "blur_image": 0,
+        "slow_api": 0,
+        "stale_ui": 0,
+        "wrong_mapping": 0,
+        "layout_overlap": 1,
+        "memory_pressure": 1
+      },
+      "confidence": {
+        "blur_image": 0.0,
+        "slow_api": 0.05,
+        "stale_ui": 0.0,
+        "wrong_mapping": 0.0,
+        "layout_overlap": 0.9,
+        "memory_pressure": 0.75
+      },
+      "match_vec": {
+        "blur_image": true,
+        "slow_api": true,
+        "stale_ui": true,
+        "wrong_mapping": true,
+        "layout_overlap": true,
+        "memory_pressure": true
+      },
+      "all_match": true,
+      "match_count": 6,
+      "triage_verdict": "FunctionalFail",
+      "screenshot": "C:\\Users\\17303\\Desktop\\2026spring\\ruance_2026spring\\work_dazuoye\\git_mybranch\\weixinmp_test\\reports\\screenshots\\mitrix_pair_layout_overlap_memory_pressure@layout_20260527_193726.png",
+      "duration": 7.75,
+      "timestamp": "2026-05-27T19:37:26.616403",
+      "success": true
+    },
+    {
+      "case_id": "triple/blur_image+slow_api+memory_pressure@feed",
+      "page": "feed",
+      "faults": [
+        "blur_image",
+        "memory_pressure",
+        "slow_api"
+      ],
+      "oracle": {
+        "blur_image": true,
+        "slow_api": true,
+        "stale_ui": false,
+        "wrong_mapping": false,
+        "layout_overlap": false,
+        "memory_pressure": true
+      },
+      "detected": {
+        "blur_image": 1,
+        "slow_api": 1,
+        "stale_ui": 0,
+        "wrong_mapping": 0,
+        "layout_overlap": 0,
+        "memory_pressure": 1
+      },
+      "confidence": {
+        "blur_image": 0.6,
+        "slow_api": 0.7,
+        "stale_ui": 0.0,
+        "wrong_mapping": 0.0,
+        "layout_overlap": 0.0,
+        "memory_pressure": 0.75
+      },
+      "match_vec": {
+        "blur_image": true,
+        "slow_api": true,
+        "stale_ui": true,
+        "wrong_mapping": true,
+        "layout_overlap": true,
+        "memory_pressure": true
+      },
+      "all_match": true,
+      "match_count": 6,
+      "triage_verdict": "PerformanceRisk",
+      "screenshot": "C:\\Users\\17303\\Desktop\\2026spring\\ruance_2026spring\\work_dazuoye\\git_mybranch\\weixinmp_test\\reports\\screenshots\\mitrix_triple_blur_image_slow_api_memory_pressure@feed_20260527_193736.png",
+      "duration": 8.62,
+      "timestamp": "2026-05-27T19:37:37.243636",
+      "success": true
+    },
+    {
+      "case_id": "triple/slow_api+stale_ui+wrong_mapping@counter",
+      "page": "counter",
+      "faults": [
+        "slow_api",
+        "stale_ui",
+        "wrong_mapping"
+      ],
+      "oracle": {
+        "blur_image": false,
+        "slow_api": true,
+        "stale_ui": true,
+        "wrong_mapping": true,
+        "layout_overlap": false,
+        "memory_pressure": false
+      },
+      "detected": {
+        "blur_image": 0,
+        "slow_api": 1,
+        "stale_ui": 0,
+        "wrong_mapping": 1,
+        "layout_overlap": 0,
+        "memory_pressure": 0
+      },
+      "confidence": {
+        "blur_image": 0.0,
+        "slow_api": 0.7,
+        "stale_ui": 0.05,
+        "wrong_mapping": 0.85,
+        "layout_overlap": 0.0,
+        "memory_pressure": 0.0
+      },
+      "match_vec": {
+        "blur_image": true,
+        "slow_api": true,
+        "stale_ui": false,
+        "wrong_mapping": true,
+        "layout_overlap": true,
+        "memory_pressure": true
+      },
+      "all_match": false,
+      "match_count": 5,
+      "triage_verdict": "Mixed",
+      "screenshot": "C:\\Users\\17303\\Desktop\\2026spring\\ruance_2026spring\\work_dazuoye\\git_mybranch\\weixinmp_test\\reports\\screenshots\\mitrix_triple_slow_api_stale_ui_wrong_mapping@counter_20260527_193747.png",
+      "duration": 8.58,
+      "timestamp": "2026-05-27T19:37:47.829636",
+      "success": true
+    },
+    {
+      "case_id": "triple/slow_api+layout_overlap+memory_pressure@layout",
+      "page": "layout",
+      "faults": [
+        "layout_overlap",
+        "memory_pressure",
+        "slow_api"
+      ],
+      "oracle": {
+        "blur_image": false,
+        "slow_api": true,
+        "stale_ui": false,
+        "wrong_mapping": false,
+        "layout_overlap": true,
+        "memory_pressure": true
+      },
+      "detected": {
+        "blur_image": 0,
+        "slow_api": 1,
+        "stale_ui": 0,
+        "wrong_mapping": 0,
+        "layout_overlap": 1,
+        "memory_pressure": 1
+      },
+      "confidence": {
+        "blur_image": 0.0,
+        "slow_api": 0.7,
+        "stale_ui": 0.0,
+        "wrong_mapping": 0.0,
+        "layout_overlap": 0.9,
+        "memory_pressure": 0.75
+      },
+      "match_vec": {
+        "blur_image": true,
+        "slow_api": true,
+        "stale_ui": true,
+        "wrong_mapping": true,
+        "layout_overlap": true,
+        "memory_pressure": true
+      },
+      "all_match": true,
+      "match_count": 6,
+      "triage_verdict": "Mixed",
+      "screenshot": "C:\\Users\\17303\\Desktop\\2026spring\\ruance_2026spring\\work_dazuoye\\git_mybranch\\weixinmp_test\\reports\\screenshots\\mitrix_triple_slow_api_layout_overlap_memory_pressure@layout_20260527_193758.png",
+      "duration": 8.75,
+      "timestamp": "2026-05-27T19:37:58.593849",
+      "success": true
+    }
+  ]
+}

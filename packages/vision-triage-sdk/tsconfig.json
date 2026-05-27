@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "baseUrl": ".",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "noEmit": true,
+    "lib": ["ES2020", "DOM"],
+    "types": [],
+    "paths": {
+      "vue": ["../../demo-uniapp/node_modules/vue"]
+    }
+  },
+  "include": ["src/**/*.ts"]
+}

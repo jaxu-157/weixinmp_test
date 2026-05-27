@@ -13,6 +13,8 @@ BLUR_THRESHOLD_FULL = 100.0    # 全屏模糊阈值
 BLUR_THRESHOLD_ROI = 300.0     # ROI区域模糊阈值
 BLUR_THRESHOLD_CARD = 200.0    # 卡片图片区域模糊阈值
 EDGE_DENSITY_LOW = 0.05        # 边缘密度低于此值判定为模糊/异常
+EDGE_BLUR_GUARD = 400.0        # 若全屏 Laplacian 方差 ≥ 此值即"明显清晰"，低边缘密度不再判模糊
+                               # （Round6：真实独立小程序的稀疏但清晰页曾被误报 RenderBug，把 Round2 经验下沉到 base oracle）
 
 
 def run_triage(
@@ -108,7 +110,9 @@ def _run_visual_assertions(image: np.ndarray, page_type: str) -> dict:
     # 综合判定：全图模糊 或 卡片区域模糊 触发
     # 边缘密度仅对图片密集页(feed)生效，counter/layout页面天然边缘少
     is_blur = blur_full["is_blur"] or card_is_blur
-    if page_type == "feed" and edge_too_low:
+    # 低边缘密度只在"图像本身不够清晰"时才算模糊证据；清晰但内容稀疏的真实页面
+    # （高 blur_full 分 + 低 edge）不应被误判为模糊 → 避免在真实独立小程序上误报 RenderBug。
+    if page_type == "feed" and edge_too_low and blur_full["score"] < EDGE_BLUR_GUARD:
         is_blur = True
 
     ocr = extract_text(image)

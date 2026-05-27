@@ -1,0 +1,105 @@
+{
+  "bench_path": "D:\\weixinmp_test\\diagnosis\\benchmark\\vt_bench_v1.json",
+  "n_samples": 350,
+  "results": [
+    {
+      "name": "rule",
+      "accuracy": 0.88,
+      "macro_f1": 0.8866732804232804,
+      "borderline_accuracy": 0.9897959183673469,
+      "per_class": {
+        "Pass": {
+          "precision": 0.6410256410256411,
+          "recall": 1.0,
+          "f1": 0.78125
+        },
+        "PerformanceRisk": {
+          "precision": 1.0,
+          "recall": 0.728,
+          "f1": 0.8425925925925926
+        },
+        "RenderBug": {
+          "precision": 1.0,
+          "recall": 0.68,
+          "f1": 0.8095238095238095
+        },
+        "FunctionalFail": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "Mixed": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        }
+      }
+    },
+    {
+      "name": "learned_tree",
+      "accuracy": 0.8257142857142857,
+      "macro_f1": 0.8373276669789853,
+      "borderline_accuracy": 0.9285714285714286,
+      "per_class": {
+        "Pass": {
+          "precision": 0.6756756756756757,
+          "recall": 1.0,
+          "f1": 0.8064516129032258
+        },
+        "PerformanceRisk": {
+          "precision": 0.7844827586206896,
+          "recall": 0.728,
+          "f1": 0.7551867219917012
+        },
+        "RenderBug": {
+          "precision": 1.0,
+          "recall": 0.92,
+          "f1": 0.9583333333333334
+        },
+        "FunctionalFail": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "Mixed": {
+          "precision": 1.0,
+          "recall": 0.5,
+          "f1": 0.6666666666666666
+        }
+      }
+    },
+    {
+      "name": "learned_forest",
+      "accuracy": 0.9028571428571428,
+      "macro_f1": 0.931561996779388,
+      "borderline_accuracy": 1.0,
+      "per_class": {
+        "Pass": {
+          "precision": 0.6880733944954128,
+          "recall": 1.0,
+          "f1": 0.8152173913043478
+        },
+        "PerformanceRisk": {
+          "precision": 1.0,
+          "recall": 0.728,
+          "f1": 0.8425925925925926
+        },
+        "RenderBug": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "FunctionalFail": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "Mixed": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,93 @@
+{
+  "base": "feed_normal_normal_20260511_024531.png",
+  "real_qwen": true,
+  "k_fail": 5,
+  "accuracy": {
+    "rule_only": 0.875,
+    "cascade": 0.875,
+    "qwen_always": 0.875
+  },
+  "escalation_rate": 0.25,
+  "rows": [
+    {
+      "name": "k00",
+      "gt_blur": false,
+      "blur_full": 802.9,
+      "rule": false,
+      "cascade": false,
+      "escalated": false,
+      "qwen": false,
+      "casc_ms": 15.4
+    },
+    {
+      "name": "k03",
+      "gt_blur": false,
+      "blur_full": 141.1,
+      "rule": true,
+      "cascade": false,
+      "escalated": true,
+      "qwen": false,
+      "casc_ms": 1430.3
+    },
+    {
+      "name": "k05",
+      "gt_blur": true,
+      "blur_full": 64.5,
+      "rule": true,
+      "cascade": false,
+      "escalated": true,
+      "qwen": false,
+      "casc_ms": 1154.8
+    },
+    {
+      "name": "k07",
+      "gt_blur": true,
+      "blur_full": 27.4,
+      "rule": true,
+      "cascade": true,
+      "escalated": false,
+      "qwen": true,
+      "casc_ms": 13.0
+    },
+    {
+      "name": "k09",
+      "gt_blur": true,
+      "blur_full": 16.5,
+      "rule": true,
+      "cascade": true,
+      "escalated": false,
+      "qwen": true,
+      "casc_ms": 13.0
+    },
+    {
+      "name": "k13",
+      "gt_blur": true,
+      "blur_full": 7.3,
+      "rule": true,
+      "cascade": true,
+      "escalated": false,
+      "qwen": true,
+      "casc_ms": 15.4
+    },
+    {
+      "name": "k19",
+      "gt_blur": true,
+      "blur_full": 3.5,
+      "rule": true,
+      "cascade": true,
+      "escalated": false,
+      "qwen": true,
+      "casc_ms": 13.5
+    },
+    {
+      "name": "k27",
+      "gt_blur": true,
+      "blur_full": 2.2,
+      "rule": true,
+      "cascade": true,
+      "escalated": false,
+      "qwen": true,
+      "casc_ms": 13.6
+    }
+  ]
+}

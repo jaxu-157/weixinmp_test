@@ -1,9 +1,24 @@
+# Python
 __pycache__/
 *.pyc
 *.pyo
-reports/
+
+# 第三方开源小程序克隆（零侵入 driver 的外部验证目标）
+third-tdesign-retail/
+third-wxapp-mall/
+third-youzouzou-wxapp/
+
+# Minium / 真机运行产物
+auto_test/reports/v2_driver/*/screenshots/
+auto_test/reports/v2_driver/*/diffs/
+
+# 测试输出（截图体积大忽略，JSON/MD 报告保留追踪）
 screenshots/
+
+# Node / 前端产物
 node_modules/
 dist/
+
+# 日志 & 环境
 *.log
 .env

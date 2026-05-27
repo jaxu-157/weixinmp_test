@@ -1,0 +1,648 @@
+{
+  "project": "Vision-Triage",
+  "timestamp": "20260527_153314",
+  "total_tests": 14,
+  "passed_tests": 14,
+  "failed_tests": 0,
+  "total_duration": 104.0780508518219,
+  "matrix": {
+    "feed": {
+      "normal": {
+        "expected": "Pass",
+        "actual": "Pass",
+        "match": true
+      },
+      "slow_api": {
+        "expected": "PerformanceRisk",
+        "actual": "PerformanceRisk",
+        "match": true
+      },
+      "blur_image": {
+        "expected": "RenderBug",
+        "actual": "RenderBug",
+        "match": true
+      },
+      "memory_pressure": {
+        "expected": "PerformanceRisk",
+        "actual": "PerformanceRisk",
+        "match": true
+      },
+      "mixed_fault": {
+        "expected": "Mixed",
+        "actual": "Mixed",
+        "match": true
+      }
+    },
+    "counter": {
+      "normal": {
+        "expected": "Pass",
+        "actual": "Pass",
+        "match": true
+      },
+      "slow_api": {
+        "expected": "PerformanceRisk",
+        "actual": "PerformanceRisk",
+        "match": true
+      },
+      "stale_ui": {
+        "expected": "FunctionalFail",
+        "actual": "FunctionalFail",
+        "match": true
+      },
+      "wrong_mapping": {
+        "expected": "FunctionalFail",
+        "actual": "FunctionalFail",
+        "match": true
+      },
+      "mixed_fault": {
+        "expected": "Mixed",
+        "actual": "Mixed",
+        "match": true
+      }
+    },
+    "layout": {
+      "normal": {
+        "expected": "Pass",
+        "actual": "Pass",
+        "match": true
+      },
+      "slow_api": {
+        "expected": "PerformanceRisk",
+        "actual": "PerformanceRisk",
+        "match": true
+      },
+      "layout_overlap": {
+        "expected": "FunctionalFail",
+        "actual": "FunctionalFail",
+        "match": true
+      },
+      "memory_pressure": {
+        "expected": "PerformanceRisk",
+        "actual": "PerformanceRisk",
+        "match": true
+      }
+    }
+  },
+  "results": [
+    {
+      "test_name": "feed/normal",
+      "page": "feed",
+      "profile": "normal",
+      "expected": "Pass",
+      "actual": "Pass",
+      "success": true,
+      "message": "诊断正确: Pass",
+      "screenshot": "C:\\Users\\17303\\Desktop\\2026spring\\ruance_2026spring\\work_dazuoye\\git_mybranch\\weixinmp_test\\auto_test\\reports\\screenshots\\feed_normal_normal_20260527_153109.png",
+      "duration": 8.840705871582031,
+      "timestamp": "2026-05-27T15:31:11.415326",
+      "diagnose_result": {
+        "code": 0,
+        "data": {
+          "visual": {
+            "pass": true,
+            "black_white": false,
+            "blur_score": 640.24,
+            "blur_score_full": 990.8,
+            "is_blur": false,
+            "edge_density": 0.1304,
+            "ocr_text": "",
+            "mean_brightness": 157.66
+          },
+          "functional": {
+            "pass": true,
+            "reason": "no_state_provided"
+          },
+          "performance": {
+            "pass": true,
+            "reason": "",
+            "interaction_ms": 100,
+            "memory_warnings": 0
+          },
+          "verdict": "Pass",
+          "explanation": "所有断言通过"
+        },
+        "profile": "normal"
+      }
+    },
+    {
+      "test_name": "feed/slow_api",
+      "page": "feed",
+      "profile": "slow_api",
+      "expected": "PerformanceRisk",
+      "actual": "PerformanceRisk",
+      "success": true,
+      "message": "诊断正确: PerformanceRisk",
+      "screenshot": "C:\\Users\\17303\\Desktop\\2026spring\\ruance_2026spring\\work_dazuoye\\git_mybranch\\weixinmp_test\\auto_test\\reports\\screenshots\\feed_slow_api_slow_api_20260527_153121.png",
+      "duration": 7.97312593460083,
+      "timestamp": "2026-05-27T15:31:21.388956",
+      "diagnose_result": {
+        "code": 0,
+        "data": {
+          "visual": {
+            "pass": true,
+            "black_white": false,
+            "blur_score": 354.5,
+            "blur_score_full": 820.61,
+            "is_blur": false,
+            "edge_density": 0.0751,
+            "ocr_text": "",
+            "mean_brightness": 175.12
+          },
+          "functional": {
+            "pass": true,
+            "reason": "no_state_provided"
+          },
+          "performance": {
+            "pass": false,
+            "reason": "interaction_latency=900ms",
+            "interaction_ms": 900,
+            "memory_warnings": 0
+          },
+          "verdict": "PerformanceRisk",
+          "explanation": "功能正确但性能不达标: interaction_latency=900ms"
+        },
+        "profile": "slow_api"
+      }
+    },
+    {
+      "test_name": "feed/blur_image",
+      "page": "feed",
+      "profile": "blur_image",
+      "expected": "RenderBug",
+      "actual": "RenderBug",
+      "success": true,
+      "message": "诊断正确: RenderBug",
+      "screenshot": "C:\\Users\\17303\\Desktop\\2026spring\\ruance_2026spring\\work_dazuoye\\git_mybranch\\weixinmp_test\\auto_test\\reports\\screenshots\\feed_blur_image_blur_image_20260527_153130.png",
+      "duration": 6.943946838378906,
+      "timestamp": "2026-05-27T15:31:30.333901",
+      "diagnose_result": {
+        "code": 0,
+        "data": {
+          "visual": {
+            "pass": false,
+            "black_white": false,
+            "blur_score": 45.65,
+            "blur_score_full": 569.37,
+            "is_blur": true,
+            "edge_density": 0.0324,
+            "ocr_text": "",
+            "mean_brightness": 176.5
+          },
+          "functional": {
+            "pass": true,
+            "reason": "no_state_provided"
+          },
+          "performance": {
+            "pass": true,
+            "reason": "",
+            "interaction_ms": 100,
+            "memory_warnings": 0
+          },
+          "verdict": "RenderBug",
+          "explanation": "视觉异常: 图像模糊(score=45.65)"
+        },
+        "profile": "blur_image"
+      }
+    },
+    {
+      "test_name": "feed/memory_pressure",
+      "page": "feed",
+      "profile": "memory_pressure",
+      "expected": "PerformanceRisk",
+      "actual": "PerformanceRisk",
+      "success": true,
+      "message": "诊断正确: PerformanceRisk",
+      "screenshot": "C:\\Users\\17303\\Desktop\\2026spring\\ruance_2026spring\\work_dazuoye\\git_mybranch\\weixinmp_test\\auto_test\\reports\\screenshots\\feed_memory_pressure_memory_pressure_20260527_153139.png",
+      "duration": 6.974436521530151,
+      "timestamp": "2026-05-27T15:31:39.308730",
+      "diagnose_result": {
+        "code": 0,
+        "data": {
+          "visual": {
+            "pass": true,
+            "black_white": false,
+            "blur_score": 1001.73,
+            "blur_score_full": 939.1,
+            "is_blur": false,
+            "edge_density": 0.1302,
+            "ocr_text": "",
+            "mean_brightness": 167.92
+          },
+          "functional": {
+            "pass": true,
+            "reason": "no_state_provided"
+          },
+          "performance": {
+            "pass": false,
+            "reason": "memory_warnings=1",
+            "interaction_ms": 100,
+            "memory_warnings": 1
+          },
+          "verdict": "PerformanceRisk",
+          "explanation": "功能正确但性能不达标: memory_warnings=1"
+        },
+        "profile": "memory_pressure"
+      }
+    },
+    {
+      "test_name": "feed/mixed_fault",
+      "page": "feed",
+      "profile": "mixed_fault",
+      "expected": "Mixed",
+      "actual": "Mixed",
+      "success": true,
+      "message": "诊断正确: Mixed",
+      "screenshot": "C:\\Users\\17303\\Desktop\\2026spring\\ruance_2026spring\\work_dazuoye\\git_mybranch\\weixinmp_test\\auto_test\\reports\\screenshots\\feed_mixed_fault_mixed_fault_20260527_153149.png",
+      "duration": 7.998368740081787,
+      "timestamp": "2026-05-27T15:31:49.307813",
+      "diagnose_result": {
+        "code": 0,
+        "data": {
+          "visual": {
+            "pass": true,
+            "black_white": false,
+            "blur_score": 761.86,
+            "blur_score_full": 845.0,
+            "is_blur": false,
+            "edge_density": 0.0754,
+            "ocr_text": "",
+            "mean_brightness": 182.13
+          },
+          "functional": {
+            "pass": false,
+            "reason": "visible=0, expected=1"
+          },
+          "performance": {
+            "pass": false,
+            "reason": "interaction_latency=900ms; memory_warnings=1",
+            "interaction_ms": 900,
+            "memory_warnings": 1
+          },
+          "verdict": "Mixed",
+          "explanation": "混合故障: 功能: visible=0, expected=1; 性能: interaction_latency=900ms; memory_warnings=1"
+        },
+        "profile": "mixed_fault"
+      }
+    },
+    {
+      "test_name": "counter/normal",
+      "page": "counter",
+      "profile": "normal",
+      "expected": "Pass",
+      "actual": "Pass",
+      "success": true,
+      "message": "诊断正确: Pass",
+      "screenshot": "C:\\Users\\17303\\Desktop\\2026spring\\ruance_2026spring\\work_dazuoye\\git_mybranch\\weixinmp_test\\auto_test\\reports\\screenshots\\counter_normal_normal_20260527_153158.png",
+      "duration": 6.922195196151733,
+      "timestamp": "2026-05-27T15:31:58.231161",
+      "diagnose_result": {
+        "code": 0,
+        "data": {
+          "visual": {
+            "pass": true,
+            "black_white": false,
+            "blur_score": 548.03,
+            "blur_score_full": 469.56,
+            "is_blur": false,
+            "edge_density": 0.0268,
+            "ocr_text": "",
+            "mean_brightness": 217.26
+          },
+          "functional": {
+            "pass": true,
+            "reason": ""
+          },
+          "performance": {
+            "pass": true,
+            "reason": "",
+            "interaction_ms": 100,
+            "memory_warnings": 0
+          },
+          "verdict": "Pass",
+          "explanation": "所有断言通过"
+        },
+        "profile": "normal"
+      }
+    },
+    {
+      "test_name": "counter/slow_api",
+      "page": "counter",
+      "profile": "slow_api",
+      "expected": "PerformanceRisk",
+      "actual": "PerformanceRisk",
+      "success": true,
+      "message": "诊断正确: PerformanceRisk",
+      "screenshot": "C:\\Users\\17303\\Desktop\\2026spring\\ruance_2026spring\\work_dazuoye\\git_mybranch\\weixinmp_test\\auto_test\\reports\\screenshots\\counter_slow_api_slow_api_20260527_153208.png",
+      "duration": 7.882577419281006,
+      "timestamp": "2026-05-27T15:32:08.114036",
+      "diagnose_result": {
+        "code": 0,
+        "data": {
+          "visual": {
+            "pass": true,
+            "black_white": false,
+            "blur_score": 551.36,
+            "blur_score_full": 487.9,
+            "is_blur": false,
+            "edge_density": 0.027,
+            "ocr_text": "",
+            "mean_brightness": 216.84
+          },
+          "functional": {
+            "pass": true,
+            "reason": ""
+          },
+          "performance": {
+            "pass": false,
+            "reason": "interaction_latency=900ms",
+            "interaction_ms": 900,
+            "memory_warnings": 0
+          },
+          "verdict": "PerformanceRisk",
+          "explanation": "功能正确但性能不达标: interaction_latency=900ms"
+        },
+        "profile": "slow_api"
+      }
+    },
+    {
+      "test_name": "counter/stale_ui",
+      "page": "counter",
+      "profile": "stale_ui",
+      "expected": "FunctionalFail",
+      "actual": "FunctionalFail",
+      "success": true,
+      "message": "诊断正确: FunctionalFail",
+      "screenshot": "C:\\Users\\17303\\Desktop\\2026spring\\ruance_2026spring\\work_dazuoye\\git_mybranch\\weixinmp_test\\auto_test\\reports\\screenshots\\counter_stale_ui_stale_ui_20260527_153216.png",
+      "duration": 6.923757553100586,
+      "timestamp": "2026-05-27T15:32:17.038101",
+      "diagnose_result": {
+        "code": 0,
+        "data": {
+          "visual": {
+            "pass": true,
+            "black_white": false,
+            "blur_score": 574.83,
+            "blur_score_full": 502.7,
+            "is_blur": false,
+            "edge_density": 0.028,
+            "ocr_text": "",
+            "mean_brightness": 216.81
+          },
+          "functional": {
+            "pass": false,
+            "reason": "visible=0, expected=1"
+          },
+          "performance": {
+            "pass": true,
+            "reason": "",
+            "interaction_ms": 100,
+            "memory_warnings": 0
+          },
+          "verdict": "FunctionalFail",
+          "explanation": "功能断言失败: visible=0, expected=1"
+        },
+        "profile": "stale_ui"
+      }
+    },
+    {
+      "test_name": "counter/wrong_mapping",
+      "page": "counter",
+      "profile": "wrong_mapping",
+      "expected": "FunctionalFail",
+      "actual": "FunctionalFail",
+      "success": true,
+      "message": "诊断正确: FunctionalFail",
+      "screenshot": "C:\\Users\\17303\\Desktop\\2026spring\\ruance_2026spring\\work_dazuoye\\git_mybranch\\weixinmp_test\\auto_test\\reports\\screenshots\\counter_wrong_mapping_wrong_mapping_20260527_153225.png",
+      "duration": 6.9135706424713135,
+      "timestamp": "2026-05-27T15:32:25.952534",
+      "diagnose_result": {
+        "code": 0,
+        "data": {
+          "visual": {
+            "pass": true,
+            "black_white": false,
+            "blur_score": 560.71,
+            "blur_score_full": 505.26,
+            "is_blur": false,
+            "edge_density": 0.0275,
+            "ocr_text": "",
+            "mean_brightness": 216.62
+          },
+          "functional": {
+            "pass": false,
+            "reason": "visible=undefined, expected=1"
+          },
+          "performance": {
+            "pass": true,
+            "reason": "",
+            "interaction_ms": 100,
+            "memory_warnings": 0
+          },
+          "verdict": "FunctionalFail",
+          "explanation": "功能断言失败: visible=undefined, expected=1"
+        },
+        "profile": "wrong_mapping"
+      }
+    },
+    {
+      "test_name": "counter/mixed_fault",
+      "page": "counter",
+      "profile": "mixed_fault",
+      "expected": "Mixed",
+      "actual": "Mixed",
+      "success": true,
+      "message": "诊断正确: Mixed",
+      "screenshot": "C:\\Users\\17303\\Desktop\\2026spring\\ruance_2026spring\\work_dazuoye\\git_mybranch\\weixinmp_test\\auto_test\\reports\\screenshots\\counter_mixed_fault_mixed_fault_20260527_153235.png",
+      "duration": 7.92672061920166,
+      "timestamp": "2026-05-27T15:32:35.880091",
+      "diagnose_result": {
+        "code": 0,
+        "data": {
+          "visual": {
+            "pass": true,
+            "black_white": false,
+            "blur_score": 581.74,
+            "blur_score_full": 513.0,
+            "is_blur": false,
+            "edge_density": 0.0284,
+            "ocr_text": "",
+            "mean_brightness": 216.69
+          },
+          "functional": {
+            "pass": false,
+            "reason": "visible=0, expected=1"
+          },
+          "performance": {
+            "pass": false,
+            "reason": "interaction_latency=900ms; memory_warnings=1",
+            "interaction_ms": 900,
+            "memory_warnings": 1
+          },
+          "verdict": "Mixed",
+          "explanation": "混合故障: 功能: visible=0, expected=1; 性能: interaction_latency=900ms; memory_warnings=1"
+        },
+        "profile": "mixed_fault"
+      }
+    },
+    {
+      "test_name": "layout/normal",
+      "page": "layout",
+      "profile": "normal",
+      "expected": "Pass",
+      "actual": "Pass",
+      "success": true,
+      "message": "诊断正确: Pass",
+      "screenshot": "C:\\Users\\17303\\Desktop\\2026spring\\ruance_2026spring\\work_dazuoye\\git_mybranch\\weixinmp_test\\auto_test\\reports\\screenshots\\layout_normal_normal_20260527_153244.png",
+      "duration": 6.9565887451171875,
+      "timestamp": "2026-05-27T15:32:44.837456",
+      "diagnose_result": {
+        "code": 0,
+        "data": {
+          "visual": {
+            "pass": true,
+            "black_white": false,
+            "blur_score": 1217.21,
+            "blur_score_full": 1000.75,
+            "is_blur": false,
+            "edge_density": 0.0933,
+            "ocr_text": "",
+            "mean_brightness": 165.42
+          },
+          "functional": {
+            "pass": true,
+            "reason": "no_state_provided"
+          },
+          "performance": {
+            "pass": true,
+            "reason": "",
+            "interaction_ms": 100,
+            "memory_warnings": 0
+          },
+          "verdict": "Pass",
+          "explanation": "所有断言通过"
+        },
+        "profile": "normal"
+      }
+    },
+    {
+      "test_name": "layout/slow_api",
+      "page": "layout",
+      "profile": "slow_api",
+      "expected": "PerformanceRisk",
+      "actual": "PerformanceRisk",
+      "success": true,
+      "message": "诊断正确: PerformanceRisk",
+      "screenshot": "C:\\Users\\17303\\Desktop\\2026spring\\ruance_2026spring\\work_dazuoye\\git_mybranch\\weixinmp_test\\auto_test\\reports\\screenshots\\layout_slow_api_slow_api_20260527_153254.png",
+      "duration": 7.918999671936035,
+      "timestamp": "2026-05-27T15:32:54.757240",
+      "diagnose_result": {
+        "code": 0,
+        "data": {
+          "visual": {
+            "pass": true,
+            "black_white": false,
+            "blur_score": 890.99,
+            "blur_score_full": 752.94,
+            "is_blur": false,
+            "edge_density": 0.045,
+            "ocr_text": "",
+            "mean_brightness": 204.75
+          },
+          "functional": {
+            "pass": true,
+            "reason": "no_state_provided"
+          },
+          "performance": {
+            "pass": false,
+            "reason": "interaction_latency=900ms",
+            "interaction_ms": 900,
+            "memory_warnings": 0
+          },
+          "verdict": "PerformanceRisk",
+          "explanation": "功能正确但性能不达标: interaction_latency=900ms"
+        },
+        "profile": "slow_api"
+      }
+    },
+    {
+      "test_name": "layout/layout_overlap",
+      "page": "layout",
+      "profile": "layout_overlap",
+      "expected": "FunctionalFail",
+      "actual": "FunctionalFail",
+      "success": true,
+      "message": "诊断正确: FunctionalFail",
+      "screenshot": "C:\\Users\\17303\\Desktop\\2026spring\\ruance_2026spring\\work_dazuoye\\git_mybranch\\weixinmp_test\\auto_test\\reports\\screenshots\\layout_layout_overlap_layout_overlap_20260527_153303.png",
+      "duration": 6.963930368423462,
+      "timestamp": "2026-05-27T15:33:03.721640",
+      "diagnose_result": {
+        "code": 0,
+        "data": {
+          "visual": {
+            "pass": true,
+            "black_white": false,
+            "blur_score": 899.27,
+            "blur_score_full": 904.28,
+            "is_blur": false,
+            "edge_density": 0.0763,
+            "ocr_text": "",
+            "mean_brightness": 190.04
+          },
+          "functional": {
+            "pass": false,
+            "reason": "layout_overlap_detected"
+          },
+          "performance": {
+            "pass": true,
+            "reason": "",
+            "interaction_ms": 100,
+            "memory_warnings": 0
+          },
+          "verdict": "FunctionalFail",
+          "explanation": "功能断言失败: layout_overlap_detected"
+        },
+        "profile": "layout_overlap"
+      }
+    },
+    {
+      "test_name": "layout/memory_pressure",
+      "page": "layout",
+      "profile": "memory_pressure",
+      "expected": "PerformanceRisk",
+      "actual": "PerformanceRisk",
+      "success": true,
+      "message": "诊断正确: PerformanceRisk",
+      "screenshot": "C:\\Users\\17303\\Desktop\\2026spring\\ruance_2026spring\\work_dazuoye\\git_mybranch\\weixinmp_test\\auto_test\\reports\\screenshots\\layout_memory_pressure_memory_pressure_20260527_153312.png",
+      "duration": 6.93912672996521,
+      "timestamp": "2026-05-27T15:33:12.661464",
+      "diagnose_result": {
+        "code": 0,
+        "data": {
+          "visual": {
+            "pass": true,
+            "black_white": false,
+            "blur_score": 1197.63,
+            "blur_score_full": 1029.3,
+            "is_blur": false,
+            "edge_density": 0.0846,
+            "ocr_text": "",
+            "mean_brightness": 200.84
+          },
+          "functional": {
+            "pass": true,
+            "reason": "no_state_provided"
+          },
+          "performance": {
+            "pass": false,
+            "reason": "memory_warnings=1",
+            "interaction_ms": 100,
+            "memory_warnings": 1
+          },
+          "verdict": "PerformanceRisk",
+          "explanation": "功能正确但性能不达标: memory_warnings=1"
+        },
+        "profile": "memory_pressure"
+      }
+    }
+  ]
+}

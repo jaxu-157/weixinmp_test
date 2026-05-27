@@ -1,0 +1,82 @@
+{
+  "trained_at": "2026-05-19T15:24:55.686061",
+  "results": {
+    "all_features": {
+      "accuracy": 0.91,
+      "macro_f1": 0.9060465116279068,
+      "per_class_f1": {
+        "Pass": 0.9302325581395349,
+        "PerformanceRisk": 0.8571428571428571,
+        "RenderBug": 0.7428571428571429,
+        "FunctionalFail": 1.0,
+        "Mixed": 1.0
+      }
+    },
+    "drop_visual": {
+      "accuracy": 0.68,
+      "macro_f1": 0.6287593984962406,
+      "per_class_f1": {
+        "Pass": 0.5714285714285714,
+        "PerformanceRisk": 0.625,
+        "RenderBug": 0.0,
+        "FunctionalFail": 1.0,
+        "Mixed": 0.9473684210526315
+      }
+    },
+    "drop_performance": {
+      "accuracy": 0.58,
+      "macro_f1": 0.4973578821449004,
+      "per_class_f1": {
+        "Pass": 0.7843137254901961,
+        "PerformanceRisk": 0.5128205128205128,
+        "RenderBug": 0.5,
+        "FunctionalFail": 0.6896551724137931,
+        "Mixed": 0.0
+      }
+    },
+    "drop_functional": {
+      "accuracy": 0.53,
+      "macro_f1": 0.4319191919191919,
+      "per_class_f1": {
+        "Pass": 0.6349206349206349,
+        "PerformanceRisk": 0.6,
+        "RenderBug": 0.7428571428571429,
+        "FunctionalFail": 0.0,
+        "Mixed": 0.18181818181818182
+      }
+    },
+    "only_visual": {
+      "accuracy": 0.38,
+      "macro_f1": 0.29245174301354077,
+      "per_class_f1": {
+        "Pass": 0.449438202247191,
+        "PerformanceRisk": 0.5128205128205128,
+        "RenderBug": 0.5,
+        "FunctionalFail": 0.0,
+        "Mixed": 0.0
+      }
+    },
+    "only_performance": {
+      "accuracy": 0.3,
+      "macro_f1": 0.1688888888888889,
+      "per_class_f1": {
+        "Pass": 0.4444444444444444,
+        "PerformanceRisk": 0.4,
+        "RenderBug": 0.0,
+        "FunctionalFail": 0.0,
+        "Mixed": 0.0
+      }
+    },
+    "only_functional": {
+      "accuracy": 0.4,
+      "macro_f1": 0.23549201009251472,
+      "per_class_f1": {
+        "Pass": 0.4878048780487805,
+        "PerformanceRisk": 0.0,
+        "RenderBug": 0.0,
+        "FunctionalFail": 0.6896551724137931,
+        "Mixed": 0.0
+      }
+    }
+  }
+}

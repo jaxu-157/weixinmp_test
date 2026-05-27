@@ -1,0 +1,1010 @@
+{
+  "ts": "20260520_092225",
+  "config": {
+    "project_path": "D:\\weixinmp_test\\demo-uniapp\\dist\\dev\\mp-weixin",
+    "appid": "wx5a7ba069ebebaee5"
+  },
+  "results": [
+    {
+      "key": "feed/normal",
+      "expected": "Pass",
+      "verdict": "RenderBug",
+      "match": false,
+      "engine": "learned_tree_v1",
+      "stability_ms": 1320,
+      "stability_stable": true,
+      "baseline_diff": {
+        "ssim": 1.0,
+        "pixel_diff_ratio": 0.0,
+        "mean_pixel_diff": 0.0,
+        "phash_hamming": 0,
+        "width": 488,
+        "height": 839,
+        "baseline_path": "D:\\weixinmp_test\\auto_test\\v2_baselines_real\\feed.png",
+        "current_path": "D:\\weixinmp_test\\auto_test\\reports\\v2_driver\\real_matrix_20260520_092225\\screenshots\\feed_normal.png",
+        "diff_path": "D:\\weixinmp_test\\auto_test\\reports\\v2_driver\\real_matrix_20260520_092225\\diffs\\feed_diff.png"
+      },
+      "baseline_regression": false,
+      "webug": {
+        "r1_api_timeout_no_feedback": false,
+        "r2_layout_overflow": false,
+        "r3_async_data_mismatch": false,
+        "r1_evidence": "interaction_ms=1320 below threshold 1500",
+        "r2_evidence": "edge non-bg ratio=0.171",
+        "r3_evidence": "no mismatch detected"
+      },
+      "webug_triggered": false,
+      "evidence": [
+        "[baseline] SSIM=1.0 (no regression)"
+      ],
+      "proba": {
+        "FunctionalFail": 0.0,
+        "Mixed": 0.0,
+        "Pass": 0.0,
+        "PerformanceRisk": 0.0,
+        "RenderBug": 1.0
+      },
+      "screenshot": "feed_normal.png"
+    },
+    {
+      "key": "feed/slow_api",
+      "expected": "PerformanceRisk",
+      "verdict": "RenderBug",
+      "match": false,
+      "engine": "learned_tree_v1",
+      "stability_ms": 1288,
+      "stability_stable": true,
+      "baseline_diff": {
+        "ssim": 1.0,
+        "pixel_diff_ratio": 0.0,
+        "mean_pixel_diff": 0.0,
+        "phash_hamming": 0,
+        "width": 488,
+        "height": 839,
+        "baseline_path": "D:\\weixinmp_test\\auto_test\\v2_baselines_real\\feed.png",
+        "current_path": "D:\\weixinmp_test\\auto_test\\reports\\v2_driver\\real_matrix_20260520_092225\\screenshots\\feed_slow_api.png",
+        "diff_path": "D:\\weixinmp_test\\auto_test\\reports\\v2_driver\\real_matrix_20260520_092225\\diffs\\feed_diff.png"
+      },
+      "baseline_regression": false,
+      "webug": {
+        "r1_api_timeout_no_feedback": false,
+        "r2_layout_overflow": false,
+        "r3_async_data_mismatch": false,
+        "r1_evidence": "interaction_ms=1288 below threshold 1500",
+        "r2_evidence": "edge non-bg ratio=0.171",
+        "r3_evidence": "no mismatch detected"
+      },
+      "webug_triggered": false,
+      "evidence": [
+        "[baseline] SSIM=1.0 (no regression)"
+      ],
+      "proba": {
+        "FunctionalFail": 0.0,
+        "Mixed": 0.0,
+        "Pass": 0.0,
+        "PerformanceRisk": 0.0,
+        "RenderBug": 1.0
+      },
+      "screenshot": "feed_slow_api.png"
+    },
+    {
+      "key": "feed/blur_image",
+      "expected": "RenderBug",
+      "verdict": "RenderBug",
+      "match": true,
+      "engine": "learned_tree_v1",
+      "stability_ms": 1237,
+      "stability_stable": true,
+      "baseline_diff": {
+        "ssim": 1.0,
+        "pixel_diff_ratio": 0.0,
+        "mean_pixel_diff": 0.0,
+        "phash_hamming": 0,
+        "width": 488,
+        "height": 839,
+        "baseline_path": "D:\\weixinmp_test\\auto_test\\v2_baselines_real\\feed.png",
+        "current_path": "D:\\weixinmp_test\\auto_test\\reports\\v2_driver\\real_matrix_20260520_092225\\screenshots\\feed_blur_image.png",
+        "diff_path": "D:\\weixinmp_test\\auto_test\\reports\\v2_driver\\real_matrix_20260520_092225\\diffs\\feed_diff.png"
+      },
+      "baseline_regression": false,
+      "webug": {
+        "r1_api_timeout_no_feedback": false,
+        "r2_layout_overflow": false,
+        "r3_async_data_mismatch": false,
+        "r1_evidence": "interaction_ms=1237 below threshold 1500",
+        "r2_evidence": "edge non-bg ratio=0.171",
+        "r3_evidence": "no mismatch detected"
+      },
+      "webug_triggered": false,
+      "evidence": [
+        "[baseline] SSIM=1.0 (no regression)"
+      ],
+      "proba": {
+        "FunctionalFail": 0.0,
+        "Mixed": 0.0,
+        "Pass": 0.0,
+        "PerformanceRisk": 0.0,
+        "RenderBug": 1.0
+      },
+      "screenshot": "feed_blur_image.png"
+    },
+    {
+      "key": "feed/stale_ui",
+      "expected": "FunctionalFail",
+      "verdict": "FunctionalFail",
+      "match": true,
+      "engine": "learned_tree_v1",
+      "stability_ms": 1303,
+      "stability_stable": true,
+      "baseline_diff": {
+        "ssim": 1.0,
+        "pixel_diff_ratio": 0.0,
+        "mean_pixel_diff": 0.0,
+        "phash_hamming": 0,
+        "width": 488,
+        "height": 839,
+        "baseline_path": "D:\\weixinmp_test\\auto_test\\v2_baselines_real\\feed.png",
+        "current_path": "D:\\weixinmp_test\\auto_test\\reports\\v2_driver\\real_matrix_20260520_092225\\screenshots\\feed_stale_ui.png",
+        "diff_path": "D:\\weixinmp_test\\auto_test\\reports\\v2_driver\\real_matrix_20260520_092225\\diffs\\feed_diff.png"
+      },
+      "baseline_regression": false,
+      "webug": {
+        "r1_api_timeout_no_feedback": false,
+        "r2_layout_overflow": false,
+        "r3_async_data_mismatch": true,
+        "r1_evidence": "interaction_ms=1303 below threshold 1500",
+        "r2_evidence": "edge non-bg ratio=0.171",
+        "r3_evidence": "value mismatch: visible=0 vs expected=6"
+      },
+      "webug_triggered": true,
+      "evidence": [
+        "[baseline] SSIM=1.0 (no regression)",
+        "[webug-R3] value mismatch: visible=0 vs expected=6"
+      ],
+      "proba": {
+        "FunctionalFail": 1.0,
+        "Mixed": 0.0,
+        "Pass": 0.0,
+        "PerformanceRisk": 0.0,
+        "RenderBug": 0.0
+      },
+      "screenshot": "feed_stale_ui.png"
+    },
+    {
+      "key": "feed/wrong_mapping",
+      "expected": "FunctionalFail",
+      "verdict": "FunctionalFail",
+      "match": true,
+      "engine": "learned_tree_v1",
+      "stability_ms": 1284,
+      "stability_stable": true,
+      "baseline_diff": {
+        "ssim": 1.0,
+        "pixel_diff_ratio": 0.0,
+        "mean_pixel_diff": 0.0,
+        "phash_hamming": 0,
+        "width": 488,
+        "height": 839,
+        "baseline_path": "D:\\weixinmp_test\\auto_test\\v2_baselines_real\\feed.png",
+        "current_path": "D:\\weixinmp_test\\auto_test\\reports\\v2_driver\\real_matrix_20260520_092225\\screenshots\\feed_wrong_mapping.png",
+        "diff_path": "D:\\weixinmp_test\\auto_test\\reports\\v2_driver\\real_matrix_20260520_092225\\diffs\\feed_diff.png"
+      },
+      "baseline_regression": false,
+      "webug": {
+        "r1_api_timeout_no_feedback": false,
+        "r2_layout_overflow": false,
+        "r3_async_data_mismatch": true,
+        "r1_evidence": "interaction_ms=1284 below threshold 1500",
+        "r2_evidence": "edge non-bg ratio=0.171",
+        "r3_evidence": "type mismatch: visible=str vs expected=int"
+      },
+      "webug_triggered": true,
+      "evidence": [
+        "[baseline] SSIM=1.0 (no regression)",
+        "[webug-R3] type mismatch: visible=str vs expected=int"
+      ],
+      "proba": {
+        "FunctionalFail": 1.0,
+        "Mixed": 0.0,
+        "Pass": 0.0,
+        "PerformanceRisk": 0.0,
+        "RenderBug": 0.0
+      },
+      "screenshot": "feed_wrong_mapping.png"
+    },
+    {
+      "key": "feed/layout_overlap",
+      "expected": "RenderBug",
+      "verdict": "RenderBug",
+      "match": true,
+      "engine": "learned_tree_v1",
+      "stability_ms": 1273,
+      "stability_stable": true,
+      "baseline_diff": {
+        "ssim": 1.0,
+        "pixel_diff_ratio": 0.0,
+        "mean_pixel_diff": 0.0,
+        "phash_hamming": 0,
+        "width": 488,
+        "height": 839,
+        "baseline_path": "D:\\weixinmp_test\\auto_test\\v2_baselines_real\\feed.png",
+        "current_path": "D:\\weixinmp_test\\auto_test\\reports\\v2_driver\\real_matrix_20260520_092225\\screenshots\\feed_layout_overlap.png",
+        "diff_path": "D:\\weixinmp_test\\auto_test\\reports\\v2_driver\\real_matrix_20260520_092225\\diffs\\feed_diff.png"
+      },
+      "baseline_regression": false,
+      "webug": {
+        "r1_api_timeout_no_feedback": false,
+        "r2_layout_overflow": false,
+        "r3_async_data_mismatch": false,
+        "r1_evidence": "interaction_ms=1273 below threshold 1500",
+        "r2_evidence": "edge non-bg ratio=0.171",
+        "r3_evidence": "no mismatch detected"
+      },
+      "webug_triggered": false,
+      "evidence": [
+        "[baseline] SSIM=1.0 (no regression)"
+      ],
+      "proba": {
+        "FunctionalFail": 0.0,
+        "Mixed": 0.0,
+        "Pass": 0.0,
+        "PerformanceRisk": 0.0,
+        "RenderBug": 1.0
+      },
+      "screenshot": "feed_layout_overlap.png"
+    },
+    {
+      "key": "feed/memory_pressure",
+      "expected": "PerformanceRisk",
+      "verdict": "RenderBug",
+      "match": false,
+      "engine": "learned_tree_v1",
+      "stability_ms": 1286,
+      "stability_stable": true,
+      "baseline_diff": {
+        "ssim": 1.0,
+        "pixel_diff_ratio": 0.0,
+        "mean_pixel_diff": 0.0,
+        "phash_hamming": 0,
+        "width": 488,
+        "height": 839,
+        "baseline_path": "D:\\weixinmp_test\\auto_test\\v2_baselines_real\\feed.png",
+        "current_path": "D:\\weixinmp_test\\auto_test\\reports\\v2_driver\\real_matrix_20260520_092225\\screenshots\\feed_memory_pressure.png",
+        "diff_path": "D:\\weixinmp_test\\auto_test\\reports\\v2_driver\\real_matrix_20260520_092225\\diffs\\feed_diff.png"
+      },
+      "baseline_regression": false,
+      "webug": {
+        "r1_api_timeout_no_feedback": false,
+        "r2_layout_overflow": false,
+        "r3_async_data_mismatch": false,
+        "r1_evidence": "interaction_ms=1286 below threshold 1500",
+        "r2_evidence": "edge non-bg ratio=0.171",
+        "r3_evidence": "no mismatch detected"
+      },
+      "webug_triggered": false,
+      "evidence": [
+        "[baseline] SSIM=1.0 (no regression)"
+      ],
+      "proba": {
+        "FunctionalFail": 0.0,
+        "Mixed": 0.0,
+        "Pass": 0.0,
+        "PerformanceRisk": 0.0,
+        "RenderBug": 1.0
+      },
+      "screenshot": "feed_memory_pressure.png"
+    },
+    {
+      "key": "feed/mixed_fault",
+      "expected": "Mixed",
+      "verdict": "FunctionalFail",
+      "match": false,
+      "engine": "learned_tree_v1",
+      "stability_ms": 1253,
+      "stability_stable": true,
+      "baseline_diff": {
+        "ssim": 1.0,
+        "pixel_diff_ratio": 0.0,
+        "mean_pixel_diff": 0.0,
+        "phash_hamming": 0,
+        "width": 488,
+        "height": 839,
+        "baseline_path": "D:\\weixinmp_test\\auto_test\\v2_baselines_real\\feed.png",
+        "current_path": "D:\\weixinmp_test\\auto_test\\reports\\v2_driver\\real_matrix_20260520_092225\\screenshots\\feed_mixed_fault.png",
+        "diff_path": "D:\\weixinmp_test\\auto_test\\reports\\v2_driver\\real_matrix_20260520_092225\\diffs\\feed_diff.png"
+      },
+      "baseline_regression": false,
+      "webug": {
+        "r1_api_timeout_no_feedback": false,
+        "r2_layout_overflow": false,
+        "r3_async_data_mismatch": true,
+        "r1_evidence": "interaction_ms=1253 below threshold 1500",
+        "r2_evidence": "edge non-bg ratio=0.171",
+        "r3_evidence": "value mismatch: visible=0 vs expected=6"
+      },
+      "webug_triggered": true,
+      "evidence": [
+        "[baseline] SSIM=1.0 (no regression)",
+        "[webug-R3] value mismatch: visible=0 vs expected=6"
+      ],
+      "proba": {
+        "FunctionalFail": 1.0,
+        "Mixed": 0.0,
+        "Pass": 0.0,
+        "PerformanceRisk": 0.0,
+        "RenderBug": 0.0
+      },
+      "screenshot": "feed_mixed_fault.png"
+    },
+    {
+      "key": "counter/normal",
+      "expected": "Pass",
+      "verdict": "Pass",
+      "match": true,
+      "engine": "learned_tree_v1",
+      "stability_ms": 786,
+      "stability_stable": true,
+      "baseline_diff": {
+        "ssim": 1.0,
+        "pixel_diff_ratio": 0.0,
+        "mean_pixel_diff": 0.0,
+        "phash_hamming": 0,
+        "width": 488,
+        "height": 839,
+        "baseline_path": "D:\\weixinmp_test\\auto_test\\v2_baselines_real\\counter.png",
+        "current_path": "D:\\weixinmp_test\\auto_test\\reports\\v2_driver\\real_matrix_20260520_092225\\screenshots\\counter_normal.png",
+        "diff_path": "D:\\weixinmp_test\\auto_test\\reports\\v2_driver\\real_matrix_20260520_092225\\diffs\\counter_diff.png"
+      },
+      "baseline_regression": false,
+      "webug": {
+        "r1_api_timeout_no_feedback": false,
+        "r2_layout_overflow": false,
+        "r3_async_data_mismatch": false,
+        "r1_evidence": "interaction_ms=786 below threshold 1500",
+        "r2_evidence": "edge non-bg ratio=0.000",
+        "r3_evidence": "no mismatch detected"
+      },
+      "webug_triggered": false,
+      "evidence": [
+        "[baseline] SSIM=1.0 (no regression)"
+      ],
+      "proba": {
+        "FunctionalFail": 0.0,
+        "Mixed": 0.0,
+        "Pass": 1.0,
+        "PerformanceRisk": 0.0,
+        "RenderBug": 0.0
+      },
+      "screenshot": "counter_normal.png"
+    },
+    {
+      "key": "counter/slow_api",
+      "expected": "PerformanceRisk",
+      "verdict": "Pass",
+      "match": false,
+      "engine": "learned_tree_v1",
+      "stability_ms": 777,
+      "stability_stable": true,
+      "baseline_diff": {
+        "ssim": 1.0,
+        "pixel_diff_ratio": 0.0,
+        "mean_pixel_diff": 0.0,
+        "phash_hamming": 0,
+        "width": 488,
+        "height": 839,
+        "baseline_path": "D:\\weixinmp_test\\auto_test\\v2_baselines_real\\counter.png",
+        "current_path": "D:\\weixinmp_test\\auto_test\\reports\\v2_driver\\real_matrix_20260520_092225\\screenshots\\counter_slow_api.png",
+        "diff_path": "D:\\weixinmp_test\\auto_test\\reports\\v2_driver\\real_matrix_20260520_092225\\diffs\\counter_diff.png"
+      },
+      "baseline_regression": false,
+      "webug": {
+        "r1_api_timeout_no_feedback": false,
+        "r2_layout_overflow": false,
+        "r3_async_data_mismatch": false,
+        "r1_evidence": "interaction_ms=777 below threshold 1500",
+        "r2_evidence": "edge non-bg ratio=0.000",
+        "r3_evidence": "no mismatch detected"
+      },
+      "webug_triggered": false,
+      "evidence": [
+        "[baseline] SSIM=1.0 (no regression)"
+      ],
+      "proba": {
+        "FunctionalFail": 0.0,
+        "Mixed": 0.0,
+        "Pass": 1.0,
+        "PerformanceRisk": 0.0,
+        "RenderBug": 0.0
+      },
+      "screenshot": "counter_slow_api.png"
+    },
+    {
+      "key": "counter/blur_image",
+      "expected": "RenderBug",
+      "verdict": "Pass",
+      "match": false,
+      "engine": "learned_tree_v1",
+      "stability_ms": 783,
+      "stability_stable": true,
+      "baseline_diff": {
+        "ssim": 1.0,
+        "pixel_diff_ratio": 0.0,
+        "mean_pixel_diff": 0.0,
+        "phash_hamming": 0,
+        "width": 488,
+        "height": 839,
+        "baseline_path": "D:\\weixinmp_test\\auto_test\\v2_baselines_real\\counter.png",
+        "current_path": "D:\\weixinmp_test\\auto_test\\reports\\v2_driver\\real_matrix_20260520_092225\\screenshots\\counter_blur_image.png",
+        "diff_path": "D:\\weixinmp_test\\auto_test\\reports\\v2_driver\\real_matrix_20260520_092225\\diffs\\counter_diff.png"
+      },
+      "baseline_regression": false,
+      "webug": {
+        "r1_api_timeout_no_feedback": false,
+        "r2_layout_overflow": false,
+        "r3_async_data_mismatch": false,
+        "r1_evidence": "interaction_ms=783 below threshold 1500",
+        "r2_evidence": "edge non-bg ratio=0.000",
+        "r3_evidence": "no mismatch detected"
+      },
+      "webug_triggered": false,
+      "evidence": [
+        "[baseline] SSIM=1.0 (no regression)"
+      ],
+      "proba": {
+        "FunctionalFail": 0.0,
+        "Mixed": 0.0,
+        "Pass": 1.0,
+        "PerformanceRisk": 0.0,
+        "RenderBug": 0.0
+      },
+      "screenshot": "counter_blur_image.png"
+    },
+    {
+      "key": "counter/stale_ui",
+      "expected": "FunctionalFail",
+      "verdict": "FunctionalFail",
+      "match": true,
+      "engine": "learned_tree_v1",
+      "stability_ms": 811,
+      "stability_stable": true,
+      "baseline_diff": {
+        "ssim": 1.0,
+        "pixel_diff_ratio": 0.0,
+        "mean_pixel_diff": 0.0,
+        "phash_hamming": 0,
+        "width": 488,
+        "height": 839,
+        "baseline_path": "D:\\weixinmp_test\\auto_test\\v2_baselines_real\\counter.png",
+        "current_path": "D:\\weixinmp_test\\auto_test\\reports\\v2_driver\\real_matrix_20260520_092225\\screenshots\\counter_stale_ui.png",
+        "diff_path": "D:\\weixinmp_test\\auto_test\\reports\\v2_driver\\real_matrix_20260520_092225\\diffs\\counter_diff.png"
+      },
+      "baseline_regression": false,
+      "webug": {
+        "r1_api_timeout_no_feedback": false,
+        "r2_layout_overflow": false,
+        "r3_async_data_mismatch": true,
+        "r1_evidence": "interaction_ms=811 below threshold 1500",
+        "r2_evidence": "edge non-bg ratio=0.000",
+        "r3_evidence": "value mismatch: visible=0 vs expected=5"
+      },
+      "webug_triggered": true,
+      "evidence": [
+        "[baseline] SSIM=1.0 (no regression)",
+        "[webug-R3] value mismatch: visible=0 vs expected=5"
+      ],
+      "proba": {
+        "FunctionalFail": 1.0,
+        "Mixed": 0.0,
+        "Pass": 0.0,
+        "PerformanceRisk": 0.0,
+        "RenderBug": 0.0
+      },
+      "screenshot": "counter_stale_ui.png"
+    },
+    {
+      "key": "counter/wrong_mapping",
+      "expected": "FunctionalFail",
+      "verdict": "FunctionalFail",
+      "match": true,
+      "engine": "learned_tree_v1",
+      "stability_ms": 782,
+      "stability_stable": true,
+      "baseline_diff": {
+        "ssim": 1.0,
+        "pixel_diff_ratio": 0.0,
+        "mean_pixel_diff": 0.0,
+        "phash_hamming": 0,
+        "width": 488,
+        "height": 839,
+        "baseline_path": "D:\\weixinmp_test\\auto_test\\v2_baselines_real\\counter.png",
+        "current_path": "D:\\weixinmp_test\\auto_test\\reports\\v2_driver\\real_matrix_20260520_092225\\screenshots\\counter_wrong_mapping.png",
+        "diff_path": "D:\\weixinmp_test\\auto_test\\reports\\v2_driver\\real_matrix_20260520_092225\\diffs\\counter_diff.png"
+      },
+      "baseline_regression": false,
+      "webug": {
+        "r1_api_timeout_no_feedback": false,
+        "r2_layout_overflow": false,
+        "r3_async_data_mismatch": true,
+        "r1_evidence": "interaction_ms=782 below threshold 1500",
+        "r2_evidence": "edge non-bg ratio=0.000",
+        "r3_evidence": "type mismatch: visible=str vs expected=int"
+      },
+      "webug_triggered": true,
+      "evidence": [
+        "[baseline] SSIM=1.0 (no regression)",
+        "[webug-R3] type mismatch: visible=str vs expected=int"
+      ],
+      "proba": {
+        "FunctionalFail": 1.0,
+        "Mixed": 0.0,
+        "Pass": 0.0,
+        "PerformanceRisk": 0.0,
+        "RenderBug": 0.0
+      },
+      "screenshot": "counter_wrong_mapping.png"
+    },
+    {
+      "key": "counter/layout_overlap",
+      "expected": "RenderBug",
+      "verdict": "Pass",
+      "match": false,
+      "engine": "learned_tree_v1",
+      "stability_ms": 782,
+      "stability_stable": true,
+      "baseline_diff": {
+        "ssim": 1.0,
+        "pixel_diff_ratio": 0.0,
+        "mean_pixel_diff": 0.0,
+        "phash_hamming": 0,
+        "width": 488,
+        "height": 839,
+        "baseline_path": "D:\\weixinmp_test\\auto_test\\v2_baselines_real\\counter.png",
+        "current_path": "D:\\weixinmp_test\\auto_test\\reports\\v2_driver\\real_matrix_20260520_092225\\screenshots\\counter_layout_overlap.png",
+        "diff_path": "D:\\weixinmp_test\\auto_test\\reports\\v2_driver\\real_matrix_20260520_092225\\diffs\\counter_diff.png"
+      },
+      "baseline_regression": false,
+      "webug": {
+        "r1_api_timeout_no_feedback": false,
+        "r2_layout_overflow": false,
+        "r3_async_data_mismatch": false,
+        "r1_evidence": "interaction_ms=782 below threshold 1500",
+        "r2_evidence": "edge non-bg ratio=0.000",
+        "r3_evidence": "no mismatch detected"
+      },
+      "webug_triggered": false,
+      "evidence": [
+        "[baseline] SSIM=1.0 (no regression)"
+      ],
+      "proba": {
+        "FunctionalFail": 0.0,
+        "Mixed": 0.0,
+        "Pass": 1.0,
+        "PerformanceRisk": 0.0,
+        "RenderBug": 0.0
+      },
+      "screenshot": "counter_layout_overlap.png"
+    },
+    {
+      "key": "counter/memory_pressure",
+      "expected": "PerformanceRisk",
+      "verdict": "Pass",
+      "match": false,
+      "engine": "learned_tree_v1",
+      "stability_ms": 792,
+      "stability_stable": true,
+      "baseline_diff": {
+        "ssim": 1.0,
+        "pixel_diff_ratio": 0.0,
+        "mean_pixel_diff": 0.0,
+        "phash_hamming": 0,
+        "width": 488,
+        "height": 839,
+        "baseline_path": "D:\\weixinmp_test\\auto_test\\v2_baselines_real\\counter.png",
+        "current_path": "D:\\weixinmp_test\\auto_test\\reports\\v2_driver\\real_matrix_20260520_092225\\screenshots\\counter_memory_pressure.png",
+        "diff_path": "D:\\weixinmp_test\\auto_test\\reports\\v2_driver\\real_matrix_20260520_092225\\diffs\\counter_diff.png"
+      },
+      "baseline_regression": false,
+      "webug": {
+        "r1_api_timeout_no_feedback": false,
+        "r2_layout_overflow": false,
+        "r3_async_data_mismatch": false,
+        "r1_evidence": "interaction_ms=792 below threshold 1500",
+        "r2_evidence": "edge non-bg ratio=0.000",
+        "r3_evidence": "no mismatch detected"
+      },
+      "webug_triggered": false,
+      "evidence": [
+        "[baseline] SSIM=1.0 (no regression)"
+      ],
+      "proba": {
+        "FunctionalFail": 0.0,
+        "Mixed": 0.0,
+        "Pass": 1.0,
+        "PerformanceRisk": 0.0,
+        "RenderBug": 0.0
+      },
+      "screenshot": "counter_memory_pressure.png"
+    },
+    {
+      "key": "counter/mixed_fault",
+      "expected": "Mixed",
+      "verdict": "FunctionalFail",
+      "match": false,
+      "engine": "learned_tree_v1",
+      "stability_ms": 783,
+      "stability_stable": true,
+      "baseline_diff": {
+        "ssim": 1.0,
+        "pixel_diff_ratio": 0.0,
+        "mean_pixel_diff": 0.0,
+        "phash_hamming": 0,
+        "width": 488,
+        "height": 839,
+        "baseline_path": "D:\\weixinmp_test\\auto_test\\v2_baselines_real\\counter.png",
+        "current_path": "D:\\weixinmp_test\\auto_test\\reports\\v2_driver\\real_matrix_20260520_092225\\screenshots\\counter_mixed_fault.png",
+        "diff_path": "D:\\weixinmp_test\\auto_test\\reports\\v2_driver\\real_matrix_20260520_092225\\diffs\\counter_diff.png"
+      },
+      "baseline_regression": false,
+      "webug": {
+        "r1_api_timeout_no_feedback": false,
+        "r2_layout_overflow": false,
+        "r3_async_data_mismatch": true,
+        "r1_evidence": "interaction_ms=783 below threshold 1500",
+        "r2_evidence": "edge non-bg ratio=0.000",
+        "r3_evidence": "value mismatch: visible=0 vs expected=5"
+      },
+      "webug_triggered": true,
+      "evidence": [
+        "[baseline] SSIM=1.0 (no regression)",
+        "[webug-R3] value mismatch: visible=0 vs expected=5"
+      ],
+      "proba": {
+        "FunctionalFail": 1.0,
+        "Mixed": 0.0,
+        "Pass": 0.0,
+        "PerformanceRisk": 0.0,
+        "RenderBug": 0.0
+      },
+      "screenshot": "counter_mixed_fault.png"
+    },
+    {
+      "key": "layout/normal",
+      "expected": "Pass",
+      "verdict": "Pass",
+      "match": true,
+      "engine": "learned_tree_v1",
+      "stability_ms": 1146,
+      "stability_stable": true,
+      "baseline_diff": {
+        "ssim": 0.656,
+        "pixel_diff_ratio": 0.5137,
+        "mean_pixel_diff": 73.47,
+        "phash_hamming": 32,
+        "width": 488,
+        "height": 839,
+        "baseline_path": "D:\\weixinmp_test\\auto_test\\v2_baselines_real\\layout.png",
+        "current_path": "D:\\weixinmp_test\\auto_test\\reports\\v2_driver\\real_matrix_20260520_092225\\screenshots\\layout_normal.png",
+        "diff_path": "D:\\weixinmp_test\\auto_test\\reports\\v2_driver\\real_matrix_20260520_092225\\diffs\\layout_diff.png"
+      },
+      "baseline_regression": true,
+      "webug": {
+        "r1_api_timeout_no_feedback": false,
+        "r2_layout_overflow": false,
+        "r3_async_data_mismatch": false,
+        "r1_evidence": "interaction_ms=1146 below threshold 1500",
+        "r2_evidence": "edge non-bg ratio=0.146",
+        "r3_evidence": "no mismatch detected"
+      },
+      "webug_triggered": false,
+      "evidence": [
+        "[baseline] SSIM=0.656 px_diff=0.5137 → visual regression vs baseline"
+      ],
+      "proba": {
+        "FunctionalFail": 0.0,
+        "Mixed": 0.0,
+        "Pass": 0.75,
+        "PerformanceRisk": 0.0,
+        "RenderBug": 0.25
+      },
+      "screenshot": "layout_normal.png"
+    },
+    {
+      "key": "layout/slow_api",
+      "expected": "PerformanceRisk",
+      "verdict": "Pass",
+      "match": false,
+      "engine": "learned_tree_v1",
+      "stability_ms": 1217,
+      "stability_stable": true,
+      "baseline_diff": {
+        "ssim": 0.656,
+        "pixel_diff_ratio": 0.5137,
+        "mean_pixel_diff": 73.47,
+        "phash_hamming": 32,
+        "width": 488,
+        "height": 839,
+        "baseline_path": "D:\\weixinmp_test\\auto_test\\v2_baselines_real\\layout.png",
+        "current_path": "D:\\weixinmp_test\\auto_test\\reports\\v2_driver\\real_matrix_20260520_092225\\screenshots\\layout_slow_api.png",
+        "diff_path": "D:\\weixinmp_test\\auto_test\\reports\\v2_driver\\real_matrix_20260520_092225\\diffs\\layout_diff.png"
+      },
+      "baseline_regression": true,
+      "webug": {
+        "r1_api_timeout_no_feedback": false,
+        "r2_layout_overflow": false,
+        "r3_async_data_mismatch": false,
+        "r1_evidence": "interaction_ms=1217 below threshold 1500",
+        "r2_evidence": "edge non-bg ratio=0.146",
+        "r3_evidence": "no mismatch detected"
+      },
+      "webug_triggered": false,
+      "evidence": [
+        "[baseline] SSIM=0.656 px_diff=0.5137 → visual regression vs baseline"
+      ],
+      "proba": {
+        "FunctionalFail": 0.0,
+        "Mixed": 0.0,
+        "Pass": 0.75,
+        "PerformanceRisk": 0.0,
+        "RenderBug": 0.25
+      },
+      "screenshot": "layout_slow_api.png"
+    },
+    {
+      "key": "layout/blur_image",
+      "expected": "RenderBug",
+      "verdict": "Pass",
+      "match": false,
+      "engine": "learned_tree_v1",
+      "stability_ms": 1208,
+      "stability_stable": true,
+      "baseline_diff": {
+        "ssim": 0.656,
+        "pixel_diff_ratio": 0.5137,
+        "mean_pixel_diff": 73.47,
+        "phash_hamming": 32,
+        "width": 488,
+        "height": 839,
+        "baseline_path": "D:\\weixinmp_test\\auto_test\\v2_baselines_real\\layout.png",
+        "current_path": "D:\\weixinmp_test\\auto_test\\reports\\v2_driver\\real_matrix_20260520_092225\\screenshots\\layout_blur_image.png",
+        "diff_path": "D:\\weixinmp_test\\auto_test\\reports\\v2_driver\\real_matrix_20260520_092225\\diffs\\layout_diff.png"
+      },
+      "baseline_regression": true,
+      "webug": {
+        "r1_api_timeout_no_feedback": false,
+        "r2_layout_overflow": false,
+        "r3_async_data_mismatch": false,
+        "r1_evidence": "interaction_ms=1208 below threshold 1500",
+        "r2_evidence": "edge non-bg ratio=0.146",
+        "r3_evidence": "no mismatch detected"
+      },
+      "webug_triggered": false,
+      "evidence": [
+        "[baseline] SSIM=0.656 px_diff=0.5137 → visual regression vs baseline"
+      ],
+      "proba": {
+        "FunctionalFail": 0.0,
+        "Mixed": 0.0,
+        "Pass": 0.75,
+        "PerformanceRisk": 0.0,
+        "RenderBug": 0.25
+      },
+      "screenshot": "layout_blur_image.png"
+    },
+    {
+      "key": "layout/stale_ui",
+      "expected": "FunctionalFail",
+      "verdict": "FunctionalFail",
+      "match": true,
+      "engine": "learned_tree_v1",
+      "stability_ms": 1131,
+      "stability_stable": true,
+      "baseline_diff": {
+        "ssim": 0.656,
+        "pixel_diff_ratio": 0.5137,
+        "mean_pixel_diff": 73.47,
+        "phash_hamming": 32,
+        "width": 488,
+        "height": 839,
+        "baseline_path": "D:\\weixinmp_test\\auto_test\\v2_baselines_real\\layout.png",
+        "current_path": "D:\\weixinmp_test\\auto_test\\reports\\v2_driver\\real_matrix_20260520_092225\\screenshots\\layout_stale_ui.png",
+        "diff_path": "D:\\weixinmp_test\\auto_test\\reports\\v2_driver\\real_matrix_20260520_092225\\diffs\\layout_diff.png"
+      },
+      "baseline_regression": true,
+      "webug": {
+        "r1_api_timeout_no_feedback": false,
+        "r2_layout_overflow": false,
+        "r3_async_data_mismatch": true,
+        "r1_evidence": "interaction_ms=1131 below threshold 1500",
+        "r2_evidence": "edge non-bg ratio=0.146",
+        "r3_evidence": "value mismatch: visible=0 vs expected=3"
+      },
+      "webug_triggered": true,
+      "evidence": [
+        "[baseline] SSIM=0.656 px_diff=0.5137 → visual regression vs baseline",
+        "[webug-R3] value mismatch: visible=0 vs expected=3"
+      ],
+      "proba": {
+        "FunctionalFail": 1.0,
+        "Mixed": 0.0,
+        "Pass": 0.0,
+        "PerformanceRisk": 0.0,
+        "RenderBug": 0.0
+      },
+      "screenshot": "layout_stale_ui.png"
+    },
+    {
+      "key": "layout/wrong_mapping",
+      "expected": "FunctionalFail",
+      "verdict": "FunctionalFail",
+      "match": true,
+      "engine": "learned_tree_v1",
+      "stability_ms": 1216,
+      "stability_stable": true,
+      "baseline_diff": {
+        "ssim": 0.656,
+        "pixel_diff_ratio": 0.5137,
+        "mean_pixel_diff": 73.47,
+        "phash_hamming": 32,
+        "width": 488,
+        "height": 839,
+        "baseline_path": "D:\\weixinmp_test\\auto_test\\v2_baselines_real\\layout.png",
+        "current_path": "D:\\weixinmp_test\\auto_test\\reports\\v2_driver\\real_matrix_20260520_092225\\screenshots\\layout_wrong_mapping.png",
+        "diff_path": "D:\\weixinmp_test\\auto_test\\reports\\v2_driver\\real_matrix_20260520_092225\\diffs\\layout_diff.png"
+      },
+      "baseline_regression": true,
+      "webug": {
+        "r1_api_timeout_no_feedback": false,
+        "r2_layout_overflow": false,
+        "r3_async_data_mismatch": true,
+        "r1_evidence": "interaction_ms=1216 below threshold 1500",
+        "r2_evidence": "edge non-bg ratio=0.146",
+        "r3_evidence": "type mismatch: visible=str vs expected=int"
+      },
+      "webug_triggered": true,
+      "evidence": [
+        "[baseline] SSIM=0.656 px_diff=0.5137 → visual regression vs baseline",
+        "[webug-R3] type mismatch: visible=str vs expected=int"
+      ],
+      "proba": {
+        "FunctionalFail": 1.0,
+        "Mixed": 0.0,
+        "Pass": 0.0,
+        "PerformanceRisk": 0.0,
+        "RenderBug": 0.0
+      },
+      "screenshot": "layout_wrong_mapping.png"
+    },
+    {
+      "key": "layout/layout_overlap",
+      "expected": "RenderBug",
+      "verdict": "Pass",
+      "match": false,
+      "engine": "learned_tree_v1",
+      "stability_ms": 1146,
+      "stability_stable": true,
+      "baseline_diff": {
+        "ssim": 0.656,
+        "pixel_diff_ratio": 0.5137,
+        "mean_pixel_diff": 73.47,
+        "phash_hamming": 32,
+        "width": 488,
+        "height": 839,
+        "baseline_path": "D:\\weixinmp_test\\auto_test\\v2_baselines_real\\layout.png",
+        "current_path": "D:\\weixinmp_test\\auto_test\\reports\\v2_driver\\real_matrix_20260520_092225\\screenshots\\layout_layout_overlap.png",
+        "diff_path": "D:\\weixinmp_test\\auto_test\\reports\\v2_driver\\real_matrix_20260520_092225\\diffs\\layout_diff.png"
+      },
+      "baseline_regression": true,
+      "webug": {
+        "r1_api_timeout_no_feedback": false,
+        "r2_layout_overflow": false,
+        "r3_async_data_mismatch": false,
+        "r1_evidence": "interaction_ms=1146 below threshold 1500",
+        "r2_evidence": "edge non-bg ratio=0.146",
+        "r3_evidence": "no mismatch detected"
+      },
+      "webug_triggered": false,
+      "evidence": [
+        "[baseline] SSIM=0.656 px_diff=0.5137 → visual regression vs baseline"
+      ],
+      "proba": {
+        "FunctionalFail": 0.0,
+        "Mixed": 0.0,
+        "Pass": 0.75,
+        "PerformanceRisk": 0.0,
+        "RenderBug": 0.25
+      },
+      "screenshot": "layout_layout_overlap.png"
+    },
+    {
+      "key": "layout/memory_pressure",
+      "expected": "PerformanceRisk",
+      "verdict": "Pass",
+      "match": false,
+      "engine": "learned_tree_v1",
+      "stability_ms": 1163,
+      "stability_stable": true,
+      "baseline_diff": {
+        "ssim": 0.656,
+        "pixel_diff_ratio": 0.5137,
+        "mean_pixel_diff": 73.47,
+        "phash_hamming": 32,
+        "width": 488,
+        "height": 839,
+        "baseline_path": "D:\\weixinmp_test\\auto_test\\v2_baselines_real\\layout.png",
+        "current_path": "D:\\weixinmp_test\\auto_test\\reports\\v2_driver\\real_matrix_20260520_092225\\screenshots\\layout_memory_pressure.png",
+        "diff_path": "D:\\weixinmp_test\\auto_test\\reports\\v2_driver\\real_matrix_20260520_092225\\diffs\\layout_diff.png"
+      },
+      "baseline_regression": true,
+      "webug": {
+        "r1_api_timeout_no_feedback": false,
+        "r2_layout_overflow": false,
+        "r3_async_data_mismatch": false,
+        "r1_evidence": "interaction_ms=1163 below threshold 1500",
+        "r2_evidence": "edge non-bg ratio=0.146",
+        "r3_evidence": "no mismatch detected"
+      },
+      "webug_triggered": false,
+      "evidence": [
+        "[baseline] SSIM=0.656 px_diff=0.5137 → visual regression vs baseline"
+      ],
+      "proba": {
+        "FunctionalFail": 0.0,
+        "Mixed": 0.0,
+        "Pass": 0.75,
+        "PerformanceRisk": 0.0,
+        "RenderBug": 0.25
+      },
+      "screenshot": "layout_memory_pressure.png"
+    },
+    {
+      "key": "layout/mixed_fault",
+      "expected": "Mixed",
+      "verdict": "FunctionalFail",
+      "match": false,
+      "engine": "learned_tree_v1",
+      "stability_ms": 1142,
+      "stability_stable": true,
+      "baseline_diff": {
+        "ssim": 0.656,
+        "pixel_diff_ratio": 0.5137,
+        "mean_pixel_diff": 73.47,
+        "phash_hamming": 32,
+        "width": 488,
+        "height": 839,
+        "baseline_path": "D:\\weixinmp_test\\auto_test\\v2_baselines_real\\layout.png",
+        "current_path": "D:\\weixinmp_test\\auto_test\\reports\\v2_driver\\real_matrix_20260520_092225\\screenshots\\layout_mixed_fault.png",
+        "diff_path": "D:\\weixinmp_test\\auto_test\\reports\\v2_driver\\real_matrix_20260520_092225\\diffs\\layout_diff.png"
+      },
+      "baseline_regression": true,
+      "webug": {
+        "r1_api_timeout_no_feedback": false,
+        "r2_layout_overflow": false,
+        "r3_async_data_mismatch": true,
+        "r1_evidence": "interaction_ms=1142 below threshold 1500",
+        "r2_evidence": "edge non-bg ratio=0.146",
+        "r3_evidence": "value mismatch: visible=0 vs expected=3"
+      },
+      "webug_triggered": true,
+      "evidence": [
+        "[baseline] SSIM=0.656 px_diff=0.5137 → visual regression vs baseline",
+        "[webug-R3] value mismatch: visible=0 vs expected=3"
+      ],
+      "proba": {
+        "FunctionalFail": 1.0,
+        "Mixed": 0.0,
+        "Pass": 0.0,
+        "PerformanceRisk": 0.0,
+        "RenderBug": 0.0
+      },
+      "screenshot": "layout_mixed_fault.png"
+    }
+  ],
+  "summary": {
+    "n_cases": 24,
+    "verdict_accuracy": 0.417,
+    "n_baseline_regression": 8,
+    "n_webug_triggered": 9,
+    "n_actual_faults": 21,
+    "multi_channel_recall_on_faults": 0.81
+  }
+}

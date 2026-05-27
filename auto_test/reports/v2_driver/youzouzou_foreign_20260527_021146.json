@@ -1,0 +1,26 @@
+{
+  "ts": "20260527_021146",
+  "summary": {
+    "project": "D:/weixinmp_test/third-youzouzou-wxapp",
+    "pages_total": 2,
+    "pages_diagnosed": 0,
+    "attach_success_rate": 0.0,
+    "verdict_fp_rate": null,
+    "baseline_fp_rate": null,
+    "webug_fp_rate": null,
+    "any_channel_fp_rate": null,
+    "qwen_oracle": true
+  },
+  "results": [
+    {
+      "page": "others",
+      "path": "/pages/others/others",
+      "verdict": "CAPTURE_FAIL"
+    },
+    {
+      "page": "example",
+      "path": "/pages/example/index",
+      "verdict": "CAPTURE_FAIL"
+    }
+  ]
+}

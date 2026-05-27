@@ -1,0 +1,71 @@
+{
+  "ts": "20260527_010122",
+  "summary": {
+    "project": "D:/weixinmp_test/third-wxapp-mall",
+    "pages_total": 4,
+    "pages_diagnosed": 4,
+    "attach_success_rate": 1.0,
+    "false_positive_rate_on_healthy": 1.0,
+    "qwen_oracle": true
+  },
+  "results": [
+    {
+      "page": "component",
+      "path": "/page/component/index",
+      "page_type": "feed",
+      "verdict": "Pass",
+      "engine": "learned_tree_v1_cascade",
+      "baseline_ssim": null,
+      "baseline_regression": false,
+      "webug_triggered": true,
+      "false_positive": true,
+      "stability_ms": 2877,
+      "evidence": [
+        "[webug-R2] edge non-bg ratio=0.387 > 0.18"
+      ]
+    },
+    {
+      "page": "category",
+      "path": "/page/component/category/category",
+      "page_type": "feed",
+      "verdict": "RenderBug",
+      "engine": "learned_tree_v1_cascade",
+      "baseline_ssim": null,
+      "baseline_regression": false,
+      "webug_triggered": false,
+      "false_positive": true,
+      "stability_ms": 957,
+      "evidence": []
+    },
+    {
+      "page": "cart",
+      "path": "/page/component/cart/cart",
+      "page_type": "counter",
+      "verdict": "Pass",
+      "engine": "learned_tree_v1_cascade",
+      "baseline_ssim": null,
+      "baseline_regression": false,
+      "webug_triggered": true,
+      "false_positive": true,
+      "stability_ms": 990,
+      "evidence": [
+        "[webug-R2] edge non-bg ratio=1.000 > 0.18"
+      ]
+    },
+    {
+      "page": "user",
+      "path": "/page/component/user/user",
+      "page_type": "counter",
+      "verdict": "RenderBug",
+      "engine": "learned_tree_v1_cascade",
+      "baseline_ssim": null,
+      "baseline_regression": false,
+      "webug_triggered": true,
+      "false_positive": true,
+      "stability_ms": 994,
+      "evidence": [
+        "[webug-R2] edge non-bg ratio=1.000 > 0.18"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,83 @@
+{
+  "ts": "20260527_211003",
+  "summary": {
+    "project": "C:/Users/17303/Desktop/2026spring/ruance_2026spring/work_dazuoye/git_mybranch/weixinmp_test/third-wxapp-mall",
+    "pages_total": 4,
+    "pages_diagnosed": 4,
+    "attach_success_rate": 1.0,
+    "verdict_fp_rate": 0.5,
+    "baseline_fp_rate": 0.0,
+    "webug_fp_rate": 0.75,
+    "any_channel_fp_rate": 1.0,
+    "qwen_oracle": true
+  },
+  "results": [
+    {
+      "page": "component",
+      "path": "/page/component/index",
+      "page_type": "feed",
+      "verdict": "Pass",
+      "engine": "learned_tree_v1_cascade",
+      "baseline_ssim": 1.0,
+      "verdict_fp": false,
+      "baseline_fp": false,
+      "webug_fp": true,
+      "false_positive": true,
+      "stability_ms": 2173,
+      "evidence": [
+        "[baseline] SSIM=1.0 (no regression)",
+        "[webug-R2] edge non-bg ratio=0.518 > 0.18"
+      ]
+    },
+    {
+      "page": "category",
+      "path": "/page/component/category/category",
+      "page_type": "feed",
+      "verdict": "RenderBug",
+      "engine": "learned_tree_v1_cascade",
+      "baseline_ssim": 1.0,
+      "verdict_fp": true,
+      "baseline_fp": false,
+      "webug_fp": false,
+      "false_positive": true,
+      "stability_ms": 789,
+      "evidence": [
+        "[baseline] SSIM=1.0 (no regression)"
+      ]
+    },
+    {
+      "page": "cart",
+      "path": "/page/component/cart/cart",
+      "page_type": "counter",
+      "verdict": "Pass",
+      "engine": "learned_tree_v1_cascade",
+      "baseline_ssim": 1.0,
+      "verdict_fp": false,
+      "baseline_fp": false,
+      "webug_fp": true,
+      "false_positive": true,
+      "stability_ms": 736,
+      "evidence": [
+        "[baseline] SSIM=1.0 (no regression)",
+        "[webug-R2] edge non-bg ratio=0.227 > 0.18"
+      ]
+    },
+    {
+      "page": "user",
+      "path": "/page/component/user/user",
+      "page_type": "counter",
+      "verdict": "RenderBug",
+      "engine": "learned_tree_v1_cascade",
+      "baseline_ssim": 1.0,
+      "verdict_fp": true,
+      "baseline_fp": false,
+      "webug_fp": true,
+      "false_positive": true,
+      "stability_ms": 724,
+      "evidence": [
+        "[baseline] SSIM=1.0 (no regression)",
+        "[webug-R2] edge non-bg ratio=1.000 > 0.18"
+      ]
+    }
+  ]
+}

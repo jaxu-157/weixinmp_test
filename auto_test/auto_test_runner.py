@@ -70,7 +70,7 @@ class VisionTriageAutoTester:
         print(f"   激活故障: {profile_name}")
         try:
             response = requests.post(
-                "http://127.0.0.1:8900/fault/activate",  # 修正2：添加主机地址
+                "http://127.0.0.1:8900/fault/activate",
                 json={"profile": profile_name},
                 timeout=10
             )
@@ -78,9 +78,8 @@ class VisionTriageAutoTester:
             if result.get("code") == 0:
                 print(f"      ✅ 激活成功")
                 return True
-            else:
-                print(f"      ❌ 激活失败: {result}")
-                return False
+            print(f"      ❌ 激活失败: {result}")
+            return False
         except Exception as e:
             print(f"      ❌ 激活异常: {e}")
             return False
@@ -558,6 +557,9 @@ class VisionTriageAutoTester:
 
         if not self._connect_to_wechat():
             return False
+
+        # 套件启动前先把服务端故障状态复位到 normal，避免上一次运行残留
+        self._activate_fault("normal")
 
         all_success = True
         current_page = None

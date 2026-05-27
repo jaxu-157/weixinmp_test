@@ -1,0 +1,48 @@
+{
+  "ts": "20260527_202820",
+  "summary": {
+    "project": "C:/Users/17303/Desktop/2026spring/ruance_2026spring/work_dazuoye/git_mybranch/weixinmp_test/third-wxapp-mall",
+    "pages_total": 4,
+    "pages_diagnosed": 1,
+    "attach_success_rate": 0.25,
+    "verdict_fp_rate": 1.0,
+    "baseline_fp_rate": 0.0,
+    "webug_fp_rate": 1.0,
+    "any_channel_fp_rate": 1.0,
+    "qwen_oracle": true
+  },
+  "results": [
+    {
+      "page": "component",
+      "path": "/page/component/index",
+      "verdict": "CAPTURE_FAIL"
+    },
+    {
+      "page": "category",
+      "path": "/page/component/category/category",
+      "verdict": "CAPTURE_FAIL"
+    },
+    {
+      "page": "cart",
+      "path": "/page/component/cart/cart",
+      "verdict": "CAPTURE_FAIL"
+    },
+    {
+      "page": "user",
+      "path": "/page/component/user/user",
+      "page_type": "counter",
+      "verdict": "RenderBug",
+      "engine": "learned_tree_v1_cascade",
+      "baseline_ssim": 1.0,
+      "verdict_fp": true,
+      "baseline_fp": false,
+      "webug_fp": true,
+      "false_positive": true,
+      "stability_ms": 1180,
+      "evidence": [
+        "[baseline] SSIM=1.0 (no regression)",
+        "[webug-R2] edge non-bg ratio=1.000 > 0.18"
+      ]
+    }
+  ]
+}

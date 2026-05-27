@@ -222,17 +222,83 @@ async def diagnose(
     fault_profile: str = Form("normal"),
     page_state: Optional[str] = Form(None),
     perf_data: Optional[str] = Form(None),
+    engine: Optional[str] = Form(None),
+    x_triage_engine: Optional[str] = Header(None, alias="X-Triage-Engine"),
 ):
-    """综合诊断接口：接收截图和上下文，返回分诊结果"""
+    """综合诊断接口：接收截图和上下文，返回分诊结果。
+
+    引擎选择优先级：Form 参数 engine > Header X-Triage-Engine > 环境变量
+    USE_LEARNED_TRIAGE。取值：
+        - "rule"    使用规则法 truth table（baseline）
+        - "learned" 使用决策树模型（默认，若模型可用）
+    """
     import json
     from diagnose.triage import run_triage
+
+    try:
+        from diagnose import learned_triage
+        _learned_available = learned_triage.is_available()
+    except Exception:
+        learned_triage = None
+        _learned_available = False
 
     image_bytes = await screenshot.read()
 
     state = json.loads(page_state) if page_state else {}
     perf = json.loads(perf_data) if perf_data else {}
 
-    result = run_triage(
+    chosen = (engine or x_triage_engine or os.environ.get("TRIAGE_ENGINE", "")).lower()
+    if not chosen:
+        # 默认尝试 learned，模型不可用则回退到 rule
+        chosen = "learned" if _learned_available else "rule"
+
+    if chosen in ("learned", "cascade") and _learned_available:
+        result = learned_triage.run_triage_learned(
+            image_bytes=image_bytes,
+            page_type=page_type,
+            fault_profile=fault_profile,
+            page_state=state,
+            perf_data=perf,
+            use_cascade=(chosen == "cascade"),
+        )
+        engine_used = f"learned_tree_v1{'_cascade' if chosen == 'cascade' else ''}"
+    else:
+        result = run_triage(
+            image_bytes=image_bytes,
+            page_type=page_type,
+            fault_profile=fault_profile,
+            page_state=state,
+            perf_data=perf,
+        )
+        engine_used = "rule"
+
+    return {"code": 0, "data": result, "profile": fault_profile, "engine": engine_used}
+
+
+@app.post("/diagnose/compare")
+async def diagnose_compare(
+    screenshot: UploadFile = File(...),
+    page_type: str = Form("feed"),
+    fault_profile: str = Form("normal"),
+    page_state: Optional[str] = Form(None),
+    perf_data: Optional[str] = Form(None),
+):
+    """A/B 对比端点：同一份输入同时跑规则法和模型法，返回两份结果。"""
+    import json
+    from diagnose.triage import run_triage
+
+    try:
+        from diagnose import learned_triage
+        _learned_available = learned_triage.is_available()
+    except Exception:
+        learned_triage = None
+        _learned_available = False
+
+    image_bytes = await screenshot.read()
+    state = json.loads(page_state) if page_state else {}
+    perf = json.loads(perf_data) if perf_data else {}
+
+    rule_result = run_triage(
         image_bytes=image_bytes,
         page_type=page_type,
         fault_profile=fault_profile,
@@ -240,7 +306,28 @@ async def diagnose(
         perf_data=perf,
     )
 
-    return {"code": 0, "data": result, "profile": fault_profile}
+    learned_result = None
+    if _learned_available:
+        learned_result = learned_triage.run_triage_learned(
+            image_bytes=image_bytes,
+            page_type=page_type,
+            fault_profile=fault_profile,
+            page_state=state,
+            perf_data=perf,
+        )
+
+    agree = (
+        learned_result is not None
+        and rule_result.get("verdict") == learned_result.get("verdict")
+    )
+
+    return {
+        "code": 0,
+        "rule": rule_result,
+        "learned": learned_result,
+        "agreement": agree,
+        "profile": fault_profile,
+    }
 
 
 # ============ 工具函数 ============

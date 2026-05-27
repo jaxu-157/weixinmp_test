@@ -1,0 +1,8 @@
+condition,accuracy,macro_f1,f1_Pass,f1_PerformanceRisk,f1_RenderBug,f1_FunctionalFail,f1_Mixed
+all_features,0.91,0.906,0.9302,0.8571,0.7429,1.0,1.0
+drop_visual,0.68,0.6288,0.5714,0.625,0.0,1.0,0.9474
+drop_performance,0.58,0.4974,0.7843,0.5128,0.5,0.6897,0.0
+drop_functional,0.53,0.4319,0.6349,0.6,0.7429,0.0,0.1818
+only_visual,0.38,0.2925,0.4494,0.5128,0.5,0.0,0.0
+only_performance,0.3,0.1689,0.4444,0.4,0.0,0.0,0.0
+only_functional,0.4,0.2355,0.4878,0.0,0.0,0.6897,0.0

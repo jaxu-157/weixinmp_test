@@ -41,7 +41,7 @@ export function activateFault(profile: FaultProfile): void {
   state.overlapEnabled = false
   state.memoryPressure = false
 
-  // 解析复合故障（如 "blur_image+slow_api"）
+  // 解析复合故障（如 "blur_image+slow_api"），对单 profile 也兼容
   const parts = profile.split('+')
 
   for (const part of parts) {
@@ -63,6 +63,11 @@ export function activateFault(profile: FaultProfile): void {
         state.overlapEnabled = true
         break
       case 'memory_pressure':
+        state.memoryPressure = true
+        break
+      case 'mixed_fault':
+        state.latencyMs = Math.max(state.latencyMs, 1000)
+        state.staleEnabled = true
         state.memoryPressure = true
         break
     }

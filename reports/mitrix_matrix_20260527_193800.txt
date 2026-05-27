@@ -1,0 +1,53 @@
+================================================================================
+  Vision-Triage mitrix — 故障检测矩阵
+================================================================================
+时间: 2026-05-27 19:38:00
+用例数: 17 | 全匹配: 15 | 匹配率: 88.2%
+
+用例                                        blur_imageslow_apistale_uiwrong_mappinglayout_overlapmemory_pressureOK?
+-----------------------------------------------------------------------------------------------------------------
+single/blur_image@feed                      ·1   ·  ·0   ·  ·0   ·  ·0   ·  ·0   ·  ·0   ·✓
+single/slow_api@feed                        ·0   ·  ·1   ·  ·0   ·  ·0   ·  ·0   ·  ·0   ·✓
+single/stale_ui@counter                     ·0   ·  ·0   ·  ·1   ·  ·0   ·  ·0   ·  ·0   ·✓
+single/wrong_mapping@counter                ·0   ·  ·0   ·  ·0   ·  ·1   ·  ·0   ·  ·0   ·✓
+single/layout_overlap@layout                ·0   ·  ·0   ·  ·0   ·  ·0   ·  ·1   ·  ·0   ·✓
+single/memory_pressure@feed                 ·0   ·  ·0   ·  ·0   ·  ·0   ·  ·0   ·  ·1   ·✓
+pair/blur_image+slow_api@feed               ·1   ·  ·1   ·  ·0   ·  ·0   ·  ·0   ·  ·0   ·✓
+pair/blur_image+memory_pressure@feed        ·1   ·  ·0   ·  ·0   ·  ·0   ·  ·0   ·  ·1   ·✓
+pair/slow_api+stale_ui@counter              ·0   ·  ·1   ·  ·1   ·  ·0   ·  ·0   ·  ·0   ·✓
+pair/slow_api+wrong_mapping@counter         ·0   ·  ·1   ·  ·0   ·  ·1   ·  ·0   ·  ·0   ·✓
+pair/slow_api+layout_overlap@layout         ·0   ·  ·1   ·  ·0   ·  ·0   ·  ·1   ·  ·0   ·✓
+pair/slow_api+memory_pressure@feed          ·0   ·  ·1   ·  ·0   ·  ·0   ·  ·0   ·  ·1   ·✓
+pair/stale_ui+wrong_mapping@counter         ·0   ·  ·0   · 1>0!     ·1   ·  ·0   ·  ·0   ·✗
+pair/layout_overlap+memory_pressure@layo    ·0   ·  ·0   ·  ·0   ·  ·0   ·  ·1   ·  ·1   ·✓
+triple/blur_image+slow_api+memory_pressu    ·1   ·  ·1   ·  ·0   ·  ·0   ·  ·0   ·  ·1   ·✓
+triple/slow_api+stale_ui+wrong_mapping@c    ·0   ·  ·1   · 1>0!     ·1   ·  ·0   ·  ·0   ·✗
+triple/slow_api+layout_overlap+memory_pr    ·0   ·  ·1   ·  ·0   ·  ·0   ·  ·1   ·  ·1   ·✓
+
+图例: ·0· / ·1· = 正确  |  E>D! = 期望E/实际D 不匹配
+
+============================================================
+  每故障独立指标 (Precision / Recall / F1)
+============================================================
+  blur_image            P=1.000  R=1.000  F1=1.000  (TP=4 FP=0 FN=0)
+  slow_api              P=1.000  R=1.000  F1=1.000  (TP=9 FP=0 FN=0)
+  stale_ui              P=1.000  R=0.500  F1=0.667  (TP=2 FP=0 FN=2)
+  wrong_mapping         P=1.000  R=1.000  F1=1.000  (TP=4 FP=0 FN=0)
+  layout_overlap        P=1.000  R=1.000  F1=1.000  (TP=4 FP=0 FN=0)
+  memory_pressure       P=1.000  R=1.000  F1=1.000  (TP=6 FP=0 FN=0)
+======================================================================
+  故障交互分析 (Fault Interaction Analysis)
+======================================================================
+结论: 1 组掩盖
+
+── 掩盖关系 (Masking) ──
+  A 注入后 B 的检出率显著下降，A 压住了 B 的信号。
+
+  wrong_mapping        ──→ mask stale_ui              strength=1.000
+    P(stale_ui|stale_ui_inj, wrong_mapping_not) = 1.00 vs P(stale_ui|stale_ui_inj, wrong_mapping_inj) = 0.00 → stale_ui 检出率因 wrong_mapping 下降 1.00
+
+
+  解读:
+    masking:     修 A 的 bug 可能让 B 的检出率恢复
+    excitation:  A 的检测器太宽，修 A 的检测器会减少 B 的假阳性
+    amplification: A 注入反而增强了 B 的信号
