@@ -33,7 +33,7 @@ export function getFaultState(): FaultState {
 }
 
 export function activateFault(profile: FaultProfile): void {
-  // 先重置所有故障标记，再设置目标故障
+  // 先重置所有故障标记
   state.currentProfile = profile
   state.latencyMs = 0
   state.blurLevel = 0
@@ -41,31 +41,31 @@ export function activateFault(profile: FaultProfile): void {
   state.overlapEnabled = false
   state.memoryPressure = false
 
-  switch (profile) {
-    case 'normal':
-      break
-    case 'slow_api':
-      state.latencyMs = 1200
-      break
-    case 'blur_image':
-      state.blurLevel = 10
-      break
-    case 'stale_ui':
-      state.staleEnabled = true
-      break
-    case 'wrong_mapping':
-      break
-    case 'layout_overlap':
-      state.overlapEnabled = true
-      break
-    case 'memory_pressure':
-      state.memoryPressure = true
-      break
-    case 'mixed_fault':
-      state.latencyMs = 1000
-      state.staleEnabled = true
-      state.memoryPressure = true
-      break
+  // 解析复合故障（如 "blur_image+slow_api"）
+  const parts = profile.split('+')
+
+  for (const part of parts) {
+    switch (part) {
+      case 'normal':
+        break
+      case 'slow_api':
+        state.latencyMs = Math.max(state.latencyMs, 1200)
+        break
+      case 'blur_image':
+        state.blurLevel = 10
+        break
+      case 'stale_ui':
+        state.staleEnabled = true
+        break
+      case 'wrong_mapping':
+        break
+      case 'layout_overlap':
+        state.overlapEnabled = true
+        break
+      case 'memory_pressure':
+        state.memoryPressure = true
+        break
+    }
   }
 }
 
