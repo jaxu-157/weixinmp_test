@@ -1,6 +1,101 @@
-# Vision-Triage
+# Vision-Triage v2
 
-基于“功能断言 + 性能断言 + 视觉断言”的微信小程序故障分诊原型。
+基于"功能断言 + 性能断言 + 视觉断言"的微信小程序**维度化根因分诊**系统。
+
+> **v2 升级**：v1 的手写真值表替换为可学习决策树（acc 74%→91%）；新增 cascade 视觉 oracle、350 样本 VT-Bench、可嵌入任意小程序的 SDK。
+> **v2 Phase 6（最新）**：借鉴 WeBug (ICSE'22) / WeReplay (FSE'23) / MiniScope (arXiv'24) / VisionDroid (arXiv'24) 思路，新增 **driver 自动化路径 + 多通道证据融合**（learned + SSIM 基线 + WeBug 规则），多通道 OR 真实故障覆盖率 **90.9%**。
+> 完整结题报告见 [`docs/结题报告.md`](docs/结题报告.md)（含项目价值边界、5 篇 prior work 调研、14-case 离线 smoke）。
+
+## 项目定位（解决什么、不解决什么）
+
+**目标场景** — 开发者自检解决不了的三个场景：
+1. **CI / 回归批量巡检**：80 张截图 30 秒分类成 5 类 verdict
+2. **黑盒验收 / 平台审核**：拿不到源码，纯输入输出黑盒分诊
+3. **灰度后线上巡检**：自动巡检 + 维度归因，直接 page 对应方向
+
+**不解决**：开发者本地单次单页面调试（这种场景用 DevTools 就行）。
+
+## 两条使用路径
+
+### 推荐：driver 自动化路径（0 行业务侵入）
+
+适合黑盒验收 / CI 巡检场景。无需修改任何业务代码。
+
+```bash
+# 真实小程序（需先启动微信开发者工具 + 编译 demo-uniapp）
+minitest -c auto_test/config.py -m test_cases.test_auto_matrix_v2
+
+# 离线（用历史截图验证完整 v2 管线，不需要真小程序）
+python auto_test/v2_modules/smoke_offline.py
+# → 输出: auto_test/reports/v2_driver/smoke_offline_<ts>.md
+```
+
+### 可选：SDK 集成路径（精细业务语义控制）
+
+适合开发者愿意提供 `expected/visible` 业务语义的场景。3 步集成、~14% LOC 成本。
+
+```ts
+// App.vue
+installTriage(app, { backendUrl: 'http://localhost:8900' })
+// 页面
+const probe = useTriageProbe('home')
+probe.setExpected(items.value.length)
+probe.setVisible(completedCount.value)
+```
+
+## v2 新增模块速览
+
+| 模块 | 路径 | 作用 | 阶段 |
+|---|---|---|---|
+| 可学习分诊 | `diagnosis/diagnose/learned_triage.py` | 18 维特征 → DecisionTree/Forest，14/14 击败规则法 12/14 | Phase 1 |
+| Cascade Oracle | `diagnosis/diagnose/cascade_oracle.py` | 规则做 pre-filter，57% 不确定样本升级到 MLLM | Phase 2 |
+| MLLM 重判 | `diagnosis/diagnose/mllm/` | HeuristicMLLM + DashScope Qwen-VL | Phase 2 |
+| VT-Bench v1 | `diagnosis/benchmark/` | 350 样本 × 14 场景 × 25 强度 | Phase 3 |
+| Vision-Triage SDK | `packages/vision-triage-sdk/` | npm 包，3 步集成 | Phase 4 |
+| Sample Apps | `packages/sample-apps/{checklist,profile,search}-app/` | 13.85% LOC 集成成本 | Phase 4 |
+| **稳定性等待** | `auto_test/v2_modules/stability_wait.py` | WeReplay 思路：连续帧 SSIM > 阈值再截图 | Phase 6 |
+| **SSIM 基线对比** | `auto_test/v2_modules/baseline_compare.py` | SSIM + pHash + 三联可视化 diff | Phase 6 |
+| **WeBug 规则** | `auto_test/v2_modules/webug_rules.py` | R1 API 无反馈 / R2 布局溢出 / R3 异步数据错配 | Phase 6 |
+| **Driver Engine** | `auto_test/v2_modules/driver_engine.py` | 三通道证据融合（learned ∪ baseline ∪ webug） | Phase 6 |
+| **Minium 矩阵 driver** | `auto_test/test_cases/test_auto_matrix_v2.py` | 一个 test 跑遍 3 页面 × 8 profile | Phase 6 |
+| **离线 smoke** | `auto_test/v2_modules/smoke_offline.py` | 14 case 历史截图离线验证 v2 管线 | Phase 6 |
+
+## 一键复现 v2 全部实验
+
+```bash
+cd diagnosis && pip install -r requirements.txt
+cd ..
+
+# Phase 1: 训练可学习分诊
+python diagnosis/diagnose/training/train.py
+python diagnosis/diagnose/training/evaluate.py     # ablation
+python diagnosis/diagnose/training/smoke_test.py   # 真实截图端到端
+
+# Phase 2: cascade oracle 评测
+python diagnosis/diagnose/training/evaluate_cascade.py
+
+# Phase 3: VT-Bench 生成与评测
+python diagnosis/benchmark/generate.py --per-scenario 25
+python diagnosis/benchmark/evaluate.py --oracle all
+
+# Phase 4: SDK 集成成本审计
+python packages/sample-apps/audit_integration.py
+
+# Phase 6: v2 driver 离线 smoke（推荐先跑这条验证整条管线）
+python auto_test/v2_modules/smoke_offline.py
+```
+
+输出落点：
+- `diagnosis/diagnose/training/reports/`（混淆矩阵、决策树图、ablation 表）
+- `diagnosis/benchmark/reports/`（VT-Bench 评测结果）
+- `packages/sample-apps/integration_audit.{json,png}`
+- `auto_test/reports/v2_driver/`（Phase 6 矩阵报告 + diff 图）
+
+---
+
+## v1 原型说明（保留）
+
+
 
 ## 项目结构
 

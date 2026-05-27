@@ -1,0 +1,91 @@
+{
+  "apps": [
+    {
+      "app": "checklist-app",
+      "n_pages": 1,
+      "integration_loc": 11,
+      "business_loc": 57,
+      "total_loc": 68,
+      "integration_ratio": 0.1618,
+      "files": [
+        {
+          "file": "src/App.vue",
+          "integration_loc": 0,
+          "business_loc": 9
+        },
+        {
+          "file": "src/main.ts",
+          "integration_loc": 2,
+          "business_loc": 7
+        },
+        {
+          "file": "src/pages/home/index.vue",
+          "integration_loc": 9,
+          "business_loc": 41
+        }
+      ]
+    },
+    {
+      "app": "profile-app",
+      "n_pages": 1,
+      "integration_loc": 8,
+      "business_loc": 75,
+      "total_loc": 83,
+      "integration_ratio": 0.0964,
+      "files": [
+        {
+          "file": "src/App.vue",
+          "integration_loc": 0,
+          "business_loc": 7
+        },
+        {
+          "file": "src/main.ts",
+          "integration_loc": 2,
+          "business_loc": 5
+        },
+        {
+          "file": "src/pages/profile/index.vue",
+          "integration_loc": 6,
+          "business_loc": 63
+        }
+      ]
+    },
+    {
+      "app": "search-app",
+      "n_pages": 2,
+      "integration_loc": 13,
+      "business_loc": 67,
+      "total_loc": 80,
+      "integration_ratio": 0.1625,
+      "files": [
+        {
+          "file": "src/App.vue",
+          "integration_loc": 0,
+          "business_loc": 5
+        },
+        {
+          "file": "src/main.ts",
+          "integration_loc": 2,
+          "business_loc": 5
+        },
+        {
+          "file": "src/pages/detail/index.vue",
+          "integration_loc": 5,
+          "business_loc": 17
+        },
+        {
+          "file": "src/pages/search/index.vue",
+          "integration_loc": 6,
+          "business_loc": 40
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "n_apps": 3,
+    "total_pages": 4,
+    "total_integration_loc": 32,
+    "total_business_loc": 199,
+    "overall_integration_ratio": 0.13852813852813853
+  }
+}

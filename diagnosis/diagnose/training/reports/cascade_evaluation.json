@@ -1,0 +1,415 @@
+{
+  "results": [
+    {
+      "name": "rule_only",
+      "n": 14,
+      "visual_accuracy": 0.7142857142857143,
+      "verdict_accuracy": 1.0,
+      "avg_oracle_ms": 13.738972800118583,
+      "total_cost_dollars": 0.0,
+      "escalation_rate": 0.0,
+      "rows": [
+        {
+          "page": "counter",
+          "profile": "mixed_fault",
+          "expected": "Mixed",
+          "verdict": "Mixed",
+          "visual_pass": true,
+          "escalated": false,
+          "oracle_ms": 26.0
+        },
+        {
+          "page": "counter",
+          "profile": "normal",
+          "expected": "Pass",
+          "verdict": "Pass",
+          "visual_pass": true,
+          "escalated": false,
+          "oracle_ms": 11.53
+        },
+        {
+          "page": "counter",
+          "profile": "slow_api",
+          "expected": "PerformanceRisk",
+          "verdict": "PerformanceRisk",
+          "visual_pass": true,
+          "escalated": false,
+          "oracle_ms": 11.52
+        },
+        {
+          "page": "counter",
+          "profile": "stale_ui",
+          "expected": "FunctionalFail",
+          "verdict": "FunctionalFail",
+          "visual_pass": true,
+          "escalated": false,
+          "oracle_ms": 12.0
+        },
+        {
+          "page": "counter",
+          "profile": "wrong_mapping",
+          "expected": "FunctionalFail",
+          "verdict": "FunctionalFail",
+          "visual_pass": true,
+          "escalated": false,
+          "oracle_ms": 11.04
+        },
+        {
+          "page": "feed",
+          "profile": "blur_image",
+          "expected": "RenderBug",
+          "verdict": "RenderBug",
+          "visual_pass": false,
+          "escalated": false,
+          "oracle_ms": 12.99
+        },
+        {
+          "page": "feed",
+          "profile": "memory_pressure",
+          "expected": "PerformanceRisk",
+          "verdict": "PerformanceRisk",
+          "visual_pass": false,
+          "escalated": false,
+          "oracle_ms": 14.39
+        },
+        {
+          "page": "feed",
+          "profile": "mixed_fault",
+          "expected": "Mixed",
+          "verdict": "Mixed",
+          "visual_pass": true,
+          "escalated": false,
+          "oracle_ms": 17.38
+        },
+        {
+          "page": "feed",
+          "profile": "normal",
+          "expected": "Pass",
+          "verdict": "Pass",
+          "visual_pass": true,
+          "escalated": false,
+          "oracle_ms": 16.28
+        },
+        {
+          "page": "feed",
+          "profile": "slow_api",
+          "expected": "PerformanceRisk",
+          "verdict": "PerformanceRisk",
+          "visual_pass": false,
+          "escalated": false,
+          "oracle_ms": 0.98
+        },
+        {
+          "page": "layout",
+          "profile": "layout_overlap",
+          "expected": "FunctionalFail",
+          "verdict": "FunctionalFail",
+          "visual_pass": true,
+          "escalated": false,
+          "oracle_ms": 13.06
+        },
+        {
+          "page": "layout",
+          "profile": "memory_pressure",
+          "expected": "PerformanceRisk",
+          "verdict": "PerformanceRisk",
+          "visual_pass": true,
+          "escalated": false,
+          "oracle_ms": 15.02
+        },
+        {
+          "page": "layout",
+          "profile": "normal",
+          "expected": "Pass",
+          "verdict": "Pass",
+          "visual_pass": true,
+          "escalated": false,
+          "oracle_ms": 14.0
+        },
+        {
+          "page": "layout",
+          "profile": "slow_api",
+          "expected": "PerformanceRisk",
+          "verdict": "PerformanceRisk",
+          "visual_pass": true,
+          "escalated": false,
+          "oracle_ms": 16.17
+        }
+      ]
+    },
+    {
+      "name": "cascade",
+      "n": 14,
+      "visual_accuracy": 0.7142857142857143,
+      "verdict_accuracy": 1.0,
+      "avg_oracle_ms": 13.278382165091378,
+      "total_cost_dollars": 0.0,
+      "escalation_rate": 0.0,
+      "rows": [
+        {
+          "page": "counter",
+          "profile": "mixed_fault",
+          "expected": "Mixed",
+          "verdict": "Mixed",
+          "visual_pass": true,
+          "escalated": false,
+          "oracle_ms": 11.99
+        },
+        {
+          "page": "counter",
+          "profile": "normal",
+          "expected": "Pass",
+          "verdict": "Pass",
+          "visual_pass": true,
+          "escalated": false,
+          "oracle_ms": 12.98
+        },
+        {
+          "page": "counter",
+          "profile": "slow_api",
+          "expected": "PerformanceRisk",
+          "verdict": "PerformanceRisk",
+          "visual_pass": true,
+          "escalated": false,
+          "oracle_ms": 12.14
+        },
+        {
+          "page": "counter",
+          "profile": "stale_ui",
+          "expected": "FunctionalFail",
+          "verdict": "FunctionalFail",
+          "visual_pass": true,
+          "escalated": false,
+          "oracle_ms": 10.63
+        },
+        {
+          "page": "counter",
+          "profile": "wrong_mapping",
+          "expected": "FunctionalFail",
+          "verdict": "FunctionalFail",
+          "visual_pass": true,
+          "escalated": false,
+          "oracle_ms": 9.89
+        },
+        {
+          "page": "feed",
+          "profile": "blur_image",
+          "expected": "RenderBug",
+          "verdict": "RenderBug",
+          "visual_pass": false,
+          "escalated": false,
+          "oracle_ms": 12.9
+        },
+        {
+          "page": "feed",
+          "profile": "memory_pressure",
+          "expected": "PerformanceRisk",
+          "verdict": "PerformanceRisk",
+          "visual_pass": false,
+          "escalated": false,
+          "oracle_ms": 13.47
+        },
+        {
+          "page": "feed",
+          "profile": "mixed_fault",
+          "expected": "Mixed",
+          "verdict": "Mixed",
+          "visual_pass": true,
+          "escalated": false,
+          "oracle_ms": 17.0
+        },
+        {
+          "page": "feed",
+          "profile": "normal",
+          "expected": "Pass",
+          "verdict": "Pass",
+          "visual_pass": true,
+          "escalated": false,
+          "oracle_ms": 19.99
+        },
+        {
+          "page": "feed",
+          "profile": "slow_api",
+          "expected": "PerformanceRisk",
+          "verdict": "PerformanceRisk",
+          "visual_pass": false,
+          "escalated": false,
+          "oracle_ms": 1.0
+        },
+        {
+          "page": "layout",
+          "profile": "layout_overlap",
+          "expected": "FunctionalFail",
+          "verdict": "FunctionalFail",
+          "visual_pass": true,
+          "escalated": false,
+          "oracle_ms": 14.03
+        },
+        {
+          "page": "layout",
+          "profile": "memory_pressure",
+          "expected": "PerformanceRisk",
+          "verdict": "PerformanceRisk",
+          "visual_pass": true,
+          "escalated": false,
+          "oracle_ms": 15.56
+        },
+        {
+          "page": "layout",
+          "profile": "normal",
+          "expected": "Pass",
+          "verdict": "Pass",
+          "visual_pass": true,
+          "escalated": false,
+          "oracle_ms": 16.01
+        },
+        {
+          "page": "layout",
+          "profile": "slow_api",
+          "expected": "PerformanceRisk",
+          "verdict": "PerformanceRisk",
+          "visual_pass": true,
+          "escalated": false,
+          "oracle_ms": 18.32
+        }
+      ]
+    },
+    {
+      "name": "heuristic_always",
+      "n": 14,
+      "visual_accuracy": 0.7142857142857143,
+      "verdict_accuracy": 1.0,
+      "avg_oracle_ms": 19.344959940229142,
+      "total_cost_dollars": 0.0,
+      "escalation_rate": 1.0,
+      "rows": [
+        {
+          "page": "counter",
+          "profile": "mixed_fault",
+          "expected": "Mixed",
+          "verdict": "Mixed",
+          "visual_pass": true,
+          "escalated": true,
+          "oracle_ms": 25.0
+        },
+        {
+          "page": "counter",
+          "profile": "normal",
+          "expected": "Pass",
+          "verdict": "Pass",
+          "visual_pass": true,
+          "escalated": true,
+          "oracle_ms": 19.99
+        },
+        {
+          "page": "counter",
+          "profile": "slow_api",
+          "expected": "PerformanceRisk",
+          "verdict": "PerformanceRisk",
+          "visual_pass": true,
+          "escalated": true,
+          "oracle_ms": 21.36
+        },
+        {
+          "page": "counter",
+          "profile": "stale_ui",
+          "expected": "FunctionalFail",
+          "verdict": "FunctionalFail",
+          "visual_pass": true,
+          "escalated": true,
+          "oracle_ms": 17.81
+        },
+        {
+          "page": "counter",
+          "profile": "wrong_mapping",
+          "expected": "FunctionalFail",
+          "verdict": "FunctionalFail",
+          "visual_pass": true,
+          "escalated": true,
+          "oracle_ms": 19.0
+        },
+        {
+          "page": "feed",
+          "profile": "blur_image",
+          "expected": "RenderBug",
+          "verdict": "RenderBug",
+          "visual_pass": false,
+          "escalated": true,
+          "oracle_ms": 16.04
+        },
+        {
+          "page": "feed",
+          "profile": "memory_pressure",
+          "expected": "PerformanceRisk",
+          "verdict": "PerformanceRisk",
+          "visual_pass": false,
+          "escalated": true,
+          "oracle_ms": 15.4
+        },
+        {
+          "page": "feed",
+          "profile": "mixed_fault",
+          "expected": "Mixed",
+          "verdict": "Mixed",
+          "visual_pass": true,
+          "escalated": true,
+          "oracle_ms": 23.74
+        },
+        {
+          "page": "feed",
+          "profile": "normal",
+          "expected": "Pass",
+          "verdict": "Pass",
+          "visual_pass": true,
+          "escalated": true,
+          "oracle_ms": 24.38
+        },
+        {
+          "page": "feed",
+          "profile": "slow_api",
+          "expected": "PerformanceRisk",
+          "verdict": "PerformanceRisk",
+          "visual_pass": false,
+          "escalated": true,
+          "oracle_ms": 0.99
+        },
+        {
+          "page": "layout",
+          "profile": "layout_overlap",
+          "expected": "FunctionalFail",
+          "verdict": "FunctionalFail",
+          "visual_pass": true,
+          "escalated": true,
+          "oracle_ms": 21.12
+        },
+        {
+          "page": "layout",
+          "profile": "memory_pressure",
+          "expected": "PerformanceRisk",
+          "verdict": "PerformanceRisk",
+          "visual_pass": true,
+          "escalated": true,
+          "oracle_ms": 21.63
+        },
+        {
+          "page": "layout",
+          "profile": "normal",
+          "expected": "Pass",
+          "verdict": "Pass",
+          "visual_pass": true,
+          "escalated": true,
+          "oracle_ms": 20.62
+        },
+        {
+          "page": "layout",
+          "profile": "slow_api",
+          "expected": "PerformanceRisk",
+          "verdict": "PerformanceRisk",
+          "visual_pass": true,
+          "escalated": true,
+          "oracle_ms": 23.75
+        }
+      ]
+    }
+  ]
+}

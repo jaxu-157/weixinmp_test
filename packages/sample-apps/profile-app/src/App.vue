@@ -1,0 +1,8 @@
+<script setup lang="ts">
+import { onLaunch } from '@dcloudio/uni-app'
+onLaunch(() => { console.log('[profile-app] launched') })
+</script>
+
+<template>
+  <view />
+</template>

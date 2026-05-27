@@ -1,0 +1,21 @@
+{
+  "name": "vision-triage-sdk",
+  "version": "0.1.0",
+  "description": "Drop-in probe SDK for WeChat mini-programs that emits page-state + perf + visual evidence to the Vision-Triage backend",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "scripts": {
+    "test": "echo \"see ../../diagnosis/benchmark for evaluation harness\""
+  },
+  "keywords": [
+    "wechat-miniprogram",
+    "uni-app",
+    "testing",
+    "fault-injection",
+    "visual-oracle"
+  ],
+  "peerDependencies": {
+    "vue": "^3.0.0"
+  },
+  "license": "MIT"
+}

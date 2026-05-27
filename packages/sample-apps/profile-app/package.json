@@ -1,0 +1,10 @@
+{
+  "name": "vision-triage-sample-profile",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Sample mini-program with avatar+stats+form, integrated with vision-triage-sdk",
+  "dependencies": {
+    "vision-triage-sdk": "file:../../vision-triage-sdk",
+    "vue": "^3.4.0"
+  }
+}

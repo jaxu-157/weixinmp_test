@@ -1,0 +1,185 @@
+{
+  "ts": "20260520_095159",
+  "config": {
+    "project_path": "D:\\weixinmp_test\\foreign-uniapp\\dist\\build\\mp-weixin",
+    "appid": ""
+  },
+  "results": [
+    {
+      "key": "feed/normal",
+      "expected": "Pass",
+      "verdict": "ERROR",
+      "match": false,
+      "error": "截图重试 3 次仍失败: D:\\weixinmp_test\\auto_test\\reports\\v2_driver\\foreign_matrix_20260520_095159\\screenshots\\_probe\\_probe_1d09c99c.png (last_err=None)"
+    },
+    {
+      "key": "feed/slow_api",
+      "expected": "PerformanceRisk",
+      "verdict": "ERROR",
+      "match": false,
+      "error": "截图重试 3 次仍失败: D:\\weixinmp_test\\auto_test\\reports\\v2_driver\\foreign_matrix_20260520_095159\\screenshots\\_probe\\_probe_f81e6174.png (last_err=None)"
+    },
+    {
+      "key": "feed/blur_image",
+      "expected": "RenderBug",
+      "verdict": "ERROR",
+      "match": false,
+      "error": "截图重试 3 次仍失败: D:\\weixinmp_test\\auto_test\\reports\\v2_driver\\foreign_matrix_20260520_095159\\screenshots\\_probe\\_probe_69c8975a.png (last_err=None)"
+    },
+    {
+      "key": "feed/stale_ui",
+      "expected": "FunctionalFail",
+      "verdict": "ERROR",
+      "match": false,
+      "error": "截图重试 3 次仍失败: D:\\weixinmp_test\\auto_test\\reports\\v2_driver\\foreign_matrix_20260520_095159\\screenshots\\_probe\\_probe_bffc786b.png (last_err=None)"
+    },
+    {
+      "key": "feed/wrong_mapping",
+      "expected": "FunctionalFail",
+      "verdict": "ERROR",
+      "match": false,
+      "error": "截图重试 3 次仍失败: D:\\weixinmp_test\\auto_test\\reports\\v2_driver\\foreign_matrix_20260520_095159\\screenshots\\_probe\\_probe_fc056808.png (last_err=None)"
+    },
+    {
+      "key": "feed/layout_overlap",
+      "expected": "RenderBug",
+      "verdict": "ERROR",
+      "match": false,
+      "error": "截图重试 3 次仍失败: D:\\weixinmp_test\\auto_test\\reports\\v2_driver\\foreign_matrix_20260520_095159\\screenshots\\_probe\\_probe_e0a2fe98.png (last_err=None)"
+    },
+    {
+      "key": "feed/memory_pressure",
+      "expected": "PerformanceRisk",
+      "verdict": "ERROR",
+      "match": false,
+      "error": "截图重试 3 次仍失败: D:\\weixinmp_test\\auto_test\\reports\\v2_driver\\foreign_matrix_20260520_095159\\screenshots\\_probe\\_probe_a1e2f101.png (last_err=None)"
+    },
+    {
+      "key": "feed/mixed_fault",
+      "expected": "Mixed",
+      "verdict": "ERROR",
+      "match": false,
+      "error": "截图重试 3 次仍失败: D:\\weixinmp_test\\auto_test\\reports\\v2_driver\\foreign_matrix_20260520_095159\\screenshots\\_probe\\_probe_03535ff9.png (last_err=None)"
+    },
+    {
+      "key": "counter/normal",
+      "expected": "Pass",
+      "verdict": "ERROR",
+      "match": false,
+      "error": "截图重试 3 次仍失败: D:\\weixinmp_test\\auto_test\\reports\\v2_driver\\foreign_matrix_20260520_095159\\screenshots\\_probe\\_probe_fd8b0b40.png (last_err=None)"
+    },
+    {
+      "key": "counter/slow_api",
+      "expected": "PerformanceRisk",
+      "verdict": "ERROR",
+      "match": false,
+      "error": "截图重试 3 次仍失败: D:\\weixinmp_test\\auto_test\\reports\\v2_driver\\foreign_matrix_20260520_095159\\screenshots\\_probe\\_probe_0014ea77.png (last_err=None)"
+    },
+    {
+      "key": "counter/blur_image",
+      "expected": "RenderBug",
+      "verdict": "ERROR",
+      "match": false,
+      "error": "截图重试 3 次仍失败: D:\\weixinmp_test\\auto_test\\reports\\v2_driver\\foreign_matrix_20260520_095159\\screenshots\\_probe\\_probe_f4d7cd71.png (last_err=None)"
+    },
+    {
+      "key": "counter/stale_ui",
+      "expected": "FunctionalFail",
+      "verdict": "ERROR",
+      "match": false,
+      "error": "截图重试 3 次仍失败: D:\\weixinmp_test\\auto_test\\reports\\v2_driver\\foreign_matrix_20260520_095159\\screenshots\\_probe\\_probe_e2ecf201.png (last_err=None)"
+    },
+    {
+      "key": "counter/wrong_mapping",
+      "expected": "FunctionalFail",
+      "verdict": "ERROR",
+      "match": false,
+      "error": "截图重试 3 次仍失败: D:\\weixinmp_test\\auto_test\\reports\\v2_driver\\foreign_matrix_20260520_095159\\screenshots\\_probe\\_probe_9141bf28.png (last_err=None)"
+    },
+    {
+      "key": "counter/layout_overlap",
+      "expected": "RenderBug",
+      "verdict": "ERROR",
+      "match": false,
+      "error": "截图重试 3 次仍失败: D:\\weixinmp_test\\auto_test\\reports\\v2_driver\\foreign_matrix_20260520_095159\\screenshots\\_probe\\_probe_429df2d8.png (last_err=None)"
+    },
+    {
+      "key": "counter/memory_pressure",
+      "expected": "PerformanceRisk",
+      "verdict": "ERROR",
+      "match": false,
+      "error": "截图重试 3 次仍失败: D:\\weixinmp_test\\auto_test\\reports\\v2_driver\\foreign_matrix_20260520_095159\\screenshots\\_probe\\_probe_801fe19a.png (last_err=None)"
+    },
+    {
+      "key": "counter/mixed_fault",
+      "expected": "Mixed",
+      "verdict": "ERROR",
+      "match": false,
+      "error": "截图重试 3 次仍失败: D:\\weixinmp_test\\auto_test\\reports\\v2_driver\\foreign_matrix_20260520_095159\\screenshots\\_probe\\_probe_1ba3082a.png (last_err=None)"
+    },
+    {
+      "key": "layout/normal",
+      "expected": "Pass",
+      "verdict": "ERROR",
+      "match": false,
+      "error": "截图重试 3 次仍失败: D:\\weixinmp_test\\auto_test\\reports\\v2_driver\\foreign_matrix_20260520_095159\\screenshots\\_probe\\_probe_d2006122.png (last_err=None)"
+    },
+    {
+      "key": "layout/slow_api",
+      "expected": "PerformanceRisk",
+      "verdict": "ERROR",
+      "match": false,
+      "error": "截图重试 3 次仍失败: D:\\weixinmp_test\\auto_test\\reports\\v2_driver\\foreign_matrix_20260520_095159\\screenshots\\_probe\\_probe_ed25b07a.png (last_err=None)"
+    },
+    {
+      "key": "layout/blur_image",
+      "expected": "RenderBug",
+      "verdict": "ERROR",
+      "match": false,
+      "error": "截图重试 3 次仍失败: D:\\weixinmp_test\\auto_test\\reports\\v2_driver\\foreign_matrix_20260520_095159\\screenshots\\_probe\\_probe_4d203164.png (last_err=None)"
+    },
+    {
+      "key": "layout/stale_ui",
+      "expected": "FunctionalFail",
+      "verdict": "ERROR",
+      "match": false,
+      "error": "截图重试 3 次仍失败: D:\\weixinmp_test\\auto_test\\reports\\v2_driver\\foreign_matrix_20260520_095159\\screenshots\\_probe\\_probe_7b166158.png (last_err=None)"
+    },
+    {
+      "key": "layout/wrong_mapping",
+      "expected": "FunctionalFail",
+      "verdict": "ERROR",
+      "match": false,
+      "error": "截图重试 3 次仍失败: D:\\weixinmp_test\\auto_test\\reports\\v2_driver\\foreign_matrix_20260520_095159\\screenshots\\_probe\\_probe_6cb1139b.png (last_err=None)"
+    },
+    {
+      "key": "layout/layout_overlap",
+      "expected": "RenderBug",
+      "verdict": "ERROR",
+      "match": false,
+      "error": "截图重试 3 次仍失败: D:\\weixinmp_test\\auto_test\\reports\\v2_driver\\foreign_matrix_20260520_095159\\screenshots\\_probe\\_probe_69471fb4.png (last_err=None)"
+    },
+    {
+      "key": "layout/memory_pressure",
+      "expected": "PerformanceRisk",
+      "verdict": "ERROR",
+      "match": false,
+      "error": "截图重试 3 次仍失败: D:\\weixinmp_test\\auto_test\\reports\\v2_driver\\foreign_matrix_20260520_095159\\screenshots\\_probe\\_probe_d19747c2.png (last_err=None)"
+    },
+    {
+      "key": "layout/mixed_fault",
+      "expected": "Mixed",
+      "verdict": "ERROR",
+      "match": false,
+      "error": "截图重试 3 次仍失败: D:\\weixinmp_test\\auto_test\\reports\\v2_driver\\foreign_matrix_20260520_095159\\screenshots\\_probe\\_probe_2bfe3a55.png (last_err=None)"
+    }
+  ],
+  "summary": {
+    "n_cases": 24,
+    "verdict_accuracy": 0.0,
+    "n_baseline_regression": 0,
+    "n_webug_triggered": 0,
+    "n_actual_faults": 21,
+    "multi_channel_recall_on_faults": 0.0
+  }
+}

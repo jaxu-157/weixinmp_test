@@ -1,0 +1,48 @@
+{
+  "ts": "20260527_032433",
+  "summary": {
+    "project": "D:/weixinmp_test/third-youzouzou-wxapp",
+    "pages_total": 2,
+    "pages_diagnosed": 2,
+    "attach_success_rate": 1.0,
+    "verdict_fp_rate": 0.0,
+    "baseline_fp_rate": 0.0,
+    "webug_fp_rate": 0.0,
+    "any_channel_fp_rate": 0.0,
+    "qwen_oracle": true
+  },
+  "results": [
+    {
+      "page": "others",
+      "path": "/pages/others/others",
+      "page_type": "feed",
+      "verdict": "Pass",
+      "engine": "learned_tree_v1_cascade",
+      "baseline_ssim": 1.0,
+      "verdict_fp": false,
+      "baseline_fp": false,
+      "webug_fp": false,
+      "false_positive": false,
+      "stability_ms": 843,
+      "evidence": [
+        "[baseline] SSIM=1.0 (no regression)"
+      ]
+    },
+    {
+      "page": "example",
+      "path": "/pages/example/index",
+      "page_type": "feed",
+      "verdict": "Pass",
+      "engine": "learned_tree_v1_cascade",
+      "baseline_ssim": 1.0,
+      "verdict_fp": false,
+      "baseline_fp": false,
+      "webug_fp": false,
+      "false_positive": false,
+      "stability_ms": 868,
+      "evidence": [
+        "[baseline] SSIM=1.0 (no regression)"
+      ]
+    }
+  ]
+}

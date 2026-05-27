@@ -1,0 +1,12 @@
+# Python
+__pycache__/
+*.pyc
+
+# 第三方开源小程序克隆（零侵入 driver 的外部验证目标，体积大且可复现，不纳入版本管理）
+third-tdesign-retail/
+third-wxapp-mall/
+third-youzouzou-wxapp/
+
+# Minium / 真机运行产物（截图、diff 等大文件）
+auto_test/reports/v2_driver/*/screenshots/
+auto_test/reports/v2_driver/*/diffs/

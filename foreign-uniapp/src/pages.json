@@ -1,0 +1,48 @@
+{
+	"pages": [
+		{
+			"path": "pages/feed/index",
+			"style": {
+				"navigationBarTitleText": "今日推荐"
+			}
+		},
+		{
+			"path": "pages/counter/index",
+			"style": {
+				"navigationBarTitleText": "我的积分"
+			}
+		},
+		{
+			"path": "pages/layout/index",
+			"style": {
+				"navigationBarTitleText": "活动专区"
+			}
+		}
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "white",
+		"navigationBarTitleText": "ShopMart",
+		"navigationBarBackgroundColor": "#E94D5F",
+		"backgroundColor": "#FFF6F6"
+	},
+	"tabBar": {
+		"color": "#999999",
+		"selectedColor": "#E94D5F",
+		"backgroundColor": "#FFFFFF",
+		"borderStyle": "black",
+		"list": [
+			{
+				"pagePath": "pages/feed/index",
+				"text": "推荐"
+			},
+			{
+				"pagePath": "pages/counter/index",
+				"text": "积分"
+			},
+			{
+				"pagePath": "pages/layout/index",
+				"text": "活动"
+			}
+		]
+	}
+}
