@@ -1,0 +1,36 @@
+{
+  "ts": "20260527_011440",
+  "summary": {
+    "project": "D:/weixinmp_test/third-tdesign-retail",
+    "pages_total": 4,
+    "pages_diagnosed": 0,
+    "attach_success_rate": 0.0,
+    "verdict_fp_rate": null,
+    "baseline_fp_rate": null,
+    "webug_fp_rate": null,
+    "any_channel_fp_rate": null,
+    "qwen_oracle": true
+  },
+  "results": [
+    {
+      "page": "home",
+      "path": "/pages/home/home",
+      "verdict": "CAPTURE_FAIL"
+    },
+    {
+      "page": "category",
+      "path": "/pages/category/index",
+      "verdict": "CAPTURE_FAIL"
+    },
+    {
+      "page": "cart",
+      "path": "/pages/cart/index",
+      "verdict": "CAPTURE_FAIL"
+    },
+    {
+      "page": "usercenter",
+      "path": "/pages/usercenter/index",
+      "verdict": "CAPTURE_FAIL"
+    }
+  ]
+}

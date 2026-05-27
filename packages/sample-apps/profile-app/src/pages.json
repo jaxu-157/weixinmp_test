@@ -1,0 +1,9 @@
+{
+  "pages": [
+    { "path": "pages/profile/index", "style": { "navigationBarTitleText": "我的" } }
+  ],
+  "globalStyle": {
+    "navigationBarTextStyle": "black",
+    "navigationBarBackgroundColor": "#ffffff"
+  }
+}

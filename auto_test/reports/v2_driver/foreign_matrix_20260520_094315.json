@@ -1,0 +1,720 @@
+{
+  "ts": "20260520_094315",
+  "config": {
+    "project_path": "D:\\weixinmp_test\\foreign-uniapp\\dist\\build\\mp-weixin",
+    "appid": ""
+  },
+  "results": [
+    {
+      "key": "feed/normal",
+      "expected": "Pass",
+      "verdict": "ERROR",
+      "match": false,
+      "error": "[Errno 2] No such file or directory: 'D:\\\\weixinmp_test\\\\auto_test\\\\reports\\\\v2_driver\\\\foreign_matrix_20260520_094315\\\\screenshots\\\\_probe\\\\_probe_e58e984d.png'"
+    },
+    {
+      "key": "feed/slow_api",
+      "expected": "PerformanceRisk",
+      "verdict": "RenderBug",
+      "match": false,
+      "engine": "learned_tree_v1",
+      "stability_ms": 1319,
+      "stability_stable": true,
+      "baseline_diff": null,
+      "baseline_regression": false,
+      "webug": {
+        "r1_api_timeout_no_feedback": false,
+        "r2_layout_overflow": true,
+        "r3_async_data_mismatch": false,
+        "r1_evidence": "interaction_ms=1319 below threshold 1500",
+        "r2_evidence": "edge non-bg ratio=0.999 > 0.18",
+        "r3_evidence": "no mismatch detected"
+      },
+      "webug_triggered": true,
+      "evidence": [
+        "[webug-R2] edge non-bg ratio=0.999 > 0.18"
+      ],
+      "proba": {
+        "FunctionalFail": 0.0,
+        "Mixed": 0.0,
+        "Pass": 0.0,
+        "PerformanceRisk": 0.0,
+        "RenderBug": 1.0
+      },
+      "screenshot": "feed_slow_api.png"
+    },
+    {
+      "key": "feed/blur_image",
+      "expected": "RenderBug",
+      "verdict": "RenderBug",
+      "match": true,
+      "engine": "learned_tree_v1",
+      "stability_ms": 1248,
+      "stability_stable": true,
+      "baseline_diff": null,
+      "baseline_regression": false,
+      "webug": {
+        "r1_api_timeout_no_feedback": false,
+        "r2_layout_overflow": true,
+        "r3_async_data_mismatch": false,
+        "r1_evidence": "interaction_ms=1248 below threshold 1500",
+        "r2_evidence": "edge non-bg ratio=0.999 > 0.18",
+        "r3_evidence": "no mismatch detected"
+      },
+      "webug_triggered": true,
+      "evidence": [
+        "[webug-R2] edge non-bg ratio=0.999 > 0.18"
+      ],
+      "proba": {
+        "FunctionalFail": 0.0,
+        "Mixed": 0.0,
+        "Pass": 0.0,
+        "PerformanceRisk": 0.0,
+        "RenderBug": 1.0
+      },
+      "screenshot": "feed_blur_image.png"
+    },
+    {
+      "key": "feed/stale_ui",
+      "expected": "FunctionalFail",
+      "verdict": "FunctionalFail",
+      "match": true,
+      "engine": "learned_tree_v1",
+      "stability_ms": 1269,
+      "stability_stable": true,
+      "baseline_diff": null,
+      "baseline_regression": false,
+      "webug": {
+        "r1_api_timeout_no_feedback": false,
+        "r2_layout_overflow": true,
+        "r3_async_data_mismatch": true,
+        "r1_evidence": "interaction_ms=1269 below threshold 1500",
+        "r2_evidence": "edge non-bg ratio=0.999 > 0.18",
+        "r3_evidence": "value mismatch: visible=0 vs expected=6"
+      },
+      "webug_triggered": true,
+      "evidence": [
+        "[webug-R2] edge non-bg ratio=0.999 > 0.18",
+        "[webug-R3] value mismatch: visible=0 vs expected=6"
+      ],
+      "proba": {
+        "FunctionalFail": 1.0,
+        "Mixed": 0.0,
+        "Pass": 0.0,
+        "PerformanceRisk": 0.0,
+        "RenderBug": 0.0
+      },
+      "screenshot": "feed_stale_ui.png"
+    },
+    {
+      "key": "feed/wrong_mapping",
+      "expected": "FunctionalFail",
+      "verdict": "FunctionalFail",
+      "match": true,
+      "engine": "learned_tree_v1",
+      "stability_ms": 1370,
+      "stability_stable": true,
+      "baseline_diff": null,
+      "baseline_regression": false,
+      "webug": {
+        "r1_api_timeout_no_feedback": false,
+        "r2_layout_overflow": true,
+        "r3_async_data_mismatch": true,
+        "r1_evidence": "interaction_ms=1370 below threshold 1500",
+        "r2_evidence": "edge non-bg ratio=0.999 > 0.18",
+        "r3_evidence": "type mismatch: visible=str vs expected=int"
+      },
+      "webug_triggered": true,
+      "evidence": [
+        "[webug-R2] edge non-bg ratio=0.999 > 0.18",
+        "[webug-R3] type mismatch: visible=str vs expected=int"
+      ],
+      "proba": {
+        "FunctionalFail": 1.0,
+        "Mixed": 0.0,
+        "Pass": 0.0,
+        "PerformanceRisk": 0.0,
+        "RenderBug": 0.0
+      },
+      "screenshot": "feed_wrong_mapping.png"
+    },
+    {
+      "key": "feed/layout_overlap",
+      "expected": "RenderBug",
+      "verdict": "RenderBug",
+      "match": true,
+      "engine": "learned_tree_v1",
+      "stability_ms": 1294,
+      "stability_stable": true,
+      "baseline_diff": null,
+      "baseline_regression": false,
+      "webug": {
+        "r1_api_timeout_no_feedback": false,
+        "r2_layout_overflow": true,
+        "r3_async_data_mismatch": false,
+        "r1_evidence": "interaction_ms=1294 below threshold 1500",
+        "r2_evidence": "edge non-bg ratio=0.999 > 0.18",
+        "r3_evidence": "no mismatch detected"
+      },
+      "webug_triggered": true,
+      "evidence": [
+        "[webug-R2] edge non-bg ratio=0.999 > 0.18"
+      ],
+      "proba": {
+        "FunctionalFail": 0.0,
+        "Mixed": 0.0,
+        "Pass": 0.0,
+        "PerformanceRisk": 0.0,
+        "RenderBug": 1.0
+      },
+      "screenshot": "feed_layout_overlap.png"
+    },
+    {
+      "key": "feed/memory_pressure",
+      "expected": "PerformanceRisk",
+      "verdict": "RenderBug",
+      "match": false,
+      "engine": "learned_tree_v1",
+      "stability_ms": 1497,
+      "stability_stable": true,
+      "baseline_diff": null,
+      "baseline_regression": false,
+      "webug": {
+        "r1_api_timeout_no_feedback": false,
+        "r2_layout_overflow": true,
+        "r3_async_data_mismatch": false,
+        "r1_evidence": "interaction_ms=1497 below threshold 1500",
+        "r2_evidence": "edge non-bg ratio=0.999 > 0.18",
+        "r3_evidence": "no mismatch detected"
+      },
+      "webug_triggered": true,
+      "evidence": [
+        "[webug-R2] edge non-bg ratio=0.999 > 0.18"
+      ],
+      "proba": {
+        "FunctionalFail": 0.0,
+        "Mixed": 0.0,
+        "Pass": 0.0,
+        "PerformanceRisk": 0.0,
+        "RenderBug": 1.0
+      },
+      "screenshot": "feed_memory_pressure.png"
+    },
+    {
+      "key": "feed/mixed_fault",
+      "expected": "Mixed",
+      "verdict": "FunctionalFail",
+      "match": false,
+      "engine": "learned_tree_v1",
+      "stability_ms": 1333,
+      "stability_stable": true,
+      "baseline_diff": null,
+      "baseline_regression": false,
+      "webug": {
+        "r1_api_timeout_no_feedback": false,
+        "r2_layout_overflow": true,
+        "r3_async_data_mismatch": true,
+        "r1_evidence": "interaction_ms=1333 below threshold 1500",
+        "r2_evidence": "edge non-bg ratio=0.999 > 0.18",
+        "r3_evidence": "value mismatch: visible=0 vs expected=6"
+      },
+      "webug_triggered": true,
+      "evidence": [
+        "[webug-R2] edge non-bg ratio=0.999 > 0.18",
+        "[webug-R3] value mismatch: visible=0 vs expected=6"
+      ],
+      "proba": {
+        "FunctionalFail": 1.0,
+        "Mixed": 0.0,
+        "Pass": 0.0,
+        "PerformanceRisk": 0.0,
+        "RenderBug": 0.0
+      },
+      "screenshot": "feed_mixed_fault.png"
+    },
+    {
+      "key": "counter/normal",
+      "expected": "Pass",
+      "verdict": "Pass",
+      "match": true,
+      "engine": "learned_tree_v1",
+      "stability_ms": 957,
+      "stability_stable": true,
+      "baseline_diff": null,
+      "baseline_regression": false,
+      "webug": {
+        "r1_api_timeout_no_feedback": false,
+        "r2_layout_overflow": false,
+        "r3_async_data_mismatch": false,
+        "r1_evidence": "interaction_ms=957 below threshold 1500",
+        "r2_evidence": "edge non-bg ratio=0.000",
+        "r3_evidence": "no mismatch detected"
+      },
+      "webug_triggered": false,
+      "evidence": [],
+      "proba": {
+        "FunctionalFail": 0.0,
+        "Mixed": 0.0,
+        "Pass": 0.75,
+        "PerformanceRisk": 0.0,
+        "RenderBug": 0.25
+      },
+      "screenshot": "counter_normal.png"
+    },
+    {
+      "key": "counter/slow_api",
+      "expected": "PerformanceRisk",
+      "verdict": "Pass",
+      "match": false,
+      "engine": "learned_tree_v1",
+      "stability_ms": 990,
+      "stability_stable": true,
+      "baseline_diff": null,
+      "baseline_regression": false,
+      "webug": {
+        "r1_api_timeout_no_feedback": false,
+        "r2_layout_overflow": false,
+        "r3_async_data_mismatch": false,
+        "r1_evidence": "interaction_ms=990 below threshold 1500",
+        "r2_evidence": "edge non-bg ratio=0.000",
+        "r3_evidence": "no mismatch detected"
+      },
+      "webug_triggered": false,
+      "evidence": [],
+      "proba": {
+        "FunctionalFail": 0.0,
+        "Mixed": 0.0,
+        "Pass": 0.75,
+        "PerformanceRisk": 0.0,
+        "RenderBug": 0.25
+      },
+      "screenshot": "counter_slow_api.png"
+    },
+    {
+      "key": "counter/blur_image",
+      "expected": "RenderBug",
+      "verdict": "Pass",
+      "match": false,
+      "engine": "learned_tree_v1",
+      "stability_ms": 988,
+      "stability_stable": true,
+      "baseline_diff": null,
+      "baseline_regression": false,
+      "webug": {
+        "r1_api_timeout_no_feedback": false,
+        "r2_layout_overflow": false,
+        "r3_async_data_mismatch": false,
+        "r1_evidence": "interaction_ms=988 below threshold 1500",
+        "r2_evidence": "edge non-bg ratio=0.000",
+        "r3_evidence": "no mismatch detected"
+      },
+      "webug_triggered": false,
+      "evidence": [],
+      "proba": {
+        "FunctionalFail": 0.0,
+        "Mixed": 0.0,
+        "Pass": 0.75,
+        "PerformanceRisk": 0.0,
+        "RenderBug": 0.25
+      },
+      "screenshot": "counter_blur_image.png"
+    },
+    {
+      "key": "counter/stale_ui",
+      "expected": "FunctionalFail",
+      "verdict": "FunctionalFail",
+      "match": true,
+      "engine": "learned_tree_v1",
+      "stability_ms": 979,
+      "stability_stable": true,
+      "baseline_diff": null,
+      "baseline_regression": false,
+      "webug": {
+        "r1_api_timeout_no_feedback": false,
+        "r2_layout_overflow": false,
+        "r3_async_data_mismatch": true,
+        "r1_evidence": "interaction_ms=979 below threshold 1500",
+        "r2_evidence": "edge non-bg ratio=0.000",
+        "r3_evidence": "value mismatch: visible=0 vs expected=5"
+      },
+      "webug_triggered": true,
+      "evidence": [
+        "[webug-R3] value mismatch: visible=0 vs expected=5"
+      ],
+      "proba": {
+        "FunctionalFail": 1.0,
+        "Mixed": 0.0,
+        "Pass": 0.0,
+        "PerformanceRisk": 0.0,
+        "RenderBug": 0.0
+      },
+      "screenshot": "counter_stale_ui.png"
+    },
+    {
+      "key": "counter/wrong_mapping",
+      "expected": "FunctionalFail",
+      "verdict": "FunctionalFail",
+      "match": true,
+      "engine": "learned_tree_v1",
+      "stability_ms": 967,
+      "stability_stable": true,
+      "baseline_diff": null,
+      "baseline_regression": false,
+      "webug": {
+        "r1_api_timeout_no_feedback": false,
+        "r2_layout_overflow": false,
+        "r3_async_data_mismatch": true,
+        "r1_evidence": "interaction_ms=967 below threshold 1500",
+        "r2_evidence": "edge non-bg ratio=0.000",
+        "r3_evidence": "type mismatch: visible=str vs expected=int"
+      },
+      "webug_triggered": true,
+      "evidence": [
+        "[webug-R3] type mismatch: visible=str vs expected=int"
+      ],
+      "proba": {
+        "FunctionalFail": 1.0,
+        "Mixed": 0.0,
+        "Pass": 0.0,
+        "PerformanceRisk": 0.0,
+        "RenderBug": 0.0
+      },
+      "screenshot": "counter_wrong_mapping.png"
+    },
+    {
+      "key": "counter/layout_overlap",
+      "expected": "RenderBug",
+      "verdict": "Pass",
+      "match": false,
+      "engine": "learned_tree_v1",
+      "stability_ms": 999,
+      "stability_stable": true,
+      "baseline_diff": null,
+      "baseline_regression": false,
+      "webug": {
+        "r1_api_timeout_no_feedback": false,
+        "r2_layout_overflow": false,
+        "r3_async_data_mismatch": false,
+        "r1_evidence": "interaction_ms=999 below threshold 1500",
+        "r2_evidence": "edge non-bg ratio=0.000",
+        "r3_evidence": "no mismatch detected"
+      },
+      "webug_triggered": false,
+      "evidence": [],
+      "proba": {
+        "FunctionalFail": 0.0,
+        "Mixed": 0.0,
+        "Pass": 0.75,
+        "PerformanceRisk": 0.0,
+        "RenderBug": 0.25
+      },
+      "screenshot": "counter_layout_overlap.png"
+    },
+    {
+      "key": "counter/memory_pressure",
+      "expected": "PerformanceRisk",
+      "verdict": "Pass",
+      "match": false,
+      "engine": "learned_tree_v1",
+      "stability_ms": 1004,
+      "stability_stable": true,
+      "baseline_diff": null,
+      "baseline_regression": false,
+      "webug": {
+        "r1_api_timeout_no_feedback": false,
+        "r2_layout_overflow": false,
+        "r3_async_data_mismatch": false,
+        "r1_evidence": "interaction_ms=1004 below threshold 1500",
+        "r2_evidence": "edge non-bg ratio=0.000",
+        "r3_evidence": "no mismatch detected"
+      },
+      "webug_triggered": false,
+      "evidence": [],
+      "proba": {
+        "FunctionalFail": 0.0,
+        "Mixed": 0.0,
+        "Pass": 0.75,
+        "PerformanceRisk": 0.0,
+        "RenderBug": 0.25
+      },
+      "screenshot": "counter_memory_pressure.png"
+    },
+    {
+      "key": "counter/mixed_fault",
+      "expected": "Mixed",
+      "verdict": "FunctionalFail",
+      "match": false,
+      "engine": "learned_tree_v1",
+      "stability_ms": 1035,
+      "stability_stable": true,
+      "baseline_diff": null,
+      "baseline_regression": false,
+      "webug": {
+        "r1_api_timeout_no_feedback": false,
+        "r2_layout_overflow": false,
+        "r3_async_data_mismatch": true,
+        "r1_evidence": "interaction_ms=1035 below threshold 1500",
+        "r2_evidence": "edge non-bg ratio=0.000",
+        "r3_evidence": "value mismatch: visible=0 vs expected=5"
+      },
+      "webug_triggered": true,
+      "evidence": [
+        "[webug-R3] value mismatch: visible=0 vs expected=5"
+      ],
+      "proba": {
+        "FunctionalFail": 1.0,
+        "Mixed": 0.0,
+        "Pass": 0.0,
+        "PerformanceRisk": 0.0,
+        "RenderBug": 0.0
+      },
+      "screenshot": "counter_mixed_fault.png"
+    },
+    {
+      "key": "layout/normal",
+      "expected": "Pass",
+      "verdict": "Pass",
+      "match": true,
+      "engine": "learned_tree_v1",
+      "stability_ms": 1443,
+      "stability_stable": true,
+      "baseline_diff": null,
+      "baseline_regression": false,
+      "webug": {
+        "r1_api_timeout_no_feedback": false,
+        "r2_layout_overflow": false,
+        "r3_async_data_mismatch": false,
+        "r1_evidence": "interaction_ms=1443 below threshold 1500",
+        "r2_evidence": "edge non-bg ratio=0.175",
+        "r3_evidence": "no mismatch detected"
+      },
+      "webug_triggered": false,
+      "evidence": [],
+      "proba": {
+        "FunctionalFail": 0.0,
+        "Mixed": 0.0,
+        "Pass": 0.75,
+        "PerformanceRisk": 0.0,
+        "RenderBug": 0.25
+      },
+      "screenshot": "layout_normal.png"
+    },
+    {
+      "key": "layout/slow_api",
+      "expected": "PerformanceRisk",
+      "verdict": "Pass",
+      "match": false,
+      "engine": "learned_tree_v1",
+      "stability_ms": 1382,
+      "stability_stable": true,
+      "baseline_diff": null,
+      "baseline_regression": false,
+      "webug": {
+        "r1_api_timeout_no_feedback": false,
+        "r2_layout_overflow": false,
+        "r3_async_data_mismatch": false,
+        "r1_evidence": "interaction_ms=1382 below threshold 1500",
+        "r2_evidence": "edge non-bg ratio=0.175",
+        "r3_evidence": "no mismatch detected"
+      },
+      "webug_triggered": false,
+      "evidence": [],
+      "proba": {
+        "FunctionalFail": 0.0,
+        "Mixed": 0.0,
+        "Pass": 0.75,
+        "PerformanceRisk": 0.0,
+        "RenderBug": 0.25
+      },
+      "screenshot": "layout_slow_api.png"
+    },
+    {
+      "key": "layout/blur_image",
+      "expected": "RenderBug",
+      "verdict": "Pass",
+      "match": false,
+      "engine": "learned_tree_v1",
+      "stability_ms": 1383,
+      "stability_stable": true,
+      "baseline_diff": null,
+      "baseline_regression": false,
+      "webug": {
+        "r1_api_timeout_no_feedback": false,
+        "r2_layout_overflow": false,
+        "r3_async_data_mismatch": false,
+        "r1_evidence": "interaction_ms=1383 below threshold 1500",
+        "r2_evidence": "edge non-bg ratio=0.175",
+        "r3_evidence": "no mismatch detected"
+      },
+      "webug_triggered": false,
+      "evidence": [],
+      "proba": {
+        "FunctionalFail": 0.0,
+        "Mixed": 0.0,
+        "Pass": 0.75,
+        "PerformanceRisk": 0.0,
+        "RenderBug": 0.25
+      },
+      "screenshot": "layout_blur_image.png"
+    },
+    {
+      "key": "layout/stale_ui",
+      "expected": "FunctionalFail",
+      "verdict": "FunctionalFail",
+      "match": true,
+      "engine": "learned_tree_v1",
+      "stability_ms": 1403,
+      "stability_stable": true,
+      "baseline_diff": null,
+      "baseline_regression": false,
+      "webug": {
+        "r1_api_timeout_no_feedback": false,
+        "r2_layout_overflow": false,
+        "r3_async_data_mismatch": true,
+        "r1_evidence": "interaction_ms=1403 below threshold 1500",
+        "r2_evidence": "edge non-bg ratio=0.175",
+        "r3_evidence": "value mismatch: visible=0 vs expected=3"
+      },
+      "webug_triggered": true,
+      "evidence": [
+        "[webug-R3] value mismatch: visible=0 vs expected=3"
+      ],
+      "proba": {
+        "FunctionalFail": 1.0,
+        "Mixed": 0.0,
+        "Pass": 0.0,
+        "PerformanceRisk": 0.0,
+        "RenderBug": 0.0
+      },
+      "screenshot": "layout_stale_ui.png"
+    },
+    {
+      "key": "layout/wrong_mapping",
+      "expected": "FunctionalFail",
+      "verdict": "FunctionalFail",
+      "match": true,
+      "engine": "learned_tree_v1",
+      "stability_ms": 1395,
+      "stability_stable": true,
+      "baseline_diff": null,
+      "baseline_regression": false,
+      "webug": {
+        "r1_api_timeout_no_feedback": false,
+        "r2_layout_overflow": false,
+        "r3_async_data_mismatch": true,
+        "r1_evidence": "interaction_ms=1395 below threshold 1500",
+        "r2_evidence": "edge non-bg ratio=0.175",
+        "r3_evidence": "type mismatch: visible=str vs expected=int"
+      },
+      "webug_triggered": true,
+      "evidence": [
+        "[webug-R3] type mismatch: visible=str vs expected=int"
+      ],
+      "proba": {
+        "FunctionalFail": 1.0,
+        "Mixed": 0.0,
+        "Pass": 0.0,
+        "PerformanceRisk": 0.0,
+        "RenderBug": 0.0
+      },
+      "screenshot": "layout_wrong_mapping.png"
+    },
+    {
+      "key": "layout/layout_overlap",
+      "expected": "RenderBug",
+      "verdict": "Pass",
+      "match": false,
+      "engine": "learned_tree_v1",
+      "stability_ms": 1393,
+      "stability_stable": true,
+      "baseline_diff": null,
+      "baseline_regression": false,
+      "webug": {
+        "r1_api_timeout_no_feedback": false,
+        "r2_layout_overflow": false,
+        "r3_async_data_mismatch": false,
+        "r1_evidence": "interaction_ms=1393 below threshold 1500",
+        "r2_evidence": "edge non-bg ratio=0.175",
+        "r3_evidence": "no mismatch detected"
+      },
+      "webug_triggered": false,
+      "evidence": [],
+      "proba": {
+        "FunctionalFail": 0.0,
+        "Mixed": 0.0,
+        "Pass": 0.75,
+        "PerformanceRisk": 0.0,
+        "RenderBug": 0.25
+      },
+      "screenshot": "layout_layout_overlap.png"
+    },
+    {
+      "key": "layout/memory_pressure",
+      "expected": "PerformanceRisk",
+      "verdict": "Pass",
+      "match": false,
+      "engine": "learned_tree_v1",
+      "stability_ms": 1413,
+      "stability_stable": true,
+      "baseline_diff": null,
+      "baseline_regression": false,
+      "webug": {
+        "r1_api_timeout_no_feedback": false,
+        "r2_layout_overflow": false,
+        "r3_async_data_mismatch": false,
+        "r1_evidence": "interaction_ms=1413 below threshold 1500",
+        "r2_evidence": "edge non-bg ratio=0.175",
+        "r3_evidence": "no mismatch detected"
+      },
+      "webug_triggered": false,
+      "evidence": [],
+      "proba": {
+        "FunctionalFail": 0.0,
+        "Mixed": 0.0,
+        "Pass": 0.75,
+        "PerformanceRisk": 0.0,
+        "RenderBug": 0.25
+      },
+      "screenshot": "layout_memory_pressure.png"
+    },
+    {
+      "key": "layout/mixed_fault",
+      "expected": "Mixed",
+      "verdict": "FunctionalFail",
+      "match": false,
+      "engine": "learned_tree_v1",
+      "stability_ms": 1385,
+      "stability_stable": true,
+      "baseline_diff": null,
+      "baseline_regression": false,
+      "webug": {
+        "r1_api_timeout_no_feedback": false,
+        "r2_layout_overflow": false,
+        "r3_async_data_mismatch": true,
+        "r1_evidence": "interaction_ms=1385 below threshold 1500",
+        "r2_evidence": "edge non-bg ratio=0.175",
+        "r3_evidence": "value mismatch: visible=0 vs expected=3"
+      },
+      "webug_triggered": true,
+      "evidence": [
+        "[webug-R3] value mismatch: visible=0 vs expected=3"
+      ],
+      "proba": {
+        "FunctionalFail": 1.0,
+        "Mixed": 0.0,
+        "Pass": 0.0,
+        "PerformanceRisk": 0.0,
+        "RenderBug": 0.0
+      },
+      "screenshot": "layout_mixed_fault.png"
+    }
+  ],
+  "summary": {
+    "n_cases": 24,
+    "verdict_accuracy": 0.417,
+    "n_baseline_regression": 0,
+    "n_webug_triggered": 13,
+    "n_actual_faults": 21,
+    "multi_channel_recall_on_faults": 0.619
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "trained_at": "2026-05-19T15:23:47.347005",
+  "n_samples_total": 400,
+  "n_samples_mined": 63,
+  "n_samples_train": 300,
+  "n_samples_test": 100,
+  "class_distribution_full": {
+    "Pass": 80,
+    "PerformanceRisk": 80,
+    "RenderBug": 80,
+    "FunctionalFail": 80,
+    "Mixed": 80
+  },
+  "metrics": {
+    "tree": {
+      "accuracy": 0.91,
+      "macro_f1": 0.9060465116279068
+    },
+    "forest": {
+      "accuracy": 0.87,
+      "macro_f1": 0.8640606960250701
+    },
+    "rule": {
+      "accuracy": 0.74,
+      "macro_f1": 0.7212121212121212
+    }
+  }
+}
