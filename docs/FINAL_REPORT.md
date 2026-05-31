@@ -189,38 +189,43 @@ A/B/C 线都只在首页布局上测。R3 把同一套"每页各自基线 + 局�
 
 ---
 
-## 3.2 根因定位：从"哪一维"到"哪个源文件"（确定性，无 LLM，本轮新增）
+## 3.2 根因定位：尝试 → **负结果（朴素 tile→class 链路 0/10，附诚实根因分析）**
 
-中期之前的 RCA 只回答"故障属于视觉/功能/性能哪一维"。本轮把它推进到**定位到具体源文件/组件**——且全程确定性，不依赖 LLM。
+中期之前的 RCA 只回答"故障属于视觉/功能/性能哪一维"。本轮尝试把它推进到**定位到具体源文件**，全程确定性、不依赖 LLM。**结论：朴素链路失败，文件级定位 0/10。** 这是个负结果，但根因清晰、可指导下一步。
 
-**定位链路（视觉/布局/功能共用）**：
+**尝试的定位链路（视觉/布局/功能共用）**：
 ```
 分块 SSIM 最低的 tile  →  elementsFromPoint(tile 中心像素)  →  命中元素的 class / data-v-* 
                         →  class→.vue 源文件索引  →  预测源文件
 ```
-- 视口固定 375×2200、8×3 网格，tile 坐标→像素中心是确定映射（`localize.py: tile_center_px`）。
-- `build_class_file_index` 扫描所有 `.vue` 的 `<style>` 选择器与模板 class，建 `class→源文件` 索引（199 类）。
-- 第 0 步 DOM 探测（`probe_dom_attribution.py`，产物 `campaign_out/probe_dom/`）实测确认：H5 prod 构建里 **`data-v-*` scoped 属性可达（167/368 元素）**、`elementsFromPoint` 可用、但 **Vue per-node 实例不可达**——所以走 class/data-v 路线而非 Vue 运行时。
+- 视口固定 375×2200、8×3 网格，tile→像素中心是确定映射（`localize.py: tile_center_px`）。
+- `build_class_file_index` 扫描所有 `.vue` 的 `<style>` 选择器与模板 class，建 `class→源文件` 索引。
+- 第 0 步 DOM 探测（`probe_dom_attribution.py`，产物 `campaign_out/probe_dom/`）实测：H5 prod 构建里 **`data-v-*` 可达（167/368 元素）**、`elementsFromPoint` 可用，但 **Vue per-node 实例不可达**。
 
-**实测定位准确率**（产物 `campaign_out/localize_out/localization.json`，复用上轮已存故障截图，index 页 N=20）：
+**实测结果（产物 `campaign_out/localize_out/localization.json`，index 页 N=20，逐条核对）**：
 
-| 指标 | 结果 | 说明 |
-|---|---|---|
-| 检出（前提） | 10/20 | 没检出的无从定位，定位率只在**已检出**的故障上算 |
-| **文件级定位** | **7/10 = 70%** | 预测源文件 == 真值文件 |
-| **组件级定位** | **9/10 = 90%** | 含 2 条"定位到正确组件但真值是其 `.scss` 样式文件"的近似命中 |
-| 真正错误 | **1/10** | `width@CustomNavbar` 在顶部 tile(0,0) 命中到与之重叠的 XtxSwiper（元素重叠） |
+| 指标 | 结果 |
+|---|---|
+| 检出（前提） | 10/20 |
+| **文件级定位** | **0/10 = 0%**（全部预测错文件）|
+| 组件级定位 | 0/10（连组件都没对上）|
 
-- **功能故障同样定位对**：`bindempty@XtxGuess:item.name`、`:item.price` 两条数据绑定故障都正确定位到 `XtxGuess.vue`——印证"功能故障可直接定位"（坏字段名本就命名在运行时 `page.data`/绑定里，源文件经同一链路得到）。
-- **2 条 category 近似命中**：故障在 `pages/index/styles/category.scss`，定位到了使用该样式的 `CategoryPanel.vue`——组件对、文件类型差一层。
-- **唯一真错=元素重叠**：点采样在重叠区会命中上层/相邻元素。改进方向：用元素 bbox ∩ 变化 tile 的**面积排序**取代单点采样（已知工程项）。
+**为什么是 0/10（三个真因，都已从逐条数据看出）**：
+1. **class 索引被框架类污染**：`navigator-wrap` / `scroll-view` / `caption` 这类 uni-app 框架生成的 wrapper class 出现在多个组件，索引把它们误唯一映射到 `goods.vue` / `CartMain.vue` 等无关文件。例 `img@XtxSwiper:item.imgUrl`（真值 XtxSwiper）经 `navigator-wrap` 被错判成 `goods.vue`。
+2. **"diff 最差 tile" ≠ "故障元素所在"**：宽度溢出会把后续内容挤动，最大像素变化常出现在被挤动的**相邻区**而非故障源本身。
+3. **单点采样命中通用容器**：`elementsFromPoint(中心)` 多半命中 `scroll-view`/`navigator` 这类大容器，而非语义组件。
+
+**正确的修法（下一步，未做）**：
+- 用 **data-v hash → 文件**映射(从 dist 各组件 chunk 的 scoped CSS 解析)替代 class 索引——hash 是每个 `.vue` 唯一的，不像 class 会撞车；探测已证 hash 可达且正确(swiper=`df5374a1`)。
+- 用**元素 bbox ∩ 变化 tile 的面积排序**替代单点采样。
+- 过滤 `uni-*` / wrapper 框架类。
 
 **三维度定位现状（诚实）**：
 | 维度 | 能否定位到源 | 手段 | 现状 |
 |---|---|---|---|
-| **功能/数据** | ✅ 最直接 | 运行时 `page.data`/绑定 token 直接命名坏字段；字段→行可用 `@vue/compiler-sfc` 的 `loc` 或 ajv/zod 的 `instancePath` | 文件级已实测命中 |
-| **视觉/布局** | ✅ 需像素→元素逆映射 | tile→`elementsFromPoint`→class/data-v→文件（本节）；学术蓝本 WebSee（区域→故障元素）、XFix（→CSS 属性） | 7/10 文件级 |
-| **性能** | ⚠️ 被检测卡住 | H5 检出本身是盲区（§2.5 R1 负结果）→无从定位；**若能检出**，CDP `Profiler`（Playwright `newCDPSession` 可驱动）+ source-map 给**函数+源码行**级确定性定位；原生微信深 CPU profiler 是 GUI-only，minium 拿不到 | 未达可用，平台不对称 |
+| **功能/数据** | 理论最直接 | 运行时 `page.data`/绑定 token 直接命名坏字段；字段→行可用 `@vue/compiler-sfc` `loc` 或 ajv/zod `instancePath` | **本轮未单独实现字段级定位**（走的是和视觉同一条 tile→class 链路，因此同样 0/10）|
+| **视觉/布局** | 需像素→元素逆映射 | tile→`elementsFromPoint`→class/data-v→文件 | **0/10（朴素链路失败，见上）**；学术蓝本 WebSee（区域→故障元素）、XFix（→CSS 属性）|
+| **性能** | 被检测卡住 | H5 检出本身是盲区（§2.5 R1 负结果）→无从定位；**若能检出**，CDP `Profiler`（Playwright `newCDPSession` 可驱动）+ source-map 给**函数+源码行**级确定性定位；原生微信深 CPU profiler 是 GUI-only，minium 拿不到 | 未达可用，平台不对称 |
 
 **现成轮子归档**（调研结论，便于后续直接接）：
 - 视觉：`resemble.js`（返回 diff bounding box）、Applitools RCA（DOM 锚定但闭源）、OwlEye（Grad-CAM 热力图、**无 DOM**）、WebSee/XFix（区域→元素/CSS，学术）。
