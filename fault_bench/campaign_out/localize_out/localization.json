@@ -2,7 +2,7 @@
   "summary": {
     "n_mutations": 20,
     "n_detected": 10,
-    "localization_file_acc_over_detected": "0/10=0.000"
+    "localization_file_acc_over_detected": "4/10=0.400"
   },
   "rows": [
     {
@@ -47,12 +47,12 @@
         1
       ],
       "worst_ssim": 0.2961,
-      "pred_file": "pages/cart/components/CartMain.vue",
-      "anchor": "scroll-view",
-      "data_v": [
-        "data-v-3db78f05"
+      "pred_file": "pages/index/index.vue",
+      "anchor": [
+        "scroll-view"
       ],
-      "confidence": "low",
+      "data_v": "data-v-3db78f05",
+      "confidence": "high",
       "file_hit": false
     },
     {
@@ -65,13 +65,13 @@
         2
       ],
       "worst_ssim": 0.5646,
-      "pred_file": "pages/goods/goods.vue",
-      "anchor": "navigator-wrap",
-      "data_v": [
-        "data-v-571a0c52"
+      "pred_file": "components/XtxGuess.vue",
+      "anchor": [
+        "navigator-wrap"
       ],
+      "data_v": "data-v-571a0c52",
       "confidence": "high",
-      "file_hit": false
+      "file_hit": true
     },
     {
       "id": "img@HotPanel:src",
@@ -84,11 +84,11 @@
       ],
       "worst_ssim": 0.7541,
       "pred_file": "components/XtxGuess.vue",
-      "anchor": "caption",
-      "data_v": [
-        "data-v-571a0c52"
+      "anchor": [
+        "caption"
       ],
-      "confidence": "low",
+      "data_v": "data-v-571a0c52",
+      "confidence": "high",
       "file_hit": false
     },
     {
@@ -117,12 +117,12 @@
         1
       ],
       "worst_ssim": 0.7937,
-      "pred_file": "pages/cart/components/CartMain.vue",
-      "anchor": "scroll-view",
-      "data_v": [
-        "data-v-3db78f05"
+      "pred_file": "pages/index/index.vue",
+      "anchor": [
+        "scroll-view"
       ],
-      "confidence": "low",
+      "data_v": "data-v-3db78f05",
+      "confidence": "high",
       "file_hit": false
     },
     {
@@ -200,11 +200,11 @@
       ],
       "worst_ssim": 0.6677,
       "pred_file": "components/XtxGuess.vue",
-      "anchor": "caption",
-      "data_v": [
-        "data-v-571a0c52"
+      "anchor": [
+        "caption"
       ],
-      "confidence": "low",
+      "data_v": "data-v-571a0c52",
+      "confidence": "high",
       "file_hit": false
     },
     {
@@ -217,13 +217,13 @@
         2
       ],
       "worst_ssim": 0.5258,
-      "pred_file": "pages/goods/goods.vue",
-      "anchor": "navigator-wrap",
-      "data_v": [
-        "data-v-571a0c52"
+      "pred_file": "components/XtxGuess.vue",
+      "anchor": [
+        "navigator-wrap"
       ],
+      "data_v": "data-v-571a0c52",
       "confidence": "high",
-      "file_hit": false
+      "file_hit": true
     },
     {
       "id": "bindempty@HotPanel:item.alt",
@@ -236,11 +236,11 @@
       ],
       "worst_ssim": 0.7185,
       "pred_file": "components/XtxGuess.vue",
-      "anchor": "caption",
-      "data_v": [
-        "data-v-571a0c52"
+      "anchor": [
+        "caption"
       ],
-      "confidence": "low",
+      "data_v": "data-v-571a0c52",
+      "confidence": "high",
       "file_hit": false
     },
     {
@@ -285,12 +285,12 @@
         2
       ],
       "worst_ssim": 0.7897,
-      "pred_file": "pages/cart/components/CartMain.vue",
-      "anchor": "scroll-view",
-      "data_v": [
-        "data-v-3db78f05"
+      "pred_file": "pages/index/index.vue",
+      "anchor": [
+        "scroll-view"
       ],
-      "confidence": "low",
+      "data_v": "data-v-3db78f05",
+      "confidence": "high",
       "file_hit": false
     },
     {
@@ -319,13 +319,13 @@
         0
       ],
       "worst_ssim": 0.6497,
-      "pred_file": "pages/goods/goods.vue",
-      "anchor": "navigator-wrap",
-      "data_v": [
-        "data-v-df5374a1"
+      "pred_file": "components/XtxSwiper.vue",
+      "anchor": [
+        "image"
       ],
+      "data_v": "data-v-df5374a1",
       "confidence": "high",
-      "file_hit": false
+      "file_hit": true
     },
     {
       "id": "width@XtxGuess:345x6",
@@ -337,13 +337,13 @@
         2
       ],
       "worst_ssim": 0.4832,
-      "pred_file": "pages/goods/goods.vue",
-      "anchor": "navigator-wrap",
-      "data_v": [
-        "data-v-571a0c52"
+      "pred_file": "components/XtxGuess.vue",
+      "anchor": [
+        "navigator-wrap"
       ],
+      "data_v": "data-v-571a0c52",
       "confidence": "high",
-      "file_hit": false
+      "file_hit": true
     }
   ]
 }

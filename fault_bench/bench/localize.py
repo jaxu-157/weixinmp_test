@@ -51,6 +51,68 @@ def build_class_file_index(src_root: str) -> dict:
     return {c: sorted(fs) for c, fs in idx.items() if c not in noise}
 
 
+_CSS_HASH_CLASS = re.compile(r"\.([a-zA-Z_][\w-]*)\[data-v-([0-9a-f]{8})\]")
+# uni-app/框架通用类:不作为组件判别依据(出现在多个组件)
+_NOISE_CLASSES = {"item", "image", "name", "price", "text", "navigator", "title",
+                  "icon", "card", "cards", "meta", "panel", "forEach", "wrap"}
+
+
+def build_hash_file_index(src_root: str, dist_css_dir: str) -> dict:
+    """data-v hash → .vue 源文件（修法核心：hash 每个 .vue 唯一，不像 class 会撞车）。
+
+    做法：dist 的 scoped CSS 里选择器形如 `.cls[data-v-HASH]` → 得 {hash: {classes}}；
+    再与每个 .vue 的 <style> 类集做"判别类"(去框架噪声)重叠打分，hash 归到重叠最高的 .vue。
+    """
+    # 1) hash → CSS 里挂的 class 集
+    hash_cls: dict[str, set] = {}
+    for fp in (os.path.join(dist_css_dir, f) for f in os.listdir(dist_css_dir)
+               if f.endswith(".css")) if os.path.isdir(dist_css_dir) else []:
+        s = open(fp, encoding="utf-8", errors="replace").read()
+        for cls, h in _CSS_HASH_CLASS.findall(s):
+            hash_cls.setdefault(h, set()).add(cls)
+    # 2) .vue → 类集 = 模板 class="..." ∪ <style> 选择器
+    #    （很多组件样式在外部 .scss，<style> 为空，故必须并入模板 class 才能匹配上）
+    file_cls: dict[str, set] = {}
+    for fp in _iter_vue(src_root):
+        rel = os.path.relpath(fp, src_root).replace("\\", "/")
+        s = open(fp, encoding="utf-8").read()
+        cls: set = set()
+        tpl = s[s.find("<template>"):s.find("</template>")] if "<template>" in s else ""
+        for grp in _TPL_CLASS.findall(tpl):
+            cls.update(grp.split())
+        style = s[s.find("<style"):] if "<style" in s else ""
+        cls.update(_STYLE_CLASS.findall(style))
+        file_cls[rel] = cls
+    # 3) hash → 最佳 .vue（按判别类重叠数；并列则取重叠/文件类集占比高者）
+    out = {}
+    for h, hcs in hash_cls.items():
+        disc = hcs - _NOISE_CLASSES
+        best, best_score = None, 0.0
+        for rel, fcs in file_cls.items():
+            inter = len(disc & (fcs - _NOISE_CLASSES))
+            if inter == 0:
+                continue
+            score = inter + inter / (len(fcs - _NOISE_CLASSES) + 1)  # 重叠数为主,占比微调
+            if score > best_score:
+                best, best_score = rel, score
+        if best:
+            out[h] = best
+    return out
+
+
+def localize_by_datav(stack: list, hash_index: dict) -> dict:
+    """元素栈 → 源文件：自顶向下取第一个 data-v hash 能在 hash_index 命中的元素。"""
+    for el in stack:
+        for dv in (el.get("dataV") or []):
+            h = dv.replace("data-v-", "")
+            if h in hash_index:
+                return {"file": hash_index[h], "data_v": dv,
+                        "anchor_class": (el.get("cls") or "").split()[:1],
+                        "confidence": "high", "via": "data_v_hash"}
+    return {"file": None, "data_v": [], "anchor_class": None,
+            "confidence": "none", "via": "no_hash"}
+
+
 def tile_center_px(i: int, j: int) -> tuple[int, int]:
     """tile (row i, col j) → 像素中心 (x, y)。"""
     x = j * VIEWPORT_W // TILE_COLS + (VIEWPORT_W // TILE_COLS) // 2

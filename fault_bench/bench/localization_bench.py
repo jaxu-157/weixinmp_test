@@ -24,8 +24,9 @@ if sys.platform == "win32":
 
 from bench.renderer import XtxRenderer  # noqa
 from bench.gen_random_mutations import generate  # noqa
-from bench.localize import (build_class_file_index, tile_center_px, tile_box_px,  # noqa
-                            localize_from_elements, TILE_ROWS, TILE_COLS)
+from bench.localize import (build_class_file_index, build_hash_file_index,  # noqa
+                            tile_center_px, tile_box_px, localize_from_elements,
+                            localize_by_datav, TILE_ROWS, TILE_COLS)
 from vt_diagnose import per_tile_ssim, TILE_SSIM_REGRESSION  # noqa
 
 H5 = os.path.join(FB, "xtx", "dist", "build", "h5")
@@ -70,6 +71,7 @@ def worst_tiles(base_png, fault_png, k=3):
 def main():
     os.makedirs(OUT, exist_ok=True)
     class_idx = build_class_file_index(SRC)
+    hash_idx = build_hash_file_index(SRC, os.path.join(H5, "assets"))
 
     srv = serve(8099)
     try:
@@ -108,7 +110,10 @@ def main():
         pred = {"file": None}
         worst_ij = wt[0][0] if wt else None
         if detected and worst_ij is not None:
-            pred = localize_from_elements(tile_elems.get(worst_ij, []), class_idx)
+            # 修法:优先 data-v hash 路线(hash 每个 .vue 唯一);无 hash 命中再退回 class
+            pred = localize_by_datav(tile_elems.get(worst_ij, []), hash_idx)
+            if not pred.get("file"):
+                pred = localize_from_elements(tile_elems.get(worst_ij, []), class_idx)
         gt = m["file"]
         # 文件级命中:预测文件 == 真值文件(或真值 basename 命中预测)
         pf = pred.get("file")
