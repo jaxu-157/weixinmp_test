@@ -1,5 +1,69 @@
 # Vision-Triage v2
 
+## 环境
+
+```bash
+conda activate vision-triage
+# 若 GBK 报错加: PYTHONIOENCODING=utf-8
+# 若 npm 报错加: PYTHONUTF8=1（H5 基准）
+```
+
+## 全部测试命令
+
+### 一、小程序测试（需要微信开发者工具）
+
+```bash
+python run_auto_test.py                                                               # ① 一键自动化 14 用例
+python run_mitrix_test.py                                                             # ② 组合故障×多标签 17 用例
+                                                                                      #
+# ③ 陌生小程序零侵入（窗口保持前台！）                                                 #
+python auto_test/v2_modules/run_foreign_matrix.py --project third-wxapp-mall --tag wxapp --repeat 2 --qwen
+```
+
+**结果：** ① `auto_test/reports/auto_test_report_*.json` ② `reports/mitrix_report_*.json` ③ `auto_test/reports/v2_driver/wxapp_foreign_*.json`
+
+### 二、H5 基准测试（不需要微信开发者工具）
+
+```bash
+python run_h5_bench.py bench                      # ④ 手选 10 故障
+python run_h5_bench.py campaign                   # ⑤ 大样本 26 随机突变
+python run_h5_bench.py crosspage                  # ⑥ 跨页面
+```
+
+**结果：** `fault_bench/bench_out/` `fault_bench/campaign_out/`
+
+### 三、离线 / 其他
+
+```bash
+python auto_test/v2_modules/smoke_offline.py      # ⑦ 离线 smoke
+python fault_bench/bench/field_line_bench.py      # ⑧ 字段定位
+```
+
+**结果：** ⑦ `auto_test/reports/v2_driver/smoke_offline_*.json` ⑧ `fault_bench/campaign_out/localize_out/field_line.json`
+
+### 结果速查（2026-05-31 实测）
+
+| # | 测试 | 结果 |
+|---|------|------|
+| ① | Auto Test | 13/14 ✓（feed/blur 注入强度不足） |
+| ② | Mitrix | 15/17 ✓（wrong_mapping 掩盖 stale_ui） |
+| ③ | Foreign Matrix | **0% 假阳** |
+| ④ | H5 手挑 | 60% 召回, 0% 假阳 |
+| ⑤ | H5 大样本 | 42.3% 召回 [CI 23-62%], 0% 假阳 |
+| ⑥ | 跨页面 | 2/5 检出, 1/12 假阳 |
+| ⑦ | 离线 smoke | 12/14 ✓, 多通道 OR 故障覆盖率 100% |
+| ⑧ | 字段定位 | 5/5 = 100% |
+
+### 修复记录
+
+**cascade_oracle.py:** `bw=True` 且 `blur>30` 时升级给 Qwen（稀疏页面不再短路）；Qwen 说清晰时 `blur_score` 拉到 ≥400（防下游 ML 误判）；`black_white` 完全由 Qwen 覆盖。
+
+**webug_rules.py:** 边缘带仅左右；背景色全图中位数；阈值 0.18→0.60。
+
+**run_foreign_matrix.py:** `--project` 支持相对路径；`interaction_ms` 传 0（稳定等待不是接口延迟）。
+
+---
+
 基于"功能断言 + 性能断言 + 视觉断言"的微信小程序**维度化根因分诊**系统。
 
 > **v2 升级**：v1 的手写真值表替换为可学习决策树（acc 74%→91%）；新增 cascade 视觉 oracle、350 样本 VT-Bench、可嵌入任意小程序的 SDK。
@@ -15,19 +79,20 @@
 
 **不解决**：开发者本地单次单页面调试（这种场景用 DevTools 就行）。
 
-## 两条使用路径
+## 测试路径
 
-### 推荐：driver 自动化路径（0 行业务侵入）
-
-适合黑盒验收 / CI 巡检场景。无需修改任何业务代码。
+三行命令，一行一个测试（详见顶部三种测试一览）：
 
 ```bash
-# 真实小程序（需先启动微信开发者工具 + 编译 demo-uniapp）
-minitest -c auto_test/config.py -m test_cases.test_auto_matrix_v2
+python run_auto_test.py                                                      # 一键自动化
+python run_mitrix_test.py                                                    # 组合故障矩阵
+python auto_test/v2_modules/run_foreign_matrix.py --project third-wxapp-mall --tag wxapp --repeat 2 --qwen
+```
 
-# 离线（用历史截图验证完整 v2 管线，不需要真小程序）
+也支持离线 smoke（用历史截图验证管线，不需要真小程序）：
+
+```bash
 python auto_test/v2_modules/smoke_offline.py
-# → 输出: auto_test/reports/v2_driver/smoke_offline_<ts>.md
 ```
 
 ### 可选：SDK 集成路径（精细业务语义控制）
@@ -60,13 +125,12 @@ probe.setVisible(completedCount.value)
 | **Minium 矩阵 driver** | `auto_test/test_cases/test_auto_matrix_v2.py` | 一个 test 跑遍 3 页面 × 8 profile | Phase 6 |
 | **离线 smoke** | `auto_test/v2_modules/smoke_offline.py` | 14 case 历史截图离线验证 v2 管线 | Phase 6 |
 
-## 一键复现 v2 全部实验
+## 上游实验复现（需训练数据）
+
+> 以下为上游 v2 各 Phase 实验脚本，部分需要历史截图/training 数据。日常测试只需顶部三种。
 
 ```bash
-cd diagnosis && pip install -r requirements.txt
-cd ..
-
-# Phase 1: 训练可学习分诊
+# Phase 1: 训练可学习分诊（需训练数据）
 python diagnosis/diagnose/training/train.py
 python diagnosis/diagnose/training/evaluate.py     # ablation
 python diagnosis/diagnose/training/smoke_test.py   # 真实截图端到端
@@ -91,30 +155,42 @@ python auto_test/v2_modules/smoke_offline.py
 - `packages/sample-apps/integration_audit.{json,png}`
 - `auto_test/reports/v2_driver/`（Phase 6 矩阵报告 + diff 图）
 
----
-
-## v1 原型说明（保留）
-
-
-
 ## 项目结构
 
 ```text
-vision-triage/
-├── docs/                  # 项目文档
-│   ├── plan.md            # 开发计划
-│   └── todo.md            # 开发日志
-├── demo-uniapp/           # uni-app 小程序 Demo（Vue3 + TypeScript + Vite）
-│   ├── src/
-│   │   ├── pages/         # 3 个演示页面
-│   │   ├── components/    # 故障调试面板
-│   │   └── services/      # API、故障状态、性能与 oracle 导出
-│   ├── package.json
-│   └── vite.config.ts
-└── diagnosis/             # Python 诊断服务与 Mock API
-    ├── app.py             # FastAPI 主入口
-    ├── requirements.txt
-    └── diagnose/          # 视觉诊断模块
+├── run_auto_test.py               # ① 一键自动化测试
+├── run_mitrix_test.py             # ② 组合故障矩阵
+├── auto_test/
+│   ├── config.py                  # Minium/开发者工具配置
+│   ├── v2_modules/
+│   │   ├── run_foreign_matrix.py  # ③ 陌生小程序零侵入
+│   │   ├── run_real_matrix.py     # 页面×故障多通道矩阵
+│   │   ├── driver_engine.py       # 三通道诊断引擎
+│   │   ├── baseline_compare.py    # SSIM/pHash 基线对比
+│   │   ├── webug_rules.py         # WeBug R1/R2/R3 规则
+│   │   ├── stability_wait.py      # 帧稳定性等待
+│   │   └── smoke_offline.py       # 离线 smoke 验证
+│   ├── test_cases/                # 测试用例
+│   └── reports/                   # 测试报告输出
+├── mitrix/                        # 组合故障注入引擎
+│   ├── engine.py                  # 信号检测引擎
+│   ├── generator.py               # 组合用例生成
+│   └── runner.py                  # 测试执行器
+├── diagnosis/
+│   ├── app.py                     # FastAPI 诊断后端
+│   └── diagnose/
+│       ├── triage.py              # 规则法分诊
+│       ├── learned_triage.py      # 决策树 ML 分诊
+│       ├── cascade_oracle.py      # 规则→Qwen-VL 级联
+│       ├── feature_extractor.py   # 18 维特征提取
+│       ├── screen.py              # 黑/白屏检测
+│       ├── blur.py / layout.py / ocr.py
+│       └── mllm/                  # MLLM 适配器（Qwen-VL / Heuristic）
+├── demo-uniapp/                   # 本项目小程序（集成故障 hook）
+├── third-wxapp-mall/              # 第三方小程序（零侵入验证目标）
+├── docs/                          # 项目文档
+├── qwen.md                        # Qwen API Key
+└── .gitignore
 ```
 
 ## 环境要求
@@ -135,68 +211,23 @@ vision-triage/
 
 ## 快速启动
 
-建议先启动后端，再启动小程序。小程序页面数据来自本地后端 `http://localhost:8900`。
+```bash
+conda activate vision-triage
+python run_auto_test.py        # 或 run_mitrix_test.py / foreign matrix
+```
 
-### 1. 启动 Python 后端服务
+脚本自动启动后端、连接微信开发者工具、执行测试、生成报告。前置条件：
+
+- 微信开发者工具已安装（`config.py` 中 `_find_dev_tool_cli()` 自动探测路径）
+- demo-uniapp 已编译：`cd demo-uniapp && npm run dev:mp-weixin`（仅 ① ② 需要）
+- 若输出含中文/emoji 报 GBK 错，在前面加 `PYTHONIOENCODING=utf-8`
+
+### 手动启动后端（调试用）
 
 ```bash
-cd diagnosis
-pip install -r requirements.txt
-python -m uvicorn app:app --host 0.0.0.0 --port 8900 --reload
+python -m uvicorn diagnosis.app:app --host 0.0.0.0 --port 8900
+# 验证: http://127.0.0.1:8900/fault/status → {"code":0,"data":{"profile":"normal"}}
 ```
-
-如果电脑上有多个 Python 环境，请先进入已经安装依赖的环境，例如 Conda：
-
-```bash
-conda activate <your-env>
-cd diagnosis
-python -m uvicorn app:app --host 0.0.0.0 --port 8900 --reload
-```
-
-启动成功后，浏览器打开下面地址，应返回当前故障状态：
-
-```text
-http://127.0.0.1:8900/fault/status
-```
-
-预期返回示例：
-
-```json
-{"code":0,"data":{"profile":"normal"},"profile":"normal"}
-```
-
-### 2. 启动小程序前端
-
-本项目是 uni-app Vite/CLI 项目。可以用命令行，也可以用 HBuilderX。
-
-#### 方式 A（推荐）：命令行编译，然后用微信开发者工具打开
-
-```bash
-cd demo-uniapp
-npm install
-npm run dev:mp-weixin
-```
-
-编译产物目录：
-
-```text
-demo-uniapp/dist/dev/mp-weixin
-```
-
-然后在微信开发者工具中导入该目录。
-
-注意：这是 CLI/Vite 项目，默认输出目录是 `dist/dev/mp-weixin`，不是 HBuilderX 传统项目常见的 `unpackage/dist/dev/mp-weixin`。
-
-#### 方式 B：HBuilderX 运行到微信开发者工具
-
-1. 用 HBuilderX 打开 `demo-uniapp/` 目录，不要打开整个仓库根目录。
-2. 菜单选择：`运行 -> 运行到小程序模拟器 -> 微信开发者工具`。
-3. HBuilderX 会编译项目并拉起微信开发者工具。
-
-如果 HBuilderX 没有自动拉起微信开发者工具，请检查：
-
-- HBuilderX 中配置了微信开发者工具安装路径。
-- 微信开发者工具已开启服务端口：`设置 -> 安全设置 -> 服务端口 -> 开启`。
 
 ## 微信开发者工具设置
 
@@ -311,5 +342,7 @@ demo-uniapp/dist/dev/mp-weixin
 
 ## 当前完成度
 
-- 已完成：uni-app 小程序 demo、三页演示页面、故障面板、Mock API、视觉诊断基础模块。
-- 未完成完整闭环：自动化执行层、自动截图、自动提交 `/diagnose` 并生成端到端报告。
+- 已完成：三条自动化测试线（一键自动化 / 组合故障矩阵 / 陌生小程序零侵入验证）
+- 诊断引擎：规则法 + 决策树 ML + Qwen-VL 级联 oracle + SSIM 基线 + WeBug 三规则
+- 6 类原子故障注入（blur / slow / stale / wrong_mapping / layout_overlap / memory）及其组合
+- 第三方小程序零侵入假阳率：0%（2026-05-27 修复后）

@@ -36,8 +36,10 @@ def _is_confident_zone(blur_score: float, edge_density: float, is_bw: bool) -> O
 
     注意：edge_density 形参保留是为接口兼容，**不再参与 pass 判定**（见上方校准说明）。
     """
-    if is_bw:
-        return False  # 黑/白屏，自信判 Fail
+    if is_bw and blur_score <= ESCALATE_BLUR_LOW:
+        return False  # 真正黑/白屏 + 无结构 → 自信 Fail
+    if is_bw and blur_score > ESCALATE_BLUR_LOW:
+        return None   # 可能稀疏页面误判为白屏 → 升级让 Qwen 判断
     if blur_score >= ESCALATE_BLUR_HIGH:
         return True   # 足够清晰，自信 Pass
     if blur_score <= ESCALATE_BLUR_LOW:
@@ -108,9 +110,13 @@ class CascadeOracle:
         if mllm_result.confidence >= 0.6:
             # 高置信度 MLLM 才覆盖
             merged["is_blur"] = mllm_result.has_blur
-            merged["black_white"] = mllm_result.has_blank or merged.get("black_white", False)
+            merged["black_white"] = mllm_result.has_blank
             merged["pass"] = not (mllm_result.has_blur or mllm_result.has_blank
                                   or mllm_result.has_overlap or mllm_result.has_missing_image)
+            # MLLM 说清晰 → 拉高 blur_score，防止下游 learned_triage 因低 blur 误判
+            if not mllm_result.has_blur and not mllm_result.has_blank:
+                merged["blur_score_full"] = max(merged.get("blur_score_full", 0), ESCALATE_BLUR_HIGH)
+                merged["blur_score"] = max(merged.get("blur_score", 0), ESCALATE_BLUR_HIGH)
         # 把 MLLM 输出附加到结果上，方便 learned-triage 拿到额外特征
         merged["mllm"] = mllm_result.as_dict()
 

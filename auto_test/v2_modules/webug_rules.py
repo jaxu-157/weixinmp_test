@@ -48,7 +48,7 @@ NO_VISUAL_CHANGE_SSIM = 0.999  # 反应：动作前后画面几乎完全一致
 
 EDGE_BAND_PX = 8
 EDGE_BG_TOLERANCE = 25  # 边缘像素与背景色差 < 此值算"背景"
-EDGE_CONTENT_RATIO_THRESHOLD = 0.18  # 边缘带 >18% 非背景像素 → 溢出
+EDGE_CONTENT_RATIO_THRESHOLD = 0.60  # 边缘带 >60% 非背景像素 → 溢出
 
 # ---- R3: async data mismatch ----
 
@@ -109,16 +109,8 @@ def _to_gray(img: np.ndarray) -> np.ndarray:
 
 
 def _estimate_bg_color(img: np.ndarray) -> np.ndarray:
-    """用四角 16x16 块的中位数估计背景色。"""
-    h, w = img.shape[:2]
-    s = 16
-    corners = np.concatenate([
-        img[:s, :s].reshape(-1, img.shape[2]),
-        img[:s, -s:].reshape(-1, img.shape[2]),
-        img[-s:, :s].reshape(-1, img.shape[2]),
-        img[-s:, -s:].reshape(-1, img.shape[2]),
-    ], axis=0)
-    return np.median(corners, axis=0)
+    """用整张图的逐通道中位数估计背景色，比四角采样更抗角落内容干扰。"""
+    return np.median(img.reshape(-1, img.shape[2]), axis=0)
 
 
 def detect_r2_layout_overflow(
@@ -151,9 +143,8 @@ def detect_r2_layout_overflow(
         img = img[..., :3]
     h, w = img.shape[:2]
     bg = _estimate_bg_color(img)
+    # 只查左右边缘：顶部/底部会被微信原生 navbar/tabBar 填满，普遍误报
     bands = [
-        img[:EDGE_BAND_PX, :, :],
-        img[-EDGE_BAND_PX:, :, :],
         img[:, :EDGE_BAND_PX, :],
         img[:, -EDGE_BAND_PX:, :],
     ]

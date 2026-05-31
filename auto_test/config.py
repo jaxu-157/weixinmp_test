@@ -22,6 +22,7 @@ def _find_dev_tool_cli():
         r"C:\Program Files (x86)\Tencent\微信web开发者工具\cli.bat",
         r"C:\Program Files\Tencent\微信web开发者工具\cli.bat",
         r"C:\Users\xc\AppData\Local\微信开发者工具\cli.bat",
+        r"C:\Users\17303\微信web开发者工具\cli.bat",
     ]
     for c in candidates:
         if os.path.exists(c):

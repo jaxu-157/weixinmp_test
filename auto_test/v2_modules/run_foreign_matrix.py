@@ -106,7 +106,7 @@ def main():
                          "手动开着前台 devtools 并加载好本项目时用此模式最稳。")
     args = ap.parse_args()
 
-    TEST_CONFIG["project_path"] = args.project
+    TEST_CONFIG["project_path"] = os.path.abspath(args.project)
     TEST_CONFIG["appid"] = ""  # 让 minium 从 project.config.json 读
     if args.connect:
         TEST_CONFIG["auto_relaunch"] = False  # 连已开实例，别重启（保住能截图的前台会话）
@@ -192,8 +192,7 @@ def main():
             r = engine.diagnose(
                 page=ptype, profile="unknown",
                 screenshot_path=diag_path,
-                perf={"interaction_ms": trace.wait_ms, "memory_warnings": 0},
-                business={},  # 独立 app 无 ground-truth 业务值
+                perf={"interaction_ms": 0, "memory_warnings": 0},  # 无真实交互，不传稳定等待
                 diff_out_dir=diff_dir,
             )
             bd = r.baseline_diff or {}

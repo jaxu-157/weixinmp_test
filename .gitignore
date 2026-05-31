@@ -3,35 +3,40 @@ __pycache__/
 *.pyc
 *.pyo
 
-# 依赖与构建产物
-node_modules/
-dist/
-*.log
-.env
-
-# 第三方开源小程序克隆（零侵入 driver 的外部验证目标，体积大且可复现，不纳入版本管理）
+# 第三方开源小程序克隆（零侵入 driver 的外部验证目标）
 third-tdesign-retail/
 third-wxapp-mall/
 third-youzouzou-wxapp/
 
-# Minium / 真机运行产物（截图、diff 等大文件）
+# Minium / 真机运行产物
 auto_test/reports/v2_driver/*/screenshots/
 auto_test/reports/v2_driver/*/diffs/
-auto_test/reports/v2_driver/**/*.png
+
+# 测试输出（截图体积大忽略，JSON/MD 报告保留追踪）
+screenshots/
+
+# Node / 前端产物
+node_modules/
+dist/
+
+# 日志 & 环境
+*.log
+.env
 
 # Claude Code 会话/调度内部文件
 .claude/scheduled_tasks.lock
 .claude/settings.local.json
 
-# 调试 scratch（_ 前缀的临时核对文件，非证据产物）
-fault_bench/campaign_out/_*
-
-# 真实开源 uni-app 故障注入基准：克隆的第三方 app + 脚手架 + 渲染中间产物体积大、
+# 真实开源 uni-app 故障注入基准：克隆的第三方 app + 脚手架 + 渲染中间产物体积大，
 # 含各自 .git/node_modules，不纳入版本管理。基准代码 fault_bench/bench/ 与报告 bench_out/ 保留。
 fault_bench/xtx/
 fault_bench/preset-probe/
 fault_bench/_*.png
 fault_bench/_backhalf/
 fault_bench/**/__pycache__/
+fault_bench/campaign_out/_*
 fault_bench/campaign_out/localize_out/*.png
 fault_bench/campaign_out/probe_dom/*.png
+
+# 构建产物
+auto_test/reports/v2_driver/**/*.png

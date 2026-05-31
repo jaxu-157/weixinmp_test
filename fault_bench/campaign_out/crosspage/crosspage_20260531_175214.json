@@ -1,5 +1,5 @@
 {
-  "ts": "20260531_060953",
+  "ts": "20260531_175214",
   "pages": {
     "index": {
       "n_healthy": 4,
@@ -34,8 +34,8 @@
     },
     "cart": {
       "n_healthy": 4,
-      "fp": 0,
-      "fpr": 0.0,
+      "fp": 1,
+      "fpr": 0.25,
       "rows": [
         {
           "i": 0,
@@ -45,9 +45,11 @@
         },
         {
           "i": 1,
-          "alarm": false,
+          "alarm": true,
           "tile": 1.0,
-          "channels": []
+          "channels": [
+            "performance"
+          ]
         },
         {
           "i": 2,
@@ -122,6 +124,30 @@
       "pred_dim": "none",
       "tile": 0.9698,
       "channels": []
+    },
+    {
+      "id": "my:guess_img_missing",
+      "page": "my",
+      "dim": "visual",
+      "detected": true,
+      "pred_dim": "visual",
+      "tile": 0.5232,
+      "channels": [
+        "visual",
+        "crash"
+      ]
+    },
+    {
+      "id": "cart:guess_img_missing",
+      "page": "cart",
+      "dim": "visual",
+      "detected": true,
+      "pred_dim": "visual",
+      "tile": 0.577,
+      "channels": [
+        "visual",
+        "crash"
+      ]
     }
   ],
   "summary": {
@@ -130,7 +156,7 @@
       "cart",
       "my"
     ],
-    "crosspage_healthy_fpr": "0/12",
-    "visible_faults_detected": "0/3"
+    "crosspage_healthy_fpr": "1/12",
+    "visible_faults_detected": "2/5"
   }
 }
