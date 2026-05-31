@@ -1,0 +1,263 @@
+{
+  "screenshot": {
+    "method_tried": [
+      [
+        "minium.screen_shot",
+        true,
+        30984
+      ]
+    ],
+    "written": true,
+    "size": 30984,
+    "path": "D:\\weixinmp_test\\auto_test\\reports\\v2_driver\\readonly_verify\\ro_shot.png"
+  },
+  "perf_raw_evaluate": {
+    "id": "994b1e06-e0b3-4e1f-bdce-6cd197a4bd6e",
+    "result": {
+      "result": {
+        "ok": true,
+        "count": 7,
+        "entries": [
+          {
+            "name": "appLaunch",
+            "entryType": "navigation",
+            "duration": 8465,
+            "startTime": 1780156081658
+          },
+          {
+            "name": "evaluateScript",
+            "entryType": "script",
+            "duration": 2,
+            "startTime": 1780156089251
+          },
+          {
+            "name": "firstPaint",
+            "entryType": "render",
+            "startTime": 1780156089253
+          },
+          {
+            "name": "route",
+            "entryType": "navigation",
+            "startTime": 1780156090023
+          },
+          {
+            "name": "firstRender",
+            "entryType": "render",
+            "duration": 100,
+            "startTime": 1780156090023
+          },
+          {
+            "name": "firstContentfulPaint",
+            "entryType": "render",
+            "startTime": 1780156090163
+          },
+          {
+            "name": "largestContentfulPaint",
+            "entryType": "render",
+            "startTime": 1780156090163
+          }
+        ]
+      }
+    }
+  },
+  "perf_parsed": {
+    "available": true,
+    "source": "wx.getPerformance",
+    "n_entries": 7,
+    "app_launch_ms": 8465,
+    "first_render_ms": 100,
+    "first_paint_ms": null,
+    "max_script_ms": 2
+  },
+  "geometry": {
+    "available": true,
+    "page_overflow_x": false,
+    "scroll_width": 390,
+    "client_width": 390,
+    "scroll_height": 1269,
+    "client_height": 671,
+    "n_elements": 40,
+    "overlap_pairs": [
+      {
+        "a": {
+          "sel": "view",
+          "left": 15,
+          "top": 139.40000915527344,
+          "width": 361,
+          "height": 66
+        },
+        "b": {
+          "sel": "view",
+          "left": 15,
+          "top": 161,
+          "width": 361,
+          "height": 88
+        },
+        "cover_small": 0.67
+      },
+      {
+        "a": {
+          "sel": "view",
+          "left": 15,
+          "top": 139.40000915527344,
+          "width": 361,
+          "height": 66
+        },
+        "b": {
+          "sel": "view",
+          "left": 15,
+          "top": 161,
+          "width": 361,
+          "height": 88
+        },
+        "cover_small": 0.67
+      },
+      {
+        "a": {
+          "sel": "view",
+          "left": 35,
+          "top": 159.40000915527344,
+          "width": 321,
+          "height": 26
+        },
+        "b": {
+          "sel": "view",
+          "left": 30,
+          "top": 171,
+          "width": 318,
+          "height": 24
+        },
+        "cover_small": 0.59
+      },
+      {
+        "a": {
+          "sel": "view",
+          "left": 15,
+          "top": 161,
+          "width": 361,
+          "height": 88
+        },
+        "b": {
+          "sel": "view",
+          "left": 15,
+          "top": 215,
+          "width": 361,
+          "height": 66
+        },
+        "cover_small": 0.52
+      },
+      {
+        "a": {
+          "sel": "view",
+          "left": 15,
+          "top": 161,
+          "width": 361,
+          "height": 88
+        },
+        "b": {
+          "sel": "view",
+          "left": 15,
+          "top": 215,
+          "width": 361,
+          "height": 66
+        },
+        "cover_small": 0.52
+      },
+      {
+        "a": {
+          "sel": "view",
+          "left": 15,
+          "top": 161,
+          "width": 361,
+          "height": 88
+        },
+        "b": {
+          "sel": "view",
+          "left": 35,
+          "top": 235,
+          "width": 321,
+          "height": 26
+        },
+        "cover_small": 0.54
+      },
+      {
+        "a": {
+          "sel": "view",
+          "left": 15,
+          "top": 215,
+          "width": 361,
+          "height": 66
+        },
+        "b": {
+          "sel": "view",
+          "left": 15,
+          "top": 258.6000061035156,
+          "width": 361,
+          "height": 44
+        },
+        "cover_small": 0.51
+      },
+      {
+        "a": {
+          "sel": "view",
+          "left": 15,
+          "top": 215,
+          "width": 361,
+          "height": 66
+        },
+        "b": {
+          "sel": "view",
+          "left": 30,
+          "top": 268.6000061035156,
+          "width": 318,
+          "height": 24
+        },
+        "cover_small": 0.52
+      },
+      {
+        "a": {
+          "sel": "view",
+          "left": 15,
+          "top": 215,
+          "width": 361,
+          "height": 66
+        },
+        "b": {
+          "sel": "view",
+          "left": 15,
+          "top": 258.6000061035156,
+          "width": 361,
+          "height": 44
+        },
+        "cover_small": 0.51
+      },
+      {
+        "a": {
+          "sel": "view",
+          "left": 15,
+          "top": 215,
+          "width": 361,
+          "height": 66
+        },
+        "b": {
+          "sel": "view",
+          "left": 30,
+          "top": 268.6000061035156,
+          "width": 318,
+          "height": 24
+        },
+        "cover_small": 0.52
+      }
+    ],
+    "has_overflow": false,
+    "has_overlap": true
+  },
+  "data": {
+    "available": true,
+    "suspicious_tokens": [],
+    "has_suspicious": false,
+    "data_keys": [
+      "list"
+    ]
+  }
+}

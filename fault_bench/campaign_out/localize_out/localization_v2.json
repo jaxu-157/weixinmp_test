@@ -1,0 +1,331 @@
+{
+  "summary": {
+    "n_mutations": 20,
+    "n_detected": 10,
+    "file_acc_singlepoint": "4/10=0.400",
+    "file_acc_bbox_area": "8/10=0.800",
+    "file_acc_union": "8/10=0.800"
+  },
+  "rows": [
+    {
+      "id": "color@XtxSwiper:#efefef",
+      "dim": "visual",
+      "gt_file": "components/styles/XtxSwiper.scss",
+      "detected": false,
+      "worst_tile": [
+        0,
+        0
+      ],
+      "worst_ssim": 1.0,
+      "pred_pt": null,
+      "hit_pt": false,
+      "pred_bbox": null,
+      "hit_bbox": false,
+      "bbox_inter": null
+    },
+    {
+      "id": "bindempty@XtxGuess:item.name",
+      "dim": "functional",
+      "gt_file": "components/XtxGuess.vue",
+      "detected": false,
+      "worst_tile": [
+        5,
+        0
+      ],
+      "worst_ssim": 0.8953,
+      "pred_pt": null,
+      "hit_pt": false,
+      "pred_bbox": null,
+      "hit_bbox": false,
+      "bbox_inter": null
+    },
+    {
+      "id": "width@category:150x6",
+      "dim": "layout",
+      "gt_file": "pages/index/styles/category.scss",
+      "detected": true,
+      "worst_tile": [
+        1,
+        1
+      ],
+      "worst_ssim": 0.2961,
+      "pred_pt": "pages/index/index.vue",
+      "hit_pt": false,
+      "pred_bbox": "components/XtxGuess.vue",
+      "hit_bbox": false,
+      "bbox_inter": 47250.0
+    },
+    {
+      "id": "width@XtxGuess:304x6",
+      "dim": "layout",
+      "gt_file": "components/XtxGuess.vue",
+      "detected": true,
+      "worst_tile": [
+        3,
+        2
+      ],
+      "worst_ssim": 0.5646,
+      "pred_pt": "components/XtxGuess.vue",
+      "hit_pt": true,
+      "pred_bbox": "components/XtxGuess.vue",
+      "hit_bbox": true,
+      "bbox_inter": 103125
+    },
+    {
+      "id": "img@HotPanel:src",
+      "dim": "visual",
+      "gt_file": "pages/index/components/HotPanel.vue",
+      "detected": true,
+      "worst_tile": [
+        2,
+        0
+      ],
+      "worst_ssim": 0.7541,
+      "pred_pt": "components/XtxGuess.vue",
+      "hit_pt": false,
+      "pred_bbox": "pages/index/components/HotPanel.vue",
+      "hit_bbox": true,
+      "bbox_inter": 41890
+    },
+    {
+      "id": "color@index:#f7f7f7",
+      "dim": "visual",
+      "gt_file": "pages/index/index.vue",
+      "detected": false,
+      "worst_tile": [
+        5,
+        1
+      ],
+      "worst_ssim": 0.991,
+      "pred_pt": null,
+      "hit_pt": false,
+      "pred_bbox": null,
+      "hit_bbox": false,
+      "bbox_inter": null
+    },
+    {
+      "id": "width@category:100x6",
+      "dim": "layout",
+      "gt_file": "pages/index/styles/category.scss",
+      "detected": true,
+      "worst_tile": [
+        1,
+        1
+      ],
+      "worst_ssim": 0.7937,
+      "pred_pt": "pages/index/index.vue",
+      "hit_pt": false,
+      "pred_bbox": "pages/index/components/CategoryPanel.vue",
+      "hit_bbox": false,
+      "bbox_inter": 48375
+    },
+    {
+      "id": "width@hot:150x6",
+      "dim": "layout",
+      "gt_file": "pages/index/styles/hot.scss",
+      "detected": false,
+      "worst_tile": [
+        2,
+        0
+      ],
+      "worst_ssim": 0.8569,
+      "pred_pt": null,
+      "hit_pt": false,
+      "pred_bbox": null,
+      "hit_bbox": false,
+      "bbox_inter": null
+    },
+    {
+      "id": "bindempty@XtxGuess:item.price",
+      "dim": "functional",
+      "gt_file": "components/XtxGuess.vue",
+      "detected": false,
+      "worst_tile": [
+        5,
+        1
+      ],
+      "worst_ssim": 0.9832,
+      "pred_pt": null,
+      "hit_pt": false,
+      "pred_bbox": null,
+      "hit_bbox": false,
+      "bbox_inter": null
+    },
+    {
+      "id": "width@CustomNavbar:166x6",
+      "dim": "layout",
+      "gt_file": "pages/index/components/CustomNavbar.vue",
+      "detected": false,
+      "worst_tile": [
+        0,
+        1
+      ],
+      "worst_ssim": 0.9221,
+      "pred_pt": null,
+      "hit_pt": false,
+      "pred_bbox": null,
+      "hit_bbox": false,
+      "bbox_inter": null
+    },
+    {
+      "id": "color@hot:#7f7f7f",
+      "dim": "visual",
+      "gt_file": "pages/index/styles/hot.scss",
+      "detected": false,
+      "worst_tile": [
+        1,
+        2
+      ],
+      "worst_ssim": 0.956,
+      "pred_pt": null,
+      "hit_pt": false,
+      "pred_bbox": null,
+      "hit_bbox": false,
+      "bbox_inter": null
+    },
+    {
+      "id": "bindempty@HotPanel:item.title",
+      "dim": "functional",
+      "gt_file": "pages/index/components/HotPanel.vue",
+      "detected": true,
+      "worst_tile": [
+        2,
+        0
+      ],
+      "worst_ssim": 0.6677,
+      "pred_pt": "components/XtxGuess.vue",
+      "hit_pt": false,
+      "pred_bbox": "pages/index/components/HotPanel.vue",
+      "hit_bbox": true,
+      "bbox_inter": 46210
+    },
+    {
+      "id": "img@XtxGuess:item.picture",
+      "dim": "visual",
+      "gt_file": "components/XtxGuess.vue",
+      "detected": true,
+      "worst_tile": [
+        3,
+        2
+      ],
+      "worst_ssim": 0.5258,
+      "pred_pt": "components/XtxGuess.vue",
+      "hit_pt": true,
+      "pred_bbox": "components/XtxGuess.vue",
+      "hit_bbox": true,
+      "bbox_inter": 103125
+    },
+    {
+      "id": "bindempty@HotPanel:item.alt",
+      "dim": "functional",
+      "gt_file": "pages/index/components/HotPanel.vue",
+      "detected": true,
+      "worst_tile": [
+        2,
+        0
+      ],
+      "worst_ssim": 0.7185,
+      "pred_pt": "components/XtxGuess.vue",
+      "hit_pt": false,
+      "pred_bbox": "pages/index/components/HotPanel.vue",
+      "hit_bbox": true,
+      "bbox_inter": 44850
+    },
+    {
+      "id": "color@XtxGuess:#cf4444",
+      "dim": "visual",
+      "gt_file": "components/XtxGuess.vue",
+      "detected": false,
+      "worst_tile": [
+        5,
+        1
+      ],
+      "worst_ssim": 0.9804,
+      "pred_pt": null,
+      "hit_pt": false,
+      "pred_bbox": null,
+      "hit_bbox": false,
+      "bbox_inter": null
+    },
+    {
+      "id": "color@hot:#262626",
+      "dim": "visual",
+      "gt_file": "pages/index/styles/hot.scss",
+      "detected": false,
+      "worst_tile": [
+        1,
+        0
+      ],
+      "worst_ssim": 0.9556,
+      "pred_pt": null,
+      "hit_pt": false,
+      "pred_bbox": null,
+      "hit_bbox": false,
+      "bbox_inter": null
+    },
+    {
+      "id": "img@CategoryPanel:item.icon",
+      "dim": "visual",
+      "gt_file": "pages/index/components/CategoryPanel.vue",
+      "detected": true,
+      "worst_tile": [
+        1,
+        2
+      ],
+      "worst_ssim": 0.7897,
+      "pred_pt": "pages/index/index.vue",
+      "hit_pt": false,
+      "pred_bbox": "pages/index/components/CategoryPanel.vue",
+      "hit_bbox": true,
+      "bbox_inter": 48375
+    },
+    {
+      "id": "bindempty@CategoryPanel:item.name",
+      "dim": "functional",
+      "gt_file": "pages/index/components/CategoryPanel.vue",
+      "detected": false,
+      "worst_tile": [
+        1,
+        2
+      ],
+      "worst_ssim": 0.9117,
+      "pred_pt": null,
+      "hit_pt": false,
+      "pred_bbox": null,
+      "hit_bbox": false,
+      "bbox_inter": null
+    },
+    {
+      "id": "img@XtxSwiper:item.imgUrl",
+      "dim": "visual",
+      "gt_file": "components/XtxSwiper.vue",
+      "detected": true,
+      "worst_tile": [
+        0,
+        0
+      ],
+      "worst_ssim": 0.6497,
+      "pred_pt": "components/XtxSwiper.vue",
+      "hit_pt": true,
+      "pred_bbox": "components/XtxSwiper.vue",
+      "hit_bbox": true,
+      "bbox_inter": 52500
+    },
+    {
+      "id": "width@XtxGuess:345x6",
+      "dim": "layout",
+      "gt_file": "components/XtxGuess.vue",
+      "detected": true,
+      "worst_tile": [
+        3,
+        2
+      ],
+      "worst_ssim": 0.4832,
+      "pred_pt": "components/XtxGuess.vue",
+      "hit_pt": true,
+      "pred_bbox": "components/XtxGuess.vue",
+      "hit_bbox": true,
+      "bbox_inter": 76203.1
+    }
+  ]
+}

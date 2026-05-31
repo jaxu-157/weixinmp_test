@@ -1,0 +1,33 @@
+{
+  "baseline_perf": {
+    "fcp": 164,
+    "dom_content_loaded": 160.70000000298023,
+    "load_event_end": 765.8000000044703,
+    "longtask_total_ms": 71,
+    "longtask_max_ms": 71
+  },
+  "healthy_channel": {
+    "hit": false,
+    "load_ms": 1591,
+    "base_load_ms": 1538,
+    "longtask_max_ms": 72,
+    "fcp": 160,
+    "by_wall": false,
+    "by_longtask": false,
+    "by_fcp": false
+  },
+  "fault_channel": {
+    "hit": false,
+    "load_ms": 1710,
+    "base_load_ms": 1538,
+    "longtask_max_ms": 82,
+    "fcp": 208,
+    "by_wall": false,
+    "by_longtask": false,
+    "by_fcp": false
+  },
+  "VERDICT": {
+    "fault_detected": false,
+    "healthy_false_positive": false
+  }
+}

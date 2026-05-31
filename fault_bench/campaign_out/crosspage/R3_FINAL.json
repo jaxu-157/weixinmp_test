@@ -1,0 +1,47 @@
+{
+  "file": "crosspage_20260531_061419.json",
+  "fpr": "0/12",
+  "faults_detected": "2/5",
+  "per_page_fpr": {
+    "index": 0.0,
+    "cart": 0.0,
+    "my": 0.0
+  },
+  "faults": [
+    {
+      "id": "my:avatar_missing",
+      "page": "my",
+      "detected": false,
+      "pred": "none",
+      "tile": 0.9573
+    },
+    {
+      "id": "my:avatar_width",
+      "page": "my",
+      "detected": false,
+      "pred": "none",
+      "tile": 0.9413
+    },
+    {
+      "id": "my:title_lowcontrast",
+      "page": "my",
+      "detected": false,
+      "pred": "none",
+      "tile": 0.9698
+    },
+    {
+      "id": "my:guess_img_missing",
+      "page": "my",
+      "detected": true,
+      "pred": "visual",
+      "tile": 0.5232
+    },
+    {
+      "id": "cart:guess_img_missing",
+      "page": "cart",
+      "detected": true,
+      "pred": "visual",
+      "tile": 0.577
+    }
+  ]
+}

@@ -57,8 +57,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
-import { onShow } from '@dcloudio/uni-app'
+import { ref, watch, onMounted } from 'vue'
+import { onShow, onHide } from '@dcloudio/uni-app'
 import { fetchFeedList, type FeedItem } from '@/services/api'
 import { getFaultState, syncFromServer } from '@/services/fault'
 import { markPageLoadStart, markPageLoadEnd, resetMetrics } from '@/services/perf'
@@ -72,6 +72,17 @@ const refreshing = ref(false)
 const currentPage = ref(1)
 const imageLoadedMap = ref<Record<number, boolean>>({})
 
+// 监听故障切换：清空列表、重载、必要时模拟内存压力
+watch(() => faultState.currentProfile, () => {
+  feedList.value = []
+  currentPage.value = 1
+  imageLoadedMap.value = {}
+  loadFeed()
+  if (faultState.memoryPressure) {
+    simulateMemoryPressure()
+  }
+})
+
 onMounted(async () => {
   resetMetrics()
   markPageLoadStart()
@@ -84,11 +95,12 @@ onMounted(async () => {
 
 onShow(async () => {
   await syncFromServer()
-  currentPage.value = 1
-  loadFeed()
-  if (faultState.memoryPressure) {
-    simulateMemoryPressure()
-  }
+})
+
+onHide(() => {
+  // 离开页面时清空，确保下次进入是干净状态
+  feedList.value = []
+  imageLoadedMap.value = {}
 })
 
 async function loadFeed() {

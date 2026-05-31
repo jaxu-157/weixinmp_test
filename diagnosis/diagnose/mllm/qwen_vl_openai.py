@@ -38,6 +38,28 @@ SYSTEM_PROMPT = """你是一个小程序界面视觉异常检测器。给定一�
 {"has_blur": false, "has_blank": false, "has_overlap": false, "has_missing_image": false, "confidence": 0.9, "reasoning": "简短说明"}
 """
 
+# 差分+代码融合诊断的 system prompt：给"健康基线图 + 当前图（+ 可选页面源码）"，
+# 判"当前相对基线是否引入了缺陷"。差分消除"占位纹理图被误判为缺图"的偏见
+# （基线图同样含占位图，模型据此知道占位图本身是正常的）。
+DIFF_SYSTEM_PROMPT = """你是一个小程序 UI 回归审查员。会给你两张同一页面的截图：
+第一张是【健康基线】（已知正确），第二张是【当前版本】（待审查），可能还附上该页的源码。
+
+你的任务：判断【当前版本】相对【健康基线】是否**引入了缺陷**。只对比差异，不要把基线里本就存在的
+样式（如占位图、网格纹理、留白）当成缺陷——它们在基线里就有，是正常的。
+
+关注这些缺陷维度（相对基线新出现的才算）：
+- has_missing_image: 基线里有内容的图片区域，当前变成空白/缺失
+- has_invisible_text: 基线里可见的文字，当前看不见（颜色与背景接近、对比度过低）
+- has_overflow_or_overlap: 当前出现元素溢出屏幕/相互重叠/错位（基线没有）
+- has_wrong_data: 当前渲染出 undefined/NaN/空绑定/异常文本（基线是正常数据）
+- has_blank: 当前整屏黑/白屏（基线正常）
+
+请只输出一个 JSON，不要额外文字：
+{"has_defect": true/false, "dimension": "visual|functional|none",
+ "has_missing_image": false, "has_invisible_text": false, "has_overflow_or_overlap": false,
+ "has_wrong_data": false, "has_blank": false, "confidence": 0.9, "reasoning": "相对基线的具体差异"}
+"""
+
 
 def _repo_root() -> str:
     # diagnosis/diagnose/mllm/qwen_vl_openai.py → 上溯 4 层到仓库根
@@ -169,4 +191,70 @@ class QwenVLOpenAI:
             cost_dollars=self.cost_per_call_dollars,
             source=f"{self.name}:{self.model}",
             extra={"raw": str(text)[:500]},
+        )
+
+    def analyze_diff(self, baseline_bytes: bytes, current_bytes: bytes,
+                     page_type: str = "feed", code_context: Optional[str] = None) -> OracleResult:
+        """差分+代码融合诊断：给【健康基线图 + 当前图 + 可选源码】，判当前相对基线是否引入缺陷。
+
+        相比 analyze（单图判缺陷），差分对比能消除"占位纹理图被误判为缺图"的系统偏见，
+        因为基线图同样含占位图——模型据此知道占位图是正常的。
+        code_context 是【当前页面源码】（CI 中本就可得），不含"注入了什么"的答案，不构成作弊。
+
+        返回的 OracleResult 复用现有字段：
+          has_missing_image / has_blur(=invisible_text 借位) / has_overlap(=overflow/overlap) /
+          has_blank；额外把结构化结果塞进 extra（has_defect/dimension/has_wrong_data）。
+        """
+        if not self.is_available():
+            return OracleResult(source=self.name, reasoning="Qwen-VL 不可用", confidence=0.0)
+
+        def _uri(b):
+            return f"data:image/png;base64,{base64.b64encode(b).decode('ascii')}"
+
+        user_content = [
+            {"type": "text", "text": "【健康基线】（已知正确）："},
+            {"type": "image_url", "image_url": {"url": _uri(baseline_bytes)}},
+            {"type": "text", "text": "【当前版本】（待审查）："},
+            {"type": "image_url", "image_url": {"url": _uri(current_bytes)}},
+        ]
+        if code_context:
+            user_content.append({"type": "text",
+                                 "text": f"当前页面源码（供参考，判断渲染是否符合代码意图）：\n{code_context[:4000]}"})
+        user_content.append({"type": "text", "text": f"页面类型：{page_type}。只输出 JSON。"})
+
+        t0 = time.time()
+        try:
+            resp = self._get_client().chat.completions.create(
+                model=self.model,
+                messages=[{"role": "system", "content": DIFF_SYSTEM_PROMPT},
+                          {"role": "user", "content": user_content}],
+                max_tokens=500, temperature=0.0,
+            )
+        except Exception as e:  # noqa: BLE001
+            return OracleResult(source=self.name, reasoning=f"调用失败: {e}",
+                                confidence=0.0, cost_ms=(time.time() - t0) * 1000.0)
+        cost_ms = (time.time() - t0) * 1000.0
+        try:
+            text = resp.choices[0].message.content
+        except (AttributeError, IndexError, TypeError):
+            return OracleResult(source=self.name, reasoning=f"返回格式异常: {resp}",
+                                confidence=0.0, cost_ms=cost_ms)
+        parsed = _try_parse_json(text)
+        if not parsed:
+            return OracleResult(source=self.name, reasoning=f"无法解析: {str(text)[:200]}",
+                                confidence=0.0, cost_ms=cost_ms)
+
+        return OracleResult(
+            has_blur=bool(parsed.get("has_invisible_text", False)),       # 借位表达"不可见文字"
+            has_blank=bool(parsed.get("has_blank", False)),
+            has_overlap=bool(parsed.get("has_overflow_or_overlap", False)),
+            has_missing_image=bool(parsed.get("has_missing_image", False)),
+            confidence=float(parsed.get("confidence", 0.5)),
+            reasoning=str(parsed.get("reasoning", "")),
+            cost_ms=cost_ms, cost_dollars=self.cost_per_call_dollars,
+            source=f"{self.name}:{self.model}:diff",
+            extra={"has_defect": bool(parsed.get("has_defect", False)),
+                   "dimension": parsed.get("dimension", "none"),
+                   "has_wrong_data": bool(parsed.get("has_wrong_data", False)),
+                   "raw": str(text)[:500]},
         )

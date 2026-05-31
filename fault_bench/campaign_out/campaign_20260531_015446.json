@@ -1,0 +1,764 @@
+{
+  "ts": "20260531_015446",
+  "seed": 42,
+  "cases": [
+    {
+      "id": "healthy_0",
+      "kind": "healthy",
+      "gt_dim": "none",
+      "channels": {
+        "visual": false,
+        "layout": false,
+        "functional": false,
+        "performance": false,
+        "crash": false
+      },
+      "raw_channels": {
+        "verdict_alarm": false,
+        "baseline_regression": false,
+        "baseline_ssim": 1.0,
+        "tiled_regression": false,
+        "tiled_min_ssim": 1.0,
+        "webug_r1": false,
+        "webug_r2": false,
+        "webug_r3": false
+      },
+      "verdict": "Pass",
+      "detected": false,
+      "pred_dim": "none"
+    },
+    {
+      "id": "healthy_1",
+      "kind": "healthy",
+      "gt_dim": "none",
+      "channels": {
+        "visual": false,
+        "layout": false,
+        "functional": false,
+        "performance": false,
+        "crash": false
+      },
+      "raw_channels": {
+        "verdict_alarm": false,
+        "baseline_regression": false,
+        "baseline_ssim": 1.0,
+        "tiled_regression": false,
+        "tiled_min_ssim": 1.0,
+        "webug_r1": false,
+        "webug_r2": false,
+        "webug_r3": false
+      },
+      "verdict": "Pass",
+      "detected": false,
+      "pred_dim": "none"
+    },
+    {
+      "id": "healthy_2",
+      "kind": "healthy",
+      "gt_dim": "none",
+      "channels": {
+        "visual": false,
+        "layout": false,
+        "functional": false,
+        "performance": false,
+        "crash": false
+      },
+      "raw_channels": {
+        "verdict_alarm": false,
+        "baseline_regression": false,
+        "baseline_ssim": 1.0,
+        "tiled_regression": false,
+        "tiled_min_ssim": 1.0,
+        "webug_r1": false,
+        "webug_r2": false,
+        "webug_r3": false
+      },
+      "verdict": "Pass",
+      "detected": false,
+      "pred_dim": "none"
+    },
+    {
+      "id": "color@XtxSwiper:#efefef",
+      "kind": "fault",
+      "gt_dim": "visual",
+      "gt_fine": "visual",
+      "subtype": "low_contrast",
+      "file": "components/styles/XtxSwiper.scss",
+      "verdict": "Pass",
+      "channels": {
+        "visual": false,
+        "layout": false,
+        "functional": false,
+        "performance": false,
+        "crash": false
+      },
+      "raw_channels": {
+        "verdict_alarm": false,
+        "baseline_regression": false,
+        "baseline_ssim": 1.0,
+        "tiled_regression": false,
+        "tiled_min_ssim": 1.0,
+        "webug_r1": false,
+        "webug_r2": false,
+        "webug_r3": false
+      },
+      "tile_ssim": 1.0,
+      "detected": false,
+      "pred_dim": "none",
+      "rca_correct": false
+    },
+    {
+      "id": "bindempty@XtxGuess:item.name",
+      "kind": "fault",
+      "gt_dim": "functional",
+      "gt_fine": "functional",
+      "subtype": "empty_binding",
+      "file": "components/XtxGuess.vue",
+      "verdict": "Pass",
+      "channels": {
+        "visual": false,
+        "layout": false,
+        "functional": false,
+        "performance": false,
+        "crash": false
+      },
+      "raw_channels": {
+        "verdict_alarm": false,
+        "baseline_regression": false,
+        "baseline_ssim": 0.9801,
+        "tiled_regression": false,
+        "tiled_min_ssim": 0.8953,
+        "webug_r1": false,
+        "webug_r2": false,
+        "webug_r3": false
+      },
+      "tile_ssim": 0.8953,
+      "detected": false,
+      "pred_dim": "none",
+      "rca_correct": false
+    },
+    {
+      "id": "width@category:150x6",
+      "kind": "fault",
+      "gt_dim": "visual",
+      "gt_fine": "layout",
+      "subtype": "overflow",
+      "file": "pages/index/styles/category.scss",
+      "verdict": "Pass",
+      "channels": {
+        "visual": true,
+        "layout": false,
+        "functional": false,
+        "performance": false,
+        "crash": false
+      },
+      "raw_channels": {
+        "verdict_alarm": false,
+        "baseline_regression": true,
+        "baseline_ssim": 0.5095,
+        "tiled_regression": true,
+        "tiled_min_ssim": 0.2961,
+        "webug_r1": false,
+        "webug_r2": false,
+        "webug_r3": false
+      },
+      "tile_ssim": 0.2961,
+      "detected": true,
+      "pred_dim": "visual",
+      "rca_correct": true
+    },
+    {
+      "id": "width@XtxGuess:304x6",
+      "kind": "fault",
+      "gt_dim": "visual",
+      "gt_fine": "layout",
+      "subtype": "overflow",
+      "file": "components/XtxGuess.vue",
+      "verdict": "Pass",
+      "channels": {
+        "visual": true,
+        "layout": false,
+        "functional": false,
+        "performance": false,
+        "crash": false
+      },
+      "raw_channels": {
+        "verdict_alarm": false,
+        "baseline_regression": true,
+        "baseline_ssim": 0.8279,
+        "tiled_regression": true,
+        "tiled_min_ssim": 0.5646,
+        "webug_r1": false,
+        "webug_r2": false,
+        "webug_r3": false
+      },
+      "tile_ssim": 0.5646,
+      "detected": true,
+      "pred_dim": "visual",
+      "rca_correct": true
+    },
+    {
+      "id": "img@HotPanel:src",
+      "kind": "fault",
+      "gt_dim": "visual",
+      "gt_fine": "visual",
+      "subtype": "missing_image",
+      "file": "pages/index/components/HotPanel.vue",
+      "verdict": "Pass",
+      "channels": {
+        "visual": true,
+        "layout": false,
+        "functional": false,
+        "performance": false,
+        "crash": false
+      },
+      "raw_channels": {
+        "verdict_alarm": false,
+        "baseline_regression": false,
+        "baseline_ssim": 0.9414,
+        "tiled_regression": true,
+        "tiled_min_ssim": 0.7541,
+        "webug_r1": false,
+        "webug_r2": false,
+        "webug_r3": false
+      },
+      "tile_ssim": 0.7541,
+      "detected": true,
+      "pred_dim": "visual",
+      "rca_correct": true
+    },
+    {
+      "id": "color@index:#f7f7f7",
+      "kind": "fault",
+      "gt_dim": "visual",
+      "gt_fine": "visual",
+      "subtype": "low_contrast",
+      "file": "pages/index/index.vue",
+      "verdict": "Pass",
+      "channels": {
+        "visual": false,
+        "layout": false,
+        "functional": false,
+        "performance": false,
+        "crash": false
+      },
+      "raw_channels": {
+        "verdict_alarm": false,
+        "baseline_regression": false,
+        "baseline_ssim": 0.9961,
+        "tiled_regression": false,
+        "tiled_min_ssim": 0.991,
+        "webug_r1": false,
+        "webug_r2": false,
+        "webug_r3": false
+      },
+      "tile_ssim": 0.991,
+      "detected": false,
+      "pred_dim": "none",
+      "rca_correct": false
+    },
+    {
+      "id": "width@category:100x6",
+      "kind": "fault",
+      "gt_dim": "visual",
+      "gt_fine": "layout",
+      "subtype": "overflow",
+      "file": "pages/index/styles/category.scss",
+      "verdict": "Pass",
+      "channels": {
+        "visual": true,
+        "layout": false,
+        "functional": false,
+        "performance": false,
+        "crash": false
+      },
+      "raw_channels": {
+        "verdict_alarm": false,
+        "baseline_regression": false,
+        "baseline_ssim": 0.9654,
+        "tiled_regression": true,
+        "tiled_min_ssim": 0.7937,
+        "webug_r1": false,
+        "webug_r2": false,
+        "webug_r3": false
+      },
+      "tile_ssim": 0.7937,
+      "detected": true,
+      "pred_dim": "visual",
+      "rca_correct": true
+    },
+    {
+      "id": "width@hot:150x6",
+      "kind": "fault",
+      "gt_dim": "visual",
+      "gt_fine": "layout",
+      "subtype": "overflow",
+      "file": "pages/index/styles/hot.scss",
+      "verdict": "Pass",
+      "channels": {
+        "visual": false,
+        "layout": false,
+        "functional": false,
+        "performance": false,
+        "crash": false
+      },
+      "raw_channels": {
+        "verdict_alarm": false,
+        "baseline_regression": false,
+        "baseline_ssim": 0.9667,
+        "tiled_regression": false,
+        "tiled_min_ssim": 0.8569,
+        "webug_r1": false,
+        "webug_r2": false,
+        "webug_r3": false
+      },
+      "tile_ssim": 0.8569,
+      "detected": false,
+      "pred_dim": "none",
+      "rca_correct": false
+    },
+    {
+      "id": "bindempty@XtxGuess:item.price",
+      "kind": "fault",
+      "gt_dim": "functional",
+      "gt_fine": "functional",
+      "subtype": "empty_binding",
+      "file": "components/XtxGuess.vue",
+      "verdict": "Pass",
+      "channels": {
+        "visual": false,
+        "layout": false,
+        "functional": false,
+        "performance": false,
+        "crash": false
+      },
+      "raw_channels": {
+        "verdict_alarm": false,
+        "baseline_regression": false,
+        "baseline_ssim": 0.9962,
+        "tiled_regression": false,
+        "tiled_min_ssim": 0.9832,
+        "webug_r1": false,
+        "webug_r2": false,
+        "webug_r3": false
+      },
+      "tile_ssim": 0.9832,
+      "detected": false,
+      "pred_dim": "none",
+      "rca_correct": false
+    },
+    {
+      "id": "width@CustomNavbar:166x6",
+      "kind": "fault",
+      "gt_dim": "visual",
+      "gt_fine": "layout",
+      "subtype": "overflow",
+      "file": "pages/index/components/CustomNavbar.vue",
+      "verdict": "Pass",
+      "channels": {
+        "visual": false,
+        "layout": false,
+        "functional": false,
+        "performance": false,
+        "crash": false
+      },
+      "raw_channels": {
+        "verdict_alarm": false,
+        "baseline_regression": false,
+        "baseline_ssim": 0.9909,
+        "tiled_regression": false,
+        "tiled_min_ssim": 0.9221,
+        "webug_r1": false,
+        "webug_r2": false,
+        "webug_r3": false
+      },
+      "tile_ssim": 0.9221,
+      "detected": false,
+      "pred_dim": "none",
+      "rca_correct": false
+    },
+    {
+      "id": "color@hot:#7f7f7f",
+      "kind": "fault",
+      "gt_dim": "visual",
+      "gt_fine": "visual",
+      "subtype": "low_contrast",
+      "file": "pages/index/styles/hot.scss",
+      "verdict": "Pass",
+      "channels": {
+        "visual": false,
+        "layout": false,
+        "functional": false,
+        "performance": false,
+        "crash": false
+      },
+      "raw_channels": {
+        "verdict_alarm": false,
+        "baseline_regression": false,
+        "baseline_ssim": 0.9932,
+        "tiled_regression": false,
+        "tiled_min_ssim": 0.956,
+        "webug_r1": false,
+        "webug_r2": false,
+        "webug_r3": false
+      },
+      "tile_ssim": 0.956,
+      "detected": false,
+      "pred_dim": "none",
+      "rca_correct": false
+    },
+    {
+      "id": "bindempty@HotPanel:item.title",
+      "kind": "fault",
+      "gt_dim": "functional",
+      "gt_fine": "functional",
+      "subtype": "empty_binding",
+      "file": "pages/index/components/HotPanel.vue",
+      "verdict": "Pass",
+      "channels": {
+        "visual": true,
+        "layout": false,
+        "functional": false,
+        "performance": false,
+        "crash": false
+      },
+      "raw_channels": {
+        "verdict_alarm": false,
+        "baseline_regression": false,
+        "baseline_ssim": 0.9263,
+        "tiled_regression": true,
+        "tiled_min_ssim": 0.6677,
+        "webug_r1": false,
+        "webug_r2": false,
+        "webug_r3": false
+      },
+      "tile_ssim": 0.6677,
+      "detected": true,
+      "pred_dim": "visual",
+      "rca_correct": false
+    },
+    {
+      "id": "img@XtxGuess:item.picture",
+      "kind": "fault",
+      "gt_dim": "visual",
+      "gt_fine": "visual",
+      "subtype": "missing_image",
+      "file": "components/XtxGuess.vue",
+      "verdict": "Pass",
+      "channels": {
+        "visual": true,
+        "layout": false,
+        "functional": false,
+        "performance": false,
+        "crash": false
+      },
+      "raw_channels": {
+        "verdict_alarm": false,
+        "baseline_regression": true,
+        "baseline_ssim": 0.8065,
+        "tiled_regression": true,
+        "tiled_min_ssim": 0.5258,
+        "webug_r1": false,
+        "webug_r2": false,
+        "webug_r3": false
+      },
+      "tile_ssim": 0.5258,
+      "detected": true,
+      "pred_dim": "visual",
+      "rca_correct": true
+    },
+    {
+      "id": "bindempty@HotPanel:item.alt",
+      "kind": "fault",
+      "gt_dim": "functional",
+      "gt_fine": "functional",
+      "subtype": "empty_binding",
+      "file": "pages/index/components/HotPanel.vue",
+      "verdict": "Pass",
+      "channels": {
+        "visual": true,
+        "layout": false,
+        "functional": false,
+        "performance": false,
+        "crash": false
+      },
+      "raw_channels": {
+        "verdict_alarm": false,
+        "baseline_regression": false,
+        "baseline_ssim": 0.9471,
+        "tiled_regression": true,
+        "tiled_min_ssim": 0.7185,
+        "webug_r1": false,
+        "webug_r2": false,
+        "webug_r3": false
+      },
+      "tile_ssim": 0.7185,
+      "detected": true,
+      "pred_dim": "visual",
+      "rca_correct": false
+    },
+    {
+      "id": "color@XtxGuess:#cf4444",
+      "kind": "fault",
+      "gt_dim": "visual",
+      "gt_fine": "visual",
+      "subtype": "low_contrast",
+      "file": "components/XtxGuess.vue",
+      "verdict": "Pass",
+      "channels": {
+        "visual": false,
+        "layout": false,
+        "functional": false,
+        "performance": false,
+        "crash": false
+      },
+      "raw_channels": {
+        "verdict_alarm": false,
+        "baseline_regression": false,
+        "baseline_ssim": 0.9952,
+        "tiled_regression": false,
+        "tiled_min_ssim": 0.9804,
+        "webug_r1": false,
+        "webug_r2": false,
+        "webug_r3": false
+      },
+      "tile_ssim": 0.9804,
+      "detected": false,
+      "pred_dim": "none",
+      "rca_correct": false
+    },
+    {
+      "id": "color@hot:#262626",
+      "kind": "fault",
+      "gt_dim": "visual",
+      "gt_fine": "visual",
+      "subtype": "low_contrast",
+      "file": "pages/index/styles/hot.scss",
+      "verdict": "Pass",
+      "channels": {
+        "visual": false,
+        "layout": false,
+        "functional": false,
+        "performance": false,
+        "crash": false
+      },
+      "raw_channels": {
+        "verdict_alarm": false,
+        "baseline_regression": false,
+        "baseline_ssim": 0.9933,
+        "tiled_regression": false,
+        "tiled_min_ssim": 0.9556,
+        "webug_r1": false,
+        "webug_r2": false,
+        "webug_r3": false
+      },
+      "tile_ssim": 0.9556,
+      "detected": false,
+      "pred_dim": "none",
+      "rca_correct": false
+    },
+    {
+      "id": "img@CategoryPanel:item.icon",
+      "kind": "fault",
+      "gt_dim": "visual",
+      "gt_fine": "visual",
+      "subtype": "missing_image",
+      "file": "pages/index/components/CategoryPanel.vue",
+      "verdict": "Pass",
+      "channels": {
+        "visual": true,
+        "layout": false,
+        "functional": false,
+        "performance": false,
+        "crash": false
+      },
+      "raw_channels": {
+        "verdict_alarm": false,
+        "baseline_regression": false,
+        "baseline_ssim": 0.9635,
+        "tiled_regression": true,
+        "tiled_min_ssim": 0.7897,
+        "webug_r1": false,
+        "webug_r2": false,
+        "webug_r3": false
+      },
+      "tile_ssim": 0.7897,
+      "detected": true,
+      "pred_dim": "visual",
+      "rca_correct": true
+    },
+    {
+      "id": "bindempty@CategoryPanel:item.name",
+      "kind": "fault",
+      "gt_dim": "functional",
+      "gt_fine": "functional",
+      "subtype": "empty_binding",
+      "file": "pages/index/components/CategoryPanel.vue",
+      "verdict": "Pass",
+      "channels": {
+        "visual": false,
+        "layout": false,
+        "functional": false,
+        "performance": false,
+        "crash": false
+      },
+      "raw_channels": {
+        "verdict_alarm": false,
+        "baseline_regression": false,
+        "baseline_ssim": 0.9895,
+        "tiled_regression": false,
+        "tiled_min_ssim": 0.9117,
+        "webug_r1": false,
+        "webug_r2": false,
+        "webug_r3": false
+      },
+      "tile_ssim": 0.9117,
+      "detected": false,
+      "pred_dim": "none",
+      "rca_correct": false
+    },
+    {
+      "id": "img@XtxSwiper:item.imgUrl",
+      "kind": "fault",
+      "gt_dim": "visual",
+      "gt_fine": "visual",
+      "subtype": "missing_image",
+      "file": "components/XtxSwiper.vue",
+      "verdict": "Pass",
+      "channels": {
+        "visual": true,
+        "layout": false,
+        "functional": false,
+        "performance": false,
+        "crash": false
+      },
+      "raw_channels": {
+        "verdict_alarm": false,
+        "baseline_regression": false,
+        "baseline_ssim": 0.9602,
+        "tiled_regression": true,
+        "tiled_min_ssim": 0.6497,
+        "webug_r1": false,
+        "webug_r2": false,
+        "webug_r3": false
+      },
+      "tile_ssim": 0.6497,
+      "detected": true,
+      "pred_dim": "visual",
+      "rca_correct": true
+    },
+    {
+      "id": "width@XtxGuess:345x6",
+      "kind": "fault",
+      "gt_dim": "visual",
+      "gt_fine": "layout",
+      "subtype": "overflow",
+      "file": "components/XtxGuess.vue",
+      "verdict": "Pass",
+      "channels": {
+        "visual": true,
+        "layout": false,
+        "functional": false,
+        "performance": false,
+        "crash": false
+      },
+      "raw_channels": {
+        "verdict_alarm": false,
+        "baseline_regression": true,
+        "baseline_ssim": 0.8165,
+        "tiled_regression": true,
+        "tiled_min_ssim": 0.4832,
+        "webug_r1": false,
+        "webug_r2": false,
+        "webug_r3": false
+      },
+      "tile_ssim": 0.4832,
+      "detected": true,
+      "pred_dim": "visual",
+      "rca_correct": true
+    }
+  ],
+  "report": {
+    "headline": {
+      "n_faults": 20,
+      "n_healthy": 3,
+      "ours_recall": 0.5,
+      "ours_ci95": [
+        0.3,
+        0.7
+      ],
+      "ours_fp": 0.0,
+      "crash_only_recall": 0.0,
+      "tiled_only_recall": 0.5,
+      "rca_top1": 0.4,
+      "conditional_rca": "8/10=0.8"
+    },
+    "detection": {
+      "crash_only": {
+        "recall": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "n_detected": 0,
+        "fp_healthy": 0.0
+      },
+      "verdict_only": {
+        "recall": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "n_detected": 0,
+        "fp_healthy": 0.0
+      },
+      "ssim_whole_only": {
+        "recall": 0.2,
+        "ci95": [
+          0.05,
+          0.4
+        ],
+        "n_detected": 4,
+        "fp_healthy": 0.0
+      },
+      "ssim_tiled_only": {
+        "recall": 0.5,
+        "ci95": [
+          0.3,
+          0.7
+        ],
+        "n_detected": 10,
+        "fp_healthy": 0.0
+      },
+      "webug_only": {
+        "recall": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "n_detected": 0,
+        "fp_healthy": 0.0
+      },
+      "ours_multichannel": {
+        "recall": 0.5,
+        "ci95": [
+          0.3,
+          0.7
+        ],
+        "n_detected": 10,
+        "fp_healthy": 0.0
+      }
+    },
+    "rca_confusion": {
+      "visual": {
+        "none": 7,
+        "visual": 8
+      },
+      "functional": {
+        "none": 3,
+        "visual": 2
+      },
+      "performance": {}
+    }
+  }
+}

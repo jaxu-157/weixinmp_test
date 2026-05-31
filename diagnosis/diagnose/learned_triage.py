@@ -114,7 +114,7 @@ def run_triage_learned(
         visual = CascadeOracle().analyze(image_bytes, page_type)
     else:
         visual = rule_triage._run_visual_assertions(image, page_type)
-    functional = rule_triage._run_functional_assertions(page_state, page_type)
+    functional = rule_triage._run_functional_assertions(page_state, page_type, visual.get("ocr_text", ""))
     performance = rule_triage._run_performance_assertions(perf_data)
 
     verdict, debug = _predict_verdict(visual, functional, performance, page_type, page_state)

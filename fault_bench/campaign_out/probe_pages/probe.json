@@ -1,0 +1,42 @@
+[
+  {
+    "page": "index",
+    "route": "",
+    "dom_text_len": 272,
+    "text_head": "新鲜 · 亲民 · 快捷 搜索商品 手机数码 美妆护肤 家居日用 服饰鞋包 母婴亲子 运动户外 粮油生鲜 图书音像 汽车用品 家用电器 特惠推荐 精选全网精品好",
+    "nonblank_ratio": 0.432,
+    "page_errors": []
+  },
+  {
+    "page": "category",
+    "route": "pages/category/category",
+    "dom_text_len": 20,
+    "text_head": "商品分类 女靴 首页 分类 购物车 我的",
+    "nonblank_ratio": 0.0461,
+    "page_errors": []
+  },
+  {
+    "page": "cart",
+    "route": "pages/cart/cart",
+    "dom_text_len": 174,
+    "text_head": "购物车 登录后可查看购物车中的商品 去登录 猜你喜欢 云珍·轻软细腻面巾纸 ¥19 梵想·便携充电宝 10000mAh ¥36.5 简约纯棉短袖T恤 ¥54 北",
+    "nonblank_ratio": 0.1826,
+    "page_errors": []
+  },
+  {
+    "page": "my",
+    "route": "pages/my/my",
+    "dom_text_len": 194,
+    "text_head": "未登录 点击登录账号 设置 我的订单 查看全部订单 待付款 待发货 待收货 待评价 猜你喜欢 云珍·轻软细腻面巾纸 ¥19 梵想·便携充电宝 10000mAh ",
+    "nonblank_ratio": 0.2408,
+    "page_errors": []
+  },
+  {
+    "page": "hot",
+    "route": "pages/hot/hot",
+    "dom_text_len": 4,
+    "text_head": "热门推荐",
+    "nonblank_ratio": 0.9808,
+    "page_errors": []
+  }
+]

@@ -1,0 +1,64 @@
+{
+  "summary": {
+    "_sentinel": "FIELDLINE_OK",
+    "n_functional": 5,
+    "field_line_exact": "5/5=1.000"
+  },
+  "rows": [
+    {
+      "id": "bindempty@XtxGuess:item.name",
+      "file": "components/XtxGuess.vue",
+      "field": "item.name",
+      "gt_line": 64,
+      "pred_lines": [
+        64
+      ],
+      "via": "exact_field",
+      "line_hit": true
+    },
+    {
+      "id": "bindempty@XtxGuess:item.price",
+      "file": "components/XtxGuess.vue",
+      "field": "item.price",
+      "gt_line": 67,
+      "pred_lines": [
+        67
+      ],
+      "via": "exact_field",
+      "line_hit": true
+    },
+    {
+      "id": "bindempty@HotPanel:item.title",
+      "file": "pages/index/components/HotPanel.vue",
+      "field": "item.title",
+      "gt_line": 15,
+      "pred_lines": [
+        15
+      ],
+      "via": "exact_field",
+      "line_hit": true
+    },
+    {
+      "id": "bindempty@HotPanel:item.alt",
+      "file": "pages/index/components/HotPanel.vue",
+      "field": "item.alt",
+      "gt_line": 16,
+      "pred_lines": [
+        16
+      ],
+      "via": "exact_field",
+      "line_hit": true
+    },
+    {
+      "id": "bindempty@CategoryPanel:item.name",
+      "file": "pages/index/components/CategoryPanel.vue",
+      "field": "item.name",
+      "gt_line": 20,
+      "pred_lines": [
+        20
+      ],
+      "via": "exact_field",
+      "line_hit": true
+    }
+  ]
+}

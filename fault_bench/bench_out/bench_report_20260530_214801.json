@@ -1,0 +1,514 @@
+{
+  "ts": "20260530_214801",
+  "baseline_load_ms": 1512.2249999985797,
+  "cases": [
+    {
+      "id": "healthy_0",
+      "kind": "healthy",
+      "gt_dim": "none",
+      "verdict": "Pass",
+      "channels": {
+        "visual": false,
+        "layout": false,
+        "functional": false,
+        "performance": false,
+        "crash": false
+      },
+      "raw_channels": {
+        "verdict_alarm": false,
+        "baseline_regression": false,
+        "baseline_ssim": 1.0,
+        "tiled_regression": false,
+        "tiled_min_ssim": 1.0,
+        "webug_r1": false,
+        "webug_r2": false,
+        "webug_r3": false
+      },
+      "load_ms": 1491.0,
+      "detected": false,
+      "pred_dim": "none",
+      "page_errors": 0
+    },
+    {
+      "id": "healthy_1",
+      "kind": "healthy",
+      "gt_dim": "none",
+      "verdict": "Pass",
+      "channels": {
+        "visual": false,
+        "layout": false,
+        "functional": false,
+        "performance": false,
+        "crash": false
+      },
+      "raw_channels": {
+        "verdict_alarm": false,
+        "baseline_regression": false,
+        "baseline_ssim": 1.0,
+        "tiled_regression": false,
+        "tiled_min_ssim": 1.0,
+        "webug_r1": false,
+        "webug_r2": false,
+        "webug_r3": false
+      },
+      "load_ms": 1518.0,
+      "detected": false,
+      "pred_dim": "none",
+      "page_errors": 0
+    },
+    {
+      "id": "healthy_2",
+      "kind": "healthy",
+      "gt_dim": "none",
+      "verdict": "Pass",
+      "channels": {
+        "visual": false,
+        "layout": false,
+        "functional": false,
+        "performance": false,
+        "crash": false
+      },
+      "raw_channels": {
+        "verdict_alarm": false,
+        "baseline_regression": false,
+        "baseline_ssim": 1.0,
+        "tiled_regression": false,
+        "tiled_min_ssim": 1.0,
+        "webug_r1": false,
+        "webug_r2": false,
+        "webug_r3": false
+      },
+      "load_ms": 1482.0,
+      "detected": false,
+      "pred_dim": "none",
+      "page_errors": 0
+    },
+    {
+      "id": "guess_missing_image",
+      "kind": "fault",
+      "gt_dim": "visual",
+      "gt_fine": "visual",
+      "subtype": "missing_image",
+      "note": "猜你喜欢商品图 src 绑定丢失（写错字段/忘了拼地址）→ 大面积缺图",
+      "verdict": "Pass",
+      "channels": {
+        "visual": true,
+        "layout": false,
+        "functional": false,
+        "performance": false,
+        "crash": false
+      },
+      "raw_channels": {
+        "verdict_alarm": false,
+        "baseline_regression": true,
+        "baseline_ssim": 0.8065,
+        "tiled_regression": true,
+        "tiled_min_ssim": 0.5258,
+        "webug_r1": false,
+        "webug_r2": false,
+        "webug_r3": false
+      },
+      "baseline_ssim": 0.8065,
+      "load_ms": 1493.0,
+      "dom_overflow": false,
+      "page_errors": 0,
+      "detected": true,
+      "pred_dim": "visual",
+      "rca_correct": true
+    },
+    {
+      "id": "swiper_missing_image",
+      "kind": "fault",
+      "gt_dim": "visual",
+      "gt_fine": "visual",
+      "subtype": "missing_image",
+      "note": "首页轮播大图 src 丢失 → 顶部 banner 缺图",
+      "verdict": "Pass",
+      "channels": {
+        "visual": true,
+        "layout": false,
+        "functional": false,
+        "performance": false,
+        "crash": false
+      },
+      "raw_channels": {
+        "verdict_alarm": false,
+        "baseline_regression": false,
+        "baseline_ssim": 0.9602,
+        "tiled_regression": true,
+        "tiled_min_ssim": 0.6497,
+        "webug_r1": false,
+        "webug_r2": false,
+        "webug_r3": false
+      },
+      "baseline_ssim": 0.9602,
+      "load_ms": 1437.0,
+      "dom_overflow": false,
+      "page_errors": 0,
+      "detected": true,
+      "pred_dim": "visual",
+      "rca_correct": true
+    },
+    {
+      "id": "guess_invisible_text",
+      "kind": "fault",
+      "gt_dim": "visual",
+      "gt_fine": "visual",
+      "subtype": "low_contrast",
+      "note": "商品名颜色写成近白色（在白卡片上）→ 文字不可见（对比度故障）",
+      "verdict": "Pass",
+      "channels": {
+        "visual": false,
+        "layout": false,
+        "functional": false,
+        "performance": false,
+        "crash": false
+      },
+      "raw_channels": {
+        "verdict_alarm": false,
+        "baseline_regression": false,
+        "baseline_ssim": 0.9805,
+        "tiled_regression": false,
+        "tiled_min_ssim": 0.8975,
+        "webug_r1": false,
+        "webug_r2": false,
+        "webug_r3": false
+      },
+      "baseline_ssim": 0.9805,
+      "load_ms": 1504.0,
+      "dom_overflow": false,
+      "page_errors": 0,
+      "detected": false,
+      "pred_dim": "none",
+      "rca_correct": false
+    },
+    {
+      "id": "guess_item_overflow",
+      "kind": "fault",
+      "gt_dim": "visual",
+      "gt_fine": "layout",
+      "subtype": "overflow",
+      "note": "商品卡片宽度 345rpx→720rpx → 双列网格水平溢出",
+      "verdict": "Pass",
+      "channels": {
+        "visual": true,
+        "layout": false,
+        "functional": false,
+        "performance": false,
+        "crash": false
+      },
+      "raw_channels": {
+        "verdict_alarm": false,
+        "baseline_regression": true,
+        "baseline_ssim": 0.8151,
+        "tiled_regression": true,
+        "tiled_min_ssim": 0.4766,
+        "webug_r1": false,
+        "webug_r2": false,
+        "webug_r3": false
+      },
+      "baseline_ssim": 0.8151,
+      "load_ms": 1537.0,
+      "dom_overflow": false,
+      "page_errors": 0,
+      "detected": true,
+      "pred_dim": "visual",
+      "rca_correct": true
+    },
+    {
+      "id": "guess_image_oversize",
+      "kind": "fault",
+      "gt_dim": "visual",
+      "gt_fine": "layout",
+      "subtype": "overflow",
+      "note": "商品图宽 304rpx→900rpx → 图片撑破卡片/网格",
+      "verdict": "Pass",
+      "channels": {
+        "visual": true,
+        "layout": false,
+        "functional": false,
+        "performance": false,
+        "crash": false
+      },
+      "raw_channels": {
+        "verdict_alarm": false,
+        "baseline_regression": true,
+        "baseline_ssim": 0.8492,
+        "tiled_regression": true,
+        "tiled_min_ssim": 0.6078,
+        "webug_r1": false,
+        "webug_r2": false,
+        "webug_r3": false
+      },
+      "baseline_ssim": 0.8492,
+      "load_ms": 1404.0,
+      "dom_overflow": false,
+      "page_errors": 0,
+      "detected": true,
+      "pred_dim": "visual",
+      "rca_correct": true
+    },
+    {
+      "id": "hot_cards_nowrap",
+      "kind": "fault",
+      "gt_dim": "visual",
+      "gt_fine": "layout",
+      "subtype": "overflow",
+      "note": "热门专区卡片去掉换行 → 多图挤在一行水平溢出",
+      "verdict": "Pass",
+      "channels": {
+        "visual": true,
+        "layout": false,
+        "functional": false,
+        "performance": false,
+        "crash": false
+      },
+      "raw_channels": {
+        "verdict_alarm": false,
+        "baseline_regression": false,
+        "baseline_ssim": 0.939,
+        "tiled_regression": true,
+        "tiled_min_ssim": 0.6854,
+        "webug_r1": false,
+        "webug_r2": false,
+        "webug_r3": false
+      },
+      "baseline_ssim": 0.939,
+      "load_ms": 1681.0,
+      "dom_overflow": false,
+      "page_errors": 0,
+      "detected": true,
+      "pred_dim": "visual",
+      "rca_correct": true
+    },
+    {
+      "id": "hot_image_oversize",
+      "kind": "fault",
+      "gt_dim": "visual",
+      "gt_fine": "layout",
+      "subtype": "overflow",
+      "note": "热门专区图片 150rpx→760rpx → 撑破 50% 宽的面板格子",
+      "verdict": "Pass",
+      "channels": {
+        "visual": false,
+        "layout": false,
+        "functional": false,
+        "performance": false,
+        "crash": false
+      },
+      "raw_channels": {
+        "verdict_alarm": false,
+        "baseline_regression": false,
+        "baseline_ssim": 0.9667,
+        "tiled_regression": false,
+        "tiled_min_ssim": 0.8569,
+        "webug_r1": false,
+        "webug_r2": false,
+        "webug_r3": false
+      },
+      "baseline_ssim": 0.9667,
+      "load_ms": 1443.0,
+      "dom_overflow": false,
+      "page_errors": 0,
+      "detected": false,
+      "pred_dim": "none",
+      "rca_correct": false
+    },
+    {
+      "id": "guess_price_nan",
+      "kind": "fault",
+      "gt_dim": "functional",
+      "gt_fine": "functional",
+      "subtype": "data_mismatch",
+      "note": "价格用了不存在的 item.count 参与计算 → 渲染 NaN（异步/字段错配）",
+      "verdict": "Pass",
+      "channels": {
+        "visual": false,
+        "layout": false,
+        "functional": true,
+        "performance": false,
+        "crash": false
+      },
+      "raw_channels": {
+        "verdict_alarm": false,
+        "baseline_regression": false,
+        "baseline_ssim": 0.9956,
+        "tiled_regression": false,
+        "tiled_min_ssim": 0.9838,
+        "webug_r1": false,
+        "webug_r2": false,
+        "webug_r3": true
+      },
+      "baseline_ssim": 0.9956,
+      "load_ms": 1661.0,
+      "dom_overflow": false,
+      "page_errors": 0,
+      "detected": true,
+      "pred_dim": "functional",
+      "rca_correct": true
+    },
+    {
+      "id": "guess_name_empty",
+      "kind": "fault",
+      "gt_dim": "functional",
+      "gt_fine": "functional",
+      "subtype": "data_mismatch",
+      "note": "商品名绑定写错字段 item.title → 名称全空（字段错配，硬样本）",
+      "verdict": "Pass",
+      "channels": {
+        "visual": false,
+        "layout": false,
+        "functional": false,
+        "performance": false,
+        "crash": false
+      },
+      "raw_channels": {
+        "verdict_alarm": false,
+        "baseline_regression": false,
+        "baseline_ssim": 0.9801,
+        "tiled_regression": false,
+        "tiled_min_ssim": 0.8953,
+        "webug_r1": false,
+        "webug_r2": false,
+        "webug_r3": false
+      },
+      "baseline_ssim": 0.9801,
+      "load_ms": 1496.0,
+      "dom_overflow": false,
+      "page_errors": 0,
+      "detected": false,
+      "pred_dim": "none",
+      "rca_correct": false
+    },
+    {
+      "id": "guess_blocking_loop",
+      "kind": "fault",
+      "gt_dim": "performance",
+      "gt_fine": "performance",
+      "subtype": "main_thread_block",
+      "note": "组件 setup 里同步死循环 1.4s（误写阻塞计算）→ 首页内容迟迟不出",
+      "verdict": "Pass",
+      "channels": {
+        "visual": false,
+        "layout": false,
+        "functional": false,
+        "performance": false,
+        "crash": false
+      },
+      "raw_channels": {
+        "verdict_alarm": false,
+        "baseline_regression": false,
+        "baseline_ssim": 1.0,
+        "tiled_regression": false,
+        "tiled_min_ssim": 1.0,
+        "webug_r1": false,
+        "webug_r2": false,
+        "webug_r3": false
+      },
+      "baseline_ssim": 1.0,
+      "load_ms": 1299.0,
+      "dom_overflow": false,
+      "page_errors": 0,
+      "detected": false,
+      "pred_dim": "none",
+      "rca_correct": false
+    }
+  ],
+  "report": {
+    "headline": {
+      "n_faults": 10,
+      "n_healthy_controls": 3,
+      "ours_detection_recall": 0.6,
+      "ours_false_positive_rate": 0.0,
+      "crash_only_recall": 0.0,
+      "rca_top1_ours": 0.6,
+      "rca_top1_majority": 0.7,
+      "rca_top1_random": 0.333,
+      "rca_macro_f1": 0.5
+    },
+    "detection": {
+      "crash_only": {
+        "recall_on_faults": 0.0,
+        "false_positive_rate_healthy": 0.0,
+        "n_detected": 0
+      },
+      "verdict_only": {
+        "recall_on_faults": 0.0,
+        "false_positive_rate_healthy": 0.0,
+        "n_detected": 0
+      },
+      "ssim_whole_only": {
+        "recall_on_faults": 0.3,
+        "false_positive_rate_healthy": 0.0,
+        "n_detected": 3
+      },
+      "ssim_tiled_only": {
+        "recall_on_faults": 0.5,
+        "false_positive_rate_healthy": 0.0,
+        "n_detected": 5
+      },
+      "webug_only": {
+        "recall_on_faults": 0.1,
+        "false_positive_rate_healthy": 0.0,
+        "n_detected": 1
+      },
+      "ours_multichannel": {
+        "recall_on_faults": 0.6,
+        "false_positive_rate_healthy": 0.0,
+        "n_detected": 6
+      }
+    },
+    "rca_per_class": {
+      "visual": {
+        "precision": 1.0,
+        "recall": 0.714,
+        "f1": 0.833,
+        "tp": 5,
+        "fp": 0,
+        "fn": 2
+      },
+      "functional": {
+        "precision": 1.0,
+        "recall": 0.5,
+        "f1": 0.667,
+        "tp": 1,
+        "fp": 0,
+        "fn": 1
+      },
+      "performance": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "tp": 0,
+        "fp": 0,
+        "fn": 1
+      }
+    },
+    "rca_confusion": {
+      "visual": {
+        "visual": 5,
+        "functional": 0,
+        "performance": 0,
+        "none": 2
+      },
+      "functional": {
+        "visual": 0,
+        "functional": 1,
+        "performance": 0,
+        "none": 1
+      },
+      "performance": {
+        "visual": 0,
+        "functional": 0,
+        "performance": 0,
+        "none": 1
+      }
+    },
+    "rca_top1": 0.6,
+    "rca_macro_f1": 0.5,
+    "rca_baselines": {
+      "majority": 0.7,
+      "random": 0.333
+    }
+  }
+}

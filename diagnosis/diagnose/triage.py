@@ -4,6 +4,7 @@ import numpy as np
 from .blur import detect_blur
 from .screen import detect_blank_screen
 from .ocr import extract_text
+from .layout import detect_overlap
 
 
 # 阈值配置
@@ -49,7 +50,7 @@ def run_triage(
     visual_result = _run_visual_assertions(image, page_type)
 
     # ======== 功能断言 ========
-    functional_result = _run_functional_assertions(page_state, page_type)
+    functional_result = _run_functional_assertions(page_state, page_type, visual_result.get("ocr_text", ""))
 
     # ======== 性能断言 ========
     performance_result = _run_performance_assertions(perf_data)
@@ -78,6 +79,8 @@ def _run_visual_assertions(image: np.ndarray, page_type: str) -> dict:
 
     # 2. ROI 模糊（跳过导航栏和tabbar）
     roi = image[int(h * 0.15):int(h * 0.85), :]
+    if roi.size == 0:  # 极小图(h<=1)切出空 ROI 会让 cv2.cvtColor/Canny 崩，退化为整图
+        roi = image
     blur_roi = detect_blur(roi, threshold=BLUR_THRESHOLD_ROI)
 
     # 3. 卡片图片区域模糊采样（仅 feed 页双列布局有效）
@@ -97,7 +100,9 @@ def _run_visual_assertions(image: np.ndarray, page_type: str) -> dict:
             if patch.size > 0:
                 card_blur_scores.append(detect_blur(patch)["score"])
         avg_card_score = sum(card_blur_scores) / max(len(card_blur_scores), 1)
-        card_is_blur = avg_card_score < BLUR_THRESHOLD_CARD
+        # 高清晰度护栏（与 EDGE_BLUR_GUARD 同源）：整图明显清晰(score≥400)时，
+        # 卡片采样块方差低（纯色占位/留白）不再误判为模糊 → 修真实页 RenderBug 假阳。
+        card_is_blur = avg_card_score < BLUR_THRESHOLD_CARD and blur_full["score"] < EDGE_BLUR_GUARD
     avg_card_score = sum(card_blur_scores) / max(len(card_blur_scores), 1) if card_blur_scores else blur_roi["score"]
 
     # 4. 边缘密度（Canny）
@@ -129,8 +134,8 @@ def _run_visual_assertions(image: np.ndarray, page_type: str) -> dict:
     }
 
 
-def _run_functional_assertions(page_state: dict, page_type: str) -> dict:
-    """功能断言：检查可见值一致性 + UI标记异常"""
+def _run_functional_assertions(page_state: dict, page_type: str, ocr_text: str = "") -> dict:
+    """功能断言：检查可见值一致性 + UI标记异常 + OCR文字验证"""
     if not page_state:
         return {"pass": True, "reason": "no_state_provided"}
 
@@ -149,6 +154,11 @@ def _run_functional_assertions(page_state: dict, page_type: str) -> dict:
     if ui_flags.get("isBlank"):
         reasons.append("page_is_blank")
 
+    # OCR文字验证
+    expected_text = page_state.get("expectedText", "")
+    if expected_text and ocr_text and expected_text not in ocr_text:
+        reasons.append(f"ocr: expected '{expected_text}' not found")
+
     if reasons:
         return {"pass": False, "reason": "; ".join(reasons)}
 
@@ -160,8 +170,10 @@ def _run_performance_assertions(perf_data: dict) -> dict:
     if not perf_data:
         return {"pass": True, "reason": "no_perf_data"}
 
-    interaction_ms = perf_data.get("interactionMs", 0)
-    memory_warnings = perf_data.get("memoryWarningCount", 0)
+    # 兼容两套字段名：SDK/对外 API 用 camelCase；driver/devtools/feature_extractor 用 snake_case。
+    # （修 PROJECT_REVIEW P0：snake_case 曾被静默当 0，使 driver/devtools 性能故障漏判。）
+    interaction_ms = perf_data.get("interactionMs", perf_data.get("interaction_ms", 0))
+    memory_warnings = perf_data.get("memoryWarningCount", perf_data.get("memory_warnings", 0))
 
     reasons = []
     if interaction_ms > PERF_THRESHOLD_MS:

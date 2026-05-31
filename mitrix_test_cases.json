@@ -1,0 +1,271 @@
+[
+  {
+    "id": "single/blur_image@feed",
+    "faults": [
+      "blur_image"
+    ],
+    "page": "feed",
+    "oracle": {
+      "blur_image": true,
+      "slow_api": false,
+      "stale_ui": false,
+      "wrong_mapping": false,
+      "layout_overlap": false,
+      "memory_pressure": false
+    }
+  },
+  {
+    "id": "single/slow_api@feed",
+    "faults": [
+      "slow_api"
+    ],
+    "page": "feed",
+    "oracle": {
+      "blur_image": false,
+      "slow_api": true,
+      "stale_ui": false,
+      "wrong_mapping": false,
+      "layout_overlap": false,
+      "memory_pressure": false
+    }
+  },
+  {
+    "id": "single/stale_ui@counter",
+    "faults": [
+      "stale_ui"
+    ],
+    "page": "counter",
+    "oracle": {
+      "blur_image": false,
+      "slow_api": false,
+      "stale_ui": true,
+      "wrong_mapping": false,
+      "layout_overlap": false,
+      "memory_pressure": false
+    }
+  },
+  {
+    "id": "single/wrong_mapping@counter",
+    "faults": [
+      "wrong_mapping"
+    ],
+    "page": "counter",
+    "oracle": {
+      "blur_image": false,
+      "slow_api": false,
+      "stale_ui": false,
+      "wrong_mapping": true,
+      "layout_overlap": false,
+      "memory_pressure": false
+    }
+  },
+  {
+    "id": "single/layout_overlap@layout",
+    "faults": [
+      "layout_overlap"
+    ],
+    "page": "layout",
+    "oracle": {
+      "blur_image": false,
+      "slow_api": false,
+      "stale_ui": false,
+      "wrong_mapping": false,
+      "layout_overlap": true,
+      "memory_pressure": false
+    }
+  },
+  {
+    "id": "single/memory_pressure@feed",
+    "faults": [
+      "memory_pressure"
+    ],
+    "page": "feed",
+    "oracle": {
+      "blur_image": false,
+      "slow_api": false,
+      "stale_ui": false,
+      "wrong_mapping": false,
+      "layout_overlap": false,
+      "memory_pressure": true
+    }
+  },
+  {
+    "id": "pair/blur_image+slow_api@feed",
+    "faults": [
+      "blur_image",
+      "slow_api"
+    ],
+    "page": "feed",
+    "oracle": {
+      "blur_image": true,
+      "slow_api": true,
+      "stale_ui": false,
+      "wrong_mapping": false,
+      "layout_overlap": false,
+      "memory_pressure": false
+    }
+  },
+  {
+    "id": "pair/blur_image+memory_pressure@feed",
+    "faults": [
+      "blur_image",
+      "memory_pressure"
+    ],
+    "page": "feed",
+    "oracle": {
+      "blur_image": true,
+      "slow_api": false,
+      "stale_ui": false,
+      "wrong_mapping": false,
+      "layout_overlap": false,
+      "memory_pressure": true
+    }
+  },
+  {
+    "id": "pair/slow_api+stale_ui@counter",
+    "faults": [
+      "slow_api",
+      "stale_ui"
+    ],
+    "page": "counter",
+    "oracle": {
+      "blur_image": false,
+      "slow_api": true,
+      "stale_ui": true,
+      "wrong_mapping": false,
+      "layout_overlap": false,
+      "memory_pressure": false
+    }
+  },
+  {
+    "id": "pair/slow_api+wrong_mapping@counter",
+    "faults": [
+      "slow_api",
+      "wrong_mapping"
+    ],
+    "page": "counter",
+    "oracle": {
+      "blur_image": false,
+      "slow_api": true,
+      "stale_ui": false,
+      "wrong_mapping": true,
+      "layout_overlap": false,
+      "memory_pressure": false
+    }
+  },
+  {
+    "id": "pair/slow_api+layout_overlap@layout",
+    "faults": [
+      "layout_overlap",
+      "slow_api"
+    ],
+    "page": "layout",
+    "oracle": {
+      "blur_image": false,
+      "slow_api": true,
+      "stale_ui": false,
+      "wrong_mapping": false,
+      "layout_overlap": true,
+      "memory_pressure": false
+    }
+  },
+  {
+    "id": "pair/slow_api+memory_pressure@feed",
+    "faults": [
+      "memory_pressure",
+      "slow_api"
+    ],
+    "page": "feed",
+    "oracle": {
+      "blur_image": false,
+      "slow_api": true,
+      "stale_ui": false,
+      "wrong_mapping": false,
+      "layout_overlap": false,
+      "memory_pressure": true
+    }
+  },
+  {
+    "id": "pair/stale_ui+wrong_mapping@counter",
+    "faults": [
+      "stale_ui",
+      "wrong_mapping"
+    ],
+    "page": "counter",
+    "oracle": {
+      "blur_image": false,
+      "slow_api": false,
+      "stale_ui": true,
+      "wrong_mapping": true,
+      "layout_overlap": false,
+      "memory_pressure": false
+    }
+  },
+  {
+    "id": "pair/layout_overlap+memory_pressure@layout",
+    "faults": [
+      "layout_overlap",
+      "memory_pressure"
+    ],
+    "page": "layout",
+    "oracle": {
+      "blur_image": false,
+      "slow_api": false,
+      "stale_ui": false,
+      "wrong_mapping": false,
+      "layout_overlap": true,
+      "memory_pressure": true
+    }
+  },
+  {
+    "id": "triple/blur_image+slow_api+memory_pressure@feed",
+    "faults": [
+      "blur_image",
+      "memory_pressure",
+      "slow_api"
+    ],
+    "page": "feed",
+    "oracle": {
+      "blur_image": true,
+      "slow_api": true,
+      "stale_ui": false,
+      "wrong_mapping": false,
+      "layout_overlap": false,
+      "memory_pressure": true
+    }
+  },
+  {
+    "id": "triple/slow_api+stale_ui+wrong_mapping@counter",
+    "faults": [
+      "slow_api",
+      "stale_ui",
+      "wrong_mapping"
+    ],
+    "page": "counter",
+    "oracle": {
+      "blur_image": false,
+      "slow_api": true,
+      "stale_ui": true,
+      "wrong_mapping": true,
+      "layout_overlap": false,
+      "memory_pressure": false
+    }
+  },
+  {
+    "id": "triple/slow_api+layout_overlap+memory_pressure@layout",
+    "faults": [
+      "layout_overlap",
+      "memory_pressure",
+      "slow_api"
+    ],
+    "page": "layout",
+    "oracle": {
+      "blur_image": false,
+      "slow_api": true,
+      "stale_ui": false,
+      "wrong_mapping": false,
+      "layout_overlap": true,
+      "memory_pressure": true
+    }
+  }
+]

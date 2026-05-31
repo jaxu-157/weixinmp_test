@@ -32,6 +32,10 @@ class FaultActivateRequest(BaseModel):
     profile: str
 
 
+class FaultActivateMultiRequest(BaseModel):
+    profiles: list[str]  # 原子故障列表，如 ["blur_image", "slow_api"]
+
+
 class FaultStatusResponse(BaseModel):
     profile: str
 
@@ -43,9 +47,32 @@ async def activate_fault(req: FaultActivateRequest):
     return {"code": 0, "data": None, "profile": current_fault_profile}
 
 
+@app.post("/fault/activate-multi")
+async def activate_fault_multi(req: FaultActivateMultiRequest):
+    """激活多个原子故障的组合"""
+    global current_fault_profile
+    profiles = req.profiles
+    if not profiles:
+        current_fault_profile = "normal"
+    elif len(profiles) == 1:
+        current_fault_profile = profiles[0]
+    else:
+        current_fault_profile = "+".join(profiles)
+    return {"code": 0, "data": {"profiles": profiles}, "profile": current_fault_profile}
+
+
 @app.get("/fault/status")
 async def fault_status():
     return {"code": 0, "data": {"profile": current_fault_profile}, "profile": current_fault_profile}
+
+
+def _parse_faults(profile: str) -> set:
+    """将复合故障 profile 解析为原子故障集合。
+    例如 "blur_image+slow_api" → {"blur_image", "slow_api"}
+    """
+    if not profile or profile == "normal":
+        return set()
+    return set(profile.split("+"))
 
 
 # ============ Mock API：Feed ============
@@ -80,15 +107,16 @@ async def get_feed(
     x_fault_profile: Optional[str] = Header(None, alias="X-Fault-Profile"),
 ):
     profile = current_fault_profile if current_fault_profile != "normal" else (x_fault_profile or "normal")
+    faults = _parse_faults(profile)
 
     # slow_api故障：延迟返回
-    if profile in ("slow_api", "mixed_fault"):
+    if "slow_api" in faults:
         await _simulate_delay(800, 1500)
 
     items = []
     for i in range((page - 1) * pageSize, page * pageSize):
         # blur_image故障：返回模糊图片URL
-        if profile == "blur_image":
+        if "blur_image" in faults:
             img = BLUR_IMAGES[i % len(BLUR_IMAGES)]
         else:
             img = SAMPLE_IMAGES[i % len(SAMPLE_IMAGES)]
@@ -111,8 +139,9 @@ async def get_counter(
     x_fault_profile: Optional[str] = Header(None, alias="X-Fault-Profile"),
 ):
     profile = current_fault_profile if current_fault_profile != "normal" else (x_fault_profile or "normal")
+    faults = _parse_faults(profile)
 
-    if profile in ("slow_api", "mixed_fault"):
+    if "slow_api" in faults:
         await _simulate_delay(800, 1500)
 
     return {
@@ -132,8 +161,9 @@ async def refresh_counter(
 ):
     global counter_value
     profile = current_fault_profile if current_fault_profile != "normal" else (x_fault_profile or "normal")
+    faults = _parse_faults(profile)
 
-    if profile in ("slow_api", "mixed_fault"):
+    if "slow_api" in faults:
         await _simulate_delay(800, 1500)
 
     counter_value += 1
@@ -145,7 +175,7 @@ async def refresh_counter(
     }
 
     # wrong_mapping故障：字段名不对
-    if profile == "wrong_mapping":
+    if "wrong_mapping" in faults:
         data = {
             "val": counter_value,  # 前端期望 value 字段
             "time": int(time.time() * 1000),
@@ -162,8 +192,9 @@ async def get_layout(
     x_fault_profile: Optional[str] = Header(None, alias="X-Fault-Profile"),
 ):
     profile = current_fault_profile if current_fault_profile != "normal" else (x_fault_profile or "normal")
+    faults = _parse_faults(profile)
 
-    if profile in ("slow_api", "mixed_fault"):
+    if "slow_api" in faults:
         await _simulate_delay(800, 1500)
 
     cards = []

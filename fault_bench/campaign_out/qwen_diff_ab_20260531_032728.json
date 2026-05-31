@@ -1,0 +1,363 @@
+{
+  "report": {
+    "ts": "20260531_032728",
+    "n_pos": 20,
+    "n_neg": 8,
+    "with_code": false,
+    "elapsed_s": 77,
+    "ours": {
+      "precision": 0.667,
+      "recall": 0.5,
+      "f1": 0.571,
+      "fpr": 0.625,
+      "accuracy": 0.464,
+      "tp": 10,
+      "fp": 5,
+      "fn": 10,
+      "tn": 3
+    },
+    "qwen_single": {
+      "precision": 0.714,
+      "recall": 1.0,
+      "f1": 0.833,
+      "fpr": 1.0,
+      "accuracy": 0.714,
+      "tp": 20,
+      "fp": 8,
+      "fn": 0,
+      "tn": 0
+    },
+    "qwen_diff": {
+      "precision": 0.545,
+      "recall": 0.3,
+      "f1": 0.387,
+      "fpr": 0.625,
+      "accuracy": 0.321,
+      "tp": 6,
+      "fp": 5,
+      "fn": 14,
+      "tn": 3
+    },
+    "ours_plus_qwen_diff": {
+      "precision": 0.688,
+      "recall": 0.55,
+      "f1": 0.611,
+      "fpr": 0.625,
+      "accuracy": 0.5,
+      "tp": 11,
+      "fp": 5,
+      "fn": 9,
+      "tn": 3
+    }
+  },
+  "rows": [
+    {
+      "id": "color@XtxSwiper:#efefef",
+      "label": 1,
+      "gt_dim": "visual",
+      "ours": false,
+      "qwen_single": true,
+      "qwen_diff": false,
+      "qwen_diff_dim": "none",
+      "qwen_diff_reason": "两张截图内容完全一致，无任何视觉或功能上的差异。",
+      "ours_plus_qwendiff": false
+    },
+    {
+      "id": "bindempty@XtxGuess:item.name",
+      "label": 1,
+      "gt_dim": "functional",
+      "ours": false,
+      "qwen_single": true,
+      "qwen_diff": false,
+      "qwen_diff_dim": "none",
+      "qwen_diff_reason": "当前版本与健康基线在视觉布局、文字内容、数据展示上均保持一致，未发现新引入的缺陷。",
+      "ours_plus_qwendiff": false
+    },
+    {
+      "id": "width@category:150x6",
+      "label": 1,
+      "gt_dim": "visual",
+      "ours": true,
+      "qwen_single": true,
+      "qwen_diff": true,
+      "qwen_diff_dim": "visual",
+      "qwen_diff_reason": "当前版本顶部导航栏下方的分类标签区域（如手机数码、美妆护肤等）从横向排列变为纵向堆叠，导致布局错乱，出现元素重叠和错位，这是相对基线新增的视觉缺陷。",
+      "ours_plus_qwendiff": true
+    },
+    {
+      "id": "width@XtxGuess:304x6",
+      "label": 1,
+      "gt_dim": "visual",
+      "ours": true,
+      "qwen_single": true,
+      "qwen_diff": true,
+      "qwen_diff_dim": "visual",
+      "qwen_diff_reason": "当前版本的图片区域（G1-G8）在基线的基础上新增了黑色的分割线，这些线条在基线中并不存在，属于视觉上的不一致。",
+      "ours_plus_qwendiff": true
+    },
+    {
+      "id": "img@HotPanel:src",
+      "label": 1,
+      "gt_dim": "visual",
+      "ours": true,
+      "qwen_single": true,
+      "qwen_diff": true,
+      "qwen_diff_dim": "visual",
+      "qwen_diff_reason": "当前版本在‘特惠推荐’和‘爆款推荐’区域的描述文字（如‘精选全网精品好货’、‘最受欢迎的好物’）显示为单行文本，而基线中这些文字是多行展示。虽然未完全缺失，但排版和视觉呈现与基线不",
+      "ours_plus_qwendiff": true
+    },
+    {
+      "id": "color@index:#f7f7f7",
+      "label": 1,
+      "gt_dim": "visual",
+      "ours": false,
+      "qwen_single": true,
+      "qwen_diff": false,
+      "qwen_diff_dim": "none",
+      "qwen_diff_reason": "当前版本与健康基线在视觉布局、文字内容、元素排列及数据展示上完全一致，未发现新增缺陷。",
+      "ours_plus_qwendiff": false
+    },
+    {
+      "id": "width@category:100x6",
+      "label": 1,
+      "gt_dim": "visual",
+      "ours": true,
+      "qwen_single": true,
+      "qwen_diff": false,
+      "qwen_diff_dim": "none",
+      "qwen_diff_reason": "当前版本与健康基线在视觉布局、文字内容、元素位置及数据展示上均保持一致，未发现新引入的缺陷。",
+      "ours_plus_qwendiff": true
+    },
+    {
+      "id": "width@hot:150x6",
+      "label": 1,
+      "gt_dim": "visual",
+      "ours": false,
+      "qwen_single": true,
+      "qwen_diff": false,
+      "qwen_diff_dim": "none",
+      "qwen_diff_reason": "当前版本与健康基线在视觉布局、文本内容、元素位置及数据渲染上均保持一致，未发现新引入的缺陷。",
+      "ours_plus_qwendiff": false
+    },
+    {
+      "id": "bindempty@XtxGuess:item.price",
+      "label": 1,
+      "gt_dim": "functional",
+      "ours": false,
+      "qwen_single": true,
+      "qwen_diff": true,
+      "qwen_diff_dim": "visual",
+      "qwen_diff_reason": "当前版本在部分商品价格标签前多了一个空的人民币符号（¥），这是相对于健康基线新增的视觉差异，属于轻微缺陷。",
+      "ours_plus_qwendiff": true
+    },
+    {
+      "id": "width@CustomNavbar:166x6",
+      "label": 1,
+      "gt_dim": "visual",
+      "ours": false,
+      "qwen_single": true,
+      "qwen_diff": false,
+      "qwen_diff_dim": "none",
+      "qwen_diff_reason": "当前版本与健康基线在视觉布局、文字内容、元素位置及数据展示上均保持一致，未发现新增缺陷。",
+      "ours_plus_qwendiff": false
+    },
+    {
+      "id": "color@hot:#7f7f7f",
+      "label": 1,
+      "gt_dim": "visual",
+      "ours": false,
+      "qwen_single": true,
+      "qwen_diff": false,
+      "qwen_diff_dim": "none",
+      "qwen_diff_reason": "当前版本与健康基线在视觉布局、文字内容、数据展示等方面完全一致，未发现新引入的缺陷。",
+      "ours_plus_qwendiff": false
+    },
+    {
+      "id": "bindempty@HotPanel:item.title",
+      "label": 1,
+      "gt_dim": "functional",
+      "ours": true,
+      "qwen_single": true,
+      "qwen_diff": false,
+      "qwen_diff_dim": "none",
+      "qwen_diff_reason": "当前版本与健康基线在视觉布局、文本内容、元素位置及数据展示上均保持一致，未发现新引入的缺陷。",
+      "ours_plus_qwendiff": true
+    },
+    {
+      "id": "img@XtxGuess:item.picture",
+      "label": 1,
+      "gt_dim": "visual",
+      "ours": true,
+      "qwen_single": true,
+      "qwen_diff": true,
+      "qwen_diff_dim": "visual",
+      "qwen_diff_reason": "当前版本的商品图片区域被替换为纯白色背景，与基线中存在内容的占位图形成对比，属于视觉上的缺陷。",
+      "ours_plus_qwendiff": true
+    },
+    {
+      "id": "bindempty@HotPanel:item.alt",
+      "label": 1,
+      "gt_dim": "functional",
+      "ours": true,
+      "qwen_single": true,
+      "qwen_diff": false,
+      "qwen_diff_dim": "none",
+      "qwen_diff_reason": "当前版本与健康基线在视觉布局、文本内容和元素完整性上完全一致，未发现新引入的缺陷。",
+      "ours_plus_qwendiff": true
+    },
+    {
+      "id": "color@XtxGuess:#cf4444",
+      "label": 1,
+      "gt_dim": "visual",
+      "ours": false,
+      "qwen_single": true,
+      "qwen_diff": false,
+      "qwen_diff_dim": "none",
+      "qwen_diff_reason": "当前版本与健康基线在视觉布局、文本内容、元素位置及数据展示上均保持一致，未发现新引入的缺陷。",
+      "ours_plus_qwendiff": false
+    },
+    {
+      "id": "color@hot:#262626",
+      "label": 1,
+      "gt_dim": "visual",
+      "ours": false,
+      "qwen_single": true,
+      "qwen_diff": false,
+      "qwen_diff_dim": "none",
+      "qwen_diff_reason": "当前版本与健康基线在视觉布局、文本内容、元素位置及数据展示上均保持一致，未发现新引入的缺陷。",
+      "ours_plus_qwendiff": false
+    },
+    {
+      "id": "img@CategoryPanel:item.icon",
+      "label": 1,
+      "gt_dim": "visual",
+      "ours": true,
+      "qwen_single": true,
+      "qwen_diff": false,
+      "qwen_diff_dim": "none",
+      "qwen_diff_reason": "两张截图内容完全一致，无任何视觉或功能上的差异。",
+      "ours_plus_qwendiff": true
+    },
+    {
+      "id": "bindempty@CategoryPanel:item.name",
+      "label": 1,
+      "gt_dim": "functional",
+      "ours": false,
+      "qwen_single": true,
+      "qwen_diff": false,
+      "qwen_diff_dim": "none",
+      "qwen_diff_reason": "两张截图内容完全一致，无任何视觉或功能上的差异。",
+      "ours_plus_qwendiff": false
+    },
+    {
+      "id": "img@XtxSwiper:item.imgUrl",
+      "label": 1,
+      "gt_dim": "visual",
+      "ours": true,
+      "qwen_single": true,
+      "qwen_diff": false,
+      "qwen_diff_dim": "none",
+      "qwen_diff_reason": "当前版本与健康基线在视觉布局、文字内容、数据展示等方面均保持一致，未发现新引入的缺陷。",
+      "ours_plus_qwendiff": true
+    },
+    {
+      "id": "width@XtxGuess:345x6",
+      "label": 1,
+      "gt_dim": "visual",
+      "ours": true,
+      "qwen_single": true,
+      "qwen_diff": true,
+      "qwen_diff_dim": "visual",
+      "qwen_diff_reason": "当前版本在 G4 商品下方出现了一段空白区域，导致页面布局错位，相对基线出现了视觉上的溢出或错位。",
+      "ours_plus_qwendiff": true
+    },
+    {
+      "id": "healthy_0",
+      "label": 0,
+      "gt_dim": "none",
+      "ours": false,
+      "qwen_single": true,
+      "qwen_diff": false,
+      "qwen_diff_dim": "none",
+      "qwen_diff_reason": "当前版本与健康基线在视觉布局、文本内容、元素排列及数据展示上完全一致，未发现新增缺陷。",
+      "ours_plus_qwendiff": false
+    },
+    {
+      "id": "healthy_1",
+      "label": 0,
+      "gt_dim": "none",
+      "ours": false,
+      "qwen_single": true,
+      "qwen_diff": false,
+      "qwen_diff_dim": "none",
+      "qwen_diff_reason": "两张截图内容完全一致，无任何视觉或功能上的差异。",
+      "ours_plus_qwendiff": false
+    },
+    {
+      "id": "healthy_2",
+      "label": 0,
+      "gt_dim": "none",
+      "ours": false,
+      "qwen_single": true,
+      "qwen_diff": false,
+      "qwen_diff_dim": "none",
+      "qwen_diff_reason": "两张截图内容完全一致，无任何视觉或功能差异。",
+      "ours_plus_qwendiff": false
+    },
+    {
+      "id": "correct_extra_0",
+      "label": 0,
+      "gt_dim": "none",
+      "ours": true,
+      "qwen_single": true,
+      "qwen_diff": true,
+      "qwen_diff_dim": "visual",
+      "qwen_diff_reason": "当前版本在 G4 商品下方出现了一段空白区域，导致页面布局错位，相对基线出现了视觉上的溢出或错位。",
+      "ours_plus_qwendiff": true
+    },
+    {
+      "id": "correct_extra_1",
+      "label": 0,
+      "gt_dim": "none",
+      "ours": true,
+      "qwen_single": true,
+      "qwen_diff": true,
+      "qwen_diff_dim": "visual",
+      "qwen_diff_reason": "当前版本在 G4 商品下方出现了一段空白区域，导致页面布局错位，相对基线出现了视觉上的溢出或错位现象。",
+      "ours_plus_qwendiff": true
+    },
+    {
+      "id": "correct_extra_2",
+      "label": 0,
+      "gt_dim": "none",
+      "ours": true,
+      "qwen_single": true,
+      "qwen_diff": true,
+      "qwen_diff_dim": "visual",
+      "qwen_diff_reason": "当前版本在 G4 商品下方出现了一段空白区域，导致页面布局错位，相对基线出现了视觉上的溢出或错位现象。",
+      "ours_plus_qwendiff": true
+    },
+    {
+      "id": "correct_extra_3",
+      "label": 0,
+      "gt_dim": "none",
+      "ours": true,
+      "qwen_single": true,
+      "qwen_diff": true,
+      "qwen_diff_dim": "visual",
+      "qwen_diff_reason": "当前版本在 G4 商品下方出现了一段空白区域，导致页面布局错位，相对基线出现了视觉上的溢出或错位。",
+      "ours_plus_qwendiff": true
+    },
+    {
+      "id": "correct_extra_4",
+      "label": 0,
+      "gt_dim": "none",
+      "ours": true,
+      "qwen_single": true,
+      "qwen_diff": true,
+      "qwen_diff_dim": "visual",
+      "qwen_diff_reason": "当前版本在 G4 商品下方出现了一段空白区域，导致页面布局错位，相对基线出现了视觉上的溢出或错位。",
+      "ours_plus_qwendiff": true
+    }
+  ]
+}
