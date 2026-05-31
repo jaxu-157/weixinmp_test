@@ -56,13 +56,15 @@
 | 视觉→源文件（bbox 面积排序，新） | localization_v2 | **文件级 8/10 = 80%；组件级 9/10 = 90%** |
 | 功能 字段→源码行（给定坏字段名） | field_line | **5/5 = 100%** exact |
 | 功能 page.data坏字段→源码行（端到端闭环，离线合成数据） | datafield_loop | **4/4 = 100%** |
+| 功能 **真机** page.data 坏字段定位（minium 连 devtools 实读） | datafield_live_inject | **真机闭环通过**：youzouzou `/pages/others/others`，setData 注入 `list[0].name="undefined"` → 扫描器真机抓到 `broken_field_paths=["list[0].name"]`（caught_on_device=true），恢复后干净（restored_clean=true） |
 
 - 视觉定位链路：分块SSIM最低tile集 → 与所有元素 getBoundingClientRect 求交叠面积 → 面积最大且非根容器的元素 → data-v hash → .vue 源文件。
 - 修法①：用 **data-v hash**（每.vue唯一不撞车）而非 class（被 uni 框架 wrapper 类污染）；hash→文件 6/6 全对。
 - 修法②：**bbox 面积排序** 替代单点 elementsFromPoint（单点命中相邻/大容器）；4/10→8/10。
 - 视觉定位 3 步迭代：0/10(class) → 4/10(hash+单点) → 8/10(hash+bbox)。
 - 字段→行 5/5 实测行号：XtxGuess item.name→L64 / item.price→L67；HotPanel item.title→L15 / item.alt→L16；CategoryPanel item.name→L20。
-- page.data闭环 4/4：guessList[0].price→L67、name→L64、HotPanel alt→L16、CategoryPanel name→L20（合成 page.data 驱动；真机换成 minium page.data 即端到端，真机验证待做）。
+- page.data闭环 4/4：guessList[0].price→L67、name→L64、HotPanel alt→L16、CategoryPanel name→L20（合成 page.data 驱动）。
+- **真机已验证通过**（datafield_live_inject.json，2026-05-31，minium 连 devtools 端口33676 实测）：youzouzou `/pages/others/others`，`call_method("setData")` 注入 `list[0].id="undefined"` → 真机字段扫描器抓到 `broken_field_paths=["list[0].id"]`（caught_on_device=true），恢复后干净（restored_clean=true）。即"读真实 page.data → 指名坏字段路径"在真机端到端跑通。
 - **平台不对称（诚实）**：字段名运行时恢复在 minium 原生路径直接（page.data 结构化命名坏字段，`devtools_probe.collect_data` 新增 `suspicious_fields`/`broken_field_paths`）；H5 prod 编译掉 `{{ }}`、Vue per-node 实例不可达，H5 路径字段名运行时恢复仍是缺口。
 
 ## 4. 诚实负结果（方法学严谨的体现，全部实测）

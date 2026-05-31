@@ -1,0 +1,21 @@
+{
+  "port": 33676,
+  "connected": true,
+  "current_route": "/pages/others/others",
+  "collect_data": {
+    "available": true,
+    "data_keys": [
+      "list"
+    ],
+    "has_suspicious": false,
+    "suspicious_tokens": [],
+    "suspicious_fields": [],
+    "broken_field_paths": []
+  },
+  "geometry": {
+    "available": true,
+    "has_overflow": false,
+    "scroll_width": 390,
+    "client_width": 390
+  }
+}
