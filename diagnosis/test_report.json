@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-05-27 16:32:17",
-  "elapsed_seconds": 3.79,
-  "total_passed": 76,
+  "timestamp": "2026-05-31 07:03:39",
+  "elapsed_seconds": 4.76,
+  "total_passed": 82,
   "total_failed": 0,
-  "total_tests": 76,
+  "total_tests": 82,
   "pass_rate": 100.0,
   "suites": {
     "blur": {
@@ -34,6 +34,12 @@
       "passed": 17,
       "failed": 0,
       "total": 17,
+      "failures": []
+    },
+    "perf_fields": {
+      "passed": 6,
+      "failed": 0,
+      "total": 6,
       "failures": []
     }
   }

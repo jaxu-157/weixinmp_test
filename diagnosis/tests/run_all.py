@@ -7,6 +7,14 @@ import os
 import json
 import time
 
+# Windows 默认 GBK 控制台无法输出 ▶ 等符号会崩（PROJECT_REVIEW P1）。强制 UTF-8。
+if sys.platform == "win32":
+    try:
+        sys.stdout.reconfigure(encoding="utf-8")
+        sys.stderr.reconfigure(encoding="utf-8")
+    except Exception:
+        pass
+
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from tests.test_blur import run_blur_tests
@@ -14,6 +22,7 @@ from tests.test_screen import run_screen_tests
 from tests.test_layout import run_layout_tests
 from tests.test_triage import run_triage_tests
 from tests.test_api import run_api_tests
+from tests.test_perf_fields import run_perf_field_tests
 
 
 def run_all():
@@ -56,6 +65,12 @@ def run_all():
     print("▶ API 集成测试")
     print("─" * 70)
     all_summaries["api"] = run_api_tests()
+
+    # 6. 性能字段兼容性回归（camelCase + snake_case）
+    print("\n" + "─" * 70)
+    print("▶ 性能字段兼容性回归")
+    print("─" * 70)
+    all_summaries["perf_fields"] = run_perf_field_tests()
 
     elapsed = time.time() - start_time
 

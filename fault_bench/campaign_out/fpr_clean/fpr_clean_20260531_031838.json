@@ -1,0 +1,88 @@
+{
+  "ts": "20260531_031838",
+  "n": 8,
+  "fp": 8,
+  "fpr": 1.0,
+  "rows": [
+    {
+      "file": "healthy_0.png",
+      "alarm": true,
+      "tile_min": 1.0,
+      "tiled_reg": false,
+      "whole_ssim": 1.0,
+      "webug_r2": true,
+      "webug_r3": false,
+      "verdict": "Pass"
+    },
+    {
+      "file": "healthy_1.png",
+      "alarm": true,
+      "tile_min": 1.0,
+      "tiled_reg": false,
+      "whole_ssim": 1.0,
+      "webug_r2": true,
+      "webug_r3": false,
+      "verdict": "Pass"
+    },
+    {
+      "file": "healthy_2.png",
+      "alarm": true,
+      "tile_min": 1.0,
+      "tiled_reg": false,
+      "whole_ssim": 1.0,
+      "webug_r2": true,
+      "webug_r3": false,
+      "verdict": "Pass"
+    },
+    {
+      "file": "healthy_3.png",
+      "alarm": true,
+      "tile_min": 1.0,
+      "tiled_reg": false,
+      "whole_ssim": 1.0,
+      "webug_r2": true,
+      "webug_r3": false,
+      "verdict": "Pass"
+    },
+    {
+      "file": "healthy_4.png",
+      "alarm": true,
+      "tile_min": 1.0,
+      "tiled_reg": false,
+      "whole_ssim": 1.0,
+      "webug_r2": true,
+      "webug_r3": false,
+      "verdict": "Pass"
+    },
+    {
+      "file": "healthy_5.png",
+      "alarm": true,
+      "tile_min": 1.0,
+      "tiled_reg": false,
+      "whole_ssim": 1.0,
+      "webug_r2": true,
+      "webug_r3": false,
+      "verdict": "Pass"
+    },
+    {
+      "file": "healthy_6.png",
+      "alarm": true,
+      "tile_min": 1.0,
+      "tiled_reg": false,
+      "whole_ssim": 1.0,
+      "webug_r2": true,
+      "webug_r3": false,
+      "verdict": "Pass"
+    },
+    {
+      "file": "healthy_7.png",
+      "alarm": true,
+      "tile_min": 1.0,
+      "tiled_reg": false,
+      "whole_ssim": 1.0,
+      "webug_r2": true,
+      "webug_r3": false,
+      "verdict": "Pass"
+    }
+  ]
+}

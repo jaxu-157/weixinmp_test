@@ -1,0 +1,443 @@
+{
+  "perf_signal": {
+    "available": true,
+    "entries": [],
+    "first_render_ms": null,
+    "max_script_ms": null,
+    "n_entries": 0
+  },
+  "perf_get_perf_time": {
+    "available": true,
+    "first_render_ms": null,
+    "max_script_ms": null,
+    "n_entries": 0
+  },
+  "data_signal": {
+    "available": true,
+    "suspicious_tokens": [],
+    "has_suspicious": false,
+    "data_keys": [
+      "list"
+    ],
+    "text_sample": "{\"list\": [{\"id\": \"form\", \"name\": \"表单\", \"open\": false, \"pages\": [\"form\", \"list\"]}, {\"id\": \"toast\", \"name\": \"操作提示\", \"open\": false, \"pages\": [\"toast\"]}, {\"id\": \"marquee\", \"name\": \"文字跑马灯\", \"open\": false, \"pages\": [\"marquee\"]}, {\"id\": \"drawer\", \"name\": \"抽屉层\", \"open\": false, \"pages\": [\"drawer\"]}, {\"id\": \""
+  },
+  "geometry_signal": {
+    "available": true,
+    "page_overflow_x": false,
+    "scroll_width": 390,
+    "client_width": 390,
+    "scroll_height": 1269,
+    "client_height": 671,
+    "n_elements": 40,
+    "overflow_elements": [],
+    "overlap_pairs": [
+      {
+        "a": {
+          "sel": "view",
+          "left": 15,
+          "top": 139.40000915527344,
+          "width": 361,
+          "height": 66
+        },
+        "b": {
+          "sel": "view",
+          "left": 15,
+          "top": 161,
+          "width": 361,
+          "height": 88
+        },
+        "cover_small": 0.67
+      },
+      {
+        "a": {
+          "sel": "view",
+          "left": 15,
+          "top": 139.40000915527344,
+          "width": 361,
+          "height": 66
+        },
+        "b": {
+          "sel": "view",
+          "left": 15,
+          "top": 161,
+          "width": 361,
+          "height": 88
+        },
+        "cover_small": 0.67
+      },
+      {
+        "a": {
+          "sel": "view",
+          "left": 35,
+          "top": 159.40000915527344,
+          "width": 321,
+          "height": 26
+        },
+        "b": {
+          "sel": "view",
+          "left": 30,
+          "top": 171,
+          "width": 318,
+          "height": 24
+        },
+        "cover_small": 0.59
+      },
+      {
+        "a": {
+          "sel": "view",
+          "left": 15,
+          "top": 161,
+          "width": 361,
+          "height": 88
+        },
+        "b": {
+          "sel": "view",
+          "left": 15,
+          "top": 215,
+          "width": 361,
+          "height": 66
+        },
+        "cover_small": 0.52
+      },
+      {
+        "a": {
+          "sel": "view",
+          "left": 15,
+          "top": 161,
+          "width": 361,
+          "height": 88
+        },
+        "b": {
+          "sel": "view",
+          "left": 15,
+          "top": 215,
+          "width": 361,
+          "height": 66
+        },
+        "cover_small": 0.52
+      },
+      {
+        "a": {
+          "sel": "view",
+          "left": 15,
+          "top": 161,
+          "width": 361,
+          "height": 88
+        },
+        "b": {
+          "sel": "view",
+          "left": 35,
+          "top": 235,
+          "width": 321,
+          "height": 26
+        },
+        "cover_small": 0.54
+      },
+      {
+        "a": {
+          "sel": "view",
+          "left": 15,
+          "top": 215,
+          "width": 361,
+          "height": 66
+        },
+        "b": {
+          "sel": "view",
+          "left": 15,
+          "top": 258.6000061035156,
+          "width": 361,
+          "height": 44
+        },
+        "cover_small": 0.51
+      },
+      {
+        "a": {
+          "sel": "view",
+          "left": 15,
+          "top": 215,
+          "width": 361,
+          "height": 66
+        },
+        "b": {
+          "sel": "view",
+          "left": 30,
+          "top": 268.6000061035156,
+          "width": 318,
+          "height": 24
+        },
+        "cover_small": 0.52
+      },
+      {
+        "a": {
+          "sel": "view",
+          "left": 15,
+          "top": 215,
+          "width": 361,
+          "height": 66
+        },
+        "b": {
+          "sel": "view",
+          "left": 15,
+          "top": 258.6000061035156,
+          "width": 361,
+          "height": 44
+        },
+        "cover_small": 0.51
+      },
+      {
+        "a": {
+          "sel": "view",
+          "left": 15,
+          "top": 215,
+          "width": 361,
+          "height": 66
+        },
+        "b": {
+          "sel": "view",
+          "left": 30,
+          "top": 268.6000061035156,
+          "width": 318,
+          "height": 24
+        },
+        "cover_small": 0.52
+      }
+    ],
+    "has_overflow": false,
+    "has_overlap": true
+  },
+  "raw_rect_samples": [
+    {
+      "selector": "view",
+      "rect": {
+        "left": 0,
+        "top": 0,
+        "width": 390,
+        "height": 1269
+      },
+      "size": {
+        "width": 390,
+        "height": 1269
+      },
+      "offset": {
+        "left": 0,
+        "top": 0
+      },
+      "clientRect": {
+        "left": 0,
+        "top": 0,
+        "width": 390,
+        "height": 1269
+      },
+      "inner_text": "自定义组件\n对WEUI样式的补充\n表单\nform\nlist\n操作提示\ntoast\n文字跑马灯\nmarquee\n抽屉层\ndrawer\n订单评价\ncomment\n富文本解析\nrichcontent\ntab菜单\nlefttab\nxscroll_top_bar\n横向滚动\nxscroll\n城市三级联选\ncity_picker\n加载动画\nloading\n图片翻页\npictures\n瀑布流\nwaterfall\n自定义日历\ncalendar\n商品属性联动\ncommodity_attr\n深圳三十天科技@20170109"
+    }
+  ],
+  "translated": {
+    "business": {
+      "ui_flags": {
+        "hasOverlap": true
+      }
+    },
+    "perf": {},
+    "extra": {
+      "data_signal": {
+        "available": true,
+        "suspicious_tokens": [],
+        "has_suspicious": false,
+        "data_keys": [
+          "list"
+        ],
+        "text_sample": "{\"list\": [{\"id\": \"form\", \"name\": \"表单\", \"open\": false, \"pages\": [\"form\", \"list\"]}, {\"id\": \"toast\", \"name\": \"操作提示\", \"open\": false, \"pages\": [\"toast\"]}, {\"id\": \"marquee\", \"name\": \"文字跑马灯\", \"open\": false, \"pages\": [\"marquee\"]}, {\"id\": \"drawer\", \"name\": \"抽屉层\", \"open\": false, \"pages\": [\"drawer\"]}, {\"id\": \""
+      },
+      "geometry_signal": {
+        "available": true,
+        "page_overflow_x": false,
+        "scroll_width": 390,
+        "client_width": 390,
+        "scroll_height": 1269,
+        "client_height": 671,
+        "n_elements": 40,
+        "overflow_elements": [],
+        "overlap_pairs": [
+          {
+            "a": {
+              "sel": "view",
+              "left": 15,
+              "top": 139.40000915527344,
+              "width": 361,
+              "height": 66
+            },
+            "b": {
+              "sel": "view",
+              "left": 15,
+              "top": 161,
+              "width": 361,
+              "height": 88
+            },
+            "cover_small": 0.67
+          },
+          {
+            "a": {
+              "sel": "view",
+              "left": 15,
+              "top": 139.40000915527344,
+              "width": 361,
+              "height": 66
+            },
+            "b": {
+              "sel": "view",
+              "left": 15,
+              "top": 161,
+              "width": 361,
+              "height": 88
+            },
+            "cover_small": 0.67
+          },
+          {
+            "a": {
+              "sel": "view",
+              "left": 35,
+              "top": 159.40000915527344,
+              "width": 321,
+              "height": 26
+            },
+            "b": {
+              "sel": "view",
+              "left": 30,
+              "top": 171,
+              "width": 318,
+              "height": 24
+            },
+            "cover_small": 0.59
+          },
+          {
+            "a": {
+              "sel": "view",
+              "left": 15,
+              "top": 161,
+              "width": 361,
+              "height": 88
+            },
+            "b": {
+              "sel": "view",
+              "left": 15,
+              "top": 215,
+              "width": 361,
+              "height": 66
+            },
+            "cover_small": 0.52
+          },
+          {
+            "a": {
+              "sel": "view",
+              "left": 15,
+              "top": 161,
+              "width": 361,
+              "height": 88
+            },
+            "b": {
+              "sel": "view",
+              "left": 15,
+              "top": 215,
+              "width": 361,
+              "height": 66
+            },
+            "cover_small": 0.52
+          },
+          {
+            "a": {
+              "sel": "view",
+              "left": 15,
+              "top": 161,
+              "width": 361,
+              "height": 88
+            },
+            "b": {
+              "sel": "view",
+              "left": 35,
+              "top": 235,
+              "width": 321,
+              "height": 26
+            },
+            "cover_small": 0.54
+          },
+          {
+            "a": {
+              "sel": "view",
+              "left": 15,
+              "top": 215,
+              "width": 361,
+              "height": 66
+            },
+            "b": {
+              "sel": "view",
+              "left": 15,
+              "top": 258.6000061035156,
+              "width": 361,
+              "height": 44
+            },
+            "cover_small": 0.51
+          },
+          {
+            "a": {
+              "sel": "view",
+              "left": 15,
+              "top": 215,
+              "width": 361,
+              "height": 66
+            },
+            "b": {
+              "sel": "view",
+              "left": 30,
+              "top": 268.6000061035156,
+              "width": 318,
+              "height": 24
+            },
+            "cover_small": 0.52
+          },
+          {
+            "a": {
+              "sel": "view",
+              "left": 15,
+              "top": 215,
+              "width": 361,
+              "height": 66
+            },
+            "b": {
+              "sel": "view",
+              "left": 15,
+              "top": 258.6000061035156,
+              "width": 361,
+              "height": 44
+            },
+            "cover_small": 0.51
+          },
+          {
+            "a": {
+              "sel": "view",
+              "left": 15,
+              "top": 215,
+              "width": 361,
+              "height": 66
+            },
+            "b": {
+              "sel": "view",
+              "left": 30,
+              "top": 268.6000061035156,
+              "width": 318,
+              "height": 24
+            },
+            "cover_small": 0.52
+          }
+        ],
+        "has_overflow": false,
+        "has_overlap": true
+      },
+      "perf_signal": {
+        "available": true,
+        "first_render_ms": null,
+        "max_script_ms": null,
+        "n_entries": 0
+      }
+    }
+  }
+}

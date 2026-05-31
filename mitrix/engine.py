@@ -233,6 +233,10 @@ def compute_metrics(results: list[dict]) -> dict:
     stats = {f: {"tp": 0, "fp": 0, "fn": 0, "tn": 0} for f in ATOMIC_FAULTS}
 
     for case in results:
+        # 只统计真正执行成功的用例；截图/诊断失败的用例不是"漏检"，
+        # 计入会把 FN 灌水、压低 recall/F1（bug-hunt 确认的 HIGH 问题）。
+        if not case.get("success", True):
+            continue
         oracle = case.get("oracle", {})
         detected = case.get("detected", {})
         for f in ATOMIC_FAULTS:

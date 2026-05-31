@@ -1,0 +1,125 @@
+{
+  "ts": "20260530_203231",
+  "results": [
+    {
+      "page": "feed",
+      "profile": "normal",
+      "expected": "Pass",
+      "verdict": "MISSING",
+      "match": false,
+      "screenshot": null
+    },
+    {
+      "page": "feed",
+      "profile": "blur_image",
+      "expected": "RenderBug",
+      "verdict": "MISSING",
+      "match": false,
+      "screenshot": null
+    },
+    {
+      "page": "feed",
+      "profile": "slow_api",
+      "expected": "PerformanceRisk",
+      "verdict": "MISSING",
+      "match": false,
+      "screenshot": null
+    },
+    {
+      "page": "feed",
+      "profile": "memory_pressure",
+      "expected": "PerformanceRisk",
+      "verdict": "MISSING",
+      "match": false,
+      "screenshot": null
+    },
+    {
+      "page": "feed",
+      "profile": "mixed_fault",
+      "expected": "Mixed",
+      "verdict": "MISSING",
+      "match": false,
+      "screenshot": null
+    },
+    {
+      "page": "counter",
+      "profile": "normal",
+      "expected": "Pass",
+      "verdict": "MISSING",
+      "match": false,
+      "screenshot": null
+    },
+    {
+      "page": "counter",
+      "profile": "slow_api",
+      "expected": "PerformanceRisk",
+      "verdict": "MISSING",
+      "match": false,
+      "screenshot": null
+    },
+    {
+      "page": "counter",
+      "profile": "stale_ui",
+      "expected": "FunctionalFail",
+      "verdict": "MISSING",
+      "match": false,
+      "screenshot": null
+    },
+    {
+      "page": "counter",
+      "profile": "wrong_mapping",
+      "expected": "FunctionalFail",
+      "verdict": "MISSING",
+      "match": false,
+      "screenshot": null
+    },
+    {
+      "page": "counter",
+      "profile": "mixed_fault",
+      "expected": "Mixed",
+      "verdict": "MISSING",
+      "match": false,
+      "screenshot": null
+    },
+    {
+      "page": "layout",
+      "profile": "normal",
+      "expected": "Pass",
+      "verdict": "MISSING",
+      "match": false,
+      "screenshot": null
+    },
+    {
+      "page": "layout",
+      "profile": "slow_api",
+      "expected": "PerformanceRisk",
+      "verdict": "MISSING",
+      "match": false,
+      "screenshot": null
+    },
+    {
+      "page": "layout",
+      "profile": "layout_overlap",
+      "expected": "RenderBug",
+      "verdict": "MISSING",
+      "match": false,
+      "screenshot": null
+    },
+    {
+      "page": "layout",
+      "profile": "memory_pressure",
+      "expected": "PerformanceRisk",
+      "verdict": "MISSING",
+      "match": false,
+      "screenshot": null
+    }
+  ],
+  "summary": {
+    "n_cases": 14,
+    "verdict_accuracy": 0.0,
+    "n_baseline_regression": 0,
+    "n_webug_triggered": 0,
+    "multi_channel_recall_on_faults": 0.0,
+    "n_actual_faults": 11
+  }
+}

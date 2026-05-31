@@ -1,0 +1,136 @@
+{
+  "ts": "20260531_060402",
+  "pages": {
+    "index": {
+      "n_healthy": 4,
+      "fp": 0,
+      "fpr": 0.0,
+      "rows": [
+        {
+          "i": 0,
+          "alarm": false,
+          "tile": 1.0,
+          "channels": []
+        },
+        {
+          "i": 1,
+          "alarm": false,
+          "tile": 1.0,
+          "channels": []
+        },
+        {
+          "i": 2,
+          "alarm": false,
+          "tile": 1.0,
+          "channels": []
+        },
+        {
+          "i": 3,
+          "alarm": false,
+          "tile": 1.0,
+          "channels": []
+        }
+      ]
+    },
+    "cart": {
+      "n_healthy": 4,
+      "fp": 0,
+      "fpr": 0.0,
+      "rows": [
+        {
+          "i": 0,
+          "alarm": false,
+          "tile": 1.0,
+          "channels": []
+        },
+        {
+          "i": 1,
+          "alarm": false,
+          "tile": 1.0,
+          "channels": []
+        },
+        {
+          "i": 2,
+          "alarm": false,
+          "tile": 1.0,
+          "channels": []
+        },
+        {
+          "i": 3,
+          "alarm": false,
+          "tile": 1.0,
+          "channels": []
+        }
+      ]
+    },
+    "my": {
+      "n_healthy": 4,
+      "fp": 0,
+      "fpr": 0.0,
+      "rows": [
+        {
+          "i": 0,
+          "alarm": false,
+          "tile": 1.0,
+          "channels": []
+        },
+        {
+          "i": 1,
+          "alarm": false,
+          "tile": 1.0,
+          "channels": []
+        },
+        {
+          "i": 2,
+          "alarm": false,
+          "tile": 1.0,
+          "channels": []
+        },
+        {
+          "i": 3,
+          "alarm": false,
+          "tile": 1.0,
+          "channels": []
+        }
+      ]
+    }
+  },
+  "faults": [
+    {
+      "id": "my:avatar_missing",
+      "page": "my",
+      "dim": "visual",
+      "detected": false,
+      "pred_dim": "none",
+      "tile": 1.0,
+      "channels": []
+    },
+    {
+      "id": "my:avatar_width",
+      "page": "my",
+      "dim": "visual",
+      "detected": false,
+      "pred_dim": "none",
+      "tile": 1.0,
+      "channels": []
+    },
+    {
+      "id": "my:title_lowcontrast",
+      "page": "my",
+      "dim": "visual",
+      "detected": false,
+      "pred_dim": "none",
+      "tile": 1.0,
+      "channels": []
+    }
+  ],
+  "summary": {
+    "pages_tested": [
+      "index",
+      "cart",
+      "my"
+    ],
+    "crosspage_healthy_fpr": "0/12",
+    "visible_faults_detected": "0/3"
+  }
+}

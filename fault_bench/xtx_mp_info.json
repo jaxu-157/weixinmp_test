@@ -1,0 +1,21 @@
+{
+  "pages_count": 8,
+  "pages": [
+    "pages/index/index",
+    "pages/category/category",
+    "pages/cart/cart",
+    "pages/cart/cart2",
+    "pages/my/my",
+    "pages/login/login",
+    "pages/hot/hot",
+    "pages/goods/goods"
+  ],
+  "tabBar": [
+    "pages/index/index",
+    "pages/category/category",
+    "pages/cart/cart",
+    "pages/my/my"
+  ],
+  "appid": "wx26729f20b9efae3a",
+  "projectname": "小兔鲜儿"
+}

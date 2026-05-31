@@ -1,0 +1,515 @@
+{
+  "report": {
+    "base_campaign": "campaign_20260531_015446.json",
+    "n_faults": 20,
+    "n_healthy": 3,
+    "qwen_calls": 23,
+    "qwen_avg_ms": 1010,
+    "ours_only": {
+      "recall": 0.5,
+      "ci95": [
+        0.3,
+        0.7
+      ],
+      "fp": 0.0,
+      "n_det": 10
+    },
+    "qwen_only": {
+      "recall": 1.0,
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "fp": 1.0,
+      "n_det": 20
+    },
+    "ours_plus_qwen": {
+      "recall": 1.0,
+      "ci95": [
+        1.0,
+        1.0
+      ],
+      "fp": 1.0,
+      "n_det": 20
+    },
+    "qwen_rescued": [
+      "color@XtxSwiper:#efefef",
+      "bindempty@XtxGuess:item.name",
+      "color@index:#f7f7f7",
+      "width@hot:150x6",
+      "bindempty@XtxGuess:item.price",
+      "width@CustomNavbar:166x6",
+      "color@hot:#7f7f7f",
+      "color@XtxGuess:#cf4444",
+      "color@hot:#262626",
+      "bindempty@CategoryPanel:item.name"
+    ],
+    "qwen_false_alarm_on_healthy": [
+      "healthy_0",
+      "healthy_1",
+      "healthy_2"
+    ]
+  },
+  "cases": [
+    {
+      "id": "healthy_0",
+      "kind": "healthy",
+      "gt_dim": "none",
+      "subtype": null,
+      "tile_ssim": null,
+      "ours": false,
+      "qwen": true,
+      "ours_plus_qwen": true,
+      "qwen_raw": {
+        "available": true,
+        "blur": false,
+        "blank": false,
+        "overlap": false,
+        "missing_image": true,
+        "conf": 0.95,
+        "ms": 1640,
+        "anomaly": true
+      }
+    },
+    {
+      "id": "healthy_1",
+      "kind": "healthy",
+      "gt_dim": "none",
+      "subtype": null,
+      "tile_ssim": null,
+      "ours": false,
+      "qwen": true,
+      "ours_plus_qwen": true,
+      "qwen_raw": {
+        "available": true,
+        "blur": false,
+        "blank": false,
+        "overlap": false,
+        "missing_image": true,
+        "conf": 0.95,
+        "ms": 967,
+        "anomaly": true
+      }
+    },
+    {
+      "id": "healthy_2",
+      "kind": "healthy",
+      "gt_dim": "none",
+      "subtype": null,
+      "tile_ssim": null,
+      "ours": false,
+      "qwen": true,
+      "ours_plus_qwen": true,
+      "qwen_raw": {
+        "available": true,
+        "blur": false,
+        "blank": false,
+        "overlap": false,
+        "missing_image": true,
+        "conf": 0.95,
+        "ms": 1006,
+        "anomaly": true
+      }
+    },
+    {
+      "id": "color@XtxSwiper:#efefef",
+      "kind": "fault",
+      "gt_dim": "visual",
+      "subtype": "low_contrast",
+      "tile_ssim": 1.0,
+      "ours": false,
+      "qwen": true,
+      "ours_plus_qwen": true,
+      "qwen_raw": {
+        "available": true,
+        "blur": false,
+        "blank": false,
+        "overlap": false,
+        "missing_image": true,
+        "conf": 0.95,
+        "ms": 971,
+        "anomaly": true
+      }
+    },
+    {
+      "id": "bindempty@XtxGuess:item.name",
+      "kind": "fault",
+      "gt_dim": "functional",
+      "subtype": "empty_binding",
+      "tile_ssim": 0.8953,
+      "ours": false,
+      "qwen": true,
+      "ours_plus_qwen": true,
+      "qwen_raw": {
+        "available": true,
+        "blur": false,
+        "blank": false,
+        "overlap": false,
+        "missing_image": true,
+        "conf": 0.95,
+        "ms": 932,
+        "anomaly": true
+      }
+    },
+    {
+      "id": "width@category:150x6",
+      "kind": "fault",
+      "gt_dim": "visual",
+      "subtype": "overflow",
+      "tile_ssim": 0.2961,
+      "ours": true,
+      "qwen": true,
+      "ours_plus_qwen": true,
+      "qwen_raw": {
+        "available": true,
+        "blur": false,
+        "blank": false,
+        "overlap": false,
+        "missing_image": true,
+        "conf": 0.95,
+        "ms": 1364,
+        "anomaly": true
+      }
+    },
+    {
+      "id": "width@XtxGuess:304x6",
+      "kind": "fault",
+      "gt_dim": "visual",
+      "subtype": "overflow",
+      "tile_ssim": 0.5646,
+      "ours": true,
+      "qwen": true,
+      "ours_plus_qwen": true,
+      "qwen_raw": {
+        "available": true,
+        "blur": false,
+        "blank": false,
+        "overlap": false,
+        "missing_image": true,
+        "conf": 0.95,
+        "ms": 990,
+        "anomaly": true
+      }
+    },
+    {
+      "id": "img@HotPanel:src",
+      "kind": "fault",
+      "gt_dim": "visual",
+      "subtype": "missing_image",
+      "tile_ssim": 0.7541,
+      "ours": true,
+      "qwen": true,
+      "ours_plus_qwen": true,
+      "qwen_raw": {
+        "available": true,
+        "blur": false,
+        "blank": false,
+        "overlap": false,
+        "missing_image": true,
+        "conf": 0.95,
+        "ms": 1027,
+        "anomaly": true
+      }
+    },
+    {
+      "id": "color@index:#f7f7f7",
+      "kind": "fault",
+      "gt_dim": "visual",
+      "subtype": "low_contrast",
+      "tile_ssim": 0.991,
+      "ours": false,
+      "qwen": true,
+      "ours_plus_qwen": true,
+      "qwen_raw": {
+        "available": true,
+        "blur": false,
+        "blank": false,
+        "overlap": false,
+        "missing_image": true,
+        "conf": 0.95,
+        "ms": 1067,
+        "anomaly": true
+      }
+    },
+    {
+      "id": "width@category:100x6",
+      "kind": "fault",
+      "gt_dim": "visual",
+      "subtype": "overflow",
+      "tile_ssim": 0.7937,
+      "ours": true,
+      "qwen": true,
+      "ours_plus_qwen": true,
+      "qwen_raw": {
+        "available": true,
+        "blur": false,
+        "blank": false,
+        "overlap": false,
+        "missing_image": true,
+        "conf": 0.95,
+        "ms": 978,
+        "anomaly": true
+      }
+    },
+    {
+      "id": "width@hot:150x6",
+      "kind": "fault",
+      "gt_dim": "visual",
+      "subtype": "overflow",
+      "tile_ssim": 0.8569,
+      "ours": false,
+      "qwen": true,
+      "ours_plus_qwen": true,
+      "qwen_raw": {
+        "available": true,
+        "blur": false,
+        "blank": false,
+        "overlap": false,
+        "missing_image": true,
+        "conf": 0.95,
+        "ms": 949,
+        "anomaly": true
+      }
+    },
+    {
+      "id": "bindempty@XtxGuess:item.price",
+      "kind": "fault",
+      "gt_dim": "functional",
+      "subtype": "empty_binding",
+      "tile_ssim": 0.9832,
+      "ours": false,
+      "qwen": true,
+      "ours_plus_qwen": true,
+      "qwen_raw": {
+        "available": true,
+        "blur": false,
+        "blank": false,
+        "overlap": false,
+        "missing_image": true,
+        "conf": 0.95,
+        "ms": 910,
+        "anomaly": true
+      }
+    },
+    {
+      "id": "width@CustomNavbar:166x6",
+      "kind": "fault",
+      "gt_dim": "visual",
+      "subtype": "overflow",
+      "tile_ssim": 0.9221,
+      "ours": false,
+      "qwen": true,
+      "ours_plus_qwen": true,
+      "qwen_raw": {
+        "available": true,
+        "blur": false,
+        "blank": false,
+        "overlap": false,
+        "missing_image": true,
+        "conf": 0.95,
+        "ms": 912,
+        "anomaly": true
+      }
+    },
+    {
+      "id": "color@hot:#7f7f7f",
+      "kind": "fault",
+      "gt_dim": "visual",
+      "subtype": "low_contrast",
+      "tile_ssim": 0.956,
+      "ours": false,
+      "qwen": true,
+      "ours_plus_qwen": true,
+      "qwen_raw": {
+        "available": true,
+        "blur": false,
+        "blank": false,
+        "overlap": false,
+        "missing_image": true,
+        "conf": 0.95,
+        "ms": 917,
+        "anomaly": true
+      }
+    },
+    {
+      "id": "bindempty@HotPanel:item.title",
+      "kind": "fault",
+      "gt_dim": "functional",
+      "subtype": "empty_binding",
+      "tile_ssim": 0.6677,
+      "ours": true,
+      "qwen": true,
+      "ours_plus_qwen": true,
+      "qwen_raw": {
+        "available": true,
+        "blur": false,
+        "blank": false,
+        "overlap": false,
+        "missing_image": true,
+        "conf": 0.95,
+        "ms": 917,
+        "anomaly": true
+      }
+    },
+    {
+      "id": "img@XtxGuess:item.picture",
+      "kind": "fault",
+      "gt_dim": "visual",
+      "subtype": "missing_image",
+      "tile_ssim": 0.5258,
+      "ours": true,
+      "qwen": true,
+      "ours_plus_qwen": true,
+      "qwen_raw": {
+        "available": true,
+        "blur": false,
+        "blank": false,
+        "overlap": false,
+        "missing_image": true,
+        "conf": 0.95,
+        "ms": 998,
+        "anomaly": true
+      }
+    },
+    {
+      "id": "bindempty@HotPanel:item.alt",
+      "kind": "fault",
+      "gt_dim": "functional",
+      "subtype": "empty_binding",
+      "tile_ssim": 0.7185,
+      "ours": true,
+      "qwen": true,
+      "ours_plus_qwen": true,
+      "qwen_raw": {
+        "available": true,
+        "blur": false,
+        "blank": false,
+        "overlap": false,
+        "missing_image": true,
+        "conf": 0.95,
+        "ms": 1036,
+        "anomaly": true
+      }
+    },
+    {
+      "id": "color@XtxGuess:#cf4444",
+      "kind": "fault",
+      "gt_dim": "visual",
+      "subtype": "low_contrast",
+      "tile_ssim": 0.9804,
+      "ours": false,
+      "qwen": true,
+      "ours_plus_qwen": true,
+      "qwen_raw": {
+        "available": true,
+        "blur": false,
+        "blank": false,
+        "overlap": false,
+        "missing_image": true,
+        "conf": 0.95,
+        "ms": 911,
+        "anomaly": true
+      }
+    },
+    {
+      "id": "color@hot:#262626",
+      "kind": "fault",
+      "gt_dim": "visual",
+      "subtype": "low_contrast",
+      "tile_ssim": 0.9556,
+      "ours": false,
+      "qwen": true,
+      "ours_plus_qwen": true,
+      "qwen_raw": {
+        "available": true,
+        "blur": false,
+        "blank": false,
+        "overlap": false,
+        "missing_image": true,
+        "conf": 0.95,
+        "ms": 893,
+        "anomaly": true
+      }
+    },
+    {
+      "id": "img@CategoryPanel:item.icon",
+      "kind": "fault",
+      "gt_dim": "visual",
+      "subtype": "missing_image",
+      "tile_ssim": 0.7897,
+      "ours": true,
+      "qwen": true,
+      "ours_plus_qwen": true,
+      "qwen_raw": {
+        "available": true,
+        "blur": false,
+        "blank": false,
+        "overlap": false,
+        "missing_image": true,
+        "conf": 0.95,
+        "ms": 983,
+        "anomaly": true
+      }
+    },
+    {
+      "id": "bindempty@CategoryPanel:item.name",
+      "kind": "fault",
+      "gt_dim": "functional",
+      "subtype": "empty_binding",
+      "tile_ssim": 0.9117,
+      "ours": false,
+      "qwen": true,
+      "ours_plus_qwen": true,
+      "qwen_raw": {
+        "available": true,
+        "blur": false,
+        "blank": false,
+        "overlap": false,
+        "missing_image": true,
+        "conf": 0.95,
+        "ms": 926,
+        "anomaly": true
+      }
+    },
+    {
+      "id": "img@XtxSwiper:item.imgUrl",
+      "kind": "fault",
+      "gt_dim": "visual",
+      "subtype": "missing_image",
+      "tile_ssim": 0.6497,
+      "ours": true,
+      "qwen": true,
+      "ours_plus_qwen": true,
+      "qwen_raw": {
+        "available": true,
+        "blur": false,
+        "blank": false,
+        "overlap": false,
+        "missing_image": true,
+        "conf": 0.95,
+        "ms": 965,
+        "anomaly": true
+      }
+    },
+    {
+      "id": "width@XtxGuess:345x6",
+      "kind": "fault",
+      "gt_dim": "visual",
+      "subtype": "overflow",
+      "tile_ssim": 0.4832,
+      "ours": true,
+      "qwen": true,
+      "ours_plus_qwen": true,
+      "qwen_raw": {
+        "available": true,
+        "blur": false,
+        "blank": false,
+        "overlap": false,
+        "missing_image": true,
+        "conf": 0.95,
+        "ms": 977,
+        "anomaly": true
+      }
+    }
+  ]
+}

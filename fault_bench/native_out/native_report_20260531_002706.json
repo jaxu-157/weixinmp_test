@@ -1,0 +1,282 @@
+{
+  "ts": "20260531_002706",
+  "project": "D:\\weixinmp_test\\third-youzouzou-wxapp",
+  "cases": [
+    {
+      "id": "healthy_pictures",
+      "kind": "healthy",
+      "page": "pictures",
+      "gt_dim": "none",
+      "channels": {
+        "crash": false,
+        "visual_verdict": false,
+        "ssim_whole": false,
+        "ssim_tile": false,
+        "dt_data": false,
+        "dt_geom": false,
+        "dt_perf": false
+      },
+      "detected": false,
+      "pred_dim": "none",
+      "verdict": "Pass",
+      "whole_ssim": 1.0,
+      "tile_ssim": 1.0,
+      "perf_metric": 37
+    },
+    {
+      "id": "healthy_others",
+      "kind": "healthy",
+      "page": "others",
+      "gt_dim": "none",
+      "channels": {
+        "crash": true,
+        "visual_verdict": false,
+        "ssim_whole": false,
+        "ssim_tile": false,
+        "dt_data": false,
+        "dt_geom": false,
+        "dt_perf": false
+      },
+      "detected": false,
+      "pred_dim": "none",
+      "verdict": "Pass",
+      "whole_ssim": 1.0,
+      "tile_ssim": 1.0,
+      "perf_metric": 56
+    },
+    {
+      "id": "pictures_missing_image",
+      "kind": "fault",
+      "page": "pictures",
+      "gt_dim": "visual",
+      "gt_fine": "visual",
+      "subtype": "missing_image",
+      "note": "首图 src 置空（onShow 复制到全部5框）→ 整页图片缺失",
+      "rca_correct": true,
+      "channels": {
+        "crash": true,
+        "visual_verdict": false,
+        "ssim_whole": true,
+        "ssim_tile": true,
+        "dt_data": false,
+        "dt_geom": false,
+        "dt_perf": false
+      },
+      "detected": true,
+      "pred_dim": "visual",
+      "verdict": "Pass",
+      "whole_ssim": 0.7389,
+      "tile_ssim": 0.395,
+      "perf_metric": 86,
+      "dt_summary": {
+        "data_tokens": [],
+        "geom_overflow": false,
+        "geom_scrollW": 390,
+        "geom_clientW": 390,
+        "perf_metric": 86
+      }
+    },
+    {
+      "id": "others_invisible_title",
+      "kind": "fault",
+      "page": "others",
+      "gt_dim": "visual",
+      "gt_fine": "visual",
+      "subtype": "low_contrast",
+      "note": "页标题色改近白（白底上）→ '自定义组件' 不可见（对比度故障）",
+      "rca_correct": true,
+      "channels": {
+        "crash": true,
+        "visual_verdict": false,
+        "ssim_whole": false,
+        "ssim_tile": true,
+        "dt_data": false,
+        "dt_geom": false,
+        "dt_perf": false
+      },
+      "detected": true,
+      "pred_dim": "visual",
+      "verdict": "Pass",
+      "whole_ssim": 0.991,
+      "tile_ssim": 0.7918,
+      "perf_metric": 52,
+      "dt_summary": {
+        "data_tokens": [],
+        "geom_overflow": false,
+        "geom_scrollW": 390,
+        "geom_clientW": 390,
+        "perf_metric": 52
+      }
+    },
+    {
+      "id": "pictures_box_overflow",
+      "kind": "fault",
+      "page": "pictures",
+      "gt_dim": "visual",
+      "gt_fine": "layout",
+      "subtype": "overflow",
+      "note": "图片容器宽 100%→1500rpx + overflow:hidden→visible → 横向溢出(devtools scrollWidth>clientWidth)",
+      "rca_correct": true,
+      "channels": {
+        "crash": false,
+        "visual_verdict": false,
+        "ssim_whole": true,
+        "ssim_tile": true,
+        "dt_data": false,
+        "dt_geom": true,
+        "dt_perf": false
+      },
+      "detected": true,
+      "pred_dim": "visual",
+      "verdict": "Pass",
+      "whole_ssim": 0.6053,
+      "tile_ssim": 0.3025,
+      "perf_metric": 37,
+      "dt_summary": {
+        "data_tokens": [],
+        "geom_overflow": true,
+        "geom_scrollW": 780,
+        "geom_clientW": 390,
+        "perf_metric": 37
+      }
+    },
+    {
+      "id": "others_data_undefined",
+      "kind": "fault",
+      "page": "others",
+      "gt_dim": "functional",
+      "gt_fine": "functional",
+      "subtype": "data_mismatch",
+      "note": "字符串拼接未处理 undefined → 渲染'表单undefined'+page.data 出 undefined token",
+      "rca_correct": true,
+      "channels": {
+        "crash": true,
+        "visual_verdict": false,
+        "ssim_whole": false,
+        "ssim_tile": false,
+        "dt_data": true,
+        "dt_geom": false,
+        "dt_perf": false
+      },
+      "detected": true,
+      "pred_dim": "functional",
+      "verdict": "Pass",
+      "whole_ssim": 0.9953,
+      "tile_ssim": 0.9286,
+      "perf_metric": 67,
+      "dt_summary": {
+        "data_tokens": [
+          "undefined"
+        ],
+        "geom_overflow": false,
+        "geom_scrollW": 390,
+        "geom_clientW": 390,
+        "perf_metric": 67
+      }
+    },
+    {
+      "id": "pictures_blocking_loop",
+      "kind": "fault",
+      "page": "pictures",
+      "gt_dim": "performance",
+      "gt_fine": "performance",
+      "subtype": "main_thread_block",
+      "note": "onShow 同步死循环 1.4s（误写阻塞计算）→ devtools 性能条目/首屏渲染飙升",
+      "rca_correct": false,
+      "channels": {
+        "crash": false,
+        "visual_verdict": false,
+        "ssim_whole": false,
+        "ssim_tile": false,
+        "dt_data": false,
+        "dt_geom": false,
+        "dt_perf": false
+      },
+      "detected": false,
+      "pred_dim": "none",
+      "verdict": "Pass",
+      "whole_ssim": 1.0,
+      "tile_ssim": 1.0,
+      "perf_metric": 40,
+      "dt_summary": {
+        "data_tokens": [],
+        "geom_overflow": false,
+        "geom_scrollW": 390,
+        "geom_clientW": 390,
+        "perf_metric": 40
+      }
+    }
+  ],
+  "report": {
+    "headline": {
+      "n_faults": 5,
+      "n_healthy": 2,
+      "ours_recall": 0.8,
+      "ours_fp": 0.0,
+      "crash_only_recall": 0.6,
+      "screenshot_only_recall": 0.6,
+      "devtools_only_recall": 0.4,
+      "rca_top1": 0.8,
+      "rca_macro_f1": 0.667,
+      "rca_correct_given_detected": "4/4"
+    },
+    "detection": {
+      "crash_only": {
+        "recall": 0.6,
+        "fp": 0.5,
+        "n_detected": 3
+      },
+      "ssim_whole_only": {
+        "recall": 0.4,
+        "fp": 0.0,
+        "n_detected": 2
+      },
+      "ssim_tiled_only": {
+        "recall": 0.6,
+        "fp": 0.0,
+        "n_detected": 3
+      },
+      "screenshot_only": {
+        "recall": 0.6,
+        "fp": 0.0,
+        "n_detected": 3
+      },
+      "devtools_only": {
+        "recall": 0.4,
+        "fp": 0.0,
+        "n_detected": 2
+      },
+      "ours_all": {
+        "recall": 0.8,
+        "fp": 0.0,
+        "n_detected": 4
+      }
+    },
+    "rca_per_class": {
+      "visual": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": 3,
+        "fp": 0,
+        "fn": 0
+      },
+      "functional": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": 1,
+        "fp": 0,
+        "fn": 0
+      },
+      "performance": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "tp": 0,
+        "fp": 0,
+        "fn": 1
+      }
+    }
+  }
+}

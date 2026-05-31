@@ -1,0 +1,52 @@
+{
+  "target": "pages/others/others.js",
+  "sha_before": "0f93f52a17a40462",
+  "healthy": {
+    "shot": {
+      "written": true,
+      "size": 30984
+    },
+    "data": {
+      "available": true,
+      "has_suspicious": false,
+      "suspicious_tokens": [],
+      "data_keys": [
+        "list"
+      ]
+    },
+    "geo": {
+      "has_overflow": false,
+      "has_overlap": true,
+      "page_overflow_x": false,
+      "scroll_width": 390,
+      "client_width": 390
+    },
+    "perf": {
+      "available": true,
+      "source": "wx.getPerformance",
+      "app_launch_ms": 9331,
+      "first_render_ms": 100,
+      "max_script_ms": 1
+    }
+  },
+  "sha_injected": "8fca4696b897b071",
+  "buggy": {
+    "shot": {
+      "written": true,
+      "size": 33334
+    },
+    "data": {
+      "available": true,
+      "has_suspicious": true,
+      "suspicious_tokens": [
+        "undefined"
+      ],
+      "data_keys": [
+        "list"
+      ]
+    }
+  },
+  "tiled_min_ssim_healthy_vs_buggy": 0.9286307838450603,
+  "sha_after": "0f93f52a17a40462",
+  "reversible_ok": true
+}
