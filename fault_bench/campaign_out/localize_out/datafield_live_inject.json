@@ -1,0 +1,29 @@
+{
+  "port": 33676,
+  "route": "/pages/others/others",
+  "data_keys": [
+    "list"
+  ],
+  "inject_target": {
+    "key": "list",
+    "idx": 0,
+    "field": "id",
+    "orig_value": "form"
+  },
+  "after_inject": {
+    "broken_field_paths": [
+      "list[0].id"
+    ],
+    "suspicious_fields": [
+      {
+        "path": "list[0].id",
+        "value": "undefined"
+      }
+    ],
+    "has_suspicious": true
+  },
+  "expected_path": "list[0].id",
+  "caught_on_device": true,
+  "after_restore_broken_paths": [],
+  "restored_clean": true
+}

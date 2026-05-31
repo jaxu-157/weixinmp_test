@@ -1,0 +1,58 @@
+{
+  "summary": {
+    "_sentinel": "DATAFIELD_LOOP_OK",
+    "n_cases": 4,
+    "closed_loop": "4/4=1.000",
+    "note": "offline synthetic page.data; real-device swaps in minium page.data"
+  },
+  "rows": [
+    {
+      "component": "components/XtxGuess.vue",
+      "scanned_path": "guessList[0].price",
+      "bad_value": "undefined",
+      "resolved_field": "item.price",
+      "expected_field": "item.price",
+      "field_match": true,
+      "src_lines": [
+        67
+      ],
+      "closed_loop_ok": true
+    },
+    {
+      "component": "components/XtxGuess.vue",
+      "scanned_path": "guessList[0].name",
+      "bad_value": "",
+      "resolved_field": "item.name",
+      "expected_field": "item.name",
+      "field_match": true,
+      "src_lines": [
+        64
+      ],
+      "closed_loop_ok": true
+    },
+    {
+      "component": "pages/index/components/HotPanel.vue",
+      "scanned_path": "list[0].alt",
+      "bad_value": "NaN",
+      "resolved_field": "item.alt",
+      "expected_field": "item.alt",
+      "field_match": true,
+      "src_lines": [
+        16
+      ],
+      "closed_loop_ok": true
+    },
+    {
+      "component": "pages/index/components/CategoryPanel.vue",
+      "scanned_path": "categoryList[0].name",
+      "bad_value": "None",
+      "resolved_field": "item.name",
+      "expected_field": "item.name",
+      "field_match": true,
+      "src_lines": [
+        20
+      ],
+      "closed_loop_ok": true
+    }
+  ]
+}
