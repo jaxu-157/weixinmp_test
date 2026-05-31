@@ -120,6 +120,51 @@ def tile_center_px(i: int, j: int) -> tuple[int, int]:
     return x, y
 
 
+def _rect_inter_area(r, box) -> float:
+    """元素 rect {x,y,w,h} 与 tile box {x,y,w,h} 的交叠面积。"""
+    ax1, ay1 = r["x"], r["y"]
+    ax2, ay2 = r["x"] + r["w"], r["y"] + r["h"]
+    bx1, by1 = box["x"], box["y"]
+    bx2, by2 = box["x"] + box["w"], box["y"] + box["h"]
+    ix = max(0.0, min(ax2, bx2) - max(ax1, bx1))
+    iy = max(0.0, min(ay2, by2) - max(ay1, by1))
+    return ix * iy
+
+
+def localize_by_bbox_area(elements: list, worst_boxes: list, hash_index: dict,
+                          max_elem_frac: float = 0.6) -> dict:
+    """bbox 面积排序定位(替代单点采样)：
+    在【所有带 data-v hash 且 hash 能映射到文件】的元素里，挑与 worst tiles 交叠面积最大的；
+    排除视口占比 > max_elem_frac 的根容器(否则大容器总赢)。
+    elements: [{rect:{x,y,w,h}, dataV:[...], cls}], worst_boxes: [{x,y,w,h}, ...]
+    """
+    viewport_area = VIEWPORT_W * VIEWPORT_H
+    best, best_area = None, 0.0
+    for el in elements:
+        r = el.get("rect")
+        if not r or r["w"] <= 0 or r["h"] <= 0:
+            continue
+        # 该元素 hash 是否可映射
+        fpath = None
+        dvs = el.get("dataV") or []
+        for dv in dvs:
+            h = dv.replace("data-v-", "")
+            if h in hash_index:
+                fpath = hash_index[h]; dv_hit = dv; break
+        if not fpath:
+            continue
+        if (r["w"] * r["h"]) > max_elem_frac * viewport_area:  # 跳过根容器
+            continue
+        area = sum(_rect_inter_area(r, b) for b in worst_boxes)
+        if area > best_area:
+            best, best_area = {"file": fpath, "data_v": dv_hit,
+                               "anchor_class": (el.get("cls") or "").split()[:1],
+                               "confidence": "high", "via": "bbox_area",
+                               "inter_area": round(area, 1)}, area
+    return best or {"file": None, "data_v": [], "anchor_class": None,
+                    "confidence": "none", "via": "no_bbox_hit"}
+
+
 def tile_box_px(i: int, j: int) -> dict:
     return {"x": j * VIEWPORT_W // TILE_COLS, "y": i * VIEWPORT_H // TILE_ROWS,
             "w": VIEWPORT_W // TILE_COLS, "h": VIEWPORT_H // TILE_ROWS}

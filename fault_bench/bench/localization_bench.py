@@ -26,7 +26,7 @@ from bench.renderer import XtxRenderer  # noqa
 from bench.gen_random_mutations import generate  # noqa
 from bench.localize import (build_class_file_index, build_hash_file_index,  # noqa
                             tile_center_px, tile_box_px, localize_from_elements,
-                            localize_by_datav, TILE_ROWS, TILE_COLS)
+                            localize_by_datav, localize_by_bbox_area, TILE_ROWS, TILE_COLS)
 from vt_diagnose import per_tile_ssim, TILE_SSIM_REGRESSION  # noqa
 
 H5 = os.path.join(FB, "xtx", "dist", "build", "h5")
@@ -43,6 +43,24 @@ ELEMENTS_JS = r"""
     text: (e.textContent||'').trim().slice(0,20)
   }));
 })
+"""
+# 采集全部带 data-v 的元素 + 其 page 坐标 rect(视口固定2200高、scroll=0,getBoundingClientRect即page坐标)
+ALL_ELEMENTS_JS = r"""
+() => {
+  const out = [];
+  for (const e of document.querySelectorAll('[class*="data-v-"], *')) {
+    const dv = Array.from(e.attributes||[]).filter(a=>a.name.startsWith('data-v-')).map(a=>a.name);
+    if (!dv.length) continue;
+    const r = e.getBoundingClientRect();
+    if (r.width<=0 || r.height<=0) continue;
+    out.push({
+      cls: (e.className && e.className.baseVal!==undefined ? e.className.baseVal : e.className) || '',
+      dataV: dv,
+      rect: {x: r.x, y: r.y, w: r.width, h: r.height}
+    });
+  }
+  return out;
+}
 """
 
 
@@ -86,6 +104,7 @@ def main():
         page.wait_for_timeout(1600)
         pts = [tile_center_px(i, j) for i in range(TILE_ROWS) for j in range(TILE_COLS)]
         stacks = page.evaluate(ELEMENTS_JS, pts)
+        all_elements = page.evaluate(ALL_ELEMENTS_JS)  # bbox 面积排序用
         page.close(); r.close()
     finally:
         try: srv.terminate()
@@ -100,6 +119,10 @@ def main():
 
     base_png = os.path.join(OUT, "baseline_index.png")
     muts = [m for m in generate(SRC, seed=42, pages=["index"])]
+
+    def _hit(pf, gt):
+        return bool(pf and (pf == gt or os.path.basename(pf) == os.path.basename(gt)))
+
     rows = []
     for m in muts:
         sp = os.path.join(SCREENS, sanitize(m["id"]) + ".png")
@@ -107,36 +130,41 @@ def main():
             rows.append({"id": m["id"], "gt_file": m["file"], "error": "no_screenshot"}); continue
         wt, worst = worst_tiles(base_png, sp, k=3)
         detected = worst < TILE_SSIM_REGRESSION
-        pred = {"file": None}
         worst_ij = wt[0][0] if wt else None
-        if detected and worst_ij is not None:
-            # 修法:优先 data-v hash 路线(hash 每个 .vue 唯一);无 hash 命中再退回 class
-            pred = localize_by_datav(tile_elems.get(worst_ij, []), hash_idx)
-            if not pred.get("file"):
-                pred = localize_from_elements(tile_elems.get(worst_ij, []), class_idx)
         gt = m["file"]
-        # 文件级命中:预测文件 == 真值文件(或真值 basename 命中预测)
-        pf = pred.get("file")
-        hit = bool(pf and (pf == gt or os.path.basename(pf) == os.path.basename(gt)))
+        pred_pt = {"file": None}   # 路线A:单点 hash(旧)
+        pred_bb = {"file": None}   # 路线B:bbox 面积排序(新)
+        if detected and worst_ij is not None:
+            pred_pt = localize_by_datav(tile_elems.get(worst_ij, []), hash_idx)
+            if not pred_pt.get("file"):
+                pred_pt = localize_from_elements(tile_elems.get(worst_ij, []), class_idx)
+            worst_boxes = [tile_box_px(i, j) for (i, j), s in wt if s < TILE_SSIM_REGRESSION]
+            if not worst_boxes:
+                worst_boxes = [tile_box_px(*worst_ij)]
+            pred_bb = localize_by_bbox_area(all_elements, worst_boxes, hash_idx)
         rows.append({"id": m["id"], "dim": m["dim"], "gt_file": gt, "detected": detected,
                      "worst_tile": list(worst_ij) if worst_ij else None, "worst_ssim": round(worst, 4),
-                     "pred_file": pf, "anchor": pred.get("anchor_class"),
-                     "data_v": pred.get("data_v"), "confidence": pred.get("confidence"),
-                     "file_hit": hit})
+                     "pred_pt": pred_pt.get("file"), "hit_pt": _hit(pred_pt.get("file"), gt),
+                     "pred_bbox": pred_bb.get("file"), "hit_bbox": _hit(pred_bb.get("file"), gt),
+                     "bbox_inter": pred_bb.get("inter_area")})
 
     det = [r_ for r_ in rows if "error" not in r_ and r_["detected"]]
     n_det = len(det)
-    n_hit = sum(1 for r_ in det if r_["file_hit"])
+    n_pt = sum(1 for r_ in det if r_["hit_pt"])
+    n_bb = sum(1 for r_ in det if r_["hit_bbox"])
+    n_union = sum(1 for r_ in det if r_["hit_pt"] or r_["hit_bbox"])
     summary = {
         "n_mutations": len([r_ for r_ in rows if "error" not in r_]),
         "n_detected": n_det,
-        "localization_file_acc_over_detected": f"{n_hit}/{n_det}=" + (f"{n_hit/n_det:.3f}" if n_det else "NA"),
+        "file_acc_singlepoint": f"{n_pt}/{n_det}=" + (f"{n_pt/n_det:.3f}" if n_det else "NA"),
+        "file_acc_bbox_area": f"{n_bb}/{n_det}=" + (f"{n_bb/n_det:.3f}" if n_det else "NA"),
+        "file_acc_union": f"{n_union}/{n_det}=" + (f"{n_union/n_det:.3f}" if n_det else "NA"),
     }
     json.dump({"summary": summary, "rows": rows},
-              open(os.path.join(OUT, "localization.json"), "w", encoding="utf-8"),
+              open(os.path.join(OUT, "localization_v2.json"), "w", encoding="utf-8"),
               ensure_ascii=False, indent=2)
     print(json.dumps(summary, ensure_ascii=False, indent=2))
-    print("[done]", os.path.join(OUT, "localization.json"))
+    print("[done]", os.path.join(OUT, "localization_v2.json"))
 
 
 if __name__ == "__main__":
