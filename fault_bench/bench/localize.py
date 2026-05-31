@@ -120,6 +120,51 @@ def tile_center_px(i: int, j: int) -> tuple[int, int]:
     return x, y
 
 
+_BIND_TOKEN = re.compile(r"\{\{\s*([a-zA-Z_][\w.]*)\s*\}\}")          # {{ item.name }}
+_ATTR_BIND = re.compile(r'[:@]([a-zA-Z_][\w-]*)="([a-zA-Z_][\w.]*)"')  # :src="item.picture"
+
+
+def build_field_line_index(src_root: str) -> dict:
+    """字段→源码行 索引(确定性,无 LLM,无需运行)。
+    扫描每个 .vue 的 <template>，把每个绑定字段路径(item.name / item.picture …)
+    映射到它出现的行号。返回 {rel_file: {field_path: [line, ...]}}。
+    功能/数据故障定位的最后一公里:已知坏字段名 → 直接查到 .vue 行。
+    """
+    out: dict[str, dict] = {}
+    for fp in _iter_vue(src_root):
+        rel = os.path.relpath(fp, src_root).replace("\\", "/")
+        lines = open(fp, encoding="utf-8").read().splitlines()
+        # 仅在模板区间内找(避免 <script>/<style> 噪声)
+        tstart = next((i for i, l in enumerate(lines) if "<template" in l), 0)
+        tend = next((i for i, l in enumerate(lines) if "</template>" in l), len(lines))
+        fmap: dict[str, list] = {}
+        for i in range(tstart, min(tend + 1, len(lines))):
+            ln = lines[i]
+            for m in _BIND_TOKEN.finditer(ln):
+                fmap.setdefault(m.group(1), []).append(i + 1)
+            for m in _ATTR_BIND.finditer(ln):
+                fmap.setdefault(m.group(2), []).append(i + 1)
+        if fmap:
+            out[rel] = fmap
+    return out
+
+
+def resolve_field_line(field_index: dict, file_rel: str, field: str) -> dict:
+    """已知(文件, 坏字段名) → 源码行。先精确字段路径,再退回末段属性名匹配。"""
+    fmap = field_index.get(file_rel) or {}
+    if field in fmap:
+        return {"file": file_rel, "field": field, "lines": fmap[field], "via": "exact_field"}
+    # 退回:按字段末段(name/price/title)匹配任一含该末段的绑定
+    tail = field.split(".")[-1]
+    cand = {k: v for k, v in fmap.items() if k.split(".")[-1] == tail}
+    if cand:
+        # 取行号最小的候选
+        best_k = min(cand, key=lambda k: min(cand[k]))
+        return {"file": file_rel, "field": field, "lines": cand[best_k],
+                "matched_field": best_k, "via": "tail_match"}
+    return {"file": file_rel, "field": field, "lines": [], "via": "not_found"}
+
+
 def _rect_inter_area(r, box) -> float:
     """元素 rect {x,y,w,h} 与 tile box {x,y,w,h} 的交叠面积。"""
     ax1, ay1 = r["x"], r["y"]

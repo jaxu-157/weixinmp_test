@@ -226,10 +226,31 @@ A/B/C 线都只在首页布局上测。R3 把同一套"每页各自基线 + 局�
 ② 改 **data-v hash**（每 `.vue` 唯一、不撞车；映射 6/6 全对）+ 单点 → 4/10，瓶颈在单点选错元素；
 ③ 改 **bbox 面积排序** → 8/10 文件级 / 9/10 组件级。三步都先实跑、读产物 JSON、独立重算、再下结论。
 
+### 3.2.1 功能/数据故障的字段级【行号】定位（确定性，无 LLM，本轮新增）
+
+功能故障比视觉更直接：**坏字段名本就被运行时命名**（minium `page.data` 直接列出空/`undefined` 的 key；
+或 ajv/zod 从 API 契约的 `instancePath`；H5 prod 因 Vue per-node 实例不可达，靠数据层/DOM 空节点 diff）。
+拿到字段名后，最后一公里"字段→源码行"是纯静态解析：`localize.build_field_line_index` 扫描每个 `.vue` 的
+`<template>`，把每个绑定（`{{ item.x }}` 与 `:attr="item.x"`）映射到行号；`resolve_field_line(文件, 字段)` 直接查行。
+
+**实测（产物 `campaign_out/localize_out/field_line.json`，对 5 个 bindempty 功能故障，独立重算 + 逐条对源码核对）**：
+
+| 指标 | 结果 |
+|---|---|
+| **字段→行 精确命中** | **5/5 = 100%**（exact_field） |
+
+5 条全部命中各自源码行：`CategoryPanel:item.name`→L16、`HotPanel:item.title`→L16、`HotPanel:item.alt`→L13（属性绑定 `:alt`）、
+`XtxGuess:item.name`→L64、`XtxGuess:item.price`→L67。索引同时覆盖文本插值与属性绑定两种形式。
+
+- **诚实边界**：5/5 衡量的是"**给定坏字段名 → 解析到正确源码行**"这一确定性步骤（在真实场景由数据层提供字段名）。
+  在本 H5 headless prod 基准里，**字段名的运行时自动恢复**仍是缺口（prod 编译掉了 `{{ }}` 表达式、Vue 实例不可达）——
+  这一步在 **minium 原生路径上是直接的**（`page.data` 命名坏字段），是平台不对称的又一例（与 §2.5/§3.2 性能一致）。
+- 脚本：`fault_bench/bench/field_line_bench.py`。
+
 **三维度定位现状（诚实）**：
 | 维度 | 能否定位到源 | 手段 | 现状 |
 |---|---|---|---|
-| **功能/数据** | 理论最直接 | 运行时 `page.data`/绑定 token 直接命名坏字段；字段→行可进一步用 `@vue/compiler-sfc` `loc` 或 ajv/zod `instancePath` | 本轮 2 条 bindempty 经 bbox 链路**已正确定位到源文件**；字段级行号定位（不依赖像素）为下一步、最确定 |
+| **功能/数据** | 最直接 | 运行时数据层命名坏字段 + `build_field_line_index` 字段→行 | 2 条 bindempty 经 bbox 已定位到源文件；**字段→行索引实测 5/5=100%**（§3.2.1）；H5 prod 的字段名运行时恢复仍缺、minium `page.data` 直接给 |
 | **视觉/布局** | 需像素→元素逆映射 | tile→bbox 面积排序→data-v hash→文件 | **8/10 文件级 / 9/10 组件级**（剩 1 真错 + 1 .scss-vs-组件近似）；学术蓝本 WebSee、XFix |
 | **性能** | 被检测卡住 | H5 检出本身是盲区（§2.5 R1 负结果）→无从定位；**若能检出**，CDP `Profiler`（Playwright `newCDPSession` 可驱动）+ source-map 给**函数+源码行**级确定性定位；原生微信深 CPU profiler 是 GUI-only，minium 拿不到 | 未达可用，平台不对称 |
 
