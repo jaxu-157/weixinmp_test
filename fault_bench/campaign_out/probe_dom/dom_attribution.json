@@ -1,0 +1,198 @@
+{
+  "total_elements": 368,
+  "elements_with_data_v": 167,
+  "distinct_data_v": [
+    "data-v-3db78f05",
+    "data-v-app",
+    "data-v-0bb07d44",
+    "data-v-df5374a1",
+    "data-v-a012068b",
+    "data-v-51fb860c",
+    "data-v-571a0c52"
+  ],
+  "class_present": {
+    "guess-item": 8,
+    "caption": 1,
+    "category": 1,
+    "swiper": 0,
+    "navbar": 1,
+    "panel": 1,
+    "image": 19,
+    "name": 8,
+    "price": 8
+  },
+  "points": [
+    {
+      "x": 187,
+      "y": 200,
+      "stack": [
+        {
+          "tag": "IMG",
+          "cls": "",
+          "dataV": [],
+          "text": ""
+        },
+        {
+          "tag": "DIV",
+          "cls": "",
+          "dataV": [],
+          "text": ""
+        },
+        {
+          "tag": "UNI-IMAGE",
+          "cls": "image",
+          "dataV": [
+            "data-v-df5374a1"
+          ],
+          "text": ""
+        },
+        {
+          "tag": "UNI-NAVIGATOR",
+          "cls": "navigator",
+          "dataV": [
+            "data-v-df5374a1"
+          ],
+          "text": ""
+        }
+      ]
+    },
+    {
+      "x": 187,
+      "y": 600,
+      "stack": [
+        {
+          "tag": "UNI-NAVIGATOR",
+          "cls": "cards",
+          "dataV": [
+            "data-v-51fb860c"
+          ],
+          "text": ""
+        },
+        {
+          "tag": "A",
+          "cls": "navigator-wrap",
+          "dataV": [
+            "data-v-51fb860c"
+          ],
+          "text": ""
+        },
+        {
+          "tag": "UNI-VIEW",
+          "cls": "item",
+          "dataV": [
+            "data-v-51fb860c"
+          ],
+          "text": "新鲜好物新品尝鲜"
+        },
+        {
+          "tag": "UNI-VIEW",
+          "cls": "item",
+          "dataV": [
+            "data-v-51fb860c"
+          ],
+          "text": "一站买全买点好的，犒赏自己"
+        }
+      ]
+    },
+    {
+      "x": 187,
+      "y": 1100,
+      "stack": [
+        {
+          "tag": "UNI-VIEW",
+          "cls": "guess",
+          "dataV": [
+            "data-v-571a0c52"
+          ],
+          "text": "云珍·轻软细腻面巾纸¥19梵想·便携充电宝 10000mAh"
+        },
+        {
+          "tag": "DIV",
+          "cls": "uni-scroll-view-content",
+          "dataV": [],
+          "text": "手机数码美妆护肤家居日用服饰鞋包母婴亲子运动户外粮油生鲜图书"
+        },
+        {
+          "tag": "DIV",
+          "cls": "uni-scroll-view",
+          "dataV": [],
+          "text": "手机数码美妆护肤家居日用服饰鞋包母婴亲子运动户外粮油生鲜图书"
+        },
+        {
+          "tag": "DIV",
+          "cls": "uni-scroll-view",
+          "dataV": [],
+          "text": "手机数码美妆护肤家居日用服饰鞋包母婴亲子运动户外粮油生鲜图书"
+        }
+      ]
+    },
+    {
+      "x": 187,
+      "y": 1700,
+      "stack": [
+        {
+          "tag": "UNI-VIEW",
+          "cls": "guess",
+          "dataV": [
+            "data-v-571a0c52"
+          ],
+          "text": "云珍·轻软细腻面巾纸¥19梵想·便携充电宝 10000mAh"
+        },
+        {
+          "tag": "DIV",
+          "cls": "uni-scroll-view-content",
+          "dataV": [],
+          "text": "手机数码美妆护肤家居日用服饰鞋包母婴亲子运动户外粮油生鲜图书"
+        },
+        {
+          "tag": "DIV",
+          "cls": "uni-scroll-view",
+          "dataV": [],
+          "text": "手机数码美妆护肤家居日用服饰鞋包母婴亲子运动户外粮油生鲜图书"
+        },
+        {
+          "tag": "DIV",
+          "cls": "uni-scroll-view",
+          "dataV": [],
+          "text": "手机数码美妆护肤家居日用服饰鞋包母婴亲子运动户外粮油生鲜图书"
+        }
+      ]
+    },
+    {
+      "x": 187,
+      "y": 2000,
+      "stack": [
+        {
+          "tag": "DIV",
+          "cls": "uni-scroll-view-content",
+          "dataV": [],
+          "text": "手机数码美妆护肤家居日用服饰鞋包母婴亲子运动户外粮油生鲜图书"
+        },
+        {
+          "tag": "DIV",
+          "cls": "uni-scroll-view",
+          "dataV": [],
+          "text": "手机数码美妆护肤家居日用服饰鞋包母婴亲子运动户外粮油生鲜图书"
+        },
+        {
+          "tag": "DIV",
+          "cls": "uni-scroll-view",
+          "dataV": [],
+          "text": "手机数码美妆护肤家居日用服饰鞋包母婴亲子运动户外粮油生鲜图书"
+        },
+        {
+          "tag": "UNI-SCROLL-VIEW",
+          "cls": "scroll-view",
+          "dataV": [
+            "data-v-3db78f05"
+          ],
+          "text": "手机数码美妆护肤家居日用服饰鞋包母婴亲子运动户外粮油生鲜图书"
+        }
+      ]
+    }
+  ],
+  "has_vue_global": true,
+  "has_vue_hook": false,
+  "node_vue_expandos": [],
+  "suspicious_text_nodes": []
+}

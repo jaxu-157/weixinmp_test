@@ -189,6 +189,49 @@ A/B/C 线都只在首页布局上测。R3 把同一套"每页各自基线 + 局�
 
 ---
 
+## 3.2 根因定位：从"哪一维"到"哪个源文件"（确定性，无 LLM，本轮新增）
+
+中期之前的 RCA 只回答"故障属于视觉/功能/性能哪一维"。本轮把它推进到**定位到具体源文件/组件**——且全程确定性，不依赖 LLM。
+
+**定位链路（视觉/布局/功能共用）**：
+```
+分块 SSIM 最低的 tile  →  elementsFromPoint(tile 中心像素)  →  命中元素的 class / data-v-* 
+                        →  class→.vue 源文件索引  →  预测源文件
+```
+- 视口固定 375×2200、8×3 网格，tile 坐标→像素中心是确定映射（`localize.py: tile_center_px`）。
+- `build_class_file_index` 扫描所有 `.vue` 的 `<style>` 选择器与模板 class，建 `class→源文件` 索引（199 类）。
+- 第 0 步 DOM 探测（`probe_dom_attribution.py`，产物 `campaign_out/probe_dom/`）实测确认：H5 prod 构建里 **`data-v-*` scoped 属性可达（167/368 元素）**、`elementsFromPoint` 可用、但 **Vue per-node 实例不可达**——所以走 class/data-v 路线而非 Vue 运行时。
+
+**实测定位准确率**（产物 `campaign_out/localize_out/localization.json`，复用上轮已存故障截图，index 页 N=20）：
+
+| 指标 | 结果 | 说明 |
+|---|---|---|
+| 检出（前提） | 10/20 | 没检出的无从定位，定位率只在**已检出**的故障上算 |
+| **文件级定位** | **7/10 = 70%** | 预测源文件 == 真值文件 |
+| **组件级定位** | **9/10 = 90%** | 含 2 条"定位到正确组件但真值是其 `.scss` 样式文件"的近似命中 |
+| 真正错误 | **1/10** | `width@CustomNavbar` 在顶部 tile(0,0) 命中到与之重叠的 XtxSwiper（元素重叠） |
+
+- **功能故障同样定位对**：`bindempty@XtxGuess:item.name`、`:item.price` 两条数据绑定故障都正确定位到 `XtxGuess.vue`——印证"功能故障可直接定位"（坏字段名本就命名在运行时 `page.data`/绑定里，源文件经同一链路得到）。
+- **2 条 category 近似命中**：故障在 `pages/index/styles/category.scss`，定位到了使用该样式的 `CategoryPanel.vue`——组件对、文件类型差一层。
+- **唯一真错=元素重叠**：点采样在重叠区会命中上层/相邻元素。改进方向：用元素 bbox ∩ 变化 tile 的**面积排序**取代单点采样（已知工程项）。
+
+**三维度定位现状（诚实）**：
+| 维度 | 能否定位到源 | 手段 | 现状 |
+|---|---|---|---|
+| **功能/数据** | ✅ 最直接 | 运行时 `page.data`/绑定 token 直接命名坏字段；字段→行可用 `@vue/compiler-sfc` 的 `loc` 或 ajv/zod 的 `instancePath` | 文件级已实测命中 |
+| **视觉/布局** | ✅ 需像素→元素逆映射 | tile→`elementsFromPoint`→class/data-v→文件（本节）；学术蓝本 WebSee（区域→故障元素）、XFix（→CSS 属性） | 7/10 文件级 |
+| **性能** | ⚠️ 被检测卡住 | H5 检出本身是盲区（§2.5 R1 负结果）→无从定位；**若能检出**，CDP `Profiler`（Playwright `newCDPSession` 可驱动）+ source-map 给**函数+源码行**级确定性定位；原生微信深 CPU profiler 是 GUI-only，minium 拿不到 | 未达可用，平台不对称 |
+
+**现成轮子归档**（调研结论，便于后续直接接）：
+- 视觉：`resemble.js`（返回 diff bounding box）、Applitools RCA（DOM 锚定但闭源）、OwlEye（Grad-CAM 热力图、**无 DOM**）、WebSee/XFix（区域→元素/CSS，学术）。
+- 功能：`ajv`/`zod`（校验错误带 `instancePath`/`path` 精确到字段）、`@vue/compiler-sfc` `loc`（字段→`.vue` 行）、Vue `app.config.warnHandler`/`errorHandler`（dev 直接报字段名+组件）。
+- 性能：CDP `Profiler`→`.cpuprofile`→`source-map` 反映射→`speedscope`/`cpupro` 按 self-time 排序、LoAF `scripts[]`（Chrome 123+ 带 `sourceFunctionName`）、Vue `app.config.performance`（每组件 User Timing）。
+
+> 脚本：`fault_bench/bench/{localize,localization_bench,probe_dom_attribution}.py`。
+> 局限：单 app、index 页小样本；定位仅在已检出故障上有意义；性能维仍未打通。
+
+---
+
 ## 4. 诚实的局限（主动列）
 
 1. **样本量小、CI 宽**：A 线 N=20，ours 95%CI [30%, 70%]——区间宽是小样本必然，需扩到 3 app/60+ 变异才能收窄。

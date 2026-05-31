@@ -33,3 +33,5 @@ fault_bench/preset-probe/
 fault_bench/_*.png
 fault_bench/_backhalf/
 fault_bench/**/__pycache__/
+fault_bench/campaign_out/localize_out/*.png
+fault_bench/campaign_out/probe_dom/*.png
