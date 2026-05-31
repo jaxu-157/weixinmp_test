@@ -192,7 +192,7 @@ A/B/C 线都只在首页布局上测。R3 把同一套"每页各自基线 + 局�
 ## 3.2 根因定位：从"哪一维"到"哪个源文件"（确定性，无 LLM，本轮新增）
 
 中期之前的 RCA 只回答"故障属于视觉/功能/性能哪一维"。本轮把它推进到**定位到具体源文件**，全程确定性、不依赖 LLM。
-经一次失败→修复的迭代（朴素 class 索引 0/10 → **data-v hash 映射 6/10**），最终文件级定位率 60%。
+经一次失败→修复的迭代（朴素 class 索引 0/10 → **data-v hash 映射 4/10**），最终文件级定位率 40%。
 
 **定位链路（视觉/布局/功能共用）**：
 ```
@@ -210,23 +210,26 @@ A/B/C 线都只在首页布局上测。R3 把同一套"每页各自基线 + 局�
 | 指标 | 结果 |
 |---|---|
 | 检出（前提） | 10/20（没检出的无从定位）|
-| **文件级定位** | **6/10 = 60% over detected** |
+| **文件级定位** | **4/10 = 40% over detected** |
 
-- **6 条 HIT（全部 data-v hash, 高置信）**：`img@XtxGuess`、`img@XtxSwiper`、`img@CategoryPanel`、
-  `bindempty@HotPanel:item.title`、`bindempty@HotPanel:item.alt`（**2 条功能故障也正确定位**）、`width@XtxGuess`。
-- **4 条 MISS**：① `img@HotPanel:src` → 误判 XtxGuess（tile (2,0) 处元素重叠/相邻）；
-  ②③④ `width@category:100/150`、`width@XtxGuess:304` 这三条**宽度溢出**故障——溢出把后续内容**挤动**，
-  最大 diff 落在被挤动的相邻区(tile (1,1))而非故障源，该区无可解析组件 → 漏。**这是"最差 tile ≠ 故障源"问题的残留。**
+- **4 条 HIT（全部 data-v hash, 高置信）**：`img@XtxGuess:item.picture`、`img@XtxSwiper:item.imgUrl`、
+  `width@XtxGuess:304`、`width@XtxGuess:345`——这些故障的最大 diff tile 恰好落在故障组件自身区域，hash 命中正确文件。
+- **6 条 MISS**（逐条核对，两类原因）：
+  - **元素重叠/相邻（3 条）**：`img@HotPanel:src`、`bindempty@HotPanel:item.title`、`:item.alt` 的最差 tile=(2,0)，
+    `elementsFromPoint` 命中了相邻的 XtxGuess（caption）而非 HotPanel。
+  - **布局溢出的 diff 漂移（3 条）**：`width@category:100/150`、`img@CategoryPanel:item.icon` 的最差 tile=(1,1)/(1,2)，
+    溢出把后续内容挤动，最大 diff 落在 index 容器层而非 CategoryPanel 故障源。
 
 **这次迭代的失败→修复**（诚实记录）：朴素版用 **class** 做映射，被 uni-app 框架 wrapper 类（`navigator-wrap`/`scroll-view`）
-污染，全部错判（0/10）；改用 **data-v hash**（每个 `.vue` 唯一，不撞车）后升到 6/10。剩余 4 漏里 3 条是布局溢出的
-"diff 漂移"，需 **元素 bbox ∩ 变化 tile 面积排序**（替代单点采样）进一步救，已知工程项、未做。
+污染，全部错判（0/10）；改用 **data-v hash**（每个 `.vue` 唯一，不撞车）后升到 **4/10**——hash 映射本身 6/6 全对，
+瓶颈不在映射而在"**最差 tile 选错位置**"（元素重叠 + 溢出 diff 漂移共 6 条）。下一步用 **元素 bbox ∩ 变化 tile 面积排序**
+替代单点中心采样，预计能救回重叠类那几条；溢出类需把"变化 tile"回溯到布局变化的起点。均为已知工程项、未做。
 
 **三维度定位现状（诚实）**：
 | 维度 | 能否定位到源 | 手段 | 现状 |
 |---|---|---|---|
-| **功能/数据** | 理论最直接 | 运行时 `page.data`/绑定 token 直接命名坏字段；本轮经同一 tile→hash→文件链路实测 **2 条 bindempty 故障都正确定位到源文件**；字段→行可进一步用 `@vue/compiler-sfc` `loc` 或 ajv/zod `instancePath` | **文件级已命中**（字段级行号定位为下一步）|
-| **视觉/布局** | 需像素→元素逆映射 | tile→`elementsFromPoint`→data-v hash→文件 | **6/10 文件级**；剩余漏检主要是布局溢出的 diff 漂移；学术蓝本 WebSee（区域→故障元素）、XFix（→CSS 属性）|
+| **功能/数据** | 理论最直接 | 运行时 `page.data`/绑定 token 直接命名坏字段；字段→行可进一步用 `@vue/compiler-sfc` `loc` 或 ajv/zod `instancePath` | 本轮 2 条 bindempty 走视觉同链路，因元素重叠**均漏**；**字段级定位（不依赖像素）为下一步、最确定** |
+| **视觉/布局** | 需像素→元素逆映射 | tile→`elementsFromPoint`→data-v hash→文件 | **4/10 文件级**（hash 映射 6/6 全对；漏检源于最差 tile 选错位置：元素重叠 3 + 溢出 diff 漂移 3）；学术蓝本 WebSee、XFix |
 | **性能** | 被检测卡住 | H5 检出本身是盲区（§2.5 R1 负结果）→无从定位；**若能检出**，CDP `Profiler`（Playwright `newCDPSession` 可驱动）+ source-map 给**函数+源码行**级确定性定位；原生微信深 CPU profiler 是 GUI-only，minium 拿不到 | 未达可用，平台不对称 |
 
 **现成轮子归档**（调研结论，便于后续直接接）：
