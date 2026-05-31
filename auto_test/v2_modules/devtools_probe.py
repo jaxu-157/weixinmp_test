@@ -187,7 +187,27 @@ class DevtoolsProbe:
 
     # ---------------------------------------------------------- 数据
     def collect_data(self) -> dict:
-        """读当前页 page.data + wxml，扫可疑 token（空绑定/NaN/undefined）。"""
+        """读当前页 page.data + wxml，扫可疑 token（空绑定/NaN/undefined）+ 逐字段定位坏字段路径。"""
+        def _scan_suspicious_fields(node, prefix=""):
+            """递归 page.data，返回坏叶子的字段路径 [{path, value}]。
+            坏 = 空串/None/含可疑 token 字符串/NaN。数组用 [i] 索引路径。"""
+            bad = []
+            BADSTR = set(SUSPICIOUS_TOKENS) | {"undefined", "null", "NaN", "[object Object]"}
+            if isinstance(node, dict):
+                for k, v in node.items():
+                    bad += _scan_suspicious_fields(v, f"{prefix}.{k}" if prefix else str(k))
+            elif isinstance(node, list):
+                for i, v in enumerate(node):
+                    bad += _scan_suspicious_fields(v, f"{prefix}[{i}]")
+            else:
+                val = node
+                is_bad = (val is None or val == "" or
+                          (isinstance(val, float) and val != val) or  # NaN
+                          (isinstance(val, str) and (val.strip() in BADSTR)))
+                if is_bad and prefix:
+                    bad.append({"path": prefix, "value": "" if val == "" else str(val)})
+            return bad
+
         if self.app is None:
             return {"available": False, "error": "no_app"}
         page = _safe(lambda: self.app.get_current_page())
@@ -207,11 +227,16 @@ class DevtoolsProbe:
 
         haystack = data_str + "\n" + (wxml if isinstance(wxml, str) else "")
         hits = sorted({t for t in SUSPICIOUS_TOKENS if t in haystack})
+        # 字段名运行时恢复(2026-05-31)：逐字段递归扫 page.data，指名哪个字段路径坏了
+        # —— 这是 H5 prod 拿不到、minium 原生独有的能力(page.data 天然结构化命名)。
+        suspicious_fields = _scan_suspicious_fields(data) if isinstance(data, (dict, list)) else []
         return {
             "available": data is not None or bool(wxml),
             "suspicious_tokens": hits,
             "has_suspicious": bool(hits),
             "data_keys": data_keys[:40],
+            "suspicious_fields": suspicious_fields[:40],   # [{path, value}] 坏字段及其值
+            "broken_field_paths": [f["path"] for f in suspicious_fields[:40]],
             "text_sample": haystack[:300],
         }
 
